@@ -13,6 +13,10 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
         $stateProvider
             .state('index', {
                 url: '/',
+                templateUrl: 'templates/login.html'
+            })
+            .state('dashboard', {
+                url: '/dashboard',
                 templateUrl: 'templates/dashboard.html'
             })
             .state('trackbuilder', {
