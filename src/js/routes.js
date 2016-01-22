@@ -15,9 +15,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
             })
-            .state('tables', {
-                url: '/tables',
-                templateUrl: 'templates/tables.html'
+            .state('trackbuilder', {
+                url: '/trackbuilder',
+                templateUrl: 'templates/trackbuilder.html'
+            })
+            .state('clientdashboard', {
+                url: '/clientdashboard',
+                templateUrl: 'templates/client/dashboard.html'
             });
+
     }
 ]);
