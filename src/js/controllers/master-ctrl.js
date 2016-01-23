@@ -17,7 +17,7 @@ function MasterCtrl($scope, $cookieStore) {
       forum_id: 341319,
       tab_label: 'Feedback',
       tab_color: '#cc6d00',
-      tab_position: 'middle-right',
+      tab_position: 'top-right',
       tab_inverted: false
     }]);
 
