@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'/ >
+
 
     <title>Addoo</title>
     <!-- STYLES -->
@@ -20,61 +22,25 @@
     <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
     <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="components/mixpanel/mixpanel-jslib-snippet.min.js"></script>
+    <script type="text/javascript" src="components/angular-mixpanel/dist/angular-mixpanel.min.js"></script>
+    <script type="text/javascript" src="components/lodash/lodash.min.js"></script>
+    <script type="text/javascript" src="components/restangular/dist/restangular.min.js"></script>
+    <script type="text/javascript" src="components/angular-growl-v2/build/angular-growl.min.js"></script>
+    <script type="text/javascript" src="components/ng-clip/dest/ng-clip.min.js"></script>
+    <script type="text/javascript" src="components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+    <script type="text/javascript" src="components/ng-file-upload/ng-file-upload.min.js"></script>    
+
+
     <!-- endbuild -->
     <!-- Custom Scripts -->
     <script type="text/javascript" src="js/dashboard.min.js"></script>
+
+    <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+
 </head>
-<body ng-controller="MasterCtrl">
-    <!-- Header Bar -->
-    <div class="row header full-width">
-        <div class="col-xs-12">
-            <div class="meta">
-                <div class="page">
-                    Dashboard
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Header Bar -->
-
-    <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar">
-                <li class="sidebar-main" id="collapser">
-                    <a ng-click="toggleSidebar()"> Dashboard <span class="menu-icon glyphicon glyphicon-transfer"></span></a>
-                </li>
-            </ul>
-            <div id="profile">
-                <img src="{{currUser.picture.large}}" class="img-thumbnail img-responsive img-circle">
-                <span>Thomas</span>
-            </div>
-            <ul class="sidebar">
-                <li class="sidebar-list" id="top">
-                    <a href="#">Dashboard <span class="menu-icon fa fa-home"></span></a>
-                </li>
-                <li class="sidebar-list">
-                    <a href="#/trackbuilder">Trackbuilder <span class="menu-icon fa fa-list"></span></a>
-                </li>
-                <li class="sidebar-list">
-                    <a href="#/clientdashboard">Client Dashboard <span class="menu-icon fa fa-graduation-cap"></span></a>
-                </li>
-                <li class="sidebar-list" id="bottom">
-                    <a href="#/logout">Logout<span class="menu-icon fa fa-sign-out"></span></a>
-                </li>
-            </ul>
-        </div>
-        <!-- End Sidebar -->
-
-        <div id="content-wrapper">
-            <div class="page-content">
-
-                <!-- Main Content -->
-                <div ui-view></div>
-
-            </div><!-- End Page Content -->
-        </div><!-- End Content Wrapper -->
-    </div><!-- End Page Wrapper -->
+<body ui-view>
 </body>
 </html>

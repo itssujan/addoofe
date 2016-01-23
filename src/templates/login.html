@@ -1,0 +1,12 @@
+<div class = "container">
+    <div class="wrapper">
+        <form name="Login_Form" class="form-signin" ng-submit="login()">
+			<div growl inline="true"></div> 
+ 			 <p style="text-align:center;"> <img src="images/logo/Addo-logo1.png" height="96" width="250"></img></p>
+              
+            <input type="text" class="form-control" name="Username" placeholder="Username" required="" autofocus="" ng-model="user.email" />
+            <input type="password" class="form-control" name="Password" placeholder="Password" required="" ng-model="user.password"/>            
+              <button class="btn btn-lg btn-warning btn-block"  data-loading-text="<i class=icon-spinner></i>" name="Submit" value="Login" type="Submit"> {{loginbutton}}</button> 
+          </form>         
+    </div>
+</div>

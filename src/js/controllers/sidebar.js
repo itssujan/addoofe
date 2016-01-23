@@ -1,12 +1,5 @@
-/**
- * Master Controller
- */
-
 angular.module('app')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
-
-function MasterCtrl($scope, $cookieStore) {
-    console.log("MasterCtrl");
+    .controller('SidebarCtrl', ['$scope', '$cookieStore', function MasterCtrl($scope, $cookieStore) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -37,4 +30,5 @@ function MasterCtrl($scope, $cookieStore) {
     window.onresize = function() {
         $scope.$apply();
     };
-}
+}]);
+
