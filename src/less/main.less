@@ -15,6 +15,10 @@
 	#page-wrapper.open {
 		padding-left: 70px;
 	}
+
+	#profile {
+		display: none;
+	}
 }
 
 #page-wrapper.open #sidebar-wrapper {
@@ -69,23 +73,12 @@
 	margin-bottom: 15px;
 }
 
-.row.header > div:last-child {
-	padding-right: 0;
-}
-
-.row.header .meta .page {
-	font-size: 17px;
-	padding-top: 11px;
-}
-
 .row.header .meta .breadcrumb-links {
 	font-size: 10px;
 }
 
 .row.header .meta div {
 	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .row.header .login a {
@@ -212,25 +205,6 @@
 	}
 }
 
-/* Fonts */
-@font-face {
-	font-family: 'Montserrat';
-	src: url('../fonts/montserrat-regular-webfont.eot');
-	src: url('../fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-regular-webfont.woff') format('woff'), url('../fonts/montserrat-regular-webfont.ttf') format('truetype'), url('../fonts/montserrat-regular-webfont.svg#montserratregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-	@font-face {
-		font-family: 'Montserrat';
-		src: url('../fonts/montserrat-regular-webfont.svg') format('svg');
-	}
-
-	select {
-		font-family: Arial, Helvetica, sans-serif;
-	}
-}
 /* Base */
 html {
 	overflow-y: scroll;
@@ -238,7 +212,6 @@ html {
 
 body {
 	background: #f3f3f3;
-	font-family: "Montserrat";
 	color: #333333 !important;
 }
 
@@ -299,26 +272,11 @@ div.input-mask {
 }
 
 
-/* #592727 RED */
-/* #2f5927 GREEN */
-/* #30426a BLUE (default)*/
-/* Sidebar background color */
-/* Sidebar header and footer color */
-/* Sidebar title text colour */
-/* Sidebar menu item hover color */
 /**
  * Sidebar
  */
 #sidebar-wrapper {
 	background: #30426a;
-}
-
-ul.sidebar .sidebar-main a,
-.sidebar-footer,
-ul.sidebar .sidebar-list a:hover,
-#page-wrapper:not(.open) ul.sidebar .sidebar-title.separator {
-	/* Sidebar header and footer color */
-	background: #2d3e63;
 }
 
 ul.sidebar {
@@ -351,7 +309,7 @@ ul.sidebar .sidebar-main a:hover {
 
 ul.sidebar .sidebar-main .menu-icon {
 	float: right;
-	font-size: 18px;
+	font-size: 20px;
 	padding-right: 28px;
 	line-height: 60px;
 }
@@ -388,6 +346,7 @@ ul.sidebar .sidebar-list a:hover .menu-icon {
 
 ul.sidebar .sidebar-list .menu-icon {
 	float: right;
+	font-size: 20px;
 	padding-right: 29px;
 	line-height: 40px;
 	width: 70px;
@@ -414,8 +373,13 @@ ul.sidebar .sidebar-list .menu-icon {
 	text-indent: 22px;
 }
 
-#page-wrapper:not(.open) .sidebar-footer {
-	display: none;
+#page-wrapper:not(.open) #profile,
+#page-wrapper:not(.open) #profile img,
+#page-wrapper:not(.open) #profile span {
+	opacity: 0;
+	height: 0;
+	padding: 0;
+	transition: height 0.5s linear, opacity 0.5s linear;
 }
 
 .sidebar-footer {
