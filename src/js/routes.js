@@ -95,7 +95,7 @@ angular.module('app')
                     url: '/dashboard',
                     templateUrl: 'templates/dashboard.html',
                     ctrl: "ccdashboard",
-                    controller: "CustomerCareDashboardCtrl",
+                    controller: "DashboardCtrl",
                     data: {requiresLogin: true}
                 }).state('customer-manager.trackbuilder', {
                     url: '/trackbuilder/:courseID',

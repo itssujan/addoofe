@@ -1,10 +1,8 @@
-var nodeserverurl = 'http://localhost:3001'; 
-var mixpaneltoken = "29e92907943764722a69ba3035295165";
-
 var app = angular.module('app', [
 	'ui.bootstrap', 
 	'ui.router', 
 	'ngCookies',
+	'environment',
     'restangular',
     'analytics.mixpanel', //mixpanel
     'angular-growl', // for messages 
@@ -18,10 +16,33 @@ var app = angular.module('app', [
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
-'RestangularProvider','$httpProvider','growlProvider','ngClipProvider','$mixpanelProvider', 
+'RestangularProvider','$httpProvider','growlProvider','ngClipProvider','$mixpanelProvider', 'envServiceProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
-        RestangularProvider,$httpProvider, growlProvider, ngClipProvider, $mixpanelProvider ) {
+        RestangularProvider,$httpProvider, growlProvider, ngClipProvider, $mixpanelProvider,envServiceProvider) {
 
+    	envServiceProvider.config({
+			domains: {
+				development: ['localhost', 'dev.local'],
+				production: ['addoo.io']
+				// anotherStage: ['domain1', 'domain2'], 
+				// anotherStage: ['domain1', 'domain2'] 
+			},
+			vars: {
+				development: {
+					nodeserverurl: 'http://localhost:3001',
+					mixpaneltoken: "29e92907943764722a69ba3035295165"
+				},
+				production: {
+					nodeserverurl: '//api.acme.com/v2',
+					mixpaneltoken: '//static.acme.com'
+				}
+			}
+		});
+ 
+		// run the environment check, so the comprobation is made 
+		// before controllers and services are built 
+		envServiceProvider.check();
+		
         growlProvider.globalTimeToLive(5000); // messages time to fade
         growlProvider.globalDisableIcons(true); // disable icons in messages
         growlProvider.globalDisableCloseButton(true);
@@ -32,8 +53,9 @@ app.config(
         //console.log("process.env.nodeserverurl :"+process.env.ADDOO_NODE_URL);
 
         // setting base url to nodejs server
-        console.log(nodeserverurl);
-        RestangularProvider.setBaseUrl(nodeserverurl);
+        console.log(envServiceProvider);
+        console.log('Node URL :'+envServiceProvider.read('nodeserverurl'));
+        RestangularProvider.setBaseUrl(envServiceProvider.read('nodeserverurl'));
         RestangularProvider.setRestangularFields({
           id: "_id"
         });
@@ -47,23 +69,21 @@ app.config(
         app.service = $provide.service;
         app.constant = $provide.constant;
         app.value = $provide.value;
-        app.nodeserverurl = nodeserverurl;
+        app.nodeserverurl = envServiceProvider.read('nodeserverurl');
 
         // $interpolateProvider.startSymbol('::');
         // $interpolateProvider.endSymbol('::');
 
         $httpProvider.defaults.withCredentials = true;
 
-        $mixpanelProvider.apiKey(mixpaneltoken); // your token 
+        $mixpanelProvider.apiKey(envServiceProvider.read('mixpaneltoken')); // your token 
+
+
 
     }
 ]);
 
-app.factory('ConstantService', function() {
-  return {
-      nodeserverurl : nodeserverurl
-  };
-}).factory('Auth',function() {
+app.factory('Auth',function() {
      console.log("")
      return { isLoggedIn : false}; 
 }).factory('UserRestangular','Restangular', function(Restangular) {

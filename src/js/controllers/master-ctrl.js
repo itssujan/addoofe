@@ -10,6 +10,17 @@ function MasterCtrl($scope, $cookieStore) {
     /**
      * Sidebar Toggle & Cookie Control
      */
+    UserVoice.push(['showTab', 'classic_widget', {
+      mode: 'feedback',
+      primary_color: '#cc6d00',
+      link_color: '#007dbf',
+      forum_id: 341319,
+      tab_label: 'Feedback',
+      tab_color: '#cc6d00',
+      tab_position: 'middle-right',
+      tab_inverted: false
+    }]);
+
     var mobileView = 992;
 
     $scope.getWidth = function() {

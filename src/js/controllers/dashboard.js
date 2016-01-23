@@ -1,7 +1,7 @@
 angular.module('app')
-    .controller('CustomerCareDashboardCtrl', [ '$scope','ConstantService', '$state','Restangular', '$rootScope',
+    .controller('DashboardCtrl', [ '$scope','envService', '$state','Restangular', '$rootScope',
         'Auth','Upload','growl','$mixpanel','$filter',
-        function ($scope,ConstantService, $state, Restangular,$rootScope, Auth, Upload, growl,$mixpanel,$filter) {
+        function ($scope,envService, $state, Restangular,$rootScope, Auth, Upload, growl,$mixpanel,$filter) {
             console.log('In CustomerCareDashboardCtrl');
 
             $scope.newtraining = {};
@@ -11,7 +11,8 @@ angular.module('app')
             $scope.performUpload = false;
 
             console.log("Auth user :"+Auth.user.email);
-            console.log("NODE SERVER URL "+ConstantService.nodeserverurl);
+            console.log("NODE SERVER URL "+envService.read('nodeserverurl'));
+
 
             Restangular.all("course?product="+Auth.user.product+"&baseTrack=true&shareWithTeam=true&populate=author&author._id!="+Auth.user._id).getList().then(function(data){
                 Restangular.all("course?product="+Auth.user.product+"&baseTrack=true&shareWithTeam=false&author="+Auth.user._id).getList().then(function(data1){
