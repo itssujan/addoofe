@@ -1,51 +1,50 @@
-<!-- Header Bar -->
-<div class="row header full-width">
-    <div class="col-xs-12">
-        <div class="meta">
-            <div class="page">
-                Dashboard
+    <div class="row header full-width">
+        <div class="col-xs-12">
+            <div class="meta">
+                <div class="page">
+                    <img src="img/addoo-logo.png">
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Header Bar -->
+    <!-- End Header Bar -->
 
-<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+    <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-controller="MasterCtrl">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar">
-            <li class="sidebar-main" id="collapser">
-                <a ng-click="toggleSidebar()"> Dashboard <span class="menu-icon glyphicon glyphicon-transfer"></span></a>
-            </li>
-        </ul>
-        <div id="profile">
-            <img src="http://findicons.com/files/icons/1072/face_avatars/300/i04.png" class="img-thumbnail img-responsive img-circle" width="100" height="100">
-            <span>Thomas</span>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar">
+                <li class="sidebar-main" id="collapser">
+                    <a ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"></span></a>
+                </li>
+            </ul>
+            <div id="profile">
+                <img src="img/avatar.jpg" class="img-thumbnail img-responsive img-circle">
+                <span>Thomas</span>
+            </div>
+            <ul class="sidebar">
+                <li class="sidebar-list" id="top">
+                    <a href="#">Dashboard <span class="menu-icon fa fa-home"></span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a href="#/trackbuilder">Trackbuilder <span class="menu-icon fa fa-list"></span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a href="#/clientdashboard">Client Dashboard <span class="menu-icon fa fa-graduation-cap"></span></a>
+                </li>
+                <li class="sidebar-list" id="bottom">
+                    <a href="#/logout">Logout<span class="menu-icon fa fa-sign-out"></span></a>
+                </li>
+            </ul>
         </div>
-        <ul class="sidebar">
-            <li class="sidebar-list" id="top">
-                <a href="#">Dashboard <span class="menu-icon fa fa-home"></span></a>
-            </li>
-            <li class="sidebar-list">
-                <a href="#/trackbuilder">Trackbuilder <span class="menu-icon fa fa-list"></span></a>
-            </li>
-            <li class="sidebar-list">
-                <a href="#/clientdashboard">Client Dashboard <span class="menu-icon fa fa-graduation-cap"></span></a>
-            </li>
-            <li class="sidebar-list" id="bottom">
-                <a href="#/logout">Logout<span class="menu-icon fa fa-sign-out"></span></a>
-            </li>
-        </ul>
-    </div>
-    <!-- End Sidebar -->
+        <!-- End Sidebar -->
 
-    <div id="content-wrapper">
-        <div class="page-content">
+        <div id="content-wrapper">
+            <div class="page-content">
 
-            <!-- Main Content -->
-            <div ui-view></div>
+                <!-- Main Content -->
+                <div ui-view></div>
 
-        </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
-</div><!-- End Page Wrapper -->
+            </div><!-- End Page Content -->
+        </div><!-- End Content Wrapper -->
+    </div><!-- End Page Wrapper -->

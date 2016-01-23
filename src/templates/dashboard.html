@@ -6,7 +6,7 @@
             <rd-widget-body>
                 <div class="title">Track Builder</div>
                 <div class="comment">Build customer learning tracks</div>
-                <div><i class="fa fa-plus"></i></div>
+                <div class="addition-icon"><i class="fa fa-plus"></i></div>
             </rd-widget-body>
         </rd-widget>
     </div>
@@ -15,7 +15,7 @@
             <rd-widget-body>
                 <div class="title">Add Videos</div>
                 <div class="comment">Add videos for customers</div>
-                <div><i class="fa fa-plus"></i></div>
+                <div class="addition-icon"><i class="fa fa-plus"></i></div>
             </rd-widget-body>
         </rd-widget>
     </div>
@@ -24,7 +24,7 @@
             <rd-widget-body>
                 <div class="title">Add Documents</div>
                 <div class="comment">Add documents for customers</div>
-                <div><i class="fa fa-plus"></i></div>
+                <div class="addition-icon"><i class="fa fa-plus"></i></div>
             </rd-widget-body>
         </rd-widget>
     </div>
@@ -34,7 +34,32 @@
     <div class="table-container">
         <rd-widget>
             <rd-widget-header title="Base Tracks"></rd-widget-header>
-            <rd-widget-body classes="medium no-padding"></rd-widget-body>
+            <rd-widget-body classes="medium no-padding">
+                <table st-table="displayedCourseCollection" st-safe-src="courses" class="table table-striped">
+                    <thead>
+                    <tr style="bgcolor:black">
+                        <th st-sort="title">Track</th>
+                        <th st-sort="description">Owner</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in displayedCourseCollection">
+                        <td>{{row.title}}</td>
+                        <td>{{row.description}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </rd-widget-body>
         </rd-widget>
     </div>
 </div>
@@ -44,7 +69,49 @@
             <rd-widget-header title="Active Tracks">
                 <input type="text" placeholder="Search" class="form-control input-sm" />
             </rd-widget-header>
-            <rd-widget-body classes="medium no-padding"></rd-widget-body>
+            <rd-widget-body classes="medium no-padding">
+                <table st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" class="table table-striped">
+                    <thead>
+                    <tr style="bgcolor:black">
+                        <th st-sort="title">Track</th>
+                        <th st-sort="email">Client</th>
+                        <th st-sort="authorname">Created By</th>
+                        <th st-sort="email">Created On</th>
+                        <th st-sort="email">Status</th>
+                        <th st-sort="email">Progress</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in displayedStudentCourseCollection">
+                        <td>{{row.title}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.authorname}}</td>
+                        <td> <span am-time-ago="row.invitedOn"></span></td>
+                        <td>{{row.progress | uppercase}}</td>
+                        <td>
+                            <div class="progress" style="width:100%">
+                                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{row.courseprogress}}%">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </rd-widget-body>
             <rd-widget>
     </div>
 </div>

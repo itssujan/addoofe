@@ -9,7 +9,9 @@ var app = angular.module('app', [
     'analytics.mixpanel', //mixpanel
     'angular-growl', // for messages 
     'ngClipboard',
-    'ngFileUpload'
+    'ngFileUpload',
+    'smart-table',
+    'angularMoment'
 	]);
 
 
