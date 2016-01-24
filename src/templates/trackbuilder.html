@@ -1,40 +1,41 @@
 <div id="page-title">Track Builder</div>
 
-<div ng-show="showtrackbuilder">
+<div id="track-builder" ng-show="showtrackbuilder">
+
 	<div class="row">
-		<div class="col-sm-2">
-			<a href="#modal-edit-video-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i>&nbsp;Add Video Module</a>
+		<div class="content-addition col-sm-2">
+			<div class="description">Add Video Module</div>
+			<div class="link-button"><a href="#modal-edit-video-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i></a></div>
 		</div>
-		<div class="col-sm-2">
-			<a href="#modal-edit-document-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i>&nbsp;Add Document</a>
+		<div class="content-addition col-sm-2">
+			<div class="description">Add Document</div>
+			<div class="link-button"><a href="#modal-edit-document-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i></a></div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-sm-9">
-			<h3>Current Track : {{course.title}}</h3>
+		<div id="current-track" class="col-sm-9">
+			<div class="sub-title">Current Track : {{course.title}}</div>
 			<div class="panel panel-default paper-shadow" data-z="0.5">
-				<div growl inline="true"></div>
 				<p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
 				<table ui-tree="tableCallbacks" class="table table-responsive">
 					<tbody class="draglist" ui-tree-nodes ng-model="course.contents">
 						<tr ng-repeat="content in course.contents" ui-tree-node>
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
-							<td>
+							<td class="document-type-img">
 								<img ng-if="content.type != 'document'" src="img/icons/video-inline.jpg" alt="people" class="img-square width-30" />
 								<img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30" />
-
 							</td>
 							<td>{{content.title}}</td>
-							<td><p><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+							<td><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
-		<div class="col-sm-3">
-			<h3>Clients</h3>
+		<div id="client-addition" class="col-sm-3">
+			<div class="sub-title">Clients</div>
 			<div class="panel panel-default paper-shadow" data-z="0.5">
 				<div class="panel-body">
 					<table class="table table-condensed table-bordered table-striped">
@@ -47,7 +48,7 @@
 					</table>
 				</div>
 				<div class="panel-footer">
-					<a class="btn btn-orange-800" href="#" role="button" data-toggle="modal" data-target="#inviteClient">Add Client</a>
+					<a class="button-orange" href="#" role="button" data-toggle="modal" data-target="#inviteClient">Add Client</a>
 				</div>
 			</div>
 		</div>
@@ -140,7 +141,6 @@
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Next</button>
-
 		</form>
 	</div>
 </div>
