@@ -37,7 +37,7 @@
             <rd-widget-body classes="medium no-padding">
                 <table st-table="displayedCourseCollection" st-safe-src="courses" class="table table-striped">
                     <thead>
-                    <tr style="bgcolor:black">
+                    <tr>
                         <th st-sort="title">Track</th>
                         <th st-sort="description">Owner</th>
                     </tr>
@@ -67,21 +67,21 @@
     <div class="table-container">
         <rd-widget>
             <rd-widget-header title="Active Tracks">
-                <input type="text" placeholder="Search" class="form-control input-sm" />
-            </rd-widget-header>
+<!--                 <input type="text" placeholder="Search" class="form-control input-sm" />
+ -->            </rd-widget-header>
             <rd-widget-body classes="medium no-padding">
                 <table st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" class="table table-striped">
                     <thead>
-                    <tr style="bgcolor:black">
+                    <tr>
                         <th st-sort="title">Track</th>
                         <th st-sort="email">Client</th>
                         <th st-sort="authorname">Created By</th>
-                        <th st-sort="email">Created On</th>
-                        <th st-sort="email">Status</th>
-                        <th st-sort="email">Progress</th>
+                        <th st-sort="invitedOn">Created On</th>
+                        <th st-sort="progress">Status</th>
+                        <th st-sort="courseprogress">Progress</th>
                     </tr>
                     <tr>
-                        <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+                        <th colspan="6"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
                     </tr>
                     </thead>
                     <tbody>

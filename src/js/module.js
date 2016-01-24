@@ -30,11 +30,15 @@ app.config(
 			vars: {
 				development: {
 					nodeserverurl: 'http://localhost:3001',
-					mixpaneltoken: "29e92907943764722a69ba3035295165"
+					mixpaneltoken: "29e92907943764722a69ba3035295165",
+                    wootricAccountID: 'NPS-312d184b',
+                    wootric_survey_immediately : true
 				},
 				production: {
-					nodeserverurl: '//api.acme.com/v2',
-					mixpaneltoken: '//static.acme.com'
+					nodeserverurl: 'http://node.addoo.io',
+					mixpaneltoken: 'fdf3386dbfacfd13d6e4a580d0b5b9ae',
+                    wootricAccountID: 'NPS-ecd3e1b3',
+                    wootric_survey_immediately : false
 				}
 			}
 		});

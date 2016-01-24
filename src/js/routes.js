@@ -75,7 +75,7 @@ angular.module('app')
                     controller: 'SignUpCtrl'
                 }).state('logout', {
                     url: '/logout',
-                    templateUrl: 'templates/sign-up.html',
+                    templateUrl: 'templates/login.html',
                     ctrl : 'signUp',
                     controller: 'LogoutCtrl'
                 });

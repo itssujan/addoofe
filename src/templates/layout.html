@@ -19,8 +19,10 @@
                 </li>
             </ul>
             <div id="profile">
-                <img src="img/avatar.jpg" width="75" class="img-thumbnail img-responsive img-circle">
-                <span>Thomas</span>
+                <img ng-if="user.local.avatarurl" src="{{user.local.avatarurl}}" width="80" class="img-thumbnail img-responsive img-circle width-80">
+                <img ng-if="!user.local.avatarurl" src="img/avatar.jpg" width="80" class="img-thumbnail img-responsive img-circle">
+
+                <span>{{user.local.firstname}}</span>
             </div>
             <ul class="sidebar">
                 <li class="sidebar-list" id="top">
@@ -33,7 +35,7 @@
                     <a href="#/clientdashboard">Client Dashboard <span class="menu-icon fa fa-graduation-cap"></span></a>
                 </li>
                 <li class="sidebar-list" id="bottom">
-                    <a href="#/logout">Logout<span class="menu-icon fa fa-sign-out"></span></a>
+                    <a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>
                 </li>
             </ul>
         </div>
@@ -48,4 +50,12 @@
             </div><!-- End Page Content -->
         </div><!-- End Content Wrapper -->
     </div><!-- End Page Wrapper -->
-<a uservoice-trigger mode="contact">Contact</a>
+  <!-- begin Wootric code -->
+  <script type="text/javascript">
+     wootric_survey_immediately = true; // Shows survey immediately for testing purposes.  TODO: Comment out for production.
+     window.wootricSettings = {
+        email:'sujan.abraham@citrix.com',// TODO: The current logged in user's email address.
+        created_at: 1234567890, // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
+        account_token: 'NPS-312d184b' // This is your unique account token.
+    };
+  </script>
