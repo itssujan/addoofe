@@ -36,13 +36,17 @@
     "angular-smart-table": "~2.1.6",
     "angular-moment": "~0.10.3",
     "angular-environment": "~1.0.3",
-    "uservoice-trigger-directive": "~5.0.0"
+    "uservoice-trigger-directive": "~5.0.0",
+    "angular-ui-tree": "~2.13.0",
+    "angular-spinner": "~0.8.0",
+    "angular-loading-spinner": "~0.0.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rdash/rdash-angular"
   },
   "resolutions": {
-    "angular": ">=1.4.0"
+    "angular": ">=1.4.0",
+    "angular-spinner": "~0.8.0"
   }
 }

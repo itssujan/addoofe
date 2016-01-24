@@ -99,9 +99,9 @@ angular.module('app')
                     data: {requiresLogin: true}
                 }).state('customer-manager.trackbuilder', {
                     url: '/trackbuilder/:courseID',
-                    templateUrl: 'app/onboarding/cc/trackbuilder.html',
-                    ctrl: "cctrackbuilder",
-                    controller: "CCTrackBuilderCtrl",
+                    templateUrl: 'templates/trackbuilder.html',
+                    ctrl: "trackbuilder",
+                    controller: "TrackBuilderCtrl",
                     data: {requiresLogin: true}
                 })                    
                 .state('customer-manager.profile', {

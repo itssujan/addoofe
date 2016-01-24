@@ -9,7 +9,9 @@ var app = angular.module('app', [
     'ngClipboard',
     'ngFileUpload',
     'smart-table',
-    'angularMoment'
+    'angularMoment',
+    'ui.tree',
+    'ngLoadingSpinner'
 	]);
 
 

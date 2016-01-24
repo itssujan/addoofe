@@ -6,11 +6,15 @@
             <rd-widget-body>
                 <div class="title">Track Builder</div>
                 <div class="comment">Build customer learning tracks</div>
-                <div class="addition-icon"><i class="fa fa-plus"></i></div>
+                <div class="addition-icon">
+                    <a ui-sref="customer-manager.trackbuilder"><i class="fa fa-fw fa-plus"></i></a>
+                <!--     <i class="fa fa-plus"></i> -->
+                </div>
+
             </rd-widget-body>
         </rd-widget>
     </div>
-    <div class="action-display col-lg-4 col-md-6 col-xs-12">
+<!--     <div class="action-display col-lg-4 col-md-6 col-xs-12">
         <rd-widget>
             <rd-widget-body>
                 <div class="title">Add Videos</div>
@@ -28,7 +32,7 @@
             </rd-widget-body>
         </rd-widget>
     </div>
-</div>
+ --></div>
 
 <div class="row">
     <div class="table-container">
@@ -47,7 +51,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="row in displayedCourseCollection">
-                        <td>{{row.title}}</td>
+                        <td><a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a></td>
                         <td>{{row.description}}</td>
                     </tr>
                     </tbody>

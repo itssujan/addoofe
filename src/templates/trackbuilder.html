@@ -1,1 +1,190 @@
-Trackbuilder here
+<div class="page-section">
+    <h1 class="text-display-1">Track builder</h1>
+</div>
+
+<div ng-show="showtrackbuilder"> 
+<div class="row">
+  <div class="col-sm-2">
+      <a href="#modal-edit-video-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i>&nbsp;Add Video Module</a>
+  </div>  
+  <div class="col-sm-2">
+    <a href="#modal-edit-document-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i>&nbsp;Add Document</a>
+  </div>  
+</div>
+<br/>
+<br/>
+<div class="row">
+    <div class="col-sm-9">
+        <h3>Current Track : {{course.title}}</h3>
+        <div class="panel panel-default paper-shadow" data-z="0.5">
+            <div growl inline="true"></div> 
+            <p ng-if = "!course.contents || course.contents.length == 0">No tracks added..</p>
+            <table ui-tree="tableCallbacks" class="table table-responsive">
+<!--                 <thead>
+                  <tr>
+                    <th>Sort</th>
+                    <th width="80%">Name</th>
+                    <th>Test</th>    
+                </tr>
+                </thead>
+ -->
+                <tbody class="draglist" ui-tree-nodes ng-model="course.contents">
+                  <tr ng-repeat="content in course.contents" ui-tree-node>
+                      <td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
+                      <td>
+                         <img ng-if="content.type != 'document'" src="img/icons/video-inline.jpg" alt="people" class="img-square width-30"/>
+                          <img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30"/>
+
+                      </td>
+                      <td>{{content.title}}</td>
+                      <td><p><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>        
+    </div>
+    <div class="col-sm-3">
+        <h3>Clients</h3>
+        <div class="panel panel-default paper-shadow" data-z="0.5">
+            <div class="panel-body">
+                <table class="table table-condensed table-bordered table-striped">
+                    <tbody>
+                    <tr ng-repeat="studentcourse in studentcourses">
+                      <td>{{studentcourse.studentID.local.email}}</td>
+                      <td><a href="" class="text-warning" clip-copy="studentcourse.inviteurl" clip-click="showMessage()">Copy invite link</a></td>
+                    </tr>
+                      </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">   
+              <a class="btn btn-orange-800" href="#" role="button" data-toggle="modal" data-target="#inviteClient">Add Client</a>
+            </div>    
+        </div>        
+    </div>                  
+ </div>   
+<div class="modal fade" id="modal-edit-video-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Video Module</h4>
+          <div growl inline="true"></div> 
+        </div>
+          <div class="modal-body">
+            <table ng-table="tableParams" class="table table table-condensed table-bordered table-striped" show-filter="true">
+              <tr ng-repeat="video in $data | filter:{type: '!document'}">
+
+                  <td title="'Select'" >
+                      <input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addVideoToQueue(video.selected,video)">
+                  </td>          
+                  <td title="'Name'" filter="{title: 'text'}" sortable="'title'">
+                      {{video.title}}</td>
+                  <td title="'Product'" filter="{product: 'text'}" sortable="'product'">
+                      {{video.product}}</td>
+  
+                  <td title="'Uploaded on'" sortable="'createdOn'">
+                      <span am-time-ago="video.createdOn"></span></td>    
+              </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" ng-click="addVideoToTrack('video')">Add to track</button>
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modal-edit-document-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Document Module</h4>
+          <div growl inline="true"></div> 
+        </div>
+          <div class="modal-body">
+            <table ng-table="tableParams" class="table table table-condensed table-bordered table-striped" show-filter="true">
+              <tr ng-repeat="doc in $data | filter:{type: 'document'}">
+
+                  <td title="'Select'" >
+                      <input id="checkbox3" type="checkbox" ng-model="doc.selected" ng-change="addVideoToQueue(doc.selected,doc)">
+                  </td>          
+                  <td title="'#'"  sortable="'#'">
+                      {{$index +1 }}</td>
+                  <td title="'Name'"  sortable="'name'">
+                      {{doc.title}}</td>
+                  <td title="'Uploaded on'" sortable="'createdOn'">
+                      <span am-time-ago="doc.createdOn"></span></td>    
+              </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" ng-click="addVideoToTrack('document')">Add to track</button>
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default" ng-show="!showtrackbuilder">
+    <div class="panel-body">
+        <form name="myForm" ng-submit="addTrack()">
+            <div class="form-group">
+                <label for="inputEmail3" class="control-label">Title</label>
+                <div class="form-control-material">
+                    <input type="text" class="form-control" id="course.title" placeholder="Type here.." ng-required="true" ng-model="course.title"><span class="ma-form-highlight" required></span><span class="ma-form-bar"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <div class="form-control-material">
+                    <textarea id="description" class="form-control" rows="5" ng-model="course.description"></textarea><span class="ma-form-highlight"></span><span class="ma-form-bar"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Next</button>
+
+      </form>
+    </div>
+</div>
+<div class="modal {{showInviteClientModal}}" id="inviteClient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Invite Client</h4>
+        <div growl inline="true"></div> 
+      </div>
+      <form role="form" ng-submit="inviteClient()">
+        <div class="modal-body">
+        <div class="form-group">
+          <label for="email">Client's Email address:</label>
+          <input type="email" class="form-control" id="email" ng-model="student.local.email">
+        </div>
+        <div class="form-group">
+          <label for="firstname">Client's First name:</label>
+          <input type="text" class="form-control" id="firstname" ng-model="student.local.firstname">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Client's Last name:</label>
+          <input type="text" class="form-control" id="lastname" ng-model="student.local.lastname">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Client's Company name:</label>
+          <input type="text" class="form-control" id="lastname" ng-model="student.local.clientname">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Customer Onboarding Manager:</label>
+              <select name="customerrep" id="customerrep" ng-model="onboardingSpecialist">
+                  <option ng-repeat="customerSupportRep in customerSupportReps" value="{{customerSupportRep._id}}">{{customerSupportRep.local.firstname}} {{customerSupportRep.local.lastname}}</option>
+              </select>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Client</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
