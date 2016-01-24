@@ -3,12 +3,23 @@
 	font-size: 40px;
 }
 
-div.action-display .widget-body {
-	padding: 0;
-}
 
 div .widget {
 	box-shadow: 0 1px 1px #BEBEBE;
+}
+
+div .widget .widget-header .row {
+	font-size: 30px;
+	color: #000000;
+}
+
+div .widget .widget-header .row div {
+	margin: 0px;
+	padding: 10px 0px;
+}
+
+div.action-display .widget-body {
+	padding: 0;
 }
 
 div.action-display .widget div.title {
@@ -38,4 +49,59 @@ div.action-display .widget div.addition-icon i:hover {
 
 .row .table-container {
 	margin: 5px 15px 20px 15px;
+}
+
+.row .table-container table.table {
+	margin: 0;
+}
+
+.row .table-container table.table td + td {
+	border-left: 1px solid #DDDDDD;
+}
+
+.row .table-container table.table tbody tr td {
+	vertical-align: middle;
+}
+
+.row .table-container tr th .form-control.search {
+	height: 40px;
+	font-weight: normal;
+	border: none;
+	background-color: #F7F7F7;
+}
+
+.row .table-container tr th input.form-control.search:focus {
+	height: 40px;
+	background-color: #FFFFFF;
+}
+
+.row .table-container table thead tr.search-row th {
+	border: none;
+}
+
+.row .table-container table thead tr th.header {
+	font-size: 18px;
+	text-align: center;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+.row .table-container table thead tr th.header + th {
+	border-left: 1px solid #DDDDDD;
+}
+
+.row .table-container table thead tr th.header i {
+	margin-left: 5px;
+}
+
+.row .table-container table thead tr th.header i:hover {
+	cursor: pointer;
+	color: #DFDFDF;
+}
+
+.row .table-container table.table tr div.progress {
+	margin: 0;
+}
+
+.row .table-container table.table tbody tr td {
+	padding: 12px 8px;
 }

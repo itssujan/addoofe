@@ -1,62 +1,58 @@
 ﻿<!doctype html>
 <html lang="en" ng-app="app">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'/ >
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'>
 
+	<title>Addoo</title>
+	<!-- STYLES -->
+	<!-- build:css lib/css/main.min.css -->
+	<link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="components/angular-ui-tree/dist/angular-ui-tree.min.css">
 
-    <title>Addoo</title>
-    <!-- STYLES -->
-    <!-- build:css lib/css/main.min.css -->
-    <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="components/angular-ui-tree/dist/angular-ui-tree.min.css">
+	<link rel="stylesheet" type="text/css" href="less/main.less">
+	<link rel="stylesheet" type="text/css" href="less/header-style.less">
+	<link rel="stylesheet" type="text/css" href="less/sidebar-style.less">
+	<link rel="stylesheet" type="text/css" href="less/dashboard-style.less">
 
-    <link rel="stylesheet" type="text/css" href="less/main.less">
-    <link rel="stylesheet" type="text/css" href="less/header-style.less">
-    <link rel="stylesheet" type="text/css" href="less/sidebar-style.less">
-    <link rel="stylesheet" type="text/css" href="less/dashboard-style.less">
+	<!-- endbuild -->
+	<!-- SCRIPTS -->
+	<!-- build:js lib/js/main.min.js -->
+	<script type="text/javascript" src="components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="components/angular-environment/dist/angular-environment.min.js"></script>
+	<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="components/mixpanel/mixpanel-jslib-snippet.min.js"></script>
+	<script type="text/javascript" src="components/angular-mixpanel/dist/angular-mixpanel.min.js"></script>
+	<script type="text/javascript" src="components/lodash/lodash.min.js"></script>
+	<script type="text/javascript" src="components/restangular/dist/restangular.min.js"></script>
+	<script type="text/javascript" src="components/angular-growl-v2/build/angular-growl.min.js"></script>
+	<script type="text/javascript" src="components/ng-clip/dest/ng-clip.min.js"></script>
+	<script type="text/javascript" src="components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+	<script type="text/javascript" src="components/ng-file-upload/ng-file-upload.min.js"></script>
+	<script type="text/javascript" src="components/angular-smart-table/dist/smart-table.min.js"></script>
+	<script type="text/javascript" src="components/moment/moment.js"></script>
+	<script type="text/javascript" src="components/angular-moment/angular-moment.js"></script>
+	<script type="text/javascript" src="components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+	<script type="text/javascript" src="components/spin.js/spin.js"></script>
+	<script type="text/javascript" src="components/angular-spinner/angular-spinner.js"></script>
+	<script type="text/javascript" src="components/angular-loading-spinner/angular-loading-spinner.js"></script>
 
-    <!-- endbuild -->
-    <!-- SCRIPTS -->
-    <!-- build:js lib/js/main.min.js -->
-    <script type="text/javascript" src="components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="components/angular-environment/dist/angular-environment.min.js"></script>
-    <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="components/mixpanel/mixpanel-jslib-snippet.min.js"></script>
-    <script type="text/javascript" src="components/angular-mixpanel/dist/angular-mixpanel.min.js"></script>
-    <script type="text/javascript" src="components/lodash/lodash.min.js"></script>
-    <script type="text/javascript" src="components/restangular/dist/restangular.min.js"></script>
-    <script type="text/javascript" src="components/angular-growl-v2/build/angular-growl.min.js"></script>
-    <script type="text/javascript" src="components/ng-clip/dest/ng-clip.min.js"></script>
-    <script type="text/javascript" src="components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
-    <script type="text/javascript" src="components/ng-file-upload/ng-file-upload.min.js"></script> 
-    <script type="text/javascript" src="components/angular-smart-table/dist/smart-table.min.js"></script> 
-    <script type="text/javascript" src="components/moment/moment.js"></script>
-    <script type="text/javascript" src="components/angular-moment/angular-moment.js"></script>
-    <script type="text/javascript" src="components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
-    <script type="text/javascript" src="components/spin.js/spin.js"></script>
-    <script type="text/javascript" src="components/angular-spinner/angular-spinner.js"></script>
-    <script type="text/javascript" src="components/angular-loading-spinner/angular-loading-spinner.js"></script>
+	<!-- endbuild -->
+	<!-- Custom Scripts -->
+	<script type="text/javascript" src="js/dashboard.min.js"></script>
 
+	<script>
+		document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+	</script>
 
-    <!-- endbuild -->
-    <!-- Custom Scripts -->
-    <script type="text/javascript" src="js/dashboard.min.js"></script>
-
-    <script>
-        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-    </script>
-
-
-  <!-- begin Wootric code -->
-<!-- end Wootric code -->
+	<!-- begin Wootric code -->
+	<!-- end Wootric code -->
 </head>
 <body ui-view>
-
 
 </body>
 </html>

@@ -1,60 +1,54 @@
- <span us-spinner></span>
+<span us-spinner></span>
 
-    <div class="row header full-width">
-        <div class="col-xs-12">
-            <div class="meta">
-                <div class="page">
-                    <img src="img/addoo-logo.png">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Header Bar -->
+<div class="row header full-width">
+	<div class="col-xs-12">
+		<div class="meta">
+			<div class="page">
+				<img src="img/addoo-logo.png">
+			</div>
+		</div>
+	</div>
+</div>
 
-    <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-controller="MasterCtrl">
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-controller="MasterCtrl">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar">
-                <li class="sidebar-main" id="collapser">
-                    <a ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"></span></a>
-                </li>
-            </ul>
-            <div id="profile">
-                <img ng-if="user.local.avatarurl" src="{{user.local.avatarurl}}" width="80" class="img-thumbnail img-responsive img-circle width-80">
-                <img ng-if="!user.local.avatarurl" src="img/avatar.jpg" width="80" class="img-thumbnail img-responsive img-circle">
+	<div id="sidebar-wrapper">
+		<ul class="sidebar">
+			<li class="sidebar-main" id="collapser">
+				<a ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"></span></a>
+			</li>
+		</ul>
+		<div id="profile">
+			<img ng-if="user.local.avatarurl" src="{{user.local.avatarurl}}" width="80" class="img-thumbnail img-responsive img-circle width-80">
+			<img ng-if="!user.local.avatarurl" src="img/avatar.jpg" class="img-thumbnail img-responsive img-circle">
+			<span>{{user.local.firstname}}</span>
+		</div>
+		<ul class="sidebar">
+			<li class="sidebar-list" id="top">
+				<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
+			</li>
+			<li class="sidebar-list">
+				<a href="#/clientdashboard">Client Dashboard <span class="menu-icon fa fa-graduation-cap"></span></a>
+			</li>
+			<li class="sidebar-list" id="bottom">
+				<a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>
+			</li>
+		</ul>
+	</div>
 
-                <span>{{user.local.firstname}}</span>
-            </div>
-            <ul class="sidebar">
-                <li class="sidebar-list" id="top">
-                    <a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
-                </li>
-                <li class="sidebar-list">
-                    <a href="#/clientdashboard">Client Dashboard <span class="menu-icon fa fa-graduation-cap"></span></a>
-                </li>
-                <li class="sidebar-list" id="bottom">
-                    <a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>
-                </li>
-            </ul>
-        </div>
-        <!-- End Sidebar -->
+	<div id="content-wrapper">
+		<div class="page-content">
+			<div ui-view></div>
+		</div>
+	</div>
+</div>
 
-        <div id="content-wrapper">
-            <div class="page-content">
-
-                <!-- Main Content -->
-                <div ui-view></div>
-
-            </div><!-- End Page Content -->
-        </div><!-- End Content Wrapper -->
-    </div><!-- End Page Wrapper -->
-  <!-- begin Wootric code -->
-  <script type="text/javascript">
-     wootric_survey_immediately = true; // Shows survey immediately for testing purposes.  TODO: Comment out for production.
-     window.wootricSettings = {
-        email:'sujan.abraham@citrix.com',// TODO: The current logged in user's email address.
-        created_at: 1234567890, // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
-        account_token: 'NPS-312d184b' // This is your unique account token.
-    };
-  </script>
+<!-- begin Wootric code -->
+<script type="text/javascript">
+	wootric_survey_immediately = true; // Shows survey immediately for testing purposes.  TODO: Comment out for production.
+	window.wootricSettings = {
+		email: 'sujan.abraham@citrix.com',// TODO: The current logged in user's email address.
+		created_at: 1234567890, // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
+		account_token: 'NPS-312d184b' // This is your unique account token.
+	};
+</script>
