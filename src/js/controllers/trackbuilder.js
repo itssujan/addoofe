@@ -51,7 +51,15 @@ angular.module('app')
 
             console.log("Course ID ::: "+$scope.courseID);
             if($scope.courseID){
-                $scope.course = Restangular.one("course",$scope.courseID).get().$object;
+                Restangular.one("course",$scope.courseID).get().then(function(data){
+                    $scope.course = data;
+                    if(!$scope.course.baseTrack){
+                        $scope.course.baseTrack = false;
+                    }
+                    if(!$scope.course.shareWithTeam){
+                        $scope.course.shareWithTeam = false;
+                    }
+                });
                 $scope.updateClientList();
                 $scope.showtrackbuilder = true;
             }
@@ -172,5 +180,9 @@ angular.module('app')
                 $scope.course.put();
                 $scope.selectedVideos = [];
             };
+
+            $scope.baseTrack = function(test){
+                $scope.course.put();
+            }
 
         } ]);

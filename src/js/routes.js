@@ -70,7 +70,7 @@ angular.module('app')
                 })
                 .state('sign-up', {
                     url: '/sign-up',
-                    templateUrl: 'templates/sign-up.html',
+                    templateUrl: 'templates/signup.html',
                     ctrl : 'signUp',
                     controller: 'SignUpCtrl'
                 }).state('logout', {
@@ -106,7 +106,7 @@ angular.module('app')
                 })                    
                 .state('customer-manager.profile', {
                     url: '/profile',
-                    templateUrl: 'app/onboarding/cc/profile.html',
+                    templateUrl: 'templates/profile.html',
                     ctrl: "profileController",
                     controller: "ProfileController",
                     data: {requiresLogin: true}

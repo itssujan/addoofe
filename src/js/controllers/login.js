@@ -71,14 +71,17 @@ angular.module('app')
 				    });
 
 					growl.error("Login failed..please try again");
+					$scope.loginbutton = "Login";
+
 				}
 			}, function(response){
 					console.log("Logged in..");
 					if(response.status != 200){
-					$mixpanel.track("Login Failed", {
-				        "Email": $scope.user.email
-				    });
-					growl.error("Login failed..please try again");
+						$mixpanel.track("Login Failed", {
+					        "Email": $scope.user.email
+					    });
+						growl.error("Login failed..please try again");
+						$scope.loginbutton = "Login";
 					}
 			});
 	    };
