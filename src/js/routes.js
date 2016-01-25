@@ -112,26 +112,26 @@ angular.module('app')
                     data: {requiresLogin: true}
                 });
 
-            //     $stateProvider
-            //     .state('client', {
-            //         abstract: true,
-            //         url: '/client',
-            //         template: '<div ui-view class="ui-view-main" />',
-            //     })
-            //     .state('client.dashboard', {
-            //         url: '/dashboard/:studentcourseID',
-            //         templateUrl: 'app/onboarding/clientdashboard.html',
-            //         ctrl: "clientDashboardController",
-            //         controller: "ClientDashboardController",
-            //         data: {requiresLogin: false}
-            //     })
-            //     .state('client.documentviewer', {
-            //         url: '/documentviewer',
-            //         templateUrl: 'app/onboarding/documentviewer.html',
-            //         ctrl: "clientDashboardController",
-            //         controller: "ClientDashboardController",
-            //         data: {requiresLogin: false}
-            //     });
+                $stateProvider
+                .state('client', {
+                    abstract: true,
+                    url: '/client',
+                    templateUrl: 'templates/client/clientlayout.html',
+                })
+                .state('client.dashboard', {
+                    url: '/dashboard/:studentcourseID',
+                    templateUrl: 'templates/client/dashboard.html',
+                    ctrl: "clientDashboardController",
+                    controller: "ClientDashboardController",
+                    data: {requiresLogin: false}
+                })
+                .state('client.documentviewer', {
+                    url: '/documentviewer',
+                    templateUrl: 'app/onboarding/documentviewer.html',
+                    ctrl: "clientDashboardController",
+                    controller: "ClientDashboardController",
+                    data: {requiresLogin: false}
+                });
 
         }
     ]

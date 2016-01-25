@@ -1,1 +1,185 @@
-Client dashboard here...
+<div class="row">
+	<div class="col-md-9">
+		<a href="#" ng-click="bookmark();">Click here to bookmark this page</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9">
+		<div class="">
+		    <div class="" style="height:350px;width:500px" ng-if="track.type != 'document'">
+		 			<div style="height:30px;width:500px;padding-top:10px">
+						<p ng-show="currentVideoIndex > 0" style="float:left"><a  class="text-orange" href="" ng-click="playPreviousVideo();"><i class="md md-skip-previous"></i>&nbsp; <b>Previous Video</b></a></p>
+<!-- 						<p style="float:center">::currentVideoIndex::+1 of ::studentcourse.courseID.contents.length::</p>
+ -->						<p ng-hide="currentVideoIndex + 1 >= studentcourse.courseID.contents.length" style="float:right"><a  class="text-orange" href="" ng-click="playNextVideo();"><b>Next Video</b>&nbsp;<i class="md md-skip-next"></i></a></p>
+					</div>
+
+					<div style="padding-top:10px">
+			            <videogular vg-theme="config.theme.url" vg-complete="onCompleteVideo()" vg-player-ready="onPlayerReady($API)" vg-update-state="updateVideoState($state)" vg-update-time="updateVideoTime($currentTime, $duration)">
+			                <vg-media vg-src="config.sources" vg-tracks="config.tracks" vg-native-controls="true"></vg-media>
+			        	</videogular>
+		        	</div>
+		    </div>
+		    <div class="" style="height:750px;width:500px" ng-if="track.type == 'document'">
+		 			<div style="height:30px;width:500px;padding-top:10px">
+						<p ng-show="currentVideoIndex > 0" style="float:left"><a  class="text-orange" href="" ng-click="playPreviousVideo();"><i class="md md-skip-previous"></i>&nbsp; <b>Previous Video</b></a></p>
+<!-- 						<p style="float:center">::currentVideoIndex::+1 of ::studentcourse.courseID.contents.length::</p>
+ -->						<p ng-hide="currentVideoIndex + 1 >= studentcourse.courseID.contents.length" style="float:right"><a  class="text-orange" href="" ng-click="playNextVideo();"><b>Next Video</b>&nbsp;<i class="md md-skip-next"></i></a></p>
+					</div>
+					<div style="padding-top:10px">
+						<pdf-viewer
+					    delegate-handle="my-pdf-container"
+					    url="documenturl"
+					    scale="1"
+					    show-toolbar="true"
+					    headers="{ 'x-you-know-whats-awesome': 'EVERYTHING' }"></pdf-viewer>
+
+						<ng-pdf template-url="/client/documentviewer" scale=1></ng-pdf>
+		        	</div>
+		    </div>
+
+		    <div style="padding-top:5%">
+		    	<p><h3>{{video.title}}</h3></p>
+		    	<p>{{video.description}}</p>
+		    </div>	
+		</div>      
+	</div>
+</div>		
+<br/></br>
+<h4>Upcoming videos</h4>
+</br>
+<div class="row">
+	<div class="col-md-3" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-if="nextvideo.type != 'document' && nextvideo.videoID != video._id && $index > currentVideoIndex && $index <= currentVideoIndex + 4" >
+		<div class="videos">
+		    <a href="#" class="video" ng-click="playVideo($index)">
+		        <span></span>
+		        <img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+		        <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
+		    </a>
+		</div>
+		</br>
+		<div style="margin-top:10px;margin-bottom:10px">
+			<p><h5>{{nextvideo.title}}</h5></p>
+		</div>	
+
+	</div>	
+</div>		
+<div class="modal fade {{docviewer}}" id="documentViewer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+		<nav ng-class="getNavStyle(scroll)">
+			<button ng-click="goPrevious()"></span></button>
+			<button ng-click="goNext()">></span></button>
+
+			<button ng-click="zoomIn()">+</span></button>
+			<button ng-click="fit()">100%</span></button>
+			<button ng-click="zoomOut()">-</span></button>
+
+			<button ng-click="rotate()">90</span></button>
+
+			<span>Page: </span>
+			<input type="text" min=1 ng-model="pageNum">
+			<span> / {{pageCount}}</span>
+
+			&nbsp;&nbsp;
+			<span>Document URL: </span>
+			<input type="text" ng-model="documenturl">
+		</nav>
+		<hr>
+		{{loading}}
+		<canvas id="pdf" class="rotate0"></canvas>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal {{onboardingPrompt}}" id="scheduleTrainingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="turnOffOnboardingPrompt()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">You're doing great!</h4>
+      </div>
+      <div class="modal-body">
+      	<p>
+	        It looks like you're getting the hang of things. We want to make sure that you get the most out of our software. 
+	        If you have any questions, be sure to schedule an appointment with an onboarding rep below. Keep up the great work!
+	    </p>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="turnOffOnboardingPrompt()">Back to Videos</button>
+        <a href="{{studentcourse.onboardingSpecialist.local.timetrade}}" data-dismiss="modal" target="_blank" class="btn btn-warning">Schedule</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="sidebar{% if sidebarOptions %} {{sidebarOptions}}{% endif %}" id="sidebar-menu">
+    <div class="split-vertical">
+
+            <div id="login-message" style="margin:20px 10px 0px 10px;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5 ng-if="studentcourse.product == 'sharefile'"><a href="https://www.sharefile.com/redirects/login" target="_blank" class="text-warning" ng-click="sendEvent('Login Link Clicked')">Login</a> to ShareFile</h5>
+                    <h5 ng-if="studentcourse.product == 'shareconnect'"><a href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank" class="text-warning">Login</a> to ShareConnect</h5>
+                  </div>
+                </div>
+            </div>    
+
+            <div id="sidebar-course-info" style="border-style: solid;border-width:1px;margin:20px 10px 0px 10px;padding:10px 10px 10px 10px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="images/people/avatars/6.jpg" alt="people" class="img-circle width-60"/>
+                        <img ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people" class="img-circle width-60"/>
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="text-warning">Still need help?</h4>
+                        <p ng-if="!studentcourse.onboardingSpecialist">Your care representative is Virginia. Click the link below to view her schedule..</p>
+                        <p ng-if="studentcourse.onboardingSpecialist">Your care representative is {{studentcourse.onboardingSpecialist.local.firstname}} {{studentcourse.onboardingSpecialist.local.lastname}}. Click the link below to view the schedule of your care representative..</p>
+                        <a href="{{studentcourse.onboardingSpecialist.local.timetrade}}" ng-click="sendEvent('TimeTrade Clicked')" target="_blank" class="btn btn-warning">Schedule</a>
+                    </div>
+                </div>    
+            </div>
+
+            <div id="sidebar-course-info" style="border-style: solid;border-width:1px;margin:20px 10px 0px 10px;padding:10px 10px 10px 10px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-warning">Add a team member</h4>
+                        <p>Have co-workers who will be using ShareFile too? Enter their email to add them to your training portal</p>
+                        <p ng-if="studentcourse.onboardingSpecialist">
+                            <input type="text" name="coworkeremail" ng-model="coworker.email">
+                            <a href="#" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank" class="btn btn-warning">Add</a>
+                        </p>
+                    </div>
+                </div>    
+            </div>
+     
+<!--         <div class="split-vertical-body">
+            <div class="split-vertical-cell">
+                <div data-scrollable>
+
+                    <ul class="sidebar-menu sm-bordered sm-active-item-bg">
+                        <li ui-sref-active="active"><a ui-sref="app-student.take-course({courseID: '::courseID::'})">Curriculum</a></li>
+                        <li ng-class="{ 'active': $state.is('app-student.course-forums') || $state.is('app-student.course-forum-thread') }"><a ui-sref="app-student.course-forums">Course Forums</a></li>
+                        <li ui-sref-active="active"><a ui-sref="app-student.take-quiz">Take Quiz</a></li>
+                        <li ui-sref-active="active"><a ui-sref="app-student.quiz-results">Quiz Results</a></li>
+                    </ul>
+
+                    <h4 class="category">Instructor</h4>
+                    <div class="sidebar-block">
+                        <div class="media v-middle">
+                            <div class="media-left">
+                                <a href="" class="media-object"><img class="img-circle width-80" src="images/people/avatars/4.jpg" alt="people" /></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="sidebar-heading media-heading"><a href="">::instructor.local.firstname::</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+ -->
+     </div>
+</div>

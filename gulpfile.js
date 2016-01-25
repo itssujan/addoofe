@@ -17,6 +17,7 @@ var paths = {
     templates: 'src/templates/**/*.html',
     index: 'src/index.html',
     bower_fonts: 'src/components/**/*.{ttf,woff,eof,svg}',
+    swf: 'src/components/zeroclipboard/dist/*.swf'
 };
 
 /**
@@ -47,7 +48,7 @@ gulp.task('copy-bower_fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'custom-swf']);
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
@@ -73,6 +74,11 @@ gulp.task('custom-templates', function() {
         .pipe(gulp.dest('dist/templates'));
 });
 
+gulp.task('custom-swf', function() {
+    return gulp.src(paths.swf)
+        .pipe(gulp.dest('dist/swf'));
+});
+
 /**
  * Watch custom files
  */
@@ -82,6 +88,7 @@ gulp.task('watch', function() {
     gulp.watch([paths.scripts], ['custom-js']);
     gulp.watch([paths.templates], ['custom-templates']);
     gulp.watch([paths.index], ['usemin']);
+    gulp.watch([paths.swf], ['custom-swf']);
 });
 
 /**

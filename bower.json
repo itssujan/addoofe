@@ -39,14 +39,18 @@
     "uservoice-trigger-directive": "~5.0.0",
     "angular-ui-tree": "~2.13.0",
     "angular-spinner": "~0.8.0",
-    "angular-loading-spinner": "~0.0.3"
+    "angular-loading-spinner": "~0.0.3",
+    "angular-pdf-viewer": "~0.2.9",
+    "videogular": "~1.4.0",
+    "videogular-poster": "~1.4.0",
+    "angular-sanitize": "~1.4.9"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rdash/rdash-angular"
   },
   "resolutions": {
-    "angular": ">=1.4.0",
+    "angular": "1.4.9",
     "angular-spinner": "~0.8.0",
     "angular-bootstrap": "~1.1.0"
   }
