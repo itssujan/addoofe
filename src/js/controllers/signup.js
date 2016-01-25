@@ -1,6 +1,6 @@
 angular.module('app')
-    .controller('SignUpCtrl', [ '$scope', '$state','Restangular', '$rootScope','$cookieStore','growl','$location', '$mixpanel',
-        function ($scope, $state, Restangular,$rootScope,$cookieStore, growl, $location, $mixpanel) {
+    .controller('SignUpCtrl', [ '$scope', '$state','Restangular', '$rootScope','$cookieStore','growl','$location', '$mixpanel','$filter',
+        function ($scope, $state, Restangular,$rootScope,$cookieStore, growl, $location, $mixpanel,$filter) {
             console.log('In singup controller');
 
             $scope.user = {};
@@ -14,7 +14,7 @@ angular.module('app')
 		      	lastname : $scope.user.lastname,
 		      	product : $scope.user.pdt,
 		      	role : $scope.user.role,
-		      	email : $scope.user.email,
+		      	email : $filter('lowercase') ($scope.user.email),
 		      	password : $scope.user.password
 		      };
 		      console.log($scope.user);

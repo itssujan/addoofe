@@ -8,8 +8,8 @@
 
 angular.module('app')
 .controller('LoginCtrl', [ '$scope', '$state','Restangular', '$rootScope', '$location', 
-	'Auth','$cookieStore','growl','$mixpanel',
-    function ($scope, $state, Restangular,$rootScope, $location, Auth, $cookieStore, growl, $mixpanel) {
+	'Auth','$cookieStore','growl','$mixpanel','$filter',
+    function ($scope, $state, Restangular,$rootScope, $location, Auth, $cookieStore, growl, $mixpanel,$filter) {
 
         console.log('In login controller');
 
@@ -28,7 +28,7 @@ angular.module('app')
 
 			$scope.loginbutton = "Logging in..";			    	
 			$scope.user = {
-				email: $scope.user.email,
+				email: $filter('lowercase') ($scope.user.email),
 				password: $scope.user.password,
 			};
 			console.log($scope.user);
