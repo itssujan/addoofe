@@ -3,7 +3,8 @@
  */
 
 angular.module('app')
-    .controller('ClientLayoutCtrl', ['$scope', '$cookieStore','Auth','envService', function ClientLayoutCtrl($scope, $cookieStore,Auth,envService) {
+    .controller('ClientLayoutCtrl', ['$scope', '$cookieStore','Auth','envService',
+    function ClientLayoutCtrl($scope, $cookieStore,Auth,envService) {
     console.log("ClientLayoutCtrl");
     /**
      * Sidebar Toggle & Cookie Control

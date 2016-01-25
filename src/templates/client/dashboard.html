@@ -52,7 +52,7 @@
 		<div class="videos">
 		    <a href="#" class="video" ng-click="playVideo($index)">
 		        <span></span>
-		        <img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="::nextvideo.title::" />
+		        <img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
 		        <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
 		    </a>
 		</div>
@@ -111,4 +111,75 @@
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="sidebar{% if sidebarOptions %} {{sidebarOptions}}{% endif %}" id="sidebar-menu">
+    <div class="split-vertical">
+
+            <div id="login-message" style="margin:20px 10px 0px 10px;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5 ng-if="studentcourse.product == 'sharefile'"><a href="https://www.sharefile.com/redirects/login" target="_blank" class="text-warning" ng-click="sendEvent('Login Link Clicked')">Login</a> to ShareFile</h5>
+                    <h5 ng-if="studentcourse.product == 'shareconnect'"><a href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank" class="text-warning">Login</a> to ShareConnect</h5>
+                  </div>
+                </div>
+            </div>    
+
+            <div id="sidebar-course-info" style="border-style: solid;border-width:1px;margin:20px 10px 0px 10px;padding:10px 10px 10px 10px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="images/people/avatars/6.jpg" alt="people" class="img-circle width-60"/>
+                        <img ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people" class="img-circle width-60"/>
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="text-warning">Still need help?</h4>
+                        <p ng-if="!studentcourse.onboardingSpecialist">Your care representative is Virginia. Click the link below to view her schedule..</p>
+                        <p ng-if="studentcourse.onboardingSpecialist">Your care representative is {{studentcourse.onboardingSpecialist.local.firstname}} {{studentcourse.onboardingSpecialist.local.lastname}}. Click the link below to view the schedule of your care representative..</p>
+                        <a href="{{studentcourse.onboardingSpecialist.local.timetrade}}" ng-click="sendEvent('TimeTrade Clicked')" target="_blank" class="btn btn-warning">Schedule</a>
+                    </div>
+                </div>    
+            </div>
+
+            <div id="sidebar-course-info" style="border-style: solid;border-width:1px;margin:20px 10px 0px 10px;padding:10px 10px 10px 10px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-warning">Add a team member</h4>
+                        <p>Have co-workers who will be using ShareFile too? Enter their email to add them to your training portal</p>
+                        <p ng-if="studentcourse.onboardingSpecialist">
+                            <input type="text" name="coworkeremail" ng-model="coworker.email">
+                            <a href="#" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank" class="btn btn-warning">Add</a>
+                        </p>
+                    </div>
+                </div>    
+            </div>
+     
+<!--         <div class="split-vertical-body">
+            <div class="split-vertical-cell">
+                <div data-scrollable>
+
+                    <ul class="sidebar-menu sm-bordered sm-active-item-bg">
+                        <li ui-sref-active="active"><a ui-sref="app-student.take-course({courseID: '::courseID::'})">Curriculum</a></li>
+                        <li ng-class="{ 'active': $state.is('app-student.course-forums') || $state.is('app-student.course-forum-thread') }"><a ui-sref="app-student.course-forums">Course Forums</a></li>
+                        <li ui-sref-active="active"><a ui-sref="app-student.take-quiz">Take Quiz</a></li>
+                        <li ui-sref-active="active"><a ui-sref="app-student.quiz-results">Quiz Results</a></li>
+                    </ul>
+
+                    <h4 class="category">Instructor</h4>
+                    <div class="sidebar-block">
+                        <div class="media v-middle">
+                            <div class="media-left">
+                                <a href="" class="media-object"><img class="img-circle width-80" src="images/people/avatars/4.jpg" alt="people" /></a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="sidebar-heading media-heading"><a href="">::instructor.local.firstname::</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+ -->
+     </div>
 </div>
