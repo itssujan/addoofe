@@ -1,5 +1,7 @@
 <div id="page-title">Track Builder</div>
 
+<div growl inline="true"></div>
+
 <div id="track-builder" ng-show="showtrackbuilder">
 
 	<div class="row">
@@ -79,7 +81,7 @@
 					<div growl inline="true"></div>
 				</div>
 				<div class="modal-body">
-					<table ng-table="tableParams" class="table table table-condensed table-bordered table-striped" show-filter="true">
+<!-- 					<table ng-table="tableParams" class="table table table-condensed table-bordered table-striped" show-filter="true">
 						<tr ng-repeat="video in $data | filter:{type: '!document'}">
 
 							<td title="'Select'">
@@ -97,7 +99,7 @@
 							</td>
 						</tr>
 					</table>
-				</div>
+ -->				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary" ng-click="addVideoToTrack('video')">Add to track</button>

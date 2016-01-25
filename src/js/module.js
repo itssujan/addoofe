@@ -11,10 +11,10 @@ var app = angular.module('app', [
     'smart-table',
     'angularMoment',
     'ui.tree',
-    'ngLoadingSpinner'
+    'ngLoadingSpinner',
+    'pdf',
+    'com.2fdevs.videogular'
 	]);
-
-
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
@@ -66,7 +66,7 @@ app.config(
           id: "_id"
         });
 
-        ngClipProvider.setPath("../../../bower_components/zeroclipboard/dist/ZeroClipboard.swf");
+        ngClipProvider.setPath("swf/ZeroClipboard.swf");
 
         app.controller = $controllerProvider.register;
         app.directive = $compileProvider.directive;
