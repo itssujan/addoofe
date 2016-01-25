@@ -21,8 +21,12 @@
 	vertical-align: middle;
 }
 
-#track-builder #current-track .draglist tr td button.btn-danger,
-#track-builder #current-track .draglist tr td.document-type-img img {
+#track-builder #current-track .draglist .btn-danger {
+	float: right;
+}
+
+#track-builder #current-track .draglist .btn-danger,
+#track-builder #current-track .draglist .document-type-img img {
 	height: 40px;
 	width: 40px;
 }
@@ -36,22 +40,40 @@
 	background-color: #FFFFFF;
 }
 
-.row .content-addition .description,
-.row .content-addition .link-button {
-	display: inline-block;
-	top: 50%;
-}
-
 .row .content-addition .description {
 	font-size: 20px;
-	float: left;
 	margin-top: 2px;
 }
 
+.row .content-addition .description p {
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+	padding-right: 15px;
+}
+
+.row .content-addition .checkbox,
 .row .content-addition .link-button {
-	float: right;
 	font-size: 25px;
-	margin-top: -1px;
+	position: absolute;
+	top: 50%;
+	
+	right: 10px;
+}
+
+.row .content-addition .link-button {
+	margin-top: -15px;
+}
+
+.row .content-addition .checkbox {
+	margin-top: -18px;
+}
+
+.row .content-addition .checkbox input {
+	width: 20px;
+	height: 30px;
 }
 
 #client-addition div.panel-footer .button-orange {

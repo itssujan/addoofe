@@ -6,28 +6,22 @@
 
 	<div class="row">
 		<div class="content-addition col-sm-2">
-			<div class="description">Add Video</div>
+			<div class="description"><p>Add Video</p></div>
 			<div class="link-button">
 				<a href="#" data-target="modal-edit-video-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i></a>
 			</div>
 		</div>
 		<div class="content-addition col-sm-2">
-			<div class="description">Add Document</div>
+			<div class="description"><p>Add Document</p></div>
 			<div class="link-button"><a href="#modal-edit-document-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i></a></div>
 		</div>
 		<div class="content-addition col-sm-2">
-		    <div class="checkbox">
-		      <label>
-		        <input type="checkbox" ng-model="course.baseTrack" ng-change="baseTrack()"> Mark as base track
-		      </label>
-		    </div>
+			<div class="description"><p>Make Base Track</p></div>
+		    <div class="checkbox"><input type="checkbox" ng-model="course.baseTrack" ng-change="baseTrack()"></div>
 		</div>
 		<div class="content-addition col-sm-2" ng-show="user.role != 'sales'">
-		    <div class="checkbox">
-		      <label>
-		        <input type="checkbox" ng-model="course.shareWithTeam" ng-change="baseTrack()"> Share with team
-		      </label>
-		    </div>
+			<div class="description"><p>Share Track with Team</p></div>
+			<div class="checkbox"><input type="checkbox" ng-model="course.shareWithTeam" ng-change="baseTrack()"></div>
 		</div>	    
 	</div>
 
