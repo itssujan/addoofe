@@ -1,14 +1,10 @@
 angular.module('app')
-    .controller('ProfileController', [ '$scope','ConstantService', '$state','Restangular', '$rootScope',
-        'Auth','Upload','growl','NgTableParams','$mixpanel',
-        function ($scope,ConstantService, $state, Restangular,$rootScope, Auth, Upload, growl, NgTableParams, $mixpanel) {
+    .controller('ProfileController', [ '$scope','envService', '$state','Restangular', '$rootScope',
+        'Auth','Upload','growl','$mixpanel',
+        function ($scope,envService, $state, Restangular,$rootScope, Auth, Upload, growl, $mixpanel) {
             console.log('In ProfileController');
 
-            $scope.app.settings.htmlClass = 'st-layout ls-top-navbar-large ls-bottom-footer show-sidebar sidebar-l3';
-            $scope.app.settings.bodyClass = '';
-
             $scope.auth = Auth;
-
             $scope.user = Auth.user;
 
             $scope.updateProfile = function(){
@@ -22,7 +18,7 @@ angular.module('app')
 
             $scope.uploadAvatar = function () {
                 Upload.upload({
-                    url: ConstantService.nodeserverurl+'/upload',
+                    url: envService.read('nodeserverurl')+'/upload',
                     data: {file: $scope.avatarfile, 'username': $scope.username}
                 }).then(function (resp) {
                     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.uploadedPath);
@@ -50,6 +46,7 @@ angular.module('app')
                     updatedUser.local.timetrade = $scope.user.local.timetrade;
                     updatedUser.email = $scope.user.local.email;
                     updatedUser.local.email = $scope.user.local.email;
+                    updatedUser.local.newpassword = $scope.user.local.newpassword;
                     updatedUser.put().then(function(){
                         growl.success('Profile updated successfully..');
                     });
