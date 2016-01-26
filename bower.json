@@ -43,7 +43,8 @@
     "angular-pdf-viewer": "~0.2.9",
     "videogular": "~1.4.0",
     "videogular-poster": "~1.4.0",
-    "angular-sanitize": "~1.4.9"
+    "angular-sanitize": "~1.4.9",
+    "ng-dialog": "~0.5.6"
   },
   "repository": {
     "type": "git",
