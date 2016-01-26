@@ -116,7 +116,8 @@ angular.module('app')
                 .state('client', {
                     abstract: true,
                     url: '/client',
-                    templateUrl: 'templates/client/clientlayout.html',
+                    // templateUrl: 'templates/client/clientlayout.html',
+                    template : '<div ui-view/>'
                 })
                 .state('client.dashboard', {
                     url: '/dashboard/:studentcourseID',

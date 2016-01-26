@@ -1,8 +1,38 @@
 angular.module('app')
     .controller('ClientDashboardController', [ '$scope', '$state','Restangular', '$rootScope','$stateParams',
-        '$timeout','pdfDelegate','$mixpanel','$window',
-        function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout, pdfDelegate,$mixpanel,$window) {
+        '$timeout','pdfDelegate','$mixpanel','$window','$cookieStore','envService',
+        function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout, pdfDelegate,$mixpanel,$window,$cookieStore,envService) {
             console.log('In ClientDashboardController');
+
+            ///// LAYOUT.js code...needs to be moved back...
+            var mobileView = 992;
+
+            $scope.getWidth = function() {
+                return window.innerWidth;
+            };
+
+            $scope.$watch($scope.getWidth, function(newValue, oldValue) {
+                if (newValue >= mobileView) {
+                    if (angular.isDefined($cookieStore.get('toggle'))) {
+                        $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
+                    } else {
+                        $scope.toggle = true;
+                    }
+                } else {
+                    $scope.toggle = false;
+                }
+
+            });
+
+            $scope.toggleSidebar = function() {
+                $scope.toggle = !$scope.toggle;
+                $cookieStore.put('toggle', $scope.toggle);
+            };
+
+            window.onresize = function() {
+                $scope.$apply();
+            };
+            /////End of LAYOUT.js code...needs to be moved back...
 
             $scope.newtraining = {};
 
@@ -50,7 +80,6 @@ angular.module('app')
                     $scope.studentcourse.progress = "viewed";
                     $scope.studentcourse.put();
                 }
-                console.log("Playing the video....");
                 $scope.playVideo($scope.currentVideoIndex);
                 getUpcomingVideos();
             });
@@ -236,18 +265,19 @@ angular.module('app')
             }
 
             $scope.bookmark = function(){
+                var bookmarkTitle = $scope.studentcourse.product + " training portal";
                 if ($window.sidebar && $window.sidebar.addPanel) { // Mozilla Firefox Bookmark
-                        $window.sidebar.addPanel("Test bookmark",$window.location.href,'');
+                        $window.sidebar.addPanel(bookmarkTitle,$window.location.href,'');
                 } else if($window.external && ('AddFavorite' in $window.external)) { // IE Favorite
-                    $window.external.AddFavorite(location.href,"Test bookmark"); 
+                    $window.external.AddFavorite(location.href,bookmarkTitle); 
                 } else if($window.opera && $window.print) { // Opera Hotlist
-                    this.title="Test bookmark";
+                    this.title = bookmarkTitle;
                     return true;
                 } else { // webkit - safari/chrome
                     alert('Press ' + ($window.navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.');
                 }
                 $mixpanel.track('Bookmark Link Clicked');
-
+                return true;
             }
 
         } ]);
