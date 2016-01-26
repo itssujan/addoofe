@@ -185,4 +185,19 @@ angular.module('app')
                 $scope.course.put();
             }
 
+        $scope.open = function (size) {
+            var modalInstance = $uibModal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: 'myModalContent.html',
+              controller: 'ModalInstanceCtrl',
+              size: size,
+              resolve: {
+                items: function () {
+                  return $scope.items;
+                }
+              }
+            });
+        };
+
+
         } ]);

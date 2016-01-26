@@ -66,41 +66,43 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="modal-edit-video-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Add Video Module</h4>
-					<div growl inline="true"></div>
-				</div>
-				<div class="modal-body">
-<!-- 					<table ng-table="tableParams" class="table table table-condensed table-bordered table-striped" show-filter="true">
-						<tr ng-repeat="video in $data | filter:{type: '!document'}">
+	<script type="text/ng-template" id="myModalContent.html">
+		<div class="modal fade" id="modal-edit-video-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Add Video Module</h4>
+						<div growl inline="true"></div>
+					</div>
+					<div class="modal-body">
+	<!-- 					<table ng-table="tableParams" class="table table table-condensed table-bordered table-striped" show-filter="true">
+							<tr ng-repeat="video in $data | filter:{type: '!document'}">
 
-							<td title="'Select'">
-								<input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addVideoToQueue(video.selected,video)">
-							</td>
-							<td title="'Name'" filter="{title: 'text'}" sortable="'title'">
-								{{video.title}}
-							</td>
-							<td title="'Product'" filter="{product: 'text'}" sortable="'product'">
-								{{video.product}}
-							</td>
+								<td title="'Select'">
+									<input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addVideoToQueue(video.selected,video)">
+								</td>
+								<td title="'Name'" filter="{title: 'text'}" sortable="'title'">
+									{{video.title}}
+								</td>
+								<td title="'Product'" filter="{product: 'text'}" sortable="'product'">
+									{{video.product}}
+								</td>
 
-							<td title="'Uploaded on'" sortable="'createdOn'">
-								<span am-time-ago="video.createdOn"></span>
-							</td>
-						</tr>
-					</table>
- -->				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" ng-click="addVideoToTrack('video')">Add to track</button>
+								<td title="'Uploaded on'" sortable="'createdOn'">
+									<span am-time-ago="video.createdOn"></span>
+								</td>
+							</tr>
+						</table>
+	 -->				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary" ng-click="addVideoToTrack('video')">Add to track</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</script>	
 </div>
 
 <div class="modal fade" id="modal-edit-document-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
