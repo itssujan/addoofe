@@ -1,0 +1,159 @@
+@font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+
+#sidebar-menu {
+	position: fixed;
+	right: 150px;
+}
+
+.sidebar-right {
+	font-family: @font-family;
+	height: auto;
+	width: auto;
+	margin-top: 15px;
+	display: inline-block;
+	float: right;
+
+	.information {
+		min-height: 125px;
+		width: 350px;
+		margin: 10px 10px 10px 10px;
+		display: block;
+		float: right;
+		clear: right;
+		border: 1px solid #BEBEBE;
+		border-radius: 2px;
+		background-color: #DFDFDF;
+		box-shadow: 0 1px 1px #BEBEBE;
+
+		#care-rep-image {
+			display: inline-block;
+			float: left;
+			clear: left;
+			margin: 10px;
+
+			img {
+				width: 60px;
+			}
+		}
+
+		.text-warning {
+			display: inline-block;
+			float: left;
+			width: auto;
+			margin: 10px 10px 5px 0;
+			color: #F38F29;
+		}
+
+		p {
+			display: inline-block;
+			float: right;
+			max-width: 265px;
+			padding-right: 15px;
+			font-size: 12px;
+		}
+
+		.button {
+			border-radius: 3px;
+			text-align: center;
+			display: inline-block;
+			float: right;
+			clear: left;
+			width: 95px;
+			margin: 0 15px 10px;
+			padding: 5px;
+			color: #FFFFFF;
+			font-size: 16px;
+			font-weight: bold;
+			text-decoration: none;
+			background-color: #F38F29;
+		}
+
+		.button:hover {
+			background-color: #FDB265;
+		}
+	}
+
+	#team-member-add {
+		.text-warning {
+			margin-left: 10px;
+		}
+
+		.button {
+			clear: none !important;
+		}
+
+		p {
+			max-width: 335px;
+		}
+
+		input {
+			display: inline-block;
+			float: left;
+			margin-left: 10px;
+			padding: 2px;
+			width: 210px;
+			height: 29px;
+			border-radius: 3px;
+			border: 0px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+	}
+}
+
+.sidebar-list {
+	padding: 10px 15px;
+	
+	.element {
+		list-style: none;
+
+		a.title {
+			float: left;
+			text-align: left;
+			font-family: @font-family;
+			font-size: 13px;
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+
+		div.time {
+			float: right;
+			text-align: right;
+			font-family: @font-family;
+			font-size: 13px;
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+	}
+}
+
+#login-message {
+	display: block;
+	float: right;
+	clear: right;
+	margin: 0;
+
+	p {
+		padding-right: 10px;
+		font-size: 16px;
+		font-weight: normal;
+		font-family: @font-family;
+
+		a {
+			color: #F38F29;
+			text-decoration: none;
+		}
+	}
+}
+
+@media only screen and (max-width: 1300px) {
+	.sidebar-right .information {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1165px ) {
+	#login-message {
+		display: none;
+	}
+}

@@ -2,6 +2,21 @@
 @header-title-size: 18px;
 @detail-font-size: 15px;
 
+
+#bookmark {
+	margin-top: 100px;
+	margin-bottom: 20px;
+	padding: 5px;
+	background-color: #F38F29;
+	text-align: center;
+
+	a {
+		font-weight: bold;
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+}
+
 .viewer {
 	margin-left: 40px;
 
@@ -58,7 +73,7 @@
 	display: inline-block;
 	float: left;
 	clear: left;
-	margin-left: 80px;
+	margin-left: 40px;
 	font-family: @font-family;
 
 	#title {
@@ -76,34 +91,18 @@
 	display: inline-block;
 	float: left;
 	clear: left;
-	margin-left: 80px;
-	font-family: @font-family;
+	margin-left: 40px;
+	margin-top: 40px;
 
-	.chain {
-		margin: 0px;
-
-		.video-container {
-			display: inline-block;
-			float: left;
-			width: 175px;
-			margin: 0 30px 0 0;
-			padding: 0;
-			cursor: pointer;
-
-			img {
-				width: 175px;
-				height: 110px;
-			}
-
-			#title {
-				margin-top: 10px;
-				width: 175px;
-
-				span {
-					font-weight: normal;
-					font-size: @detail-font-size;
-				}
-			}
+	.video-container {
+		display: inline-block;
+		float: left;
+		
+		img {
+			height: 150px;
+			width: 225px;
+			margin-right: 25px;
+			box-shadow: 0 2px 2px #BEBEBE;	
 		}
 	}
 
