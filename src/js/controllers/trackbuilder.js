@@ -17,6 +17,7 @@ angular.module('app')
 
             $scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
 
+
             $scope.tableCallbacks = {
 
                 // drag and drop event of the table...
@@ -25,6 +26,7 @@ angular.module('app')
                     $scope.course.put();
                 }
             };
+
 
             $scope.deleteTrack = function(index) {
                 console.log(index);
@@ -53,6 +55,11 @@ angular.module('app')
             console.log("Course ID ::: "+$scope.courseID);
             if($scope.courseID){
                 Restangular.one("course",$scope.courseID).get().then(function(data){
+                    if($stateParams.message){
+                        growl.success($stateParams.message);
+                    }
+
+
                     $scope.course = data;
                     if(!$scope.course.baseTrack){
                         $scope.course.baseTrack = false;
@@ -204,7 +211,7 @@ angular.module('app')
                 var duplicateCourse = $scope.course;
                 delete duplicateCourse._id;
                 Restangular.all('course').post(duplicateCourse).then(function(data){
-                    $state.go('customer-manager.trackbuilder',{'courseID':data._id});
+                    $state.go('customer-manager.trackbuilder',{'courseID':data._id,'message':'Duplicate track created successfully'});
                     growl.success('Duplicate track created successfully');
                   });                    
             }
