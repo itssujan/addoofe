@@ -7,8 +7,12 @@ var gulp = require('gulp'),
     minifyJs = require('gulp-uglify'),
     concat = require('gulp-concat'),
     less = require('gulp-less'),
+    prefix = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
-    minifyHTML = require('gulp-htmlmin');
+    minifyHTML = require('gulp-htmlmin'),
+    rev = require('gulp-rev');
+    runSequence = require('run-sequence');
+
 
 var paths = {
     scripts: 'src/js/**/*.*',
@@ -20,17 +24,11 @@ var paths = {
     swf: 'src/components/zeroclipboard/dist/*.swf'
 };
 
-/**
- * Handle bower components from index
- */
-gulp.task('usemin', function() {
-    return gulp.src(paths.index)
-        .pipe(usemin({
-            js: [minifyJs(), 'concat'],
-            css: [minifyCss({keepSpecialComments: 0}), 'concat'],
-        }))
-        .pipe(gulp.dest('dist/'));
-});
+
+  function runAllTasks(cb) {
+    runSequence('pretasks', 'posttask', cb);
+  }
+
 
 /**
  * Copy assets
@@ -109,7 +107,26 @@ gulp.task('livereload', function() {
 });
 
 /**
+ * Handle bower components from index
+ */
+gulp.task('usemin', function() {
+    return gulp.src(paths.index)
+        .pipe(usemin({
+            js: [minifyJs(), 'concat'],
+            css: [minifyCss({keepSpecialComments: 0}), 'concat'],
+        }))
+        .pipe(gulp.dest('dist/'));
+});
+
+
+/**
  * Gulp tasks
  */
-gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
-gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);
+
+gulp.task('pretasks', ['build-assets', 'build-custom','webserver', 'livereload', 'watch']);
+gulp.task('posttask', ['usemin']);
+
+gulp.task('default', runAllTasks);
+
+//gulp.task('build', [ 'build-assets', 'build-custom']);
+//gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);

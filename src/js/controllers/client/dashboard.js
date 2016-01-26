@@ -237,8 +237,9 @@ angular.module('app')
                 var emailParams = {};
                 emailParams.coworker = {};
                 emailParams.coworker.email = $scope.coworker.email;
-                emailParams.coworker.referredBy = $scope.studentcourse.studentID;
-                emailParams.coworker.urlPrefix = "http://app.addoo.io/index.html#/client/dashboard/"
+                emailParams.coworker.referredBy = $scope.studentcourse.studentID._id;
+                emailParams.coworker.urlPrefix = "http://app.addoo.io/index.html#/client/dashboard/";
+                emailParams.coworker.studentCourseID = $scope.studentcourse._id;
 
                 Restangular.all('sharewithfriend').post(emailParams).then(function(user){
                     console.log("Shared with friend successfully");
