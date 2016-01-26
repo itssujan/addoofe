@@ -234,34 +234,44 @@ angular.module('app')
 
             $scope.addCoworker = function(){
                 console.log("Adding coworker");
-                $scope.coworker.role = 'client';
-                $scope.coworker.local = {};
-                $scope.coworker.local.email = $scope.coworker.email;
-                $scope.coworker.local.referral = true;
-                $scope.coworker.local.referredBy = $scope.studentcourse.studentID;
-                Restangular.all('student').post($scope.coworker)
-                .then(function(data){
-                    Restangular.one("studentcourses", $scope.studentcourseID).get().then(function(data1){
-                        $scope.duplicateStudentCourse = data1;
-                        $scope.duplicateStudentCourse._id = null;
-                        $scope.duplicateStudentCourse.studentID = data._id;
-                        $scope.duplicateStudentCourse.email = data.local.email;
-                        $scope.duplicateStudentCourse.referral = true;
-                        $scope.duplicateStudentCourse.referredBy = $scope.studentcourse.studentID;
-                        Restangular.all('studentcourses').post($scope.duplicateStudentCourse).then(function(data2){
-                            console.log("Duplocate course created :");
-                            var emailParams = {};
-                            emailParams.recepient = $scope.coworker.email;
-                            emailParams.mailtype = 'shareOnboarding';
+                var emailParams = {};
+                emailParams.coworker = {};
+                emailParams.coworker.email = $scope.coworker.email;
+                emailParams.coworker.referredBy = $scope.studentcourse.studentID;
+                emailParams.coworker.urlPrefix = "http://app.addoo.io/index.html#/client/dashboard/"
 
-                            Restangular.all('sendemail').post(emailParams).then(function(user){
-                                console.log("Send email");
-                            });
-                        });
-                    });
-                    console.log('Created student course :'+data._id);
-                    $mixpanel.track('Shared with coworker');
+                Restangular.all('sharewithfriend').post(emailParams).then(function(user){
+                    console.log("Shared with friend successfully");
                 });
+                $mixpanel.track('Shared with coworker');
+                // $scope.coworker.role = 'client';
+                // $scope.coworker.local = {};
+                // $scope.coworker.local.email = $scope.coworker.email;
+                // $scope.coworker.local.referral = true;
+                // $scope.coworker.local.referredBy = $scope.studentcourse.studentID;
+                // Restangular.all('student').post($scope.coworker)
+                // .then(function(data){
+                //     Restangular.one("studentcourses", $scope.studentcourseID).get().then(function(data1){
+                //         $scope.duplicateStudentCourse = data1;
+                //         $scope.duplicateStudentCourse._id = null;
+                //         $scope.duplicateStudentCourse.studentID = data._id;
+                //         $scope.duplicateStudentCourse.email = data.local.email;
+                //         $scope.duplicateStudentCourse.referral = true;
+                //         $scope.duplicateStudentCourse.referredBy = $scope.studentcourse.studentID;
+                //         Restangular.all('studentcourses').post($scope.duplicateStudentCourse).then(function(data2){
+                //             console.log("Duplocate course created :");
+                //             var emailParams = {};
+                //             emailParams.recepient = $scope.coworker.email;
+                //             emailParams.mailtype = 'shareOnboarding';
+
+                //             Restangular.all('sendemail').post(emailParams).then(function(user){
+                //                 console.log("Send email");
+                //             });
+                //         });
+                //     });
+                //     console.log('Created student course :'+data._id);
+
+                // });
             }
 
             $scope.bookmark = function(){
