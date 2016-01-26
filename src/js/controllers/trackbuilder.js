@@ -200,5 +200,13 @@ angular.module('app')
                 ngDialog.open({ template: 'templates/videomodal.html',disableAnimation :true, scope : $scope });
             };
 
+            $scope.createDuplicateTrack = function() {
+                var duplicateCourse = $scope.course;
+                delete duplicateCourse._id;
+                Restangular.all('course').post(duplicateCourse).then(function(data){
+                    $state.go('customer-manager.trackbuilder',{'courseID':data._id});
+                    growl.success('Duplicate track created successfully');
+                  });                    
+            }
 
         } ]);

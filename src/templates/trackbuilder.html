@@ -23,7 +23,11 @@
 			<div class="description"><p>Share Track with Team</p></div>
 			<div class="checkbox"><input type="checkbox" ng-model="course.shareWithTeam" ng-change="baseTrack()"></div>
 		</div>	 
-
+		<div class="content-addition col-sm-2" ng-show="user.role != 'sales'">
+			<div class="checkbox">
+				<a class="button-orange" ng-click="createDuplicateTrack();">Reuse this track</a>
+			</div>
+		</div>	 
 
 	</div>
 
