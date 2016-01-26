@@ -1,0 +1,115 @@
+﻿@font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+@header-title-size: 18px;
+@detail-font-size: 15px;
+
+.viewer {
+	margin-left: 40px;
+
+	a.button {
+		border-radius: 2px;
+		text-align: center;
+		display: inline-block;
+		clear: left;
+		min-width: 95px;
+		margin: 0 15px 10px;
+		padding: 5px 10px;
+		color: #FFFFFF;
+		font-size: 16px;
+		font-weight: bold;
+		text-decoration: none;
+		background-color: #F38F29;
+
+		&.right {
+			float: right;
+			margin-right: 0;
+		}
+
+		&.left {
+			float: left;
+			margin-left: 0;
+		}
+	}
+
+	a.button:hover {
+		background-color: #FDB265;
+	}
+
+	.navigation-panel {
+		display: inline-block;
+		float: left;
+		clear: left;
+		margin-bottom: 20px;
+		width: 538px;
+	}
+
+	&.non-doc {
+
+		.video-player {
+			height: 360px;
+			width: 538px;
+			display: inline-block;
+			float: left;
+			clear: left;
+		}
+	}
+}
+
+.details {
+	display: inline-block;
+	float: left;
+	clear: left;
+	margin-left: 80px;
+	font-family: @font-family;
+
+	#title {
+		font-weight: normal;
+		font-size: @header-title-size;
+	}
+
+	#description {
+		font-weight: normal;
+		font-size: @detail-font-size;
+	}
+}
+
+.upcoming-chain {
+	display: inline-block;
+	float: left;
+	clear: left;
+	margin-left: 80px;
+	font-family: @font-family;
+
+	.chain {
+		margin: 0px;
+
+		.video-container {
+			display: inline-block;
+			float: left;
+			width: 175px;
+			margin: 0 30px 0 0;
+			padding: 0;
+			cursor: pointer;
+
+			img {
+				width: 175px;
+				height: 110px;
+			}
+
+			#title {
+				margin-top: 10px;
+				width: 175px;
+
+				span {
+					font-weight: normal;
+					font-size: @detail-font-size;
+				}
+			}
+		}
+	}
+
+	#title {
+		margin-top: 20px;
+		font-weight: normal;
+		font-size: @header-title-size;
+	}
+}
