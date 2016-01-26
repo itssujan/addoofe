@@ -1,8 +1,8 @@
 angular.module('app')
     .controller('TrackBuilderCtrl', [ '$scope', '$state','Restangular', '$rootScope','Auth', 'growl', 
-        '$stateParams','$location','$mixpanel','$filter',
+        '$stateParams','$location','$mixpanel','$filter','ngDialog',
         function ($scope, $state, Restangular,$rootScope, Auth, growl, $stateParams, $location, 
-            $mixpanel,$filter) {
+            $mixpanel,$filter,ngDialog) {
             console.log('In CCTrackBuilderCtrl');
 
             $scope.course = {};
@@ -17,6 +17,7 @@ angular.module('app')
 
             $scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
 
+
             $scope.tableCallbacks = {
 
                 // drag and drop event of the table...
@@ -25,6 +26,7 @@ angular.module('app')
                     $scope.course.put();
                 }
             };
+
 
             $scope.deleteTrack = function(index) {
                 console.log(index);
@@ -40,6 +42,7 @@ angular.module('app')
             $scope.updateClientList = function() {
                  Restangular.all("studentcourses?courseID="+$scope.courseID+"&populate=studentID").getList().then(function(data){
                     $scope.studentcourses = data;
+                    $scope.displayedStudentCourseCollection = [].concat($scope.studentcourses);
 
                     $scope.studentcourses.forEach(function(element, index, array){
                         element.inviteurl = "http://"+$location.host()+"/index.html#/client/dashboard/"+element._id;
@@ -52,6 +55,11 @@ angular.module('app')
             console.log("Course ID ::: "+$scope.courseID);
             if($scope.courseID){
                 Restangular.one("course",$scope.courseID).get().then(function(data){
+                    if($stateParams.message){
+                        growl.success($stateParams.message);
+                    }
+
+
                     $scope.course = data;
                     if(!$scope.course.baseTrack){
                         $scope.course.baseTrack = false;
@@ -164,15 +172,14 @@ angular.module('app')
                         if(videoelement._id == element){
                             var video1 = videoelement;
                             var content = {
-                            type : filetype,
-                            title : video1.title,
-                            videoID : video1._id
-                        };
+                                type : filetype,
+                                title : video1.title,
+                                videoID : video1._id
+                            };
                             if(!$scope.course.contents)
                                 $scope.course.contents = [];
 
                             $scope.course.contents.push(content);    
-
                             console.log("Video : "+JSON.stringify(video1));                       
                         }
                     });
@@ -183,21 +190,30 @@ angular.module('app')
 
             $scope.baseTrack = function(test){
                 $scope.course.put();
+            };
+
+            var videoQuery = "video?product="+Auth.user.product;
+            if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
+                videoQuery = "video"
             }
-
-        $scope.open = function (size) {
-            var modalInstance = $uibModal.open({
-              animation: $scope.animationsEnabled,
-              templateUrl: 'myModalContent.html',
-              controller: 'ModalInstanceCtrl',
-              size: size,
-              resolve: {
-                items: function () {
-                  return $scope.items;
-                }
-              }
+            Restangular.all(videoQuery).getList().then(function(data){
+                $scope.videolessons = data;
+                $scope.displayedvideolessons = [].concat($scope.videolessons);
             });
-        };
 
+
+            $scope.clickToOpen = function () {
+                console.log("trying to open modal");
+                ngDialog.open({ template: 'templates/videomodal.html',disableAnimation :true, scope : $scope });
+            };
+
+            $scope.createDuplicateTrack = function() {
+                var duplicateCourse = $scope.course;
+                delete duplicateCourse._id;
+                Restangular.all('course').post(duplicateCourse).then(function(data){
+                    $state.go('customer-manager.trackbuilder',{'courseID':data._id,'message':'Duplicate track created successfully'});
+                    growl.success('Duplicate track created successfully');
+                  });                    
+            }
 
         } ]);

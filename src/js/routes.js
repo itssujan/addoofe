@@ -102,6 +102,9 @@ angular.module('app')
                     templateUrl: 'templates/trackbuilder.html',
                     ctrl: "trackbuilder",
                     controller: "TrackBuilderCtrl",
+                    params : {
+                        message : null
+                    },
                     data: {requiresLogin: true}
                 })                    
                 .state('customer-manager.profile', {

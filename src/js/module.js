@@ -13,7 +13,8 @@ var app = angular.module('app', [
     'ui.tree',
     'ngLoadingSpinner',
     'pdf',
-    'com.2fdevs.videogular'
+    'com.2fdevs.videogular',
+    'ngDialog'
 	]);
 
 app.config( 
