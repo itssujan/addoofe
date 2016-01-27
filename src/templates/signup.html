@@ -1,28 +1,30 @@
-     <div class="signup col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
- <div class="wrapper">
+<div class="signup col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+   <div class="wrapper">
         <form class="form-signup" role="form" ng-submit="signUp()">
             <h2>Please Sign Up <small>It's free..</small></h2>
             <div class="form-group">
-                <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" ng-model="user.firstname">
+                <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" ng-model="user.firstname" ng-required="true" tabindex="1">
             </div>
             <div class="form-group">
-                <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" ng-model="user.lastname">
+                <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" ng-model="user.lastname" ng-required="true" tabindex="2">
             </div>
             <div class="form-group">
-                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="3" ng-model="user.email">
+                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="3" ng-model="user.email" ng-required="true" tabindex="3">
             </div>
 			<div class="form-group">
-				<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4" ng-model="user.password">
+				<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4" ng-model="user.password" ng-required="true" tabindex="4">
 			</div>
             <div class="form-group">
-                <select class="form-control" ng-model="user.pdt">
+                <select class="form-control" ng-model="user.pdt" ng-required="true" tabindex="5">
+                  <option value="">Select your product</option>
                   <option value="sharefile">ShareFile</option>
                   <option value="shareconnect">ShareConnect</option>
                   <option value="rightsignature">RightSignature</option>
                 </select>  
             </div>
             <div class="form-group">
-                <select class="form-control" ng-model="user.role">
+                <select class="form-control" ng-model="user.role" ng-required="true" tabindex="6">
+                  <option value="">Select your role</option>
                   <option value="customer-manager">Customer Manager</option>
                   <option value="customer-onboarding-specialist">Onboarding Specialist</option>
                   <option value="sales">Sales</option>
