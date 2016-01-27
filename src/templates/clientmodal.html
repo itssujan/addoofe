@@ -1,0 +1,38 @@
+<div>
+    <div class="modal-header" ng-class="priorityStyle">
+        <h4 class="modal-title">Add Client</h4>
+    </div>
+    <div class="modal-body">
+        <div growl inline="true"></div>
+        <form role="form" ng-submit="inviteClient()">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Client's Email address:</label>
+                    <input type="email" class="form-control" id="email" ng-model="student.local.email">
+                </div>
+                <div class="form-group">
+                    <label for="firstname">Client's First name:</label>
+                    <input type="text" class="form-control" id="firstname" ng-model="student.local.firstname">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Client's Last name:</label>
+                    <input type="text" class="form-control" id="lastname" ng-model="student.local.lastname">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Client's Company name:</label>
+                    <input type="text" class="form-control" id="lastname" ng-model="student.local.clientname">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Customer Onboarding Manager:</label>
+                    <select name="customerrep" id="customerrep" ng-model="onboardingSpecialist">
+                        <option ng-repeat="customerSupportRep in customerSupportReps" value="{{customerSupportRep._id}}">{{customerSupportRep.local.firstname}} {{customerSupportRep.local.lastname}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add Client</button>
+            </div>
+        </form>
+    </div>
+</div>

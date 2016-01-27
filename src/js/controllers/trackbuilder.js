@@ -17,7 +17,6 @@ angular.module('app')
 
             $scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
 
-
             $scope.tableCallbacks = {
 
                 // drag and drop event of the table...
@@ -124,16 +123,35 @@ angular.module('app')
 
             $scope.inviteClient = function(){
                 $scope.student.role = 'client';
-                Restangular.all('student').post($scope.student)
-                .then(function(data){
-                    createStudentCourse(data);
-                    console.log('Created student course :'+data._id);
-                    $mixpanel.track('Invite Client');
-                });
+                if($scope.course.baseTrack){
+                    var duplicateCourse = $scope.course;
+                    duplicateCourse.baseTrack = false;
+                    duplicateCourse.shareWithTeam = false;
+                    duplicateCourse.author = Auth.user._id;
+                    delete duplicateCourse._id;
+                    Restangular.all('course').post(duplicateCourse).then(function(data){
+                        Restangular.all('student').post($scope.student).then(function(data1){
+                            createStudentCourse(data1,data._id);
+                            console.log('Created student course :'+data._id);
+                            $mixpanel.track('Invite Client');
+                            $state.go('customer-manager.trackbuilder',
+                                {'courseID':data._id});
+                        });
+                    });
+
+                } else {
+                    Restangular.all('student').post($scope.student)
+                    .then(function(data){
+                        createStudentCourse(data,$scope.course._id);
+                        console.log('Created student course :'+data._id);
+                        $mixpanel.track('Invite Client');
+                    });
+
+                }
             }
 
-            var createStudentCourse = function(student) {
-              $scope.student.courseID = $scope.courseID;
+            var createStudentCourse = function(student,courseid) {
+              $scope.student.courseID = courseid;
               $scope.student.studentID = student._id;
               $scope.student.email = student.local.email;
               $scope.student.product = Auth.user.product;
@@ -190,6 +208,8 @@ angular.module('app')
 
             $scope.baseTrack = function(test){
                 $scope.course.put();
+                $mixpanel.track('BaseTrack Marked');
+
             };
 
             var videoQuery = "video?product="+Auth.user.product;
@@ -203,9 +223,21 @@ angular.module('app')
 
 
             $scope.clickToOpen = function () {
-                console.log("trying to open modal");
+                console.log("trying to open video modal");
                 ngDialog.open({ template: 'templates/videomodal.html',disableAnimation :true, scope : $scope });
             };
+
+            $scope.addClientModal = function () {
+                console.log("opening client modal");
+                ngDialog.open({ template: 'templates/clientmodal.html',disableAnimation :true, scope : $scope });
+            };
+
+            $scope.closeClientModal = function () {
+                console.log("closing client modal");
+                ngDialog.close({ template: 'templates/clientmodal.html',disableAnimation :true});
+            };
+
+
 
             $scope.createDuplicateTrack = function() {
                 var duplicateCourse = $scope.course;

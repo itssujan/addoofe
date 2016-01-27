@@ -8,15 +8,14 @@
 
 angular.module('app')
 .controller('LoginCtrl', [ '$scope', '$state','Restangular', '$rootScope', '$location', 
-	'Auth','$cookieStore','growl','$mixpanel','$filter',
-    function ($scope, $state, Restangular,$rootScope, $location, Auth, $cookieStore, growl, $mixpanel,$filter) {
+	'Auth','$cookieStore','growl','$mixpanel','$filter','$stateParams',
+    function ($scope, $state, Restangular,$rootScope, $location, Auth, $cookieStore, growl, $mixpanel,$filter,$stateParams) {
 
         console.log('In login controller');
 
     	$scope.addSpecialWarnMessage = function() {
 			growl.addWarnMessage("This adds a warn message");
 		};
-
 
         $scope.user = {};
         $scope.auth = Auth;
@@ -60,9 +59,13 @@ angular.module('app')
 
 					console.log("Changed role :"+$scope.user.role);
 					if(data.user.role == "customer-onboarding-specialist" 
-						|| data.user.role == "customer-manager" 
-						|| data.user.role == "sales" ){
+						|| data.user.role == "customer-manager" || data.user.role == "saleslead"){
 						$state.go('customer-manager.dashboard');
+					} else if(data.user.role == "sales"){
+						if(!data.user.manager)
+							$state.go('customer-manager.profile',{'managerRequired':true});
+						else
+							$state.go('customer-manager.dashboard');
 					}
 				} else{
 

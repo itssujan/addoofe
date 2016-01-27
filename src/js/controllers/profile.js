@@ -1,11 +1,20 @@
 angular.module('app')
     .controller('ProfileController', [ '$scope','envService', '$state','Restangular', '$rootScope',
-        'Auth','Upload','growl','$mixpanel',
-        function ($scope,envService, $state, Restangular,$rootScope, Auth, Upload, growl, $mixpanel) {
+        'Auth','Upload','growl','$mixpanel','$stateParams',
+        function ($scope,envService, $state, Restangular,$rootScope, Auth, Upload, growl, $mixpanel,$stateParams) {
             console.log('In ProfileController');
 
             $scope.auth = Auth;
             $scope.user = Auth.user;
+
+            console.log("Manager Reqd :"+$stateParams.managerRequired);
+            if($stateParams.managerRequired){
+                $scope.managerRequired = true;
+                Restangular.all("user?role=saleslead&product="+Auth.user.product).getList().then(function(data){
+                    $scope.managers = data;
+                });
+            }
+
 
             $scope.updateProfile = function(){
                 if($scope.avatarfile)
@@ -47,7 +56,10 @@ angular.module('app')
                     updatedUser.email = $scope.user.local.email;
                     updatedUser.local.email = $scope.user.local.email;
                     updatedUser.local.newpassword = $scope.user.local.newpassword;
+                    updatedUser.manager = $scope.user.manager;    
+                    console.log("Test :" +$scope.user.manager);
                     updatedUser.put().then(function(){
+                        $scope.managerRequired = false;
                         growl.success('Profile updated successfully..');
                     });
                 });

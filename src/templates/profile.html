@@ -6,6 +6,9 @@
                 </a>
             </li>
         </ul>
+		<div class="alert alert-danger" role="alert" ng-if="managerRequired">
+			Please update your manager information
+		</div>
 
 		<div class="panel panel-default paper-shadow tab-content">
 			<div id="account" class="tab-pane active">
@@ -77,6 +80,18 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="form-group" ng-if="managers.length > 0">
+						<div class="field-container col-md-6">
+							<div class="form-control-material">
+				                <select class="form-control" ng-model="user.manager" ng-required="true">
+				                  <option value="">Select your manager</option>
+				                  <option ng-repeat="manager in managers" value="{{manager._id}}">{{manager.local.firstname}} {{manager.local.lastname}}</option>
+				                </select>  
+		            		</div>
+		            	</div>
+		            </div>
+
 
 					<div class="form-group margin-none">
 						<div class="col-md-offset-2 col-md-10">

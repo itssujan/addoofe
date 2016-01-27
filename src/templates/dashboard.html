@@ -33,6 +33,10 @@
 						<td><a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a></td>
 						<td>{{row.fullname}}</td>
 					</tr>
+					<tr ng-if="displayedCourseCollection && displayedCourseCollection.length == 0">
+						<td colspan="2" align="center">You can mark a track as base track during creation of a track or click on any of the active tracks to mark it as a base track.</td>
+					</tr>
+
 				</tbody>
 				<tfoot>
 					<tr>

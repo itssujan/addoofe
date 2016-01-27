@@ -112,7 +112,11 @@ angular.module('app')
                     templateUrl: 'templates/profile.html',
                     ctrl: "profileController",
                     controller: "ProfileController",
-                    data: {requiresLogin: true}
+                    data: {requiresLogin: true},
+                    params : {
+                        managerRequired : null
+                    },
+
                 });
 
                 $stateProvider
