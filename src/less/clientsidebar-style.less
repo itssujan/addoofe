@@ -101,31 +101,49 @@
 	}
 }
 
-.client-sidebar-list {
-	padding: 10px 15px;
-	
-	.element {
-		list-style: none;
+#content-table {
+	border: none;
 
-		a.title {
-			float: left;
-			text-align: left;
-			font-family: @font-family;
-			font-size: 13px;
-			color: #FFFFFF;
-			text-decoration: none;
-		}
+	tbody {
 
-		div.time {
-			float: right;
-			text-align: right;
-			font-family: @font-family;
-			font-size: 13px;
-			color: #FFFFFF;
-			text-decoration: none;
+		tr {
+
+			td {
+				border: none;
+				padding: 0 15px;
+				vertical-align: middle;
+			}
+
+			a {
+
+				&.title {
+					float: left;
+					text-align: left;
+					font-family: @font-family;
+					font-size: 14px;
+					color: #FFFFFF;
+					text-decoration: none;
+				}
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+
+			div {
+				&.time {
+					float: right;
+					text-align: right;
+					font-family: @font-family;
+					font-size: 14px;
+					color: #FFFFFF;
+					text-decoration: none;
+				}
+			}
 		}
 	}
 }
+
 
 #login-message {
 	display: block;
@@ -156,4 +174,32 @@
 	#login-message {
 		display: none;
 	}
+}
+
+
+/* Customized Sidebar Styling */
+
+#page-wrapper.open #client-sidebar-wrapper {
+	left: 400px;
+}
+
+#client-sidebar-wrapper {
+	background-color: #424242;
+	margin-left: -400px;
+	width: 400px;
+	position: fixed;
+	height: 100%;
+	z-index: 999;
+	transition: all .4s ease 0s;
+
+	ul.sidebar li a {
+		float: right;
+	}
+}
+
+#page-wrapper:not(.open) #content-table {
+	opacity: 0;
+	height: 0;
+	padding: 0;
+	transition: height 0.5s linear, opacity 0.5s linear;
 }
