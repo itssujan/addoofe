@@ -1,4 +1,4 @@
-<div class="button-container"><a class="button-orange lg" ng-click="createDuplicateTrack();">Reuse this Track</a></div>
+<div class="button-container" ng-show="showtrackbuilder"><a class="button-orange lg" ng-click="createDuplicateTrack();">Duplicate Track</a></div>
 
 <div id="page-title">Track Builder</div>
 
@@ -17,7 +17,7 @@
         </div>
         <div class="content-addition col-sm-2">
             <div class="description">
-                <p>Make Base Track</p>
+                <p>Add to Base Tracks</p>
             </div>
             <div class="checkbox">
                 <input type="checkbox" ng-model="course.baseTrack" ng-change="baseTrack()">

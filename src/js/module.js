@@ -33,8 +33,8 @@ app.config(
 			},
 			vars: {
 				development: {
-					//nodeserverurl: 'http://localhost:3001',
-                    nodeserverurl: 'http://node.addoo.io',
+					nodeserverurl: 'http://localhost:3001',
+                    //nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: "29e92907943764722a69ba3035295165",
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true
