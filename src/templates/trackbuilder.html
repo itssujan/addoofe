@@ -38,7 +38,7 @@
                 <div class="panel panel-default paper-shadow" data-z="0.5">
                     <p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
                     <table ui-tree="tableCallbacks" class="table table-responsive">
-                        <tbody class="draglist" ui-tree-nodes ng-model="course.contents">
+                        <tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
                             <tr ng-repeat="content in course.contents" ui-tree-node>
                                 <td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
                                 <td class="document-type-img">
