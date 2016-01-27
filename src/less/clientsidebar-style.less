@@ -108,9 +108,27 @@
 
 		tr {
 
+			&.visited {
+				a {
+					&.title {
+						color: #797979;
+					}
+				}
+
+				div {
+					&.time {
+						color: #797979;
+					}
+				}
+			}
+
+			&:hover {
+				background-color: #292929;
+			}
+
 			td {
 				border: none;
-				padding: 0 15px;
+				padding: 2px 15px;
 				vertical-align: middle;
 			}
 
@@ -180,13 +198,14 @@
 /* Customized Sidebar Styling */
 
 #page-wrapper.open #client-sidebar-wrapper {
-	left: 400px;
+	left: 150px;
 }
 
 #client-sidebar-wrapper {
 	background-color: #424242;
-	margin-left: -400px;
-	width: 400px;
+	margin-left: -150px;
+	left: -30px;
+	width: 250px;
 	position: fixed;
 	height: 100%;
 	z-index: 999;
