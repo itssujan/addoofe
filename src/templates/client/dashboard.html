@@ -46,7 +46,7 @@
     <div class="page-content">
 
         <div id="bookmark">
-            <a href="" ng-click="bookmark();">Click here to bookmark this page</a>
+            <a href="" ng-click="bookmark();"><span>Click here</span> to bookmark this page</a>
         </div>
 
         <div class="viewer non-doc" ng-if="track.type != 'document'">
@@ -83,7 +83,8 @@
             <h4 id="title">Other Videos For You</h4>
 
             <div class="video-container" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-if="nextvideo.type != 'document' && nextvideo.videoID != video._id && $index > currentVideoIndex && $index <= currentVideoIndex + 4">
-                <img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                <span></span>
+				<img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
                 <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
                 <h5>{{nextvideo.title}}</h5>
             </div>
