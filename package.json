@@ -25,5 +25,8 @@
     "gulp-inject": "^3.0.0",
     "gulp-rev": "^6.0.1",
     "run-sequence": "^1.1.5"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
