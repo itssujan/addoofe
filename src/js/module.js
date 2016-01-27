@@ -40,7 +40,7 @@ app.config(
                     wootric_survey_immediately : true
 				},
                 stage : {
-                    nodeserverurl: 'http://node.addoo.io',
+                    nodeserverurl: 'https://addoonode-stage.herokuapp.com',
                     mixpaneltoken: "29e92907943764722a69ba3035295165",
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true
