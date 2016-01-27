@@ -8,11 +8,12 @@ angular.module('app')
             $scope.user = Auth.user;
 
             console.log("Manager Reqd :"+$stateParams.managerRequired);
+            Restangular.all("user?role=saleslead&product="+Auth.user.product).getList().then(function(data){
+                $scope.managers = data;
+            });
+
             if($stateParams.managerRequired){
                 $scope.managerRequired = true;
-                Restangular.all("user?role=saleslead&product="+Auth.user.product).getList().then(function(data){
-                    $scope.managers = data;
-                });
             }
 
 
