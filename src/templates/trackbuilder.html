@@ -1,3 +1,5 @@
+<div class="button-container"><a class="button-orange lg" ng-click="createDuplicateTrack();">Reuse this Track</a></div>
+
 <div id="page-title">Track Builder</div>
 
 <div growl inline="true"></div>
@@ -13,11 +15,6 @@
                 <a href="" ng-click="clickToOpen()"><i class="fa fa-fw fa-plus"></i></a>
             </div>
         </div>
-        <!-- 		<div class="content-addition col-sm-2">
-			<div class="description"><p>Add Document</p></div>
-			<div class="link-button"><a href="#modal-edit-document-module" data-toggle="modal"><i class="fa fa-fw fa-plus"></i></a></div>
-		</div>
- -->
         <div class="content-addition col-sm-2">
             <div class="description">
                 <p>Make Base Track</p>
@@ -34,12 +31,6 @@
                 <input type="checkbox" ng-model="course.shareWithTeam" ng-change="baseTrack()">
             </div>
         </div>
-        <div class="content-addition col-sm-2" ng-if="studentcourses.length > 0">
-            <div class="checkbox">
-                <a class="button-orange" ng-click="createDuplicateTrack();">Reuse this track</a>
-            </div>
-
-        </div>
 
         <div class="row">
             <div id="current-track" class="col-sm-9">
@@ -49,16 +40,14 @@
                     <table ui-tree="tableCallbacks" class="table table-responsive">
                         <tbody class="draglist" ui-tree-nodes ng-model="course.contents">
                             <tr ng-repeat="content in course.contents" ui-tree-node>
-                                <td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i>
-                                </td>
+                                <td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
                                 <td class="document-type-img">
                                     <img ng-if="content.type != 'document'" src="img/icons/video-inline.jpg" alt="people" class="img-square width-30" />
                                     <img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30" />
                                 </td>
                                 <td>{{content.title}}</td>
                                 <td>
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span>
-                                    </button>
+                                    <button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </td>
                             </tr>
                         </tbody>
