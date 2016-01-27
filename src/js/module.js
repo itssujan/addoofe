@@ -26,7 +26,8 @@ app.config(
     	envServiceProvider.config({
 			domains: {
 				development: ['localhost', 'dev.local'],
-				production: ['addoo.io']
+				production: ['addoo.io'],
+                stage: ['addoo-stage.herokuapp.com']
 				// anotherStage: ['domain1', 'domain2'], 
 				// anotherStage: ['domain1', 'domain2'] 
 			},
@@ -37,6 +38,12 @@ app.config(
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true
 				},
+                stage : {
+                    nodeserverurl: 'http://node.addoo.io',
+                    mixpaneltoken: "29e92907943764722a69ba3035295165",
+                    wootricAccountID: 'NPS-312d184b',
+                    wootric_survey_immediately : true
+                },
 				production: {
 					nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: 'fdf3386dbfacfd13d6e4a580d0b5b9ae',
