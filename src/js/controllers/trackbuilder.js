@@ -1,9 +1,19 @@
 angular.module('app')
     .controller('TrackBuilderCtrl', [ '$scope', '$state','Restangular', '$rootScope','Auth', 'growl', 
-        '$stateParams','$location','$mixpanel','$filter','ngDialog',
+        '$stateParams','$location','$mixpanel','$filter','ngDialog','deviceDetector',
         function ($scope, $state, Restangular,$rootScope, Auth, growl, $stateParams, $location, 
-            $mixpanel,$filter,ngDialog) {
+            $mixpanel,$filter,ngDialog, deviceDetector) {
             console.log('In CCTrackBuilderCtrl');
+
+            var vm = this;
+            vm.data = deviceDetector;
+            var browserVersion = vm.data.browser_version;
+            //var browserMajorVersion = Number(browserVersion.substring(0,browserVersion.indexOf('.')));
+
+
+            console.log("Browser : "+vm.data.browser);
+            //console.log("Browser Version : "+vm.data.browser_version+" , "+browserMajorVersion);
+            // console.log("Brow :"+ browserMajorVersion*1 + 43*1);
 
             $scope.course = {};
             $scope.video = {};
@@ -16,6 +26,7 @@ angular.module('app')
             $scope.selectedVideos = [];
 
             $scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
+            $scope.testurl ="google.com";
 
             $scope.tableCallbacks = {
 
@@ -119,6 +130,10 @@ angular.module('app')
                 $mixpanel.track('Client Copy URL Clicked');
                 growl.success('Onboarding link copied to the clipboard. Please paste it in your thank you email to the customer!');
             };
+
+            $scope.fail = function(err){
+              growl.error(err);  
+            }
 
 
             $scope.inviteClient = function(){
@@ -246,6 +261,6 @@ angular.module('app')
                     $state.go('customer-manager.trackbuilder',{'courseID':data._id,'message':'Duplicate track created successfully'});
                     growl.success('Duplicate track created successfully');
                   });                    
-            }
+            };
 
         } ]);

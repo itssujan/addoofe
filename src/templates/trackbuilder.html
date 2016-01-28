@@ -76,7 +76,8 @@
                             <tbody>
                                 <tr ng-repeat="studentcourse in displayedStudentCourseCollection">
                                     <td>{{studentcourse.studentID.local.email}}</td>
-                                    <td><a href="" class="text-warning" clip-copy="studentcourse.inviteurl" clip-click="showMessage()">Copy invite link</a>
+                                    <input type="hidden" ng-model="studentcourse.inviteurl">
+                                    <td><a clipboard  text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
                                     </td>
                                 </tr>
                             </tbody>

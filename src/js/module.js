@@ -6,7 +6,7 @@ var app = angular.module('app', [
     'restangular',
     'analytics.mixpanel', //mixpanel
     'angular-growl', // for messages 
-    'ngClipboard',
+    'angular-clipboard',
     'ngFileUpload',
     'smart-table',
     'angularMoment',
@@ -14,14 +14,15 @@ var app = angular.module('app', [
     'ngLoadingSpinner',
     'pdf',
     'com.2fdevs.videogular',
-    'ngDialog'
+    'ngDialog',
+    'ng.deviceDetector'
 	]);
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
-'RestangularProvider','$httpProvider','growlProvider','ngClipProvider','$mixpanelProvider', 'envServiceProvider',
+'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
-        RestangularProvider,$httpProvider, growlProvider, ngClipProvider, $mixpanelProvider,envServiceProvider) {
+        RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -75,7 +76,7 @@ app.config(
           id: "_id"
         });
 
-        ngClipProvider.setPath("swf/ZeroClipboard.swf");
+        // ngClipProvider.setPath("swf/ZeroClipboard.swf");
 
         app.controller = $controllerProvider.register;
         app.directive = $compileProvider.directive;
