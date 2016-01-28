@@ -54,11 +54,11 @@ angular.module('app')
                     updatedUser.local.password = $scope.user.local.password;
                     updatedUser.local.avatarurl = $scope.user.local.avatarurl;
                     updatedUser.local.timetrade = $scope.user.local.timetrade;
-                    updatedUser.email = $scope.user.local.email;
-                    updatedUser.local.email = $scope.user.local.email;
+                    updatedUser.email = $scope.user.local.email.toLowerCase();
+                    updatedUser.local.email = $scope.user.local.email.toLowerCase();
                     updatedUser.local.newpassword = $scope.user.local.newpassword;
                     updatedUser.manager = $scope.user.manager;    
-                    console.log("Test :" +$scope.user.manager);
+                    console.log("Test :" +JSON.stringify(updatedUser));
                     updatedUser.put().then(function(){
                         $scope.managerRequired = false;
                         growl.success('Profile updated successfully..');
