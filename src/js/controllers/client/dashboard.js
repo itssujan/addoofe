@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('ClientDashboardController', [ '$scope', '$state','Restangular', '$rootScope','$stateParams',
-        '$timeout','pdfDelegate','$mixpanel','$window','$cookieStore','envService',
-        function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout, pdfDelegate,$mixpanel,$window,$cookieStore,envService) {
+        '$timeout','pdfDelegate','$mixpanel','$window','$cookieStore','envService','$location','growl',
+        function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout, pdfDelegate,$mixpanel,$window,$cookieStore,envService,$location,growl) {
             console.log('In ClientDashboardController');
 
             ///// LAYOUT.js code...needs to be moved back...
@@ -51,6 +51,20 @@ angular.module('app')
             $scope.coworker = {};
             $scope.duplicateStudentCourse = '';
 
+            $scope.sendEvent = function(event){
+                $mixpanel.track(event, {
+                    "Email": $scope.studentcourse.email
+                });
+            };
+
+            if(($location.search()).src == "welcomeemail"){
+                console.log("Viewing via welcome email");
+                $mixpanel.track('Visit via Welcome Email');
+            } else if(($location.search()).src == "coworkerreferral"){
+                console.log("Viewing via coworker referral email");
+                $mixpanel.track('Visit via Coworker referral');
+            }
+
             $scope.config = {
                 preload: "none",
                 sources: [],
@@ -89,7 +103,15 @@ angular.module('app')
                     Restangular.one("video", element.videoID).get().then(function(data){
                             element.videourl = data.url;
                             element.posterurl = data.posterurl;   
+                            element.duration  = data.duration;
                         });
+
+                    //updating progress of each video too
+                    $scope.studentcourse.lessonprogress.forEach(function(progresselement, index1, array1){
+                        if(element.videoID == progresselement.lessonID){
+                            element.progress = progresselement.progress;
+                        }
+                    });
                 });
             }
 
@@ -208,7 +230,10 @@ angular.module('app')
                                     $scope.sendEvent("Customer playing video");
                                 } else if(status == 'complete'){
                                     $scope.sendEvent("Customer completed a video");
+                                });
+
                                 }
+                                
 
                             } else {
                                 pushupdate = false;
@@ -226,11 +251,6 @@ angular.module('app')
                 }
             };
 
-            $scope.sendEvent = function(event){
-                $mixpanel.track(event, {
-                    "Email": $scope.studentcourse.email
-                });
-            }
 
             $scope.addCoworker = function(){
                 console.log("Adding coworker");
@@ -240,8 +260,12 @@ angular.module('app')
                 emailParams.coworker.referredBy = $scope.studentcourse.studentID._id;
                 emailParams.coworker.urlPrefix = "http://app.addoo.io/index.html#/client/dashboard/";
                 emailParams.coworker.studentCourseID = $scope.studentcourse._id;
+                emailParams.coworker.product = $scope.studentcourse.product;
+                emailParams.coworker.referralname = $scope.studentcourse.studentID.local.firstname +" "+ $scope.studentcourse.studentID.local.lastname;
+                emailParams.coworker.referralemail = $scope.studentcourse.studentID.local.email;
 
                 Restangular.all('sharewithfriend').post(emailParams).then(function(user){
+                    growl.success('Shared with '+$scope.coworker.email+" successfully.");
                     console.log("Shared with friend successfully");
                 });
                 $mixpanel.track('Shared with coworker');

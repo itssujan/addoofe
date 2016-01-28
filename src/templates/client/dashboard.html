@@ -5,7 +5,6 @@
         <div class="meta">
             <div class="page">
                 <img ng-if="!user && studentcourse.product == 'sharefile'" src="img/logo/products/ShareFile-Logo.png"></img>
-                <img ng-if="!user && studentcourse.product == 'shareconnect'" src="img/logo/products/ShareFile-Logo.png"></img>
                 <img ng-if="!user && studentcourse.product == 'shareconnect'" src="img/logo/products/ShareConnect-Logo.png"></img>
                 <img ng-if="!user && studentcourse.product == 'rightsignature'" src="img/logo/products/RightSignature-Logo.png"></img>
             </div>
@@ -21,33 +20,56 @@
                 <a ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"></span></a>
             </li>
         </ul>
-		<table id="content-table" class="table table-responsive">
+        <ul class="list-group" ng-if="studentcourse.studentID.local.clientname">
+            <li class="list-group-item">Learning portal prepared for <br/>{{studentcourse.studentID.local.clientname}}</li>
+        </ul>
+        <ul class="list-group" ng-if="!studentcourse.studentID.local.clientname">
+            <li class="list-group-item" ng-if="studentcourse.studentID.local.firstname">Learning portal prepared for <br/> {{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</li>
+            <l1 class="list-group-item" ng-if="!studentcourse.studentID.local.firstname">Learning portal prepared for <br/> {{studentcourse.studentID.local.email}}</li>    
+    
+        </ul>
+
+<!--         <ul class="list-group" ng-repeat="content in studentcourse.courseID.contents">
+          <li class="list-group-item">First item</li>
+          <li class="list-group-item">First item</li>
+        </ul>  
+ --> 
+  		<table id="content-table" class="table table-responsive">
 			<tbody>
 				<tr ng-repeat="content in studentcourse.courseID.contents">
-					<td>
-						<a class="title">{{content.title}}</a>
-					</td>
-					<td>
-						<div class="time">{{content.duration}} mins</div>
-					</td>
+                    <td ng-if="content.progress != 'complete'">
+                        <a class="title" href="" ng-click="playVideo($index)">{{content.title}}</a>
+                    </td>
+                    <td class="visited" ng-if="content.progress == 'complete'">
+                        <a class="title" href="" ng-click="playVideo($index)">{{content.title}}</a>
+                    </td>
+
+                    <td ng-if="content.progress != 'complete'">
+                        <div class="time" >{{content.duration}}</div>
+                    </td>
+                    <td class="visited" ng-if="content.progress == 'complete'">
+                        <div class="time" >{{content.duration}}</div>
+                    </td>    
 				</tr>
-				<tr class="visited">
+<!-- 				<tr class="visited">
 					<td>
 						<a class="title">I AM VISITED</a>
 					</td>
 					<td>
 						<div class="time">mins</div>
 					</td>
-				</tr>
+				</tr>-->
 			</tbody>
 		</table>
-    </div>
+     </div>
 
     <div class="page-content">
 
         <div id="bookmark">
             <a href="" ng-click="bookmark();"><span>Click here</span> to bookmark this page</a>
         </div>
+
+        <div growl inline="true"></div>
 
         <div class="viewer non-doc" ng-if="track.type != 'document'">
             <div class="navigation-panel">
@@ -83,10 +105,12 @@
             <h4 id="title">Other Videos For You</h4>
 
             <div class="video-container" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-if="nextvideo.type != 'document' && nextvideo.videoID != video._id && $index > currentVideoIndex && $index <= currentVideoIndex + 4">
-                <span></span>
-				<img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
-                <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
-                <h5>{{nextvideo.title}}</h5>
+                <a href="" ng-click="playVideo($index)">
+                    <span></span>
+    				<img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                    <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
+                    <h5>{{nextvideo.title}}</h5>
+                </a>    
             </div>
         </div>
 

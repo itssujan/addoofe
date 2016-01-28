@@ -26,7 +26,7 @@ app.config(
     	envServiceProvider.config({
 			domains: {
 				development: ['localhost', 'dev.local'],
-				production: ['addoo.io'],
+				production: ['app.addoo.io'],
                 stage: ['addoo-stage.herokuapp.com']
 				// anotherStage: ['domain1', 'domain2'], 
 				// anotherStage: ['domain1', 'domain2'] 
