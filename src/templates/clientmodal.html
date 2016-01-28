@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="lastname">Customer Onboarding Manager:</label>
-                    <select name="customerrep" id="customerrep" class="form-control" ng-model="onboardingSpecialist">
+                    <select name="customerrep" id="customerrep" class="form-control" ng-model="student.onboardingSpecialist">
                         <option ng-repeat="customerSupportRep in customerSupportReps" value="{{customerSupportRep._id}}">{{customerSupportRep.local.firstname}} {{customerSupportRep.local.lastname}}</option>
                     </select>
                 </div>

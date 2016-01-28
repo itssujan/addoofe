@@ -156,7 +156,7 @@ angular.module('app')
               $scope.student.email = student.local.email;
               $scope.student.product = Auth.user.product;
               $scope.student.progress = "invited";
-              $scope.student.onboardingSpecialist = $scope.onboardingSpecialist;
+              $scope.student.onboardingSpecialist = $scope.student.onboardingSpecialist;
               console.log('Trying to invite students :'+JSON.stringify($scope.student));
 
               Restangular.all('studentcourses').post($scope.student)
