@@ -230,8 +230,6 @@ angular.module('app')
                                     $scope.sendEvent("Customer playing video");
                                 } else if(status == 'complete'){
                                     $scope.sendEvent("Customer completed a video");
-                                });
-
                                 }
                                 
 
