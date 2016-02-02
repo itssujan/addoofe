@@ -142,29 +142,36 @@ angular.module('app')
 
             $scope.inviteClient = function(){
                 $scope.student.role = 'client';
-                if($scope.course.baseTrack){
-                    var duplicateCourse = $scope.course;
-                    duplicateCourse.baseTrack = false;
-                    duplicateCourse.shareWithTeam = false;
-                    duplicateCourse.author = $scope.user._id;
-                    delete duplicateCourse._id;
-                    console.log("Duplicate Course :"+JSON.stringify(duplicateCourse));
-                    Restangular.all('course').post(duplicateCourse).then(function(data){
-                        $scope.course = data;
-                        Restangular.all('student').post($scope.student).then(function(data1){
-                            createStudentCourse(data1,data._id,true);
+                Restangular.all('student?local.email='+$scope.student.local.email).getList().then(function(studentslist){
+                    if(studentslist.length > 0) {
+                        growl.error('Client email id already exists. Cannot add another track for the same client');
+                        return;
+                    }
+
+                    if($scope.course.baseTrack){
+                        var duplicateCourse = $scope.course;
+                        duplicateCourse.baseTrack = false;
+                        duplicateCourse.shareWithTeam = false;
+                        duplicateCourse.author = $scope.user._id;
+                        delete duplicateCourse._id;
+                        console.log("Duplicate Course :"+JSON.stringify(duplicateCourse));
+                        Restangular.all('course').post(duplicateCourse).then(function(data){
+                            $scope.course = data;
+                            Restangular.all('student').post($scope.student).then(function(data1){
+                                createStudentCourse(data1,data._id,true);
+                            });
                         });
-                    });
 
-                } else {
-                    Restangular.all('student').post($scope.student)
-                    .then(function(data){
-                        createStudentCourse(data,$scope.course._id);
-                        $mixpanel.track('Invite Client');
-                        $scope.closeClientModal();
-                    });
+                    } else {
+                        Restangular.all('student').post($scope.student)
+                        .then(function(data){
+                            createStudentCourse(data,$scope.course._id);
+                            $mixpanel.track('Invite Client');
+                            $scope.closeClientModal();
+                        });
 
-                }
+                    }
+                });
             }
 
             var createStudentCourse = function(student,courseid,navigate) {
@@ -176,20 +183,20 @@ angular.module('app')
               $scope.student.onboardingSpecialist = $scope.student.onboardingSpecialist;
               console.log('Trying to invite students :'+JSON.stringify($scope.student));
 
-              Restangular.all('studentcourses').post($scope.student)
-                .then(function(data){
-                    console.log('Created student course :::'+data._id);
-                    $mixpanel.track('Invite Client');
-                    $scope.closeClientModal();
-                    if(navigate){   
-                        console.log("Navigating to new track");
-                        $state.go('customer-manager.trackbuilder',{'courseID':courseid});
-                    } else {
-                        $scope.updateClientList();  
-                    }
-                    growl.success('Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!');
-                });
-
+                    Restangular.all('studentcourses').post($scope.student)
+                    .then(function(data){
+                        console.log('Created student course :::'+data._id);
+                        $mixpanel.track('Invite Client');
+                        $scope.closeClientModal();
+                        if(navigate){   
+                            console.log("Navigating to new track");
+                            $state.go('customer-manager.trackbuilder',{'courseID':courseid,'message':'Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!'});
+                        } else {
+                            $scope.updateClientList();  
+                        }
+                        growl.success('Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!');
+                    });
+                
             };
 
             $scope.addVideoToQueue = function(checked,video){
