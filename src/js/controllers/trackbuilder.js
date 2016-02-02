@@ -145,6 +145,7 @@ angular.module('app')
                     var duplicateCourse = $scope.course;
                     duplicateCourse.baseTrack = false;
                     duplicateCourse.shareWithTeam = false;
+                    duplicateCourse.author = $scope.user._id;
                     delete duplicateCourse._id;
                     console.log("Duplicate Course :"+JSON.stringify(duplicateCourse));
                     Restangular.all('course').post(duplicateCourse).then(function(data){
