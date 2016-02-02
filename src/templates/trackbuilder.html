@@ -15,7 +15,7 @@
                 <a href="" ng-click="clickToOpen()"><i class="fa fa-fw fa-plus"></i></a>
             </div>
         </div>
-        <div class="content-addition col-sm-2">
+        <div class="content-addition col-sm-2" ng-show="user._id == course.author">
             <div class="description">
                 <p>Add to Base Tracks</p>
             </div>
@@ -23,7 +23,7 @@
                 <input type="checkbox" ng-model="course.baseTrack" ng-change="baseTrack()">
             </div>
         </div>
-        <div class="content-addition col-sm-2" ng-show="user.role != 'sales'">
+        <div class="content-addition col-sm-2" ng-show="user.role != 'sales' && user._id == course.author">
             <div class="description">
                 <p>Share with Team</p>
             </div>
