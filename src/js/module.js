@@ -17,15 +17,17 @@ var app = angular.module('app', [
     'ngDialog',
     'ng.deviceDetector',
     'ngIdle',
-    'ngS3upload'
+    'ngS3upload',
+    'ngIntercom'
 	]);
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config',
+'ngS3Config','$intercomProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
-        RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,KeepaliveProvider,ngS3Config) {
+        RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
+        KeepaliveProvider,ngS3Config,$intercomProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -42,21 +44,24 @@ app.config(
 					mixpaneltoken: "29e92907943764722a69ba3035295165",
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
-                    aws_bucket: 'addoo-dev'
+                    aws_bucket: 'addoo-dev',
+                    intercom_id : "jqrpchg1"
 				},
                 stage : {
                     nodeserverurl: 'https://addoonode-stage.herokuapp.com',
                     mixpaneltoken: "29e92907943764722a69ba3035295165",
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
-                    aws_bucket: 'addoo-dev'
+                    aws_bucket: 'addoo-dev',
+                    intercom_id : "jqrpchg1"
                 },
 				production: {
 					nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: 'fdf3386dbfacfd13d6e4a580d0b5b9ae',
                     wootricAccountID: 'NPS-ecd3e1b3',
                     wootric_survey_immediately : false,
-                    aws_bucket: 'addoo'
+                    aws_bucket: 'addoo',
+                    intercom_id : "jqrpchg1"
 				}
 			}
 		});
@@ -105,7 +110,14 @@ app.config(
         IdleProvider.timeout(60); // in seconds
         KeepaliveProvider.interval(60); // in seconds
 
+        //upload template
         ngS3Config.theme = '../templates/uploadtemplate';
+
+        //intercom
+        $intercomProvider.appID(envServiceProvider.read('intercom_id'));
+        $intercomProvider.asyncLoading(true)
+
+
     }
 ]);
 

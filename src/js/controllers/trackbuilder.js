@@ -26,10 +26,7 @@ angular.module('app')
             $scope.student = {};
             $scope.selectedVideos = [];
 
-            console.log("New course id :"+$scope.courseID);
-            console.log("New course id state :"+$stateParams.courseID);
             $scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
-            $scope.testurl ="google.com";
 
             $scope.tableCallbacks = {
 
@@ -92,6 +89,7 @@ angular.module('app')
             if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
                 videoQuery = "video?product!=podio"
             }
+            console.log(videoQuery);
             Restangular.all(videoQuery).getList().then(function(data){
                 $scope.videolessons = data;
             });

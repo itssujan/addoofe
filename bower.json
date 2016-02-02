@@ -48,7 +48,8 @@
     "angular-clipboard": "~1.3.0",
     "ng-device-detector": "~2.0.3",
     "ng-idle": "~1.1.1",
-    "ng-s3upload": "~0.1.2"
+    "ng-s3upload": "~0.1.2",
+    "angular-intercom": "~2.1.1"
   },
   "repository": {
     "type": "git",

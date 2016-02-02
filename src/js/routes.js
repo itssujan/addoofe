@@ -1,6 +1,6 @@
 angular.module('app')
-    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl','Idle',
-        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle) {
+    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl','Idle','$intercom',
+        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle,$intercom) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
@@ -44,7 +44,6 @@ angular.module('app')
                   $state.go('public');console.log('p');
                   event.preventDefault();
               } 
-          // unmanaged
         });
         }
     ])

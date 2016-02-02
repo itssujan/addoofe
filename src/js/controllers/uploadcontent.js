@@ -17,6 +17,7 @@ angular.module('app')
 
             $scope.saveVideo = function(){
                 console.log(" Video details : "+JSON.stringify($scope.video));
+                $scope.video.product = $scope.product;
                 Restangular.all('video').post($scope.video)
                   .then(function(video){
                     console.log('Video lesson created :'+video.title);
