@@ -21,6 +21,7 @@ angular.module('app')
             $scope.showtrackbuilder = false;
 
             $scope.auth = Auth;
+            $scope.user = Auth.user;
             $scope.courseID = $stateParams.courseID;
             $scope.student = {};
             $scope.selectedVideos = [];
