@@ -25,6 +25,8 @@ angular.module('app')
             $scope.student = {};
             $scope.selectedVideos = [];
 
+            console.log("New course id :"+$scope.courseID);
+            console.log("New course id state :"+$stateParams.courseID);
             $scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
             $scope.testurl ="google.com";
 
@@ -62,14 +64,14 @@ angular.module('app')
 
             }
 
-            console.log("Course ID ::: "+$scope.courseID);
+            console.log("Track ID ::: "+$scope.courseID);
             if($scope.courseID){
                 Restangular.one("course",$scope.courseID).get().then(function(data){
                     if($stateParams.message){
                         growl.success($stateParams.message);
                     }
 
-
+                    console.log("Queried track details :"+JSON.stringify(data));
                     $scope.course = data;
                     if(!$scope.course.baseTrack){
                         $scope.course.baseTrack = false;
@@ -78,6 +80,7 @@ angular.module('app')
                         $scope.course.shareWithTeam = false;
                     }
                 });
+                console.log("Updating client list");
                 $scope.updateClientList();
                 $scope.showtrackbuilder = true;
             }
@@ -86,7 +89,7 @@ angular.module('app')
 
             var videoQuery = "video?product="+Auth.user.product
             if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
-                videoQuery = "video"
+                videoQuery = "video?product!=podio"
             }
             Restangular.all(videoQuery).getList().then(function(data){
                 $scope.videolessons = data;
@@ -142,15 +145,12 @@ angular.module('app')
                     var duplicateCourse = $scope.course;
                     duplicateCourse.baseTrack = false;
                     duplicateCourse.shareWithTeam = false;
-                    duplicateCourse.author = Auth.user._id;
                     delete duplicateCourse._id;
+                    console.log("Duplicate Course :"+JSON.stringify(duplicateCourse));
                     Restangular.all('course').post(duplicateCourse).then(function(data){
+                        $scope.course = data;
                         Restangular.all('student').post($scope.student).then(function(data1){
-                            createStudentCourse(data1,data._id);
-                            console.log('Created student course :'+data._id);
-                            $mixpanel.track('Invite Client');
-                            $state.go('customer-manager.trackbuilder',
-                                {'courseID':data._id});
+                            createStudentCourse(data1,data._id,true);
                         });
                     });
 
@@ -158,14 +158,14 @@ angular.module('app')
                     Restangular.all('student').post($scope.student)
                     .then(function(data){
                         createStudentCourse(data,$scope.course._id);
-                        console.log('Created student course :'+data._id);
                         $mixpanel.track('Invite Client');
+                        $scope.closeClientModal();
                     });
 
                 }
             }
 
-            var createStudentCourse = function(student,courseid) {
+            var createStudentCourse = function(student,courseid,navigate) {
               $scope.student.courseID = courseid;
               $scope.student.studentID = student._id;
               $scope.student.email = student.local.email;
@@ -176,9 +176,16 @@ angular.module('app')
 
               Restangular.all('studentcourses').post($scope.student)
                 .then(function(data){
-                  $scope.updateClientList();  
-                  console.log('Created student course :'+data._id);
-                  growl.success('Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!');
+                    console.log('Created student course :::'+data._id);
+                    $mixpanel.track('Invite Client');
+                    $scope.closeClientModal();
+                    if(navigate){   
+                        console.log("Navigating to new track");
+                        $state.go('customer-manager.trackbuilder',{'courseID':courseid});
+                    } else {
+                        $scope.updateClientList();  
+                    }
+                    growl.success('Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!');
                 });
 
             };
@@ -219,6 +226,7 @@ angular.module('app')
                 });
                 $scope.course.put();
                 $scope.selectedVideos = [];
+                $scope.closevideoModal();
             };
 
             $scope.baseTrack = function(test){
@@ -242,6 +250,11 @@ angular.module('app')
                 ngDialog.open({ template: 'templates/videomodal.html',disableAnimation :true, scope : $scope });
             };
 
+            $scope.closevideoModal = function () {
+                console.log("trying to close video modal");
+                ngDialog.close({ template: 'templates/videomodal.html',disableAnimation :true, scope : $scope });
+            };
+
             $scope.addClientModal = function () {
                 console.log("opening client modal");
                 ngDialog.open({ template: 'templates/clientmodal.html',disableAnimation :true, scope : $scope });
@@ -249,7 +262,7 @@ angular.module('app')
 
             $scope.closeClientModal = function () {
                 console.log("closing client modal");
-                ngDialog.close({ template: 'templates/clientmodal.html',disableAnimation :true});
+                 ngDialog.close({ template: 'templates/clientmodal.html',disableAnimation :true});
             };
 
 

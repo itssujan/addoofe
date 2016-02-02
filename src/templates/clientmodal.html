@@ -4,7 +4,7 @@
     </div>
     <div class="modal-body">
         <div growl inline="true"></div>
-        <form role="form" ng-submit="inviteClient()">
+        <form role="form" ng-submit="inviteClient() && closeThisDialog('asdasd')">
             <div class="modal-body">
                 <div class="form-group">
                     <label for="email">Client's Email address:</label>
@@ -30,8 +30,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-<!--                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
- -->				<button type="submit" class="btn btn-warning">Add Client</button>
+                <button type="button" class="btn btn-default" ng-click="closeClientModal()">Close</button>
+				<button type="submit" class="btn btn-warning">Add Client</button>
             </div>
         </form>
     </div>

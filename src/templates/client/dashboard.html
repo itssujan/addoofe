@@ -4,9 +4,10 @@
     <div class="col-xs-12">
         <div class="meta">
             <div class="page">
-                <img ng-if="!user && studentcourse.product == 'sharefile'" src="img/logo/products/ShareFile-Logo.png"></img>
-                <img ng-if="!user && studentcourse.product == 'shareconnect'" src="img/logo/products/ShareConnect-Logo.png"></img>
-                <img ng-if="!user && studentcourse.product == 'rightsignature'" src="img/logo/products/RightSignature-Logo.png"></img>
+                <img ng-if="!user && studentcourse.product == 'sharefile'" src="img/logo/products/ShareFile-Portal-Logo.png"></img>
+                <img ng-if="!user && studentcourse.product == 'shareconnect'" src="img/logo/products/ShareConnect-Portal-Logo.png"></img>
+                <img ng-if="!user && studentcourse.product == 'rightsignature'" src="img/logo/products/RightSignature-Portal-Logo.png"></img>
+                <img ng-if="!user && studentcourse.product == 'podio'" src="img/logo/products/Podio-Portal-Logo.png"></img>
             </div>
         </div>
     </div>
@@ -163,6 +164,7 @@
             <div id="login-message">
                 <p ng-if="studentcourse.product == 'sharefile'"><a href="https://www.sharefile.com/redirects/login" target="_blank" class="text-warning" ng-click="sendEvent('Login Link Clicked')">Login</a> to your ShareFile account</p>
                 <p ng-if="studentcourse.product == 'shareconnect'"><a href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank" class="text-warning">Login</a> to ShareConnect</p>
+                <p ng-if="studentcourse.product == 'podio'"><a href="https://podio.com/login" target="_blank" class="text-warning">Login</a> to Podio</p>
             </div>
 
             <div class="information" id="sidebar-course-info">

@@ -59,10 +59,10 @@ angular.module('app')
 
             if(($location.search()).src == "welcomeemail"){
                 console.log("Viewing via welcome email");
-                $mixpanel.track('Visit via Welcome Email');
+                $scope.sendEvent('Visit via Welcome Email');
             } else if(($location.search()).src == "coworkerreferral"){
                 console.log("Viewing via coworker referral email");
-                $mixpanel.track('Visit via Coworker referral');
+                $scope.sendEvent('Visit via Coworker referral');
             }
 
             $scope.config = {

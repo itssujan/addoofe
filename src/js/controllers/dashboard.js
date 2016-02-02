@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('DashboardCtrl', [ '$scope','envService', '$state','Restangular', '$rootScope',
-        'Auth','Upload','growl','$mixpanel','$filter',
-        function ($scope,envService, $state, Restangular,$rootScope, Auth, Upload, growl,$mixpanel,$filter) {
+        'Auth','growl','$mixpanel','$filter',
+        function ($scope,envService, $state, Restangular,$rootScope, Auth, growl,$mixpanel,$filter) {
             console.log('In CustomerCareDashboardCtrl');
 
             $scope.newtraining = {};

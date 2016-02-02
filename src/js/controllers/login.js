@@ -8,8 +8,8 @@
 
 angular.module('app')
 .controller('LoginCtrl', [ '$scope', '$state','Restangular', '$rootScope', '$location', 
-	'Auth','$cookieStore','growl','$mixpanel','$filter','$stateParams',
-    function ($scope, $state, Restangular,$rootScope, $location, Auth, $cookieStore, growl, $mixpanel,$filter,$stateParams) {
+	'Auth','$cookieStore','growl','$mixpanel','$filter','$stateParams','Idle',
+    function ($scope, $state, Restangular,$rootScope, $location, Auth,$cookieStore, growl, $mixpanel,$filter,$stateParams,Idle) {
 
         console.log('In login controller');
 
@@ -36,11 +36,11 @@ angular.module('app')
 			.then(function(data){
 			// No error: authentication OK
 				console.log('User authentcated :'+JSON.stringify(data.user));
-				console.log(data.user);
 
 				$rootScope.user = data.user;
 				$scope.auth.isLoggedIn = true;
 				$scope.auth.user = data.user;
+
 				Auth.user = data.user;
 				console.log("User role afte the api call :"+$scope.user.role);
 				if(data.user.local.email){
@@ -56,9 +56,12 @@ angular.module('app')
 					});
 
 					$mixpanel.track('Login');
+			        Idle.watch();
 
-					console.log("Changed role :"+$scope.user.role);
-					if(data.user.role == "customer-onboarding-specialist" 
+					console.log("Changed role :"+data.user.role);
+					if(data.user.role == "superadmin") {
+						$state.go('customer-manager.product-selection');
+					} else if(data.user.role == "customer-onboarding-specialist" 
 						|| data.user.role == "customer-manager" || data.user.role == "saleslead"){
 						$state.go('customer-manager.dashboard');
 					} else if(data.user.role == "sales"){

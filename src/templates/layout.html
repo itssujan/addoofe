@@ -27,8 +27,14 @@
 			<li class="sidebar-list" id="top">
 				<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
 			</li>
+			<li class="sidebar-list" id="top">
+				<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
+			</li>
 			<li class="sidebar-list">
 				<a ui-sref="customer-manager.profile">Manage Profile <span class="menu-icon fa fa-user"></span></a>
+			</li>
+			<li class="sidebar-list">
+				<a ui-sref="customer-manager.announcements" ng-if="user.role=='superadmin'">Announcements <span class="menu-icon icon-large icon-announcement"></span></a>
 			</li>
 			<li class="sidebar-list" id="bottom">
 				<a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>

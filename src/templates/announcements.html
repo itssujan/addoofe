@@ -1,0 +1,36 @@
+<div id="page-title"></div>
+<div class="row">
+	<div class="table-container">
+		<rd-widget>
+			<rd-widget-header title="Configure Announcements"></rd-widget-header>
+			<div growl inline="true"></div>
+			<form ng-submit="saveAnnouncement()">
+				<div class="form-group">
+			    	<label for="validity">Title</label>
+					<input type="text" class="form-control" placeholder="Text input" ng-model="announcement.title" id="title">
+				</div>
+				<div class="form-group">
+			    	<label for="status">Status</label>
+			    	  <select class="form-control" id="sel1" ng-model="announcement.active" id="status">
+					    <option value="true">Active</option>
+					    <option value="false">Inactive</option>
+					  </select>  
+				</div>
+				<div class="form-group">
+			    	<label for="validity">Validity</label>
+					<input type="text" class="form-control" placeholder="Text input" ng-model="announcement.validity" id="validity">
+				</div>
+				<div class="form-group">
+			    	<label for="description">Message Description</label>
+			    	<textarea class="form-control" rows="3" ng-model="announcement.description" id="description"></textarea>
+				</div>
+				<label for="message">Message</label>
+				<div class="form-group" ng-repeat="msg in announcement.messages">
+					<input type="text" class="form-control" placeholder="Text input" ng-model="msg.message" id="message">
+				 </div>
+				<button class="btn btn btn-warning" ng-click="addMessage()">Add Message</button>				
+				<button type="submit" class="btn btn btn-warning">Submit</button>
+			</form>
+		</rd-widget>
+	</div>
+</div>

@@ -7,7 +7,7 @@ var app = angular.module('app', [
     'analytics.mixpanel', //mixpanel
     'angular-growl', // for messages 
     'angular-clipboard',
-    'ngFileUpload',
+    // 'ngFileUpload',
     'smart-table',
     'angularMoment',
     'ui.tree',
@@ -15,14 +15,17 @@ var app = angular.module('app', [
     'pdf',
     'com.2fdevs.videogular',
     'ngDialog',
-    'ng.deviceDetector'
+    'ng.deviceDetector',
+    'ngIdle',
+    'ngS3upload'
 	]);
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
-'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider',
+'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
+'ngS3Config',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
-        RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider) {
+        RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,KeepaliveProvider,ngS3Config) {
 
     	envServiceProvider.config({
 			domains: {
@@ -38,19 +41,22 @@ app.config(
                     //nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: "29e92907943764722a69ba3035295165",
                     wootricAccountID: 'NPS-312d184b',
-                    wootric_survey_immediately : true
+                    wootric_survey_immediately : true,
+                    aws_bucket: 'addoo-dev'
 				},
                 stage : {
                     nodeserverurl: 'https://addoonode-stage.herokuapp.com',
                     mixpaneltoken: "29e92907943764722a69ba3035295165",
                     wootricAccountID: 'NPS-312d184b',
-                    wootric_survey_immediately : true
+                    wootric_survey_immediately : true,
+                    aws_bucket: 'addoo-dev'
                 },
 				production: {
 					nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: 'fdf3386dbfacfd13d6e4a580d0b5b9ae',
                     wootricAccountID: 'NPS-ecd3e1b3',
-                    wootric_survey_immediately : false
+                    wootric_survey_immediately : false,
+                    aws_bucket: 'addoo'
 				}
 			}
 		});
@@ -94,8 +100,12 @@ app.config(
 
         $mixpanelProvider.apiKey(envServiceProvider.read('mixpaneltoken')); // your token 
 
+            // configure Idle settings
+        IdleProvider.idle(28800); // in seconds  ; 28800 = 8 hours
+        IdleProvider.timeout(60); // in seconds
+        KeepaliveProvider.interval(60); // in seconds
 
-
+        ngS3Config.theme = '../templates/uploadtemplate';
     }
 ]);
 

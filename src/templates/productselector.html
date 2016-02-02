@@ -1,0 +1,38 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Select Product</span>
+                </a>
+            </li>
+        </ul>
+
+		<div class="panel panel-default paper-shadow tab-content">
+			<div id="account" class="tab-pane active">
+				<form ng-submit="setProduct()">
+					<div growl inline="true"></div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-md-2 control-label">Product</label>
+						<div class="field-container col-md-6">
+							<div class="form-control-material">
+				                <select class="form-control" ng-model="adminproduct" ng-required="true" tabindex="5" >
+				                  <option value="sharefile">ShareFile</option>
+				                  <option value="shareconnect">ShareConnect</option>
+				                  <option value="rightsignature">RightSignature</option>
+				                  <option value="podio">Podio</option>
+				                </select>  
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group margin-none">
+						<div class="col-md-offset-2 col-md-10">
+							<button type="submit" class="btn btn-primary paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Go</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+    </div>
+</div>

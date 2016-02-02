@@ -1,8 +1,10 @@
 angular.module('app')
-    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl',
-        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl) {
+    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl','Idle',
+        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
+
+            Idle.watch();
 
             // Logout function is available in any pages
             $rootScope.logout = function(){
@@ -10,7 +12,6 @@ angular.module('app')
               console.log("Logging out user");
               Restangular.all('logout').post();
               $location.url('login');
-
             };
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
@@ -117,6 +118,39 @@ angular.module('app')
                         managerRequired : null
                     },
 
+                })
+                .state('customer-manager.announcements', {
+                    url: '/announcements',
+                    templateUrl: 'templates/announcements.html',
+                    ctrl: "announcementsMngrCtrl",
+                    controller: "AnnouncementsMngrCtrl",
+                    data: {requiresLogin: true},
+                    params : {
+                        managerRequired : null
+                    },
+
+                })
+                .state('customer-manager.uploadcontent', {
+                    url: '/uploadcontent',
+                    templateUrl: 'templates/uploadcontent.html',
+                    ctrl: "uploadContentCtrl",
+                    controller: "UploadContentCtrl",
+                    data: {requiresLogin: true},
+                    params : {
+                        managerRequired : null
+                    },
+
+                })
+                .state('customer-manager.product-selection', {
+                    url: '/productselection',
+                    templateUrl: 'templates/productselector.html',
+                    ctrl: "productSelectorCtrl",
+                    controller: "ProductSelectorCtrl",
+                    data: {requiresLogin: true},
+                    params : {
+                        managerRequired : null
+                    },
+
                 });
 
                 $stateProvider
@@ -140,7 +174,6 @@ angular.module('app')
                     controller: "ClientDashboardController",
                     data: {requiresLogin: false}
                 });
-
         }
     ]
 )

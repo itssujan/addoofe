@@ -1,0 +1,96 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Upload Content</span>
+                </a>
+            </li>
+        </ul>
+		<div class="alert alert-info" role="alert">
+			We only support videos in mp4,mov formats
+		</div>
+
+		<div class="panel panel-default paper-shadow tab-content">
+			<div id="account" class="tab-pane active">
+				<form class="form-horizontal" role="form">
+					<div growl inline="true"></div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Video</label>
+						<div class="field-container col-md-6">
+							<div class="media v-middle">
+								<div s3-upload bucket="bucket" ng-model="video.url" do-upload="performUpload" s3-upload-options="{getOptionsUri: s3OptionsUri, folder: 'content/videos/{{product}}/',submitOnChange : true}" ng-model="s3OptionsUri"></div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Poster of the video</label>
+						<div class="field-container col-md-6">
+							<div class="media v-middle">
+								<div s3-upload bucket="bucket" ng-model="video.posterurl" do-upload="performUpload" s3-upload-options="{getOptionsUri: s3OptionsUri, folder: 'content/posters/{{product}}/',submitOnChange : true}" ng-model="s3OptionsUri"></div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputEmail3" class="col-md-2 control-label">Title</label>
+						<div class="row-container col-md-8">
+							<div class="row">
+								<div class="field-container col-md-6">
+									<div class="form-control-material">
+										<input type="text" class="form-control" id="firstname" placeholder="Video title" ng-model="video.title">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-md-2 control-label">Description</label>
+						<div class="field-container col-md-6">
+							<div class="form-control-material">
+								  <textarea class="form-control" rows="5" id="comment" ng-model="video.description"></textarea>
+							</div>
+						</div>
+					</div>
+
+<!-- 					<div class="form-group">
+						<label for="inputPassword3" class="col-md-2 control-label">Product</label>
+						<div class="field-container col-md-6">
+							<div class="form-control-material">
+								<select class="form-control" id="sel1">
+					                  <option value="sharefile">ShareFile</option>
+					                  <option value="shareconnect">ShareConnect</option>
+					                  <option value="rightsignature">RightSignature</option>
+					                  <option value="podio">Podio</option>
+								</select>
+
+							</div>
+						</div>
+					</div>
+ -->
+					<div class="form-group">
+						<label for="inputEmail3" class="col-md-2 control-label">Duration(in minutes)</label>
+						<div class="row-container col-md-8">
+							<div class="row">
+								<div class="field-container col-md-6">
+									<div class="form-control-material">
+										<input type="text" class="form-control" id="firstname" placeholder="duration of the video in format 02:55" ng-model="video.duration">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group margin-none">
+						<div class="col-md-offset-2 col-md-10">
+							<button ng-click="saveVideo()" class="btn btn-primary paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Save video</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+    </div>
+</div>

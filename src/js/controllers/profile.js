@@ -1,11 +1,16 @@
 angular.module('app')
     .controller('ProfileController', [ '$scope','envService', '$state','Restangular', '$rootScope',
-        'Auth','Upload','growl','$mixpanel','$stateParams',
-        function ($scope,envService, $state, Restangular,$rootScope, Auth, Upload, growl, $mixpanel,$stateParams) {
+        'Auth','growl','$mixpanel','$stateParams',
+        function ($scope,envService, $state, Restangular,$rootScope, Auth, growl, $mixpanel,$stateParams) {
             console.log('In ProfileController');
 
             $scope.auth = Auth;
             $scope.user = Auth.user;
+
+            $scope.s3OptionsUri = envService.read("nodeserverurl")+"/s3options";
+            $scope.product = Auth.user.product;
+            $scope.bucket = envService.read("aws_bucket");
+
 
             console.log("Manager Reqd :"+$stateParams.managerRequired);
             Restangular.all("user?role=saleslead&product="+Auth.user.product).getList().then(function(data){
