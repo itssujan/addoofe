@@ -103,7 +103,8 @@ angular.module('app')
                     ctrl: "trackbuilder",
                     controller: "TrackBuilderCtrl",
                     params : {
-                        message : null
+                        message : null,
+                        selectedvideos : null
                     },
                     data: {requiresLogin: true}
                 })                    

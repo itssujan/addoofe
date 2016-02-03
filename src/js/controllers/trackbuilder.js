@@ -94,6 +94,11 @@ angular.module('app')
                 $scope.videolessons = data;
             });
 
+            if($stateParams.selectedVideos){
+                $scope.selectedVideos = $stateParams.selectedVideos;
+                addVideoToTrack();
+            }
+
             console.log("Auth user :"+Auth.user.email);
 
             $scope.addTrack = function() {
@@ -213,6 +218,20 @@ angular.module('app')
             };
 
             $scope.addVideoToTrack = function(filetype){
+                if($scope.course.baseTrack && $scope.course.author != $scope.user._id){
+                    var duplicateCourse = $scope.course;
+                    duplicateCourse.baseTrack = false;
+                    duplicateCourse.shareWithTeam = false;
+                    duplicateCourse.author = $scope.user._id;
+                    delete duplicateCourse._id;
+                    console.log("Duplicate Course :"+JSON.stringify(duplicateCourse));
+                    Restangular.all('course').post(duplicateCourse).then(function(data){
+                        $scope.course = data;
+                        $state.go('customer-manager.trackbuilder',{'courseID':data._id,
+                            'selectedVideos': $scope.selectedVideos});
+                    });
+                } 
+
                 console.log("Adding these tracks :"+$scope.selectedVideos);
                 $scope.selectedVideos.forEach(function(element, index, array){
                     $scope.videolessons.forEach(function(videoelement, videoindex, videoarray){

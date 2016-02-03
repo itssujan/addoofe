@@ -24,10 +24,10 @@ var app = angular.module('app', [
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config','$intercomProvider',
+'ngS3Config','$intercomProvider','ngDialogProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
         RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
-        KeepaliveProvider,ngS3Config,$intercomProvider) {
+        KeepaliveProvider,ngS3Config,$intercomProvider,ngDialogProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -117,6 +117,9 @@ app.config(
         $intercomProvider.appID(envServiceProvider.read('intercom_id'));
         $intercomProvider.asyncLoading(true)
 
+        //modal window
+        ngDialogProvider.setForceHtmlReload(true);
+        //ngDialogProvider.setForceBodyReload(true);
 
     }
 ]);
