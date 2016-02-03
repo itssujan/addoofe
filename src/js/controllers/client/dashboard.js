@@ -1,8 +1,13 @@
 angular.module('app')
     .controller('ClientDashboardController', [ '$scope', '$state','Restangular', '$rootScope','$stateParams',
-        '$timeout','pdfDelegate','$mixpanel','$window','$cookieStore','envService','$location','growl',
-        function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout, pdfDelegate,$mixpanel,$window,$cookieStore,envService,$location,growl) {
-            console.log('In ClientDashboardController');
+        '$timeout','$mixpanel','$window','$cookieStore','envService','$location','growl',
+        function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout,$mixpanel,
+            $window,$cookieStore,envService,$location,growl) {
+            console.log('In ClientDashboardController : ');
+
+            Restangular.one("getip").get().then(function(data){
+                console.log("DATA :"+JSON.stringify(data));
+            });
 
             ///// LAYOUT.js code...needs to be moved back...
             var mobileView = 992;
@@ -10,6 +15,7 @@ angular.module('app')
             $scope.getWidth = function() {
                 return window.innerWidth;
             };
+
 
             $scope.$watch($scope.getWidth, function(newValue, oldValue) {
                 if (newValue >= mobileView) {
