@@ -51,20 +51,6 @@ angular.module('app')
             $scope.coworker = {};
             $scope.duplicateStudentCourse = '';
 
-            $scope.sendEvent = function(event){
-                $mixpanel.track(event, {
-                    "Email": $scope.studentcourse.email
-                });
-            };
-
-            if(($location.search()).src == "welcomeemail"){
-                console.log("Viewing via welcome email");
-                $scope.sendEvent('Visit via Welcome Email');
-            } else if(($location.search()).src == "coworkerreferral"){
-                console.log("Viewing via coworker referral email");
-                $scope.sendEvent('Visit via Coworker referral');
-            }
-
             $scope.config = {
                 preload: "none",
                 sources: [],
@@ -84,6 +70,7 @@ angular.module('app')
 
             Restangular.one("studentcourses/"+$scope.studentcourseID+"?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function(data){
                 $scope.studentcourse = data;
+                $scope.clientemail = data.email;
                 $scope.sendEvent("Customer viewed onboarding track");
                 if($scope.studentcourse.visitCount){
                     $scope.studentcourse.visitCount = $scope.studentcourse.visitCount + 1;
@@ -97,6 +84,20 @@ angular.module('app')
                 $scope.playVideo($scope.currentVideoIndex);
                 getUpcomingVideos();
             });
+
+            $scope.sendEvent = function(event){
+                $mixpanel.track(event, {
+                    "Email": $scope.clientemail
+                });
+            };
+
+            if(($location.search()).src == "welcomeemail"){
+                console.log("Viewing via welcome email");
+                $scope.sendEvent('Visit via Welcome Email');
+            } else if(($location.search()).src == "coworkerreferral"){
+                console.log("Viewing via coworker referral email");
+                $scope.sendEvent('Visit via Coworker referral');
+            }
 
             var getUpcomingVideos = function() {
                 $scope.studentcourse.courseID.contents.forEach(function(element, index, array) {

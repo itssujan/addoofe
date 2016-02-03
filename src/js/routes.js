@@ -165,7 +165,11 @@ angular.module('app')
                     templateUrl: 'templates/client/dashboard.html',
                     ctrl: "clientDashboardController",
                     controller: "ClientDashboardController",
-                    data: {requiresLogin: false}
+                    data: {requiresLogin: false},
+                    params : {
+                        src : null
+                    },
+
                 })
                 .state('client.documentviewer', {
                     url: '/documentviewer',

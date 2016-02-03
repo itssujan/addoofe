@@ -99,7 +99,7 @@ angular.module('app')
                 addVideoToTrack();
             }
 
-            console.log("Auth user :"+Auth.user.email);
+            //console.log("Auth user :"+Auth.user.email);
 
             $scope.addTrack = function() {
                 $scope.course.product = Auth.user.product;
