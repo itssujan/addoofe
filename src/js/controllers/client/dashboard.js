@@ -1,13 +1,9 @@
 angular.module('app')
     .controller('ClientDashboardController', [ '$scope', '$state','Restangular', '$rootScope','$stateParams',
-        '$timeout','$mixpanel','$window','$cookieStore','envService','$location','growl',
+        '$timeout','$mixpanel','$window','$cookieStore','envService','$location','growl','$http',
         function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout,$mixpanel,
-            $window,$cookieStore,envService,$location,growl) {
+            $window,$cookieStore,envService,$location,growl,$http) {
             console.log('In ClientDashboardController : ');
-
-            Restangular.one("getip").get().then(function(data){
-                console.log("DATA :"+JSON.stringify(data));
-            });
 
             ///// LAYOUT.js code...needs to be moved back...
             var mobileView = 992;
@@ -15,7 +11,6 @@ angular.module('app')
             $scope.getWidth = function() {
                 return window.innerWidth;
             };
-
 
             $scope.$watch($scope.getWidth, function(newValue, oldValue) {
                 if (newValue >= mobileView) {
@@ -27,7 +22,6 @@ angular.module('app')
                 } else {
                     $scope.toggle = false;
                 }
-
             });
 
             $scope.toggleSidebar = function() {
@@ -74,6 +68,21 @@ angular.module('app')
                 }
             };
 
+            var json = 'http://ipv4.myexternalip.com/json';
+
+            Restangular.one("getrestrictedip").get().then(function(data){
+                var restrictedIP = data.ip;
+                $http.get(json,{withCredentials:false}).then(function(result) {
+                    var clientIP = result.data.ip;
+                    if(clientIP.indexOf(restrictedIP) >= 0){
+                        console.log("Disabling tracking");
+                        $scope.disabletracking = true;
+                    }
+                    },function(e) {
+                        console.log("Error getting ip :"+e);
+                });
+            });
+
             Restangular.one("studentcourses/"+$scope.studentcourseID+"?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function(data){
                 $scope.studentcourse = data;
                 $scope.clientemail = data.email;
@@ -85,16 +94,20 @@ angular.module('app')
                 }
                 if(!$scope.studentcourse.progress || $scope.studentcourse.progress == 'invited'){
                     $scope.studentcourse.progress = "viewed";
-                    $scope.studentcourse.put();
+                    if(!scope.disabletracking){
+                        $scope.studentcourse.put();
+                    }
                 }
                 $scope.playVideo($scope.currentVideoIndex);
                 getUpcomingVideos();
             });
 
             $scope.sendEvent = function(event){
-                $mixpanel.track(event, {
-                    "Email": $scope.clientemail
-                });
+                if(!$scope.disabletracking){
+                    $mixpanel.track(event, {
+                        "Email": $scope.clientemail
+                    });
+                }
             };
 
             if(($location.search()).src == "welcomeemail"){
@@ -251,7 +264,7 @@ angular.module('app')
 
                     }
                 }
-                if (pushupdate) {
+                if (pushupdate && !$scope.disabletracking) {
                     $scope.studentcourse.put();
                 }
             };
