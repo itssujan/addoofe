@@ -59,7 +59,21 @@ angular.module('app')
                     });
 
                 });
+            }
 
+            var getApplicableContentForProducts = function(prod){
+                var applicableContent = [];
+                if(prod == 'sharefile' || prod == 'rightsignature'){
+                    applicableContent.push('sharefile');
+                    applicableContent.push('shareconnect');
+                    applicableContent.push('rightsignature');
+                } else if(prod == 'shareconnect'){
+                    applicableContent.push('shareconnect');
+                } else if(prod == 'podio'){
+                    applicableContent.push('podio');
+                } else if(prod == 'addoo'){
+                    applicableContent.push('addoo');
+                }
             }
 
             console.log("Track ID ::: "+$scope.courseID);
@@ -84,15 +98,6 @@ angular.module('app')
             }
 
             var self = this;
-
-            var videoQuery = "video?product="+Auth.user.product
-            if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
-                videoQuery = "video?product!=podio"
-            }
-            console.log(videoQuery);
-            Restangular.all(videoQuery).getList().then(function(data){
-                $scope.videolessons = data;
-            });
 
             if($stateParams.selectedVideos){
                 $scope.selectedVideos = $stateParams.selectedVideos;
@@ -261,14 +266,40 @@ angular.module('app')
 
             };
 
-            var videoQuery = "video?product="+Auth.user.product;
-            if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
-                videoQuery = "video"
+            var getApplicableContentForProducts = function(prod){
+                var applicableContent = [];
+                if(prod == 'sharefile' || prod == 'rightsignature'){
+                    applicableContent.push('sharefile');
+                    applicableContent.push('shareconnect');
+                    applicableContent.push('rightsignature');
+                } else if(prod == 'shareconnect'){
+                    applicableContent.push('shareconnect');
+                } else if(prod == 'podio'){
+                    applicableContent.push('podio');
+                } else if(prod == 'addoo'){
+                    applicableContent.push('addoo');
+                }
+                return applicableContent;
             }
-            Restangular.all(videoQuery).getList().then(function(data){
-                $scope.videolessons = data;
-                $scope.displayedvideolessons = [].concat($scope.videolessons);
+
+            getApplicableContentForProducts(Auth.user.product).forEach(function(element, index, array){
+                Restangular.all("video?product="+element).getList().then(function(data){
+                    if(!$scope.videolessons) {
+                        $scope.videolessons = [];
+                    }
+                    $scope.videolessons = $scope.videolessons.concat(data);
+                    $scope.displayedvideolessons = [].concat($scope.videolessons);    
+                });
             });
+
+            // var videoQuery = "video?product="+Auth.user.product;
+            // if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
+            //     videoQuery = "video"
+            // }
+            // Restangular.all(videoQuery).getList().then(function(data){
+            //     $scope.videolessons = data;
+            //     $scope.displayedvideolessons = [].concat($scope.videolessons);
+            // });
 
 
             $scope.clickToOpen = function () {

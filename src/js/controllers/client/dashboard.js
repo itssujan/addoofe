@@ -99,9 +99,23 @@ angular.module('app')
                         $scope.studentcourse.put();
                     }
                 }
+                setProductDisplayName();
                 $scope.playVideo($scope.currentVideoIndex);
                 getUpcomingVideos();
             });
+
+            var setProductDisplayName = function() {
+                if($scope.studentcourse.product == "sharefile")
+                    $scope.productDisplayName = "ShareFile";
+                else if($scope.studentcourse.product == "shareconnect")
+                    $scope.productDisplayName = "ShareConnect";
+                else if($scope.studentcourse.product == "rightsignature")
+                    $scope.productDisplayName = "RightSignature";
+                else if($scope.studentcourse.product == "addoo")
+                    $scope.productDisplayName = "Addoo";
+                else if($scope.studentcourse.product == "podio")
+                    $scope.productDisplayName = "Podio";
+            }
 
             $scope.sendEvent = function(event){
                 if(!$scope.disabletracking && $scope.product != 'addoo'){

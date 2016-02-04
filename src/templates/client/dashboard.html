@@ -166,6 +166,8 @@
                 <p ng-if="studentcourse.product == 'sharefile'"><a href="https://www.sharefile.com/redirects/login" target="_blank" class="text-warning" ng-click="sendEvent('Login Link Clicked')">Login</a> to your ShareFile account</p>
                 <p ng-if="studentcourse.product == 'shareconnect'"><a href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank" class="text-warning">Login</a> to ShareConnect</p>
                 <p ng-if="studentcourse.product == 'podio'"><a href="https://podio.com/login" target="_blank" class="text-warning">Login</a> to Podio</p>
+                <p ng-if="studentcourse.product == 'addoo'"><a href="http://app.addoo.io/#/login" target="_blank" class="text-warning">Login</a> to Addoo</p>
+
             </div>
 
             <div class="information" id="sidebar-course-info" ng-show="studentcourse.onboardingSpecialist">
@@ -181,19 +183,10 @@
 
             <div class="information" id="team-member-add">
                 <h4 class="sidebar-right text-warning">Add a team member</h4>
-                <p>Have co-workers who will be using ShareFile? Enter their e-mail to add them to your training portal.</p>
+                <p>Have co-workers who will be using {{productDisplayName}}? Enter their e-mail to add them to your training portal.</p>
                 <input type="text" name="coworkeremail" ng-model="coworker.email" />
                 <a class="button" href="" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank">Add</a>
             </div>
         </div>
-    </div>
-</div>
-
-<div ng-show="!studentcourse">
-    <div id="article">
-    <h1>We&rsquo;ll be back soon!</h1>
-    <div>
-        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. We&rsquo;ll be back online shortly! </p>
-    </div>
     </div>
 </div>

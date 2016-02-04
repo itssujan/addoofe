@@ -47,7 +47,7 @@
                                     <img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30" />
                                 </td>
                                 <td>{{content.title}}</td>
-                                <td ng-show="user._id == course.author">
+                                <td ng-show="user._id == course.author || user._id == course.author._id">
                                     <button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </td>
                             </tr>
