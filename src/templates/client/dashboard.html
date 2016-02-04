@@ -1,6 +1,6 @@
 <span us-spinner></span>
 
-<div class="row header full-width">
+<div class="row header full-width" ng-show="studentcourse">
     <div class="col-xs-12">
         <div class="meta">
             <div class="page">
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-show="studentcourse">
 
     <div id="client-sidebar-wrapper">
         <ul class="sidebar">
@@ -186,5 +186,14 @@
                 <a class="button" href="" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank">Add</a>
             </div>
         </div>
+    </div>
+</div>
+
+<div ng-show="!studentcourse">
+    <div id="article">
+    <h1>We&rsquo;ll be back soon!</h1>
+    <div>
+        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. We&rsquo;ll be back online shortly! </p>
+    </div>
     </div>
 </div>
