@@ -94,7 +94,7 @@ angular.module('app')
                 }
                 if(!$scope.studentcourse.progress || $scope.studentcourse.progress == 'invited'){
                     $scope.studentcourse.progress = "viewed";
-                    if(!scope.disabletracking){
+                    if(!$scope.disabletracking){
                         $scope.studentcourse.put();
                     }
                 }
@@ -251,8 +251,6 @@ angular.module('app')
                                 } else if(status == 'complete'){
                                     $scope.sendEvent("Customer completed a video");
                                 }
-                                
-
                             } else {
                                 pushupdate = false;
                             }
