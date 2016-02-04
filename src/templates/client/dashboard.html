@@ -168,7 +168,7 @@
                 <p ng-if="studentcourse.product == 'podio'"><a href="https://podio.com/login" target="_blank" class="text-warning">Login</a> to Podio</p>
             </div>
 
-            <div class="information" id="sidebar-course-info">
+            <div class="information" id="sidebar-course-info" ng-show="studentcourse.onboardingSpecialist">
                 <div id="care-rep-image">
                     <img class="img-circle" ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="img/avatar.jpg" alt="people">
                     <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people">
