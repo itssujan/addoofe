@@ -86,6 +86,7 @@ angular.module('app')
             Restangular.one("studentcourses/"+$scope.studentcourseID+"?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function(data){
                 $scope.studentcourse = data;
                 $scope.clientemail = data.email;
+                $scope.product = data.product;
                 $scope.sendEvent("Customer viewed onboarding track");
                 if($scope.studentcourse.visitCount){
                     $scope.studentcourse.visitCount = $scope.studentcourse.visitCount + 1;
@@ -103,7 +104,7 @@ angular.module('app')
             });
 
             $scope.sendEvent = function(event){
-                if(!$scope.disabletracking){
+                if(!$scope.disabletracking && $scope.product != 'addoo'){
                     $mixpanel.track(event, {
                         "Email": $scope.clientemail
                     });
@@ -233,25 +234,42 @@ angular.module('app')
                 $scope.onboardingPrompt = "fade";
             }
 
+            $scope.sendStatusEvent = function(status){
+                if(status == 'started'){
+                    $scope.sendEvent("Customer playing video");
+                } else if(status == 'complete'){
+                    $scope.sendEvent("Customer completed a video");
+                }
+            }
+
             $scope.updateVideoProgress = function(status){
                 var progressAdded = false;
                 var pushupdate = true;
                 if (!$scope.studentcourse.lessonprogress || $scope.studentcourse.lessonprogress.length == 0) {
                     $scope.studentcourse.lessonprogress.push({lessonID : $scope.video._id, progress : status});
+                    $scope.sendStatusEvent(status);
                 } else {
                     $scope.studentcourse.lessonprogress.forEach(function(element, index, array) {
                         if(element.lessonID === $scope.video._id){
                             progressAdded = true;
-                            if(status != element.progress) {
+                            if(status != element.progress && element.progress != 'complete') {
                                 $scope.studentcourse.lessonprogress.splice(index, 1);
                                 $scope.studentcourse.lessonprogress.push({lessonID : $scope.video._id, progress : status});  
                                 console.log("Video lesson marked "+status);
-                                if(status == 'started'){
-                                    $scope.sendEvent("Customer playing video");
-                                } else if(status == 'complete'){
-                                    $scope.sendEvent("Customer completed a video");
+                                $scope.sendStatusEvent(status);
+                                if(status == 'started') {
+                                    $scope.studentcourse.lessonprogress[index].startEventSent = true;
+                                } else if(status == 'complete') {
+                                    $scope.studentcourse.lessonprogress[index].completeEventSent = true;
                                 }
                             } else {
+                                if(!element.startEventSent && status == 'started'){
+                                    $scope.sendStatusEvent(status);
+                                    element.startEventSent = true;
+                                } else if(!element.completeEventSent && status == 'complete'){
+                                    $scope.sendStatusEvent(status);
+                                    element.completeEventSent = true;
+                                }
                                 pushupdate = false;
                             }
                         } 
@@ -285,34 +303,6 @@ angular.module('app')
                     console.log("Shared with friend successfully");
                 });
                 $mixpanel.track('Shared with coworker');
-                // $scope.coworker.role = 'client';
-                // $scope.coworker.local = {};
-                // $scope.coworker.local.email = $scope.coworker.email;
-                // $scope.coworker.local.referral = true;
-                // $scope.coworker.local.referredBy = $scope.studentcourse.studentID;
-                // Restangular.all('student').post($scope.coworker)
-                // .then(function(data){
-                //     Restangular.one("studentcourses", $scope.studentcourseID).get().then(function(data1){
-                //         $scope.duplicateStudentCourse = data1;
-                //         $scope.duplicateStudentCourse._id = null;
-                //         $scope.duplicateStudentCourse.studentID = data._id;
-                //         $scope.duplicateStudentCourse.email = data.local.email;
-                //         $scope.duplicateStudentCourse.referral = true;
-                //         $scope.duplicateStudentCourse.referredBy = $scope.studentcourse.studentID;
-                //         Restangular.all('studentcourses').post($scope.duplicateStudentCourse).then(function(data2){
-                //             console.log("Duplocate course created :");
-                //             var emailParams = {};
-                //             emailParams.recepient = $scope.coworker.email;
-                //             emailParams.mailtype = 'shareOnboarding';
-
-                //             Restangular.all('sendemail').post(emailParams).then(function(user){
-                //                 console.log("Send email");
-                //             });
-                //         });
-                //     });
-                //     console.log('Created student course :'+data._id);
-
-                // });
             }
 
             $scope.bookmark = function(){

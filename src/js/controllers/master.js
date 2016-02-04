@@ -17,12 +17,14 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$interc
     $scope.user.user_id = $scope.user._id;
     $scope.user.app_id = envService.read('intercom_id');
 
-    $intercom.boot({
-        email: $scope.user.email,
-        name: $scope.user.name,
-        created_at: $scope.user.created_at,
-        user_id: $scope.user.user_id
-      }); // app_id not required if set in .config() block
+    if(envService.environment != 'development') {
+        $intercom.boot({
+            email: $scope.user.email,
+            name: $scope.user.name,
+            created_at: $scope.user.created_at,
+            user_id: $scope.user.user_id
+          }); // app_id not required if set in .config() block
+    }
 
     $intercom.$on('show', function() {
       $scope.showing = true; // currently Intercom onShow callback isn't working
