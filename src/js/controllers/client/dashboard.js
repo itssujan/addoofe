@@ -187,7 +187,19 @@ angular.module('app')
                     var postersource = $scope.video.posterurl;
                     //$scope.config.sources.push({src : $scope.video.url, type: "video/mp4"});
                     videolist.push(videosource);
-                    $scope.videos.push({sources : videolist, posterurl : $scope.video.posterurl});
+                    if($scope.videos.length < index){
+                        for(i = $scope.videos.length; i < index;i++) {
+                            $scope.videos.push("");
+                        }
+                    }                    
+                    
+                    if(!$scope.videos[index] || $scope.videos[index] == ""){
+                        $scope.videos.splice(index, 1);
+                        $scope.videos.splice(index,0,{sources : videolist, posterurl : $scope.video.posterurl});
+                    }
+                    
+                    //videolist.push(videosource);
+                    //$scope.videos.push({sources : videolist, posterurl : $scope.video.posterurl});
                     $scope.videos.plugins = {};
                     $scope.videos.plugins.poster = {};
                     $scope.videos.plugins.poster.url = $scope.video.posterurl;
