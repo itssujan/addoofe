@@ -16,26 +16,14 @@
 
 <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-show="studentcourse">
 
-    <div id="client-sidebar-wrapper">
-        <ul class="sidebar">
-            <li class="sidebar-main" id="collapser">
-                <a ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"></span></a>
-            </li>
-        </ul>
-        <ul class="list-group" ng-if="studentcourse.studentID.local.clientname">
-            <li class="list-group-item">Learning portal prepared for <br/>{{studentcourse.studentID.local.clientname}}</li>
-        </ul>
-        <ul class="list-group" ng-if="!studentcourse.studentID.local.clientname">
-            <li class="list-group-item" ng-if="studentcourse.studentID.local.firstname">Learning portal prepared for <br/> {{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</li>
-            <l1 class="list-group-item" ng-if="!studentcourse.studentID.local.firstname">Learning portal prepared for <br/> {{studentcourse.studentID.local.email}}</li>    
-    
-        </ul>
+    <div id="sidebar-wrapper">
 
-<!--         <ul class="list-group" ng-repeat="content in studentcourse.courseID.contents">
-          <li class="list-group-item">First item</li>
-          <li class="list-group-item">First item</li>
-        </ul>  
- --> 
+		<div id="welcome-wrapper">
+			<div class="message" ng-if="studentcourse.studentID.local.firstname">Portal prepared for {{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</div>
+			<div class="message" ng-if="!studentcourse.studentID.local.firstname">Portal prepared for {{studentcourse.studentID.local.email}}</div>
+			<div class="collapser" ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"/></div>
+		</div>
+
   		<table id="content-table" class="table table-responsive">
 			<tbody>
 				<tr ng-repeat="content in studentcourse.courseID.contents">
@@ -45,7 +33,6 @@
                     <td class="visited" ng-if="content.progress == 'complete'">
                         <a class="title" href="" ng-click="playVideo($index)">{{content.title}}</a>
                     </td>
-
                     <td ng-if="content.progress != 'complete'">
                         <div class="time" >{{content.duration}}</div>
                     </td>
@@ -53,17 +40,10 @@
                         <div class="time" >{{content.duration}}</div>
                     </td>    
 				</tr>
-<!-- 				<tr class="visited">
-					<td>
-						<a class="title">I AM VISITED</a>
-					</td>
-					<td>
-						<div class="time">mins</div>
-					</td>
-				</tr>-->
 			</tbody>
 		</table>
-     </div>
+
+</div>
 
     <div class="page-content">
 

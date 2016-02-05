@@ -1,4 +1,7 @@
-@font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+@secondary-gray: #797979;
+@tertiary-gray: #292929;
+@font-family: 'Helvetica Neue', Helvetica, Arial;
+@primary-text-color: #F2F2F2;
 
 #sidebar-menu {
 	position: fixed;
@@ -61,7 +64,7 @@
 			width: 95px;
 			margin: 0 15px 10px;
 			padding: 5px;
-			color: #FFFFFF;
+			color: @primary-text-color;
 			font-size: 16px;
 			font-weight: bold;
 			text-decoration: none;
@@ -102,66 +105,88 @@
 }
 
 #content-table {
+	margin-top: 15px;
 	border: none;
 
 	tbody {
 
-		td {
-
-			&.visited {
-				a {
-					&.title {
-						color: #797979;
-					}
-				}
-
-				div {
-					&.time {
-						color: #797979;
-					}
-				}
-			}
+		tr {
 
 			&:hover {
-				background-color: #292929;
+				background-color: @tertiary-gray;
 			}
 
 			td {
-				border: none;
-				padding: 2px 15px;
 				vertical-align: middle;
-			}
+				font-size: 12px;
+				font-weight: bold;
+				border: none;
+				padding: 2px 0;
 
-			a {
+				&.visited {
+					.title {
+						color: @secondary-gray;
+					}
 
-				&.title {
-					float: left;
-					text-align: left;
-					font-family: @font-family;
-					font-size: 14px;
-					color: #FFFFFF;
-					text-decoration: none;
+					.time {
+						color: @secondary-gray;
+					}
 				}
 
-				&:hover {
-					cursor: pointer;
-				}
-			}
+				a {
+					padding: 0 10px;
 
-			div {
-				&.time {
+					&.title {
+						float: left;
+						text-align: left;
+						font-family: @font-family;
+						color: @primary-text-color;
+						text-decoration: none;
+					}
+
+					&:hover {
+						cursor: pointer;
+					}
+				}
+
+				.time {
 					float: right;
+					padding-right: 15px;
 					text-align: right;
 					font-family: @font-family;
-					font-size: 14px;
-					color: #FFFFFF;
-					text-decoration: none;
+					color: @primary-text-color;
 				}
 			}
 		}
 	}
 }
 
+/*Style overrides for welcome message*/
+
+#welcome-wrapper {
+	display: inline-block;
+	background-color: @tertiary-gray;
+	width: 250px;
+	padding: 15px 0;
+	padding-left: 15px;
+
+	.message {
+		display: inline-block;
+		float: left;
+		max-width: 190px;
+		font-size: 14px;
+		color: @primary-text-color;
+	}
+
+	.collapser {
+		display: inline-block;
+		float: right;
+		color: @secondary-gray;
+		padding-right: 25px;
+		padding-top: 10px;
+		font-size: 20px;
+	}
+}
 
 #login-message {
 	display: block;
@@ -194,8 +219,7 @@
 	}
 }
 
-
-/* Customized Sidebar Styling */
+/* Customized Sidebar Styling and Animations */
 
 #page-wrapper.open #client-sidebar-wrapper {
 	left: 150px;
@@ -216,9 +240,21 @@
 	}
 }
 
-#page-wrapper:not(.open) #content-table {
-	opacity: 0;
-	height: 0;
-	padding: 0;
-	transition: height 0.5s linear, opacity 0.5s linear;
+#page-wrapper:not(.open) {
+
+	#content-table {
+		opacity: 0;
+		height: 0;
+		padding: 0;
+		transition: height 0.5s linear, opacity 0.5s linear;
+	}
+
+	#welcome-wrapper {
+		.message {
+			opacity: 0;
+			height: 0;
+			padding: 0;
+			transition: height 0.5s linear, opacity 0.5s linear;
+		}
+	}
 }

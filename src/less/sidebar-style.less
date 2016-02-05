@@ -20,25 +20,39 @@ div#sidebar-wrapper #profile div {
 
 div#sidebar-wrapper #profile img {
 	height: 100px;
+	margin-bottom: 10px;
 }
 
 div#sidebar-wrapper #profile div {
 	text-align: center;
 }
 
-ul.sidebar .sidebar-list a {
-	font-weight: bold;
-	font-size: 18px;
-	color: #6D7070;
-	padding: 7px 0px;
-}
+ul {
 
-ul.sidebar .sidebar-list a:hover {
-	border-left: 3px solid #F38F29;
-	color: #FFFFFF;
-	background-color: #353535;
-}
+	&#action-list {
+		margin-top: 15px;
+	}
 
-ul.sidebar .sidebar-main span {
-	color: #6D7070;
+	&.sidebar {
+
+		.sidebar-main span {
+			color: #6D7070;
+		}
+
+		.sidebar-list {
+
+			a {
+				font-weight: bold;
+				font-size: 18px;
+				color: #6D7070;
+				padding: 7px 0px;
+
+				&:hover {
+					border-left: 3px solid #F38F29;
+					color: #FFFFFF;
+					background-color: #353535;
+				}
+			}
+		}
+	}
 }
