@@ -19,8 +19,9 @@
     <div id="sidebar-wrapper">
 
 		<div id="welcome-wrapper">
-			<div class="message" ng-if="studentcourse.studentID.local.firstname">Portal prepared for {{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</div>
-			<div class="message" ng-if="!studentcourse.studentID.local.firstname">Portal prepared for {{studentcourse.studentID.local.email}}</div>
+            <div class="message" ng-if="studentcourse.studentID.local.clientname">Learning portal prepared for <br/>{{studentcourse.studentID.local.clientname}}</div>
+			<div class="message" ng-if="!studentcourse.studentID.local.clientname && studentcourse.studentID.local.firstname">Learning Portal prepared for {{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</div>
+			<div class="message" ng-if="!studentcourse.studentID.local.clientname && !studentcourse.studentID.local.firstname">Learning Portal prepared for {{studentcourse.studentID.local.email}}</div>
 			<div class="collapser" ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"/></div>
 		</div>
 
