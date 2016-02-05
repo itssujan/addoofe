@@ -7,7 +7,7 @@
             </li>
         </ul>
 		<div class="alert alert-danger" role="alert" ng-if="managerRequired">
-			Please update your manager information
+			Please select your Vertical Director
 		</div>
 
 		<div class="panel panel-default paper-shadow tab-content">
@@ -83,7 +83,7 @@
 						<div class="field-container col-md-6">
 							<div class="form-control-material">
 				                <select class="form-control" ng-model="user.manager" ng-required="true">
-				                  <option value="">Select your manager</option>
+				                  <option value="">Select your Vertical Director</option>
 				                  <option ng-repeat="manager in managers" value="{{manager._id}}">{{manager.local.firstname}} {{manager.local.lastname}}</option>
 				                </select>  
 		            		</div>
