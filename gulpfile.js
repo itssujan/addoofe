@@ -55,19 +55,19 @@ gulp.task('custom-images', function () {
 });
 
 gulp.task('custom-js', function () {
-	if (process.env.AddooENV === 'development') {
+	// if (process.env.AddooENV === 'development') {
+	// 	return gulp.src(paths.scripts)
+	// 		.pipe(sourcemaps.init())
+	// 		.pipe(minifyJs())
+	// 		.pipe(concat('dashboard.min.js'))
+	// 		.pipe(sourcemaps.write('maps'))
+	// 		.pipe(gulp.dest('dist/js'));
+	// } else {
 		return gulp.src(paths.scripts)
-			.pipe(sourcemaps.init())
 			.pipe(minifyJs())
 			.pipe(concat('dashboard.min.js'))
-			.pipe(sourcemaps.write('maps'))
 			.pipe(gulp.dest('dist/js'));
-	} else {
-		return gulp.src(paths.scripts)
-			.pipe(minifyJs())
-			.pipe(concat('dashboard.min.js'))
-			.pipe(gulp.dest('dist/js'));
-	}
+	// }
 });
 
 gulp.task('custom-less', function () {
