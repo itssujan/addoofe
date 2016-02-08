@@ -6,13 +6,13 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-cssnano'),
     minifyJs = require('gulp-uglify'),
     concat = require('gulp-concat'),
-	// sourcemaps = require('gulp-sourcemaps'),
+	sourcemaps = require('gulp-sourcemaps'),
     less = require('gulp-less'),
     prefix = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-htmlmin'),
     rev = require('gulp-rev');
-	runSequence = require('run-sequence');
+runSequence = require('run-sequence');
 
 
 var paths = {
@@ -55,19 +55,19 @@ gulp.task('custom-images', function () {
 });
 
 gulp.task('custom-js', function () {
-	// if (process.env.AddooENV === 'development') {
-	// 	return gulp.src(paths.scripts)
-	// 		.pipe(sourcemaps.init())
-	// 		.pipe(minifyJs())
-	// 		.pipe(concat('dashboard.min.js'))
-	// 		.pipe(sourcemaps.write('maps'))
-	// 		.pipe(gulp.dest('dist/js'));
-	// } else {
+	if (process.env.AddooENV === 'development') {
+		return gulp.src(paths.scripts)
+			.pipe(sourcemaps.init())
+			.pipe(minifyJs())
+			.pipe(concat('dashboard.min.js'))
+			.pipe(sourcemaps.write('maps'))
+			.pipe(gulp.dest('dist/js'));
+	} else {
 		return gulp.src(paths.scripts)
 			.pipe(minifyJs())
 			.pipe(concat('dashboard.min.js'))
 			.pipe(gulp.dest('dist/js'));
-	// }
+	}
 });
 
 gulp.task('custom-less', function () {
