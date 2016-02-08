@@ -1,36 +1,40 @@
 <div id="page-title">Dashboard</div>
+
 <!-- <div class="row" ng-controller="AnnouncementCtrl">
 	<div class="col-sm-9 col-md-9">
 		<div class="alert alert-info">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                    ×</button>
-                <span class="glyphicon glyphicon-info-sign"></span> <strong>What's new</strong>
-                <hr class="message-inner-separator">
-                <div ng-repeat="announcement in announcements">
-	                <p>{{announcement.description}}</p>
-	                <ul ng-repeat="msg in announcement.messages">
-	                	<li>{{msg.message}}</li>
-	                </ul>
-				</div>	                
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+					×</button>
+				<span class="glyphicon glyphicon-info-sign"></span> <strong>What's new</strong>
+				<hr class="message-inner-separator">
+				<div ng-repeat="announcement in announcements">
+					<p>{{announcement.description}}</p>
+					<ul ng-repeat="msg in announcement.messages">
+						<li>{{msg.message}}</li>
+					</ul>
+				</div>
 		</div>
 	</div>
 </div>
  -->
 <!--  <div class="row" ng-controller="DashboardStatsCtrl">
+<div class="row">
+>>>>>>> Stashed changes
 	<div class="action-display col-lg-4 col-md-6 col-xs-12">
 		<canvas id="line" class="chart chart-line" chart-data="data"
 		  chart-labels="labels" chart-legend="true" chart-series="series"
 		  chart-click="onClick" >
-		</canvas> 
-	</div>	
+		</canvas>
+	</div>
 </div>
  -->
 
 <div class="row">
 	<div class="table-container">
 		<rd-widget>
-			<rd-widget-header title="Base Tracks"><a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
-		</rd-widget-header>
+			<rd-widget-header title="Base Tracks">
+				<a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
+			</rd-widget-header>
 			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses">
 				<thead>
 					<tr class="search-row">
@@ -68,8 +72,8 @@
 			<rd-widget-header title="Active Tracks"></rd-widget-header>
 			<div ng-show="loading" class="loading">
 				<div class="spinner">
-				  <div class="dot1"></div>
-				  <div class="dot2"></div>
+					<div class="dot1"></div>
+					<div class="dot2"></div>
 				</div>
 			</div>
 			<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" ng-show="!loading">
@@ -88,7 +92,10 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="row in displayedStudentCourseCollection">
-						<td><a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a></td>
+						<td>
+							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
+							<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
+						</td>
 						<td>{{row.email}}</td>
 						<td>{{row.authorname}}</td>
 						<td> <span am-time-ago="row.invitedOn"></span></td>
@@ -110,6 +117,6 @@
 					</tr>
 				</tfoot>
 			</table>
-		<rd-widget>
+			<rd-widget>
 	</div>
 </div>

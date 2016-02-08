@@ -1,0 +1,29 @@
+@ad-dark-gray: #BEBEBE;
+@ad-light-gray: #DFDFDF;
+
+.ad-icon {
+
+	&.ad-action {
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&.ad-primary {
+			color: #000000;
+
+			&:hover {
+				color: @ad-dark-gray;
+			}
+		}
+
+		&.ad-secondary {
+			color: @ad-light-gray;
+
+			&:hover {
+				color: @ad-dark-gray;
+			}
+		}
+	}
+}
+

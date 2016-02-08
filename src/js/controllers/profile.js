@@ -11,7 +11,6 @@ angular.module('app')
             $scope.product = Auth.user.product;
             $scope.bucket = envService.read("aws_bucket");
 
-
             console.log("Manager Reqd :"+$stateParams.managerRequired);
             Restangular.all("user?role=saleslead&product="+Auth.user.product).getList().then(function(data){
                 $scope.managers = data;
@@ -70,5 +69,4 @@ angular.module('app')
                     });
                 });
             };
-
         } ]);

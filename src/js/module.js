@@ -18,7 +18,8 @@ var app = angular.module('app', [
     'ngIdle',
     'ngS3upload',
     'ngIntercom',
-    'chart.js'
+    'chart.js',
+    'ngAnimate'
 	]);
 
 app.config( 
