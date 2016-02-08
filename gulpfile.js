@@ -6,13 +6,13 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-cssnano'),
     minifyJs = require('gulp-uglify'),
     concat = require('gulp-concat'),
-	sourcemaps = require('gulp-sourcemaps'),
+	// sourcemaps = require('gulp-sourcemaps'),
     less = require('gulp-less'),
     prefix = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-htmlmin'),
     rev = require('gulp-rev');
-runSequence = require('run-sequence');
+	runSequence = require('run-sequence');
 
 
 var paths = {
