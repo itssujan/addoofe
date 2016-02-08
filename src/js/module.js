@@ -7,7 +7,6 @@ var app = angular.module('app', [
     'analytics.mixpanel', //mixpanel
     'angular-growl', // for messages 
     'angular-clipboard',
-    // 'ngFileUpload',
     'smart-table',
     'angularMoment',
     'ui.tree',
@@ -18,7 +17,8 @@ var app = angular.module('app', [
     'ng.deviceDetector',
     'ngIdle',
     'ngS3upload',
-    'ngIntercom'
+    'ngIntercom',
+    'chart.js'
 	]);
 
 app.config( 

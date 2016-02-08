@@ -1,4 +1,4 @@
-<span us-spinner></span>
+<!-- <span us-spinner></span> -->
 
 <div class="row header full-width">
 	<div class="col-xs-12">
@@ -27,7 +27,7 @@
 			<li class="sidebar-list" id="top">
 				<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
 			</li>
-			<li class="sidebar-list" id="top" ng-show="user.role != 'sales'">
+			<li class="sidebar-list" id="top" ng-show="user.role == 'superadmin'">
 				<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
 			</li>
 			<li class="sidebar-list">

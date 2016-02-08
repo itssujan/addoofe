@@ -1,6 +1,6 @@
 angular.module('app')
-    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl','Idle','$intercom',
-        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle,$intercom) {
+    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl','Idle','$intercom','$cookieStore',
+        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle,$intercom,$cookieStore) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
@@ -15,7 +15,12 @@ angular.module('app')
             };
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-  
+            
+            console.log("is logged in :"+Auth.isLoggedIn);    
+              if(!Auth.isLoggedIn) {
+                    Auth.user = $cookieStore.get("user");
+                    console.log("Auth userr :"+JSON.stringify(Auth.user));
+              }  
               var shouldLogin = toState.data !== undefined && toState.data.requiresLogin  && !Auth.isLoggedIn ;
 
               // NOT authenticated - wants any private stuff

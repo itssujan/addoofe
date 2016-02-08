@@ -42,6 +42,7 @@ angular.module('app')
 				$scope.auth.user = data.user;
 
 				Auth.user = data.user;
+				$cookieStore.put("user",Auth.user);
 				console.log("User role afte the api call :"+$scope.user.role);
 				if(data.user.local.email){
 					//$scope.user.role = "customer-support";

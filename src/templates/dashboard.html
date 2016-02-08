@@ -15,24 +15,22 @@
 		</div>
 	</div>
 </div>
- --><div class="row">
+ -->
+<!--  <div class="row" ng-controller="DashboardStatsCtrl">
 	<div class="action-display col-lg-4 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="title">Track Builder</div>
-				<div class="comment">Build customer learning tracks</div>
-				<div class="addition-icon">
-					<a ui-sref="customer-manager.trackbuilder"><i class="fa fa-fw fa-plus"></i></a>
-				</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
+		<canvas id="line" class="chart chart-line" chart-data="data"
+		  chart-labels="labels" chart-legend="true" chart-series="series"
+		  chart-click="onClick" >
+		</canvas> 
+	</div>	
 </div>
+ -->
 
 <div class="row">
 	<div class="table-container">
 		<rd-widget>
-			<rd-widget-header title="Base Tracks"></rd-widget-header>
+			<rd-widget-header title="Base Tracks"><a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
+		</rd-widget-header>
 			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses">
 				<thead>
 					<tr class="search-row">
@@ -64,11 +62,17 @@
 		</rd-widget>
 	</div>
 </div>
-<div class="row">
+<div class="row" ng-controller="DashboardTracksCtrl">
 	<div class="table-container">
 		<rd-widget>
 			<rd-widget-header title="Active Tracks"></rd-widget-header>
-			<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
+			<div ng-show="loading" class="loading">
+				<div class="spinner">
+				  <div class="dot1"></div>
+				  <div class="dot2"></div>
+				</div>
+			</div>
+			<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" ng-show="!loading">
 				<thead>
 					<tr class="search-row">
 						<th colspan="6"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
