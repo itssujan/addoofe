@@ -6,6 +6,11 @@ angular.module('app')
             $scope.adminproduct = "sharefile";
             $scope.setProduct = function(){
             	Auth.user.product = $scope.adminproduct;
-            	$state.go('customer-manager.dashboard');
+                Restangular.one("user",Auth.user._id).get().then(function(user){
+                    user.product = Auth.user.product;
+                    user.put();
+                    $state.go('customer-manager.dashboard');
+                });
+
             }
         } ]);

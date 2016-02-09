@@ -35,7 +35,6 @@ angular.module('app')
 
             // Get Leader board..
             Restangular.all("topweeklyusers").getList().then(function (data) {
-                console.log(JSON.stringify(data));
                 $scope.topfiveusers = data;
             });
 
