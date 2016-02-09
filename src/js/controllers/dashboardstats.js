@@ -11,10 +11,9 @@ angular.module('app')
              $scope.loading = true;
 
              Restangular.all("weeklytrackstats").getList().then(function (data) {
-                console.log("DATA :"+JSON.stringify(data));
                 var data1 = [];
                 for(var i=0; i < 7 && data[i]; i++) {
-                    $scope.labels.push(data[i].date.dateStr);
+                    $scope.labels.push(data[i].date.year+"/"+data[i].date.day+"/"+data[i].date.month);
                     data1.push(data[i].count);
                 }
                 $scope.data.push(data1);
