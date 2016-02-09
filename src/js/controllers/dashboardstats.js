@@ -4,15 +4,16 @@ angular.module('app')
         function ($scope,envService, $state, Restangular,$rootScope, Auth, growl,$mixpanel,$filter) {
             console.log('In DashboardTracksCtrl');
 
-             var today = new Date();
-             var date = new Date();
+             // var today = new Date();
+             // var date = new Date();
              $scope.labels = [];
              $scope.data = [];
              $scope.loading = true;
 
              Restangular.all("weeklytrackstats").getList().then(function (data) {
+                console.log("DATA :"+JSON.stringify(data));
                 var data1 = [];
-                for(var i=0; i < 7; i++) {
+                for(var i=0; i < 7 && data[i]; i++) {
                     $scope.labels.push(data[i].date.dateStr);
                     data1.push(data[i].count);
                 }
