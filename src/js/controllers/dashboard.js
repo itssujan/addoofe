@@ -8,6 +8,8 @@ angular.module('app')
         	$scope.doc = {};
         	$scope.auth = Auth;
         	$scope.performUpload = false;
+            $scope.loading = true;
+
 
         	console.log("Auth user :" + Auth.user.email);
         	console.log("NODE SERVER URL " + envService.read('nodeserverurl'));
@@ -21,6 +23,7 @@ angular.module('app')
         					element.fullname = element.author.local.firstname + " " + element.author.local.lastname;
         				});
         				$scope.displayedCourseCollection = [].concat($scope.courses);
+                        $scope.loading = false;
         			});
         		});
         	} else {
@@ -32,6 +35,7 @@ angular.module('app')
         					element.fullname = element.author.local.firstname + " " + element.author.local.lastname;
         				});
         				$scope.displayedCourseCollection = [].concat($scope.courses);
+                        $scope.loading = false;
         			});
         		});
         	}

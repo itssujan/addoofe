@@ -8,6 +8,8 @@ angular.module('app')
         	var vm = this;
         	vm.data = deviceDetector;
         	var browserVersion = vm.data.browser_version;
+            $scope.loading = true;
+
         	//var browserMajorVersion = Number(browserVersion.substring(0,browserVersion.indexOf('.')));
 
 
@@ -94,6 +96,7 @@ angular.module('app')
         		console.log("Updating client list");
         		$scope.updateClientList();
         		$scope.showtrackbuilder = true;
+                $scope.loading = false;
         	}
 
         	var self = this;

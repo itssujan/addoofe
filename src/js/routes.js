@@ -1,5 +1,6 @@
 angular.module('app')
-    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl','Idle','$intercom','$cookieStore',
+    .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl',
+        'Idle','$intercom','$cookieStore',
         function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle,$intercom,$cookieStore) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
@@ -11,15 +12,24 @@ angular.module('app')
               growl.success("Logged out.");
               console.log("Logging out user");
               Restangular.all('logout').post();
+              invalidateSession();
               $location.url('login');
             };
+
+
+            var invalidateSession = function() {
+                $cookieStore.remove("user");
+                Auth = {};
+            }
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
             
             console.log("is logged in :"+Auth.isLoggedIn);    
               if(!Auth.isLoggedIn) {
                     Auth.user = $cookieStore.get("user");
-                    console.log("Auth userr :"+JSON.stringify(Auth.user));
+                    if(Auth.user){
+                        Auth.isLoggedIn = true;
+                    }
               }  
               var shouldLogin = toState.data !== undefined && toState.data.requiresLogin  && !Auth.isLoggedIn ;
 
@@ -46,7 +56,7 @@ angular.module('app')
               var shouldGoToPublic = fromState.name === "" && toState.name !== "public" && toState.name !== "login" ;
                 
               if(shouldGoToPublic) {
-                  $state.go('public');console.log('p');
+                  $state.go('login');console.log('p');
                   event.preventDefault();
               } 
         });
