@@ -37,7 +37,7 @@
 		<div id="current-track" class="col-sm-9">
 			<div class="sub-title">
 				Current Track:
-				<span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="($event.charCode === 13) ? submitTitleChangeRequest($event) : return" uib-popover="Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
+				<span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="submitTitleChangeRequest($event)" uib-popover="Begin typing to change the track title. Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
 				<i id="course-name-edit" class="fa fa-pencil ad-icon ad-action ad-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
 			</div>
 			<div class="panel panel-default paper-shadow" data-z="0.5">
