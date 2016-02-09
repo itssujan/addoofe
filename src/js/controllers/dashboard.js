@@ -10,7 +10,6 @@ angular.module('app')
         	$scope.performUpload = false;
             $scope.loading = true;
 
-
         	console.log("Auth user :" + Auth.user.email);
         	console.log("NODE SERVER URL " + envService.read('nodeserverurl'));
 
@@ -27,7 +26,7 @@ angular.module('app')
         			});
         		});
         	} else {
-        		Restangular.all("course?product=" + Auth.user.product + "&baseTrack=true&shareWithTeam=true&populate=author&author=" + Auth.user._id).getList().then(function (data) {
+        		Restangular.all("course?product=" + Auth.user.product + "&baseTrack=true&populate=author&author=" + Auth.user._id).getList().then(function (data) {
         			Restangular.all("course?product=" + Auth.user.product + "&baseTrack=true&populate=author&author=" + Auth.user._id).getList().then(function (data1) {
         				$scope.courses = data.concat(data1);
         				$scope.courses.forEach(function (element, index, array) {

@@ -19,17 +19,28 @@
  -->
 <div class="row" ng-controller="DashboardStatsCtrl" style="margin-top:140px">
 	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
-<!-- 		<div ng-show="loading" class="loading">
-			<div class="spinner">
-				<div class="dot1"></div>
-				<div class="dot2"></div>
-			</div>
-		</div>
- -->		<canvas id="line" class="chart chart-line" chart-data="data"
+		<canvas id="line" class="chart chart-line" chart-data="data"
 		  chart-labels="labels" chart-legend="true" chart-series="series"
 		  chart-click="onClick">
 		</canvas>
 	</div>
+	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+		Addoo Weekly Leaderboard
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Tracks</td>
+				</tr>
+			</thead>
+			<tr ng-repeat="row in topfiveusers">
+				<td>{{row.username}}</td>
+				<td>{{row.count}}</td>
+			</tr>
+		</table>
+
+	</div>
+
 </div>
 
 
