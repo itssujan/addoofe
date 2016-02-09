@@ -24,7 +24,6 @@ angular.module('app')
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
             
-            console.log("is logged in :"+Auth.isLoggedIn);    
               if(!Auth.isLoggedIn) {
                     Auth.user = $cookieStore.get("user");
                     if(Auth.user){
