@@ -51,13 +51,14 @@ angular.module('app')
                 return;
               }
               
-              // UNauthenticated (previously) comming not to root public 
-              var shouldGoToPublic = fromState.name === "" && toState.name !== "public" && toState.name !== "login" ;
+              // // UNauthenticated (previously) comming not to root public 
+              // var shouldGoToPublic = fromState.name === "" && toState.name !== "public" && toState.name !== "login" ;
                 
-              if(shouldGoToPublic) {
-                  $state.go('login');console.log('p');
-                  event.preventDefault();
-              } 
+              // if(shouldGoToPublic) {
+              //     $state.go('login');
+              //     console.log('p');
+              //     event.preventDefault();
+              // } 
         });
         }
     ])
