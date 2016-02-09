@@ -1,4 +1,3 @@
-<div class="button-container" ng-show="showtrackbuilder"><a class="button-orange lg" ng-click="createDuplicateTrack();">Duplicate Track</a></div>
 
 <div id="page-title">Track Builder</div>
 
@@ -40,7 +39,8 @@
 				<span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="submitTitleChangeRequest($event)" uib-popover="Begin typing to change the track title. Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
 				<i id="course-name-edit" class="fa fa-pencil ad-icon ad-action ad-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
 			</div>
-			<div class="panel panel-default paper-shadow" data-z="0.5">
+			<div class="ad-button-container ad-float-right" ng-show="showtrackbuilder" style="margin:10px 15px 10px 10px;"><a class="ad-button-orange ad-md" ng-click="createDuplicateTrack()">Duplicate Track</a></div>
+			<div class="panel panel-default paper-shadow ad-panel-cleared" data-z="0.5">
 				<p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
 				<table ui-tree="tableCallbacks" class="table table-responsive">
 					<tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
@@ -60,50 +60,46 @@
 			</div>
 		</div>
 
-		<div id="client-addition" class="col-sm-3">
-			<div class="sub-title">Clients</div>
-			<div class="panel panel-default paper-shadow" data-z="0.5">
-				<div class="panel-body">
-					<table class="table table-striped table-bordered" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
-						<thead>
-							<tr class="search-row">
-								<th colspan="2">
-									<input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" />
-								</th>
-							</tr>
-							<tr>
-								<th class="header" st-sort="inviteurl">
-									Client<i class="fa fa-sort"></i>
-								</th>
-								<th class="header" st-sort="fullname">
-									Link<i class="fa fa-sort"></i>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="studentcourse in displayedStudentCourseCollection">
-								<td>{{studentcourse.studentID.local.email}}</td>
-								<input type="hidden" ng-model="studentcourse.inviteurl">
-								<td>
-									<a clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="5" class="text-center">
-									<div st-pagination="" st-items-by-page="6" st-displayed-pages="7"></div>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
+		<div class="ad-widget-override-2">
+			<rd-widget id="client-addition" class="col-sm-3">
+				<rd-widget-header title="Clients"></rd-widget-header>
+				<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
+					<thead class="ad-border ad-none">
+						<tr class="search-row">
+							<th class="ad-border ad-no-bottom" colspan="2">
+								<input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" />
+							</th>
+						</tr>
+						<tr>
+							<th class="header ad-border ad-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i></th>
+							<th class="header ad-border ad-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="studentcourse in displayedStudentCourseCollection">
+							<td>{{studentcourse.studentID.local.email}}</td>
+							<input type="hidden" ng-model="studentcourse.inviteurl">
+							<td>
+								<a clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5" class="text-center">
+								<div st-pagination="" st-items-by-page="6" st-displayed-pages="7"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
 				<div class="panel-footer" ng-if="!studentcourses || studentcourses.length == 0">
 					<a class="button-orange" href="" role="button" ng-click="addClientModal()">Add Client</a>
 				</div>
-			</div>
+			</rd-widget>
 		</div>
+
 	</div>
+
 	<div class="modal fade" id="modal-edit-document-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">

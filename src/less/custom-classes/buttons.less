@@ -1,0 +1,36 @@
+﻿.ad-button-container {
+	display: inline-block;
+}
+
+.ad-button-orange {
+	min-width: 60px;
+	height: 25px;
+	text-decoration: none !important;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFFFFF;
+	border-radius: 4px;
+	border: none;
+	background-color: #F38F29;
+
+	&.ad-sm {
+		padding: 4px;
+	}
+
+	&.ad-md {
+		padding: 8px;
+	}
+	
+	&.ad-lg {
+		padding: 25px 40px;
+		font-size: 25px;
+		box-shadow: 0 1px 1px #BEBEBE;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background-color: #FDB265;
+		text-decoration: none;	// override
+		color: #FFFFFF;			// override
+	}
+}
