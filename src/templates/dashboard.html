@@ -1,4 +1,4 @@
-<div id="page-title">Dashboard</div>
+
 
 <!-- <div class="row" ng-controller="AnnouncementCtrl">
 	<div class="col-sm-9 col-md-9">
@@ -17,17 +17,32 @@
 	</div>
 </div>
  -->
-<!--  <div class="row" ng-controller="DashboardStatsCtrl">
-<div class="row">
->>>>>>> Stashed changes
-	<div class="action-display col-lg-4 col-md-6 col-xs-12">
+<div class="row" ng-controller="DashboardStatsCtrl" style="margin-top:140px">
+	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
 		<canvas id="line" class="chart chart-line" chart-data="data"
 		  chart-labels="labels" chart-legend="true" chart-series="series"
-		  chart-click="onClick" >
+		  chart-click="onClick">
 		</canvas>
 	</div>
+	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+		Addoo Weekly Leaderboard
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Tracks</td>
+				</tr>
+			</thead>
+			<tr ng-repeat="row in topfiveusers">
+				<td>{{row.username}}</td>
+				<td>{{row.count}}</td>
+			</tr>
+		</table>
+
+	</div>
+
 </div>
- -->
+
 
 <div class="row">
 	<div class="table-container ad-widget-override">
@@ -35,7 +50,13 @@
 			<rd-widget-header title="Base Tracks">
 				<a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
 			</rd-widget-header>
-			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses">
+			<div ng-show="loading" class="loading">
+				<div class="spinner">
+					<div class="dot1"></div>
+					<div class="dot2"></div>
+				</div>
+			</div>
+			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses" ng-show="!loading">
 				<thead>
 					<tr class="search-row">
 						<th colspan="2"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>

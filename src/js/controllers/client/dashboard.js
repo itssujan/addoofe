@@ -1,8 +1,8 @@
 angular.module('app')
     .controller('ClientDashboardController', [ '$scope', '$state','Restangular', '$rootScope','$stateParams',
-        '$timeout','$mixpanel','$window','$cookieStore','envService','$location','growl','$http',
+        '$timeout','$mixpanel','$window','$cookieStore','envService','$location','growl','$http','Auth',
         function ($scope, $state, Restangular,$rootScope, $stateParams, $timeout,$mixpanel,
-            $window,$cookieStore,envService,$location,growl,$http) {
+            $window,$cookieStore,envService,$location,growl,$http,Auth) {
             console.log('In ClientDashboardController : ');
 
             ///// LAYOUT.js code...needs to be moved back...
@@ -68,20 +68,9 @@ angular.module('app')
                 }
             };
 
-            var json = 'http://ipv4.myexternalip.com/json';
-
-            Restangular.one("getrestrictedip").get().then(function(data){
-                var restrictedIP = data.ip;
-                $http.get(json,{withCredentials:false}).then(function(result) {
-                    var clientIP = result.data.ip;
-                    if(clientIP.indexOf(restrictedIP) >= 0){
-                        console.log("Disabling tracking");
-                        $scope.disabletracking = true;
-                    }
-                    },function(e) {
-                        console.log("Error getting ip :"+e);
-                });
-            });
+            if(Auth && Auth.user) {
+                $scope.disabletracking = true;
+            }
 
             Restangular.one("studentcourses/"+$scope.studentcourseID+"?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function(data){
                 $scope.studentcourse = data;
@@ -328,7 +317,7 @@ angular.module('app')
                     growl.success('Shared with '+$scope.coworker.email+" successfully.");
                     console.log("Shared with friend successfully");
                 });
-                $mixpanel.track('Shared with coworker');
+                $scope.sendEvent('Shared with coworker');
             }
 
             $scope.bookmark = function(){
@@ -343,7 +332,7 @@ angular.module('app')
                 } else { // webkit - safari/chrome
                     alert('Press ' + ($window.navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.');
                 }
-                $mixpanel.track('Bookmark Link Clicked');
+                $scope.sendEvent('Bookmark Link Clicked');
                 return true;
             }
 

@@ -8,8 +8,9 @@
 
 angular.module('app')
 .controller('LoginCtrl', [ '$scope', '$state','Restangular', '$rootScope', '$location', 
-	'Auth','$cookieStore','growl','$mixpanel','$filter','$stateParams','Idle',
-    function ($scope, $state, Restangular,$rootScope, $location, Auth,$cookieStore, growl, $mixpanel,$filter,$stateParams,Idle) {
+	'Auth','$cookieStore','growl','$mixpanel','$filter','$stateParams','Idle','growlMessages',
+    function ($scope, $state, Restangular,$rootScope, $location, Auth,$cookieStore, growl, 
+    	$mixpanel,$filter,$stateParams,Idle,growlMessages) {
 
         console.log('In login controller');
 
@@ -24,6 +25,8 @@ angular.module('app')
 
         // Register the login() function
 	    $scope.login = function(){
+			
+			growlMessages.destroyAllMessages();
 
 			$scope.loginbutton = "Logging in..";			    	
 			$scope.user = {
