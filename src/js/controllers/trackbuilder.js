@@ -106,8 +106,6 @@ angular.module('app')
         		addVideoToTrack();
         	}
 
-        	//console.log("Auth user :"+Auth.user.email);
-
         	$scope.addTrack = function () {
         		$scope.course.product = Auth.user.product;
         		console.log("Adding track");
@@ -267,7 +265,6 @@ angular.module('app')
         	$scope.baseTrack = function (test) {
         		$scope.course.put();
         		$mixpanel.track('BaseTrack Marked');
-
         	};
 
         	var getApplicableContentForProducts = function (prod) {
@@ -322,10 +319,15 @@ angular.module('app')
         	};
 
         	$scope.submitTitleChangeRequest = function (e) {
-        		e.preventDefault();
-        		$scope.course.title = e.target.innerHTML;
-        		$scope.course.put();
-        		e.target.contentEditable = false;
+        		var keyValue = (e.keyCode === 13 || e.which === 13);
+
+        		if (keyValue) { // if the user presses enter...
+        			$scope.course.title = e.target.innerHTML;
+        			$scope.course.put();
+        			e.target.contentEditable = false;
+        		}
+
+        		return !keyValue;
         	};
 
         	// var videoQuery = "video?product="+Auth.user.product;
