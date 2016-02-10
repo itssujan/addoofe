@@ -1,48 +1,28 @@
-
-
-<!-- <div class="row" ng-controller="AnnouncementCtrl">
-	<div class="col-sm-9 col-md-9">
-		<div class="alert alert-info">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-					×</button>
-				<span class="glyphicon glyphicon-info-sign"></span> <strong>What's new</strong>
-				<hr class="message-inner-separator">
-				<div ng-repeat="announcement in announcements">
-					<p>{{announcement.description}}</p>
-					<ul ng-repeat="msg in announcement.messages">
-						<li>{{msg.message}}</li>
-					</ul>
-				</div>
-		</div>
+<div id="page-top" class="row" ng-controller="DashboardStatsCtrl">
+	
+	<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+		<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
 	</div>
-</div>
- -->
-<div class="row" ng-controller="DashboardStatsCtrl" style="margin-top:140px">
-	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
-		<canvas id="line" class="chart chart-line" chart-data="data"
-		  chart-labels="labels" chart-legend="true" chart-series="series"
-		  chart-click="onClick">
-		</canvas>
-	</div>
-	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
-		Addoo Weekly Leaderboard
-		<table class="table table-striped">
+	
+	<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+		<div class="weekly-title">Addoo Weekly Leaderboard</div>
+		<table class="table table-striped weekly-ranking-table">
 			<thead>
 				<tr>
-					<td>Name</td>
-					<td>Tracks</td>
+					<th class="header">Position</th>
+					<th class="header">Name</th>
+					<th class="header">Tracks</th>
 				</tr>
 			</thead>
-			<tr ng-repeat="row in topfiveusers">
+			<tr class="ranking-row" ng-repeat="row in topfiveusers">
+				<td class="rep-position"><i class="fa fa-trophy" ng-show="[$index] <= 2"></i></td>
 				<td>{{row.username}}</td>
 				<td>{{row.count}}</td>
 			</tr>
 		</table>
-
 	</div>
 
 </div>
-
 
 <div class="row">
 	<div class="table-container ad-widget-override">
@@ -87,6 +67,7 @@
 		</rd-widget>
 	</div>
 </div>
+
 <div class="row" ng-controller="DashboardTracksCtrl">
 	<div class="table-container ad-widget-override">
 		<rd-widget>
@@ -116,7 +97,7 @@
 					<tr ng-repeat="row in displayedStudentCourseCollection">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
-							<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
+							<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
 						</td>
 						<td>{{row.email}}</td>
 						<td>{{row.authorname}}</td>
@@ -139,6 +120,6 @@
 					</tr>
 				</tfoot>
 			</table>
-			<rd-widget>
+		<rd-widget>
 	</div>
 </div>
