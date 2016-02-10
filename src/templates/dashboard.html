@@ -24,7 +24,7 @@
 		  chart-click="onClick">
 		</canvas>
 	</div>
-	<div class="action-display col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+	<div class="action-display col-lg-4 col-md-6 col-xs-12">
 		Addoo Weekly Leaderboard
 		<table class="table table-striped">
 			<thead>
@@ -34,8 +34,8 @@
 				</tr>
 			</thead>
 			<tr ng-repeat="row in topfiveusers">
-				<td>{{row.username}}</td>
-				<td>{{row.count}}</td>
+				<td ng-style="row.author == auth.user._id && {'font-weight':'bold'}">{{row.username}}</td>
+				<td ng-style="row.author == auth.user._id && {'font-weight':'bold'}">{{row.count}}</td>
 			</tr>
 		</table>
 

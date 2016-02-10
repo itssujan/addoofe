@@ -31,36 +31,33 @@
         </div>
     </div>
 
-    <div class="row">
-        <div id="current-track" class="col-sm-9">
-            <div class="sub-title">
-                Current Track:
-                <span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="submitTitleChangeRequest($event)" uib-popover="Begin typing to change the track title. Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
-                <i id="course-name-edit" class="fa fa-pencil ad-icon ad-action ad-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
-            </div>
-            <div class="ad-button-container ad-float-right" ng-show="showtrackbuilder" style="margin:10px 15px 10px 10px;"><a class="ad-button-orange ad-md" ng-click="createDuplicateTrack()">Duplicate Track</a>
-            </div>
-            <div class="panel panel-default paper-shadow ad-panel-cleared" data-z="0.5">
-                <p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
-                <table ui-tree="tableCallbacks" class="table table-responsive">
-                    <tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
-                        <tr ng-repeat="content in course.contents" ui-tree-node>
-                            <td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i>
-                            </td>
-                            <td class="document-type-img">
-                                <img ng-if="content.type != 'document'" src="img/icons/video-inline.jpg" alt="people" class="img-square width-30" />
-                                <img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30" />
-                            </td>
-                            <td>{{content.title}}</td>
-                            <td ng-show="user._id == course.author || user._id == course.author._id">
-                                <button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+	<div class="row">
+		<div id="current-track" class="col-sm-9">
+			<div class="sub-title">
+				Current Track:
+				<span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="submitTitleChangeRequest($event)" uib-popover="Begin typing to change the track title. Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
+				<i id="course-name-edit" class="fa fa-pencil ad-icon ad-action ad-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
+			</div>
+			<div class="ad-button-container ad-float-right" ng-show="showtrackbuilder" style="margin:10px 15px 10px 10px;"><a class="ad-button-orange ad-md" ng-click="createDuplicateTrack()">Duplicate Track</a></div>
+			<div class="panel panel-default paper-shadow ad-panel-cleared" data-z="0.5">
+				<p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
+				<table ui-tree="tableCallbacks" class="table table-responsive">
+					<tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
+						<tr ng-repeat="content in course.contents" ui-tree-node>
+							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
+							<td class="document-type-img">
+								<img ng-if="content.type != 'document'" src="img/icons/video-inline.jpg" alt="people" class="img-square width-30" />
+								<img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30" />
+							</td>
+							<td>{{content.title}}</td>
+							<td ng-show="user._id == course.author || user._id == course.author._id">
+								<button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
         <div class="ad-widget-override-2">
             <rd-widget id="client-addition" class="col-sm-3">
@@ -140,6 +137,7 @@
         </div>
     </div>
 </div>
+
 <div class="panel panel-default" ng-show="!showtrackbuilder">
     <div class="panel-body">
         <form name="myForm" ng-submit="addTrack()">

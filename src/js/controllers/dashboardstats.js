@@ -9,6 +9,7 @@ angular.module('app')
              $scope.labels = [];
              $scope.data = [];
              $scope.loading = true;
+             $scope.auth = Auth;
 
              Restangular.all("weeklytrackstats").getList().then(function (data) {
                 var data1 = [];
@@ -36,6 +37,19 @@ angular.module('app')
             // Get Leader board..
             Restangular.all("topweeklyusers").getList().then(function (data) {
                 $scope.topfiveusers = data;
+                Restangular.all("myweeklyscore").getList().then(function (data1) {
+                    if(data1 && data1[0]){
+                        data1[0].username = "You";
+                        $scope.topfiveusers.push(data1[0]);
+                    } else {
+                        // Hack to temporarily show user tracks as zero
+                        var tmpData = {};
+                        tmpData.username = "You";
+                        tmpData.author = Auth.user._id;
+                        tmpData.count = 0;
+                        $scope.topfiveusers.push(tmpData);
+                    }
+                });
             });
 
         } ]);
