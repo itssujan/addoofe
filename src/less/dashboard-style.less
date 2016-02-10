@@ -1,6 +1,10 @@
-﻿div#page-title {
+﻿#page-title {
 	margin: 140px 15px 40px;
 	font-size: 40px;
+}
+
+#page-top {
+	margin-top: 140px;
 }
 
 .table-container {
@@ -65,22 +69,53 @@
 								color: #DFDFDF;
 							}
 						}
+
+						+ th {
+							border-left: 1px solid #DDDDDD;
+						}
 					}
 				}
+			}
+		}
+
+		&.table {
+			.progress {
+				margin: 0;
 			}
 		}
 	}
 }
 
-
-.table-container table thead tr th.header + th {
-	border-left: 1px solid #DDDDDD;
-}
-
-.table-container table.table tr div.progress {
-	margin: 0;
-}
-
 .table-container table.table tbody tr td {
 	padding: 12px 8px;
+}
+
+.weekly-ranking-table {
+	.ranking-row {
+		&:nth-child(1) {
+			.rep-position {
+				font-size: 18px;
+				color: #D9A441;
+			}
+		}
+
+		&:nth-child(2) {
+			.rep-position {
+				font-size: 18px;
+				color: #A8A8A8;
+			}
+		}
+
+		&:nth-child(3) {
+			.rep-position {
+				font-size: 18px;
+				color: #965A38;
+			}
+		}
+	}
+}
+
+.weekly-title {
+	margin: 10px 5px 5px 5px;
+	font-size: 20px;
 }

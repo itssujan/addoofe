@@ -58,46 +58,43 @@
 				</table>
 			</div>
 		</div>
-
-        <div class="ad-widget-override-2">
-            <rd-widget id="client-addition" class="col-sm-3">
-                <rd-widget-header title="Clients"></rd-widget-header>
-                <table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
-                    <thead class="ad-border ad-none">
-                        <tr class="search-row">
-                            <th class="ad-border ad-no-bottom" colspan="2">
-                                <input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" />
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="header ad-border ad-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i>
-                            </th>
-                            <th class="header ad-border ad-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="studentcourse in displayedStudentCourseCollection">
-                            <td>{{studentcourse.studentID.local.email}}</td>
-                            <input type="hidden" ng-model="studentcourse.inviteurl">
-                            <td>
-                                <a clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-center">
-                                <div st-pagination="" st-items-by-page="6" st-displayed-pages="7"></div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="panel-footer" ng-if="!studentcourses || studentcourses.length == 0">
-                    <a class="button-orange" href="" role="button" ng-click="addClientModal()">Add Client</a>
-                </div>
-            </rd-widget>
-        </div>
+		<div class="ad-widget-override-2">
+			<rd-widget id="client-addition" class="col-sm-3">
+				<rd-widget-header title="Clients"></rd-widget-header>
+				<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
+					<thead class="ad-border ad-none">
+						<tr class="search-row">
+							<th class="ad-border ad-no-bottom" colspan="2">
+								<input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" />
+							</th>
+						</tr>
+						<tr>
+							<th class="header ad-border ad-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i></th>
+							<th class="header ad-border ad-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="studentcourse in displayedStudentCourseCollection">
+							<td>{{studentcourse.studentID.local.email}}</td>
+							<input type="hidden" ng-model="studentcourse.inviteurl">
+							<td>
+								<a clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5" class="text-center">
+								<div st-pagination="" st-items-by-page="6" st-displayed-pages="7"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<div class="panel-footer" ng-if="!studentcourses || studentcourses.length == 0">
+					<a class="ad-button-orange ad-md" href="" role="button" ng-click="addClientModal()">Add Client</a>
+				</div>
+			</rd-widget>
+		</div>
 
     </div>
 

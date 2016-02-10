@@ -23,14 +23,24 @@ angular.module('app')
             }
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-            
               if(!Auth.isLoggedIn) {
                     Auth.user = $cookieStore.get("user");
                     if(Auth.user){
                         Auth.isLoggedIn = true;
                     }
               }  
-              var shouldLogin = toState.data !== undefined && toState.data.requiresLogin  && !Auth.isLoggedIn ;
+
+              console.log("toState.data "+toState.data);
+//               console.log("toState.data.requiresLogin "+toState.data.requiresLogin);
+//               //console.log("toState.data "+toState.data);
+// // && !Auth.isLoggedIn
+//               var shouldLogin = toState.data !== undefined && toState.data.requiresLogin && isServerSessionValid();
+
+//               var isServerSessionValid = function() {
+//                     console.log("here");
+//                     console.log("Logged in "+JSON.stringify(Restangular.one('loggedin').get().$object));
+//                     return true;
+//                 }
 
               // NOT authenticated - wants any private stuff
               if(shouldLogin){
