@@ -49,7 +49,10 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="row in displayedCourseCollection">
-						<td><a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a></td>
+						<td>
+							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a>
+							<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
+						</td>
 						<td>{{row.fullname}}</td>
 					</tr>
 					<tr ng-if="displayedCourseCollection && displayedCourseCollection.length == 0">
@@ -94,7 +97,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- This comment needs to be removed -->
 					<tr ng-repeat="row in displayedStudentCourseCollection">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
@@ -121,6 +123,6 @@
 					</tr>
 				</tfoot>
 			</table>
-			<rd-widget>
+		<rd-widget>
 	</div>
 </div>
