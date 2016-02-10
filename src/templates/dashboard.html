@@ -1,27 +1,28 @@
-<div id="page-top" class="row" ng-controller="DashboardStatsCtrl">
-	
-	<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
-		<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
-	</div>
-	
-	<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
-		<div class="weekly-title">Addoo Weekly Leaderboard</div>
-		<table class="table table-striped weekly-ranking-table">
-			<thead>
-				<tr>
-					<th class="header">Position</th>
-					<th class="header">Name</th>
-					<th class="header">Tracks</th>
-				</tr>
-			</thead>
-			<tr class="ranking-row" ng-repeat="row in topfiveusers">
-				<td class="rep-position"><i class="fa fa-trophy" ng-show="[$index] <= 2"></i></td>
-				<td>{{row.username}}</td>
-				<td>{{row.count}}</td>
-			</tr>
-		</table>
-	</div>
 
+<div id="page-top" class="panel ad-shadow">
+	<div class="row" ng-controller="DashboardStatsCtrl" style="padding:10px 15px;">
+		<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+			<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
+		</div>
+
+		<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+			<div class="weekly-title">Addoo Weekly Leaderboard</div>
+			<table class="table table-striped weekly-ranking-table">
+				<thead>
+					<tr>
+						<th class="header">Position</th>
+						<th class="header">Name</th>
+						<th class="header">Tracks</th>
+					</tr>
+				</thead>
+				<tr class="ranking-row" ng-repeat="row in topfiveusers">
+					<td class="rep-position"><i class="fa fa-trophy" ng-show="[$index] <= 2"></i></td>
+					<td>{{row.username}}</td>
+					<td>{{row.count}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
 
 <div class="row">
@@ -120,6 +121,6 @@
 					</tr>
 				</tfoot>
 			</table>
-		<rd-widget>
+			<rd-widget>
 	</div>
 </div>
