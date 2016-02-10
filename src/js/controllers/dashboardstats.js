@@ -9,6 +9,8 @@ angular.module('app')
              $scope.labels = [];
              $scope.data = [];
              $scope.loading = true;
+             $scope.auth = Auth;
+             $scope.topfiveusers = [];
 
              Restangular.all("weeklytrackstats").getList().then(function (data) {
                 var data1 = [];
@@ -35,7 +37,38 @@ angular.module('app')
 
             // Get Leader board..
             Restangular.all("topweeklyusers").getList().then(function (data) {
-                $scope.topfiveusers = data;
+                console.log("11111111 "+JSON.stringify($scope.topfiveusers));
+                $scope.topfiveusers = $scope.topfiveusers.concat(data);
+                console.log("11111111 "+JSON.stringify($scope.topfiveusers));
+                $scope.topfiveusers.sort(compare);
             });
+
+            Restangular.all("myweeklyscore").getList().then(function (data) {
+                console.log("DDD :"+data[0]);
+                if(data && data[0]){
+                    data[0].username = "You";
+                    console.log("2222222");
+                    $scope.topfiveusers.push(data[0]);
+                } else {
+                    // Hack to temporarily show user tracks as zero
+                    var tmpData = {};
+                    tmpData.username = "You";
+                    tmpData.author = Auth.user._id;
+                    tmpData.count = 0;
+                    $scope.topfiveusers.push(tmpData);
+                }
+                $scope.topfiveusers.sort(compare);
+            });
+
+
+            var compare = function(a,b) {
+              if (a.count < b.count)
+                return 1;
+              else if (a.count > b.count)
+                return -1;
+              else 
+                return 0;
+            }
+
 
         } ]);

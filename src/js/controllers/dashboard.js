@@ -27,15 +27,13 @@ angular.module('app')
         		});
         	} else {
         		Restangular.all("course?product=" + Auth.user.product + "&baseTrack=true&populate=author&author=" + Auth.user._id).getList().then(function (data) {
-        			Restangular.all("course?product=" + Auth.user.product + "&baseTrack=true&populate=author&author=" + Auth.user._id).getList().then(function (data1) {
-        				$scope.courses = data.concat(data1);
+        				$scope.courses = data;
         				$scope.courses.forEach(function (element, index, array) {
         					console.log(element.author);
         					element.fullname = element.author.local.firstname + " " + element.author.local.lastname;
         				});
         				$scope.displayedCourseCollection = [].concat($scope.courses);
                         $scope.loading = false;
-        			});
         		});
         	}
 
