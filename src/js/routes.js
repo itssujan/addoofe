@@ -30,24 +30,24 @@ angular.module('app')
                     }
               }  
 
-              console.log("toState.data "+toState.data);
-//               console.log("toState.data.requiresLogin "+toState.data.requiresLogin);
-//               //console.log("toState.data "+toState.data);
-// // && !Auth.isLoggedIn
-//               var shouldLogin = toState.data !== undefined && toState.data.requiresLogin && isServerSessionValid();
+               function isServerSessionValid() {
+                    Restangular.one('loggedin').get().then(function(data){
+                        if(!data._id || !Auth.isLoggedIn){
+                            console.log("Login required");
+                            $state.go('login');
+                            event.preventDefault();
+                            return;
+                        } else {
+                            console.log("Login not required");
+                        } 
+                    })
+                }
 
-//               var isServerSessionValid = function() {
-//                     console.log("here");
-//                     console.log("Logged in "+JSON.stringify(Restangular.one('loggedin').get().$object));
-//                     return true;
-//                 }
+               var shouldLogin = toState.data !== undefined && toState.data.requiresLogin;
 
               // NOT authenticated - wants any private stuff
               if(shouldLogin){
-                console.log('Please login..')
-                $state.go('login');
-                event.preventDefault();
-                return;
+                isServerSessionValid();
               }         
               
               // authenticated (previously) comming not to root main
