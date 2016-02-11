@@ -1,8 +1,8 @@
 angular.module('app')
     .controller('TrackBuilderCtrl', ['$scope', '$state', 'Restangular', '$rootScope', 'Auth', 'growl',
-        '$stateParams', '$location', '$mixpanel', '$filter', 'ngDialog', 'deviceDetector',
+        '$stateParams', '$location', '$mixpanel', '$filter', 'ngDialog', 'deviceDetector','$uibModal',
         function ($scope, $state, Restangular, $rootScope, Auth, growl, $stateParams, $location,
-            $mixpanel, $filter, ngDialog, deviceDetector) {
+            $mixpanel, $filter, ngDialog, deviceDetector,$uibModal) {
         	console.log('In CCTrackBuilderCtrl');
 
         	var vm = this;
@@ -340,23 +340,33 @@ angular.module('app')
         	// });
 
         	$scope.clickToOpen = function () {
-        		console.log("trying to open video modal");
-        		ngDialog.open({ template: 'templates/videomodal.html', disableAnimation: true, scope: $scope });
+
+                $scope.videoModalInstance = $uibModal.open({
+                  animation: true,
+                  templateUrl: 'templates/videomodal.html',
+                  //controller: 'ModalInstanceCtrl',
+                  scope : $scope,
+                });
         	};
 
         	$scope.closevideoModal = function () {
         		console.log("trying to close video modal");
-        		ngDialog.close({ template: 'templates/videomodal.html', disableAnimation: true, scope: $scope });
+        		$scope.videoModalInstance.dismiss('cancel');
         	};
 
         	$scope.addClientModal = function () {
         		console.log("opening client modal");
-        		ngDialog.open({ template: 'templates/clientmodal.html', disableAnimation: true, scope: $scope });
+                $scope.clientModalInstance = $uibModal.open({
+                  animation: true,
+                  templateUrl: 'templates/clientmodal.html',
+                  //controller: 'ModalInstanceCtrl',
+                  scope : $scope,
+                });
         	};
 
         	$scope.closeClientModal = function () {
         		console.log("closing client modal");
-        		ngDialog.close({ template: 'templates/clientmodal.html', disableAnimation: true });
+        		$scope.clientModalInstance.dismiss('cancel');
         	};
 
         	$scope.createDuplicateTrack = function () {
@@ -367,5 +377,18 @@ angular.module('app')
         			growl.success('Duplicate track created successfully');
         		});
         	};
+
+          $rootScope.$on('ngDialog.opened', function (event, $dialog) {
+            console.log('dialog opened ', $dialog.dialog)
+          });
+
+          $rootScope.$on('ngDialog.closed', function (event, $dialog) {
+            console.log('dialog closed ', $dialog.dialog)
+          });
+
+            $rootScope.$on('ngDialog.closing', function (event, $dialog) {
+                console.log('closing');
+            });
+
 
         }]);

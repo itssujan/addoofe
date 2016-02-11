@@ -119,7 +119,15 @@ app.config(
         $intercomProvider.asyncLoading(true)
 
         //modal window
-        ngDialogProvider.setForceHtmlReload(true);
+        ngDialogProvider.setDefaults({
+            className: 'ngdialog-theme-plain',
+            plain: false,
+            showClose: true,
+            closeByDocument: false,
+            closeByEscape: true
+        });
+
+        //ngDialogProvider.setForceHtmlReload(true);
         //ngDialogProvider.setForceBodyReload(true);
 
     }

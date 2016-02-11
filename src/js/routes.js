@@ -23,21 +23,31 @@ angular.module('app')
             }
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-            
               if(!Auth.isLoggedIn) {
                     Auth.user = $cookieStore.get("user");
                     if(Auth.user){
                         Auth.isLoggedIn = true;
                     }
               }  
-              var shouldLogin = toState.data !== undefined && toState.data.requiresLogin  && !Auth.isLoggedIn ;
+
+               function isServerSessionValid() {
+                    Restangular.one('loggedin').get().then(function(data){
+                        if(!data._id || !Auth.isLoggedIn){
+                            console.log("Login required");
+                            $state.go('login');
+                            event.preventDefault();
+                            return;
+                        } else {
+                            console.log("Login not required");
+                        } 
+                    })
+                }
+
+               var shouldLogin = toState.data !== undefined && toState.data.requiresLogin;
 
               // NOT authenticated - wants any private stuff
               if(shouldLogin){
-                console.log('Please login..')
-                $state.go('login');
-                event.preventDefault();
-                return;
+                isServerSessionValid();
               }         
               
               // authenticated (previously) comming not to root main

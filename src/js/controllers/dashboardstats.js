@@ -37,17 +37,13 @@ angular.module('app')
 
             // Get Leader board..
             Restangular.all("topweeklyusers").getList().then(function (data) {
-                console.log("11111111 "+JSON.stringify($scope.topfiveusers));
                 $scope.topfiveusers = $scope.topfiveusers.concat(data);
-                console.log("11111111 "+JSON.stringify($scope.topfiveusers));
                 $scope.topfiveusers.sort(compare);
             });
 
             Restangular.all("myweeklyscore").getList().then(function (data) {
-                console.log("DDD :"+data[0]);
                 if(data && data[0]){
                     data[0].username = "You";
-                    console.log("2222222");
                     $scope.topfiveusers.push(data[0]);
                 } else {
                     // Hack to temporarily show user tracks as zero
