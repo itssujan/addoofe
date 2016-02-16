@@ -128,14 +128,22 @@ angular.module('app')
                   });
         	}
 
-        	$scope.openDeleteDecisionDialogue = function () {
-        		CustomModalService.openCustomModal('sm', 'title', 'message');
-        	};
 
-        	$scope.setCourseToInactive = function(course) {
-        		course.isActive = false;
-        		course.put();
+        	$scope.setCourseToInactive = function() {
+        		$scope.course.isActive = false;
+        		$scope.course.put();
         	}
+
+        	$scope.openDeleteDecisionDialogue = function () {
+        		var options = {
+        			title		: "Wait! Are You Sure?",
+        			message		: "This action cannot be undone. Are you sure you want to delete this track?",
+        			confirmText	: "Yes",
+        			cancelText	: "Cancel"
+        		};
+
+        		CustomModalService.openCustomModal('sm', options, $scope.setCourseToInactive);
+        	};
 
         	$scope.showMessage = function () {
         		console.log("clip-click works!");

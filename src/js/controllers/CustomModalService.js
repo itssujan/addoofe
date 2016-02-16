@@ -1,7 +1,6 @@
 ﻿angular.module('app').service('CustomModalService', ['$uibModal', function ($uibModal) {
 
-	this.openCustomModal = function (size, title, message, action) {
-		var actionToPerformOnConfirm = action;
+	this.openCustomModal = function (size, options, action) {
 
 		var modalInstance = $uibModal.open({
 			templateUrl: 'templates/CustomModal.html',
@@ -10,13 +9,13 @@
 			size: size,
 			resolve: {
 				content: function () {
-					return "jesus";
+					return options;
 				}
 			}
 		});
 
-		modalInstance.result.then(function (actionToPerformOnConfirm) {
-			console.log('something happened');
+		modalInstance.result.then(function () {
+			if (action) action();
 		}.bind(this));
 	};
 }]);

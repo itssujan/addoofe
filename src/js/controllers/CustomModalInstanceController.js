@@ -1,14 +1,17 @@
-﻿angular.module('app').controller('CustomModalInstanceController', [function ($uibModalInstance, content) {
+﻿angular.module('app').controller('CustomModalInstanceController', ['$scope', '$uibModalInstance', 'content', function ($scope, $uibModalInstance, content) {
 
 	var vm = this;
 
-	console.log("run");
+	$scope.title = content.title;
+	$scope.message = content.message;
+	$scope.confirmText = content.confirmText;
+	$scope.cancelText = content.cancelText;
 
-	//vm.title = content.title;
-	//vm.message = content.message;
-	console.log(JSON.stringify(content));
+	$scope.confirmAction = function () {
+		$uibModalInstance.close();
+	};
 
-	//$scope.cancelAction = function () {
-	//	$uibModalInstance.dismiss('cancel');
-	//};
+	$scope.cancelAction = function () {
+		$uibModalInstance.dismiss('cancel');
+	};
 }]);
