@@ -1,27 +1,20 @@
 angular.module('app')
     .controller('TrackBuilderCtrl', ['$scope', '$state', 'Restangular', '$rootScope', 'Auth', 'growl',
-        '$stateParams', '$location', '$mixpanel', '$filter', 'ngDialog', 'deviceDetector','$uibModal',
+        '$stateParams', '$location', '$mixpanel', '$filter', 'ngDialog', 'deviceDetector', '$uibModal', 'CustomModalService',
         function ($scope, $state, Restangular, $rootScope, Auth, growl, $stateParams, $location,
-            $mixpanel, $filter, ngDialog, deviceDetector,$uibModal) {
+            $mixpanel, $filter, ngDialog, deviceDetector, $uibModal, CustomModalService) {
         	console.log('In CCTrackBuilderCtrl');
 
         	var vm = this;
         	vm.data = deviceDetector;
         	var browserVersion = vm.data.browser_version;
-            $scope.loading = true;
-
-        	//var browserMajorVersion = Number(browserVersion.substring(0,browserVersion.indexOf('.')));
-
-
         	console.log("Browser : " + vm.data.browser);
-        	//console.log("Browser Version : "+vm.data.browser_version+" , "+browserMajorVersion);
-        	// console.log("Brow :"+ browserMajorVersion*1 + 43*1);
 
+        	$scope.loading = true;
         	$scope.course = {};
         	$scope.video = {};
         	$scope.courseID = "";
         	$scope.showtrackbuilder = false;
-
         	$scope.auth = Auth;
         	$scope.user = Auth.user;
         	$scope.courseID = $stateParams.courseID;
@@ -46,7 +39,6 @@ angular.module('app')
         			$mixpanel.identify(Auth.user._id);
         			$mixpanel.track('Deleted Track Content');
         			growl.success('Tracked deleted..');
-        			console.log("Deleted....");
         		});
         	}
 
@@ -58,7 +50,6 @@ angular.module('app')
         			$scope.studentcourses.forEach(function (element, index, array) {
         				element.inviteurl = "http://" + $location.host() + "/index.html#/client/dashboard/" + element._id;
         			});
-
         		});
         	}
 
@@ -84,8 +75,8 @@ angular.module('app')
         				growl.success($stateParams.message);
         			}
 
-        			console.log("Queried track details :" + JSON.stringify(data));
         			$scope.course = data;
+
         			if (!$scope.course.baseTrack) {
         				$scope.course.baseTrack = false;
         			}
@@ -93,7 +84,7 @@ angular.module('app')
         				$scope.course.shareWithTeam = false;
         			}
         		});
-        		console.log("Updating client list");
+
         		$scope.updateClientList();
         		$scope.showtrackbuilder = true;
                 $scope.loading = false;
@@ -137,6 +128,15 @@ angular.module('app')
                   });
         	}
 
+        	$scope.openDeleteDecisionDialogue = function () {
+        		CustomModalService.openCustomModal('sm', 'title', 'message');
+        	};
+
+        	$scope.setCourseToInactive = function(course) {
+        		course.isActive = false;
+        		course.put();
+        	}
+
         	$scope.showMessage = function () {
         		console.log("clip-click works!");
         		$mixpanel.track('Client Copy URL Clicked');
@@ -146,7 +146,6 @@ angular.module('app')
         	$scope.fail = function (err) {
         		growl.error(err);
         	}
-
 
         	$scope.inviteClient = function () {
         		$scope.student.role = 'client';
@@ -177,7 +176,6 @@ angular.module('app')
                         	$mixpanel.track('Invite Client');
                         	$scope.closeClientModal();
                         });
-
         			}
         		});
         	}
@@ -330,42 +328,27 @@ angular.module('app')
         		return !keyValue;
         	};
 
-        	// var videoQuery = "video?product="+Auth.user.product;
-        	// if(Auth.user.product == 'sharefile' || Auth.user.product == 'rightsignature' ){
-        	//     videoQuery = "video"
-        	// }
-        	// Restangular.all(videoQuery).getList().then(function(data){
-        	//     $scope.videolessons = data;
-        	//     $scope.displayedvideolessons = [].concat($scope.videolessons);
-        	// });
-
         	$scope.clickToOpen = function () {
-
                 $scope.videoModalInstance = $uibModal.open({
                   animation: true,
                   templateUrl: 'templates/videomodal.html',
-                  //controller: 'ModalInstanceCtrl',
                   scope : $scope,
                 });
         	};
 
         	$scope.closevideoModal = function () {
-        		console.log("trying to close video modal");
         		$scope.videoModalInstance.dismiss('cancel');
         	};
 
         	$scope.addClientModal = function () {
-        		console.log("opening client modal");
                 $scope.clientModalInstance = $uibModal.open({
                   animation: true,
                   templateUrl: 'templates/clientmodal.html',
-                  //controller: 'ModalInstanceCtrl',
                   scope : $scope,
                 });
         	};
 
         	$scope.closeClientModal = function () {
-        		console.log("closing client modal");
         		$scope.clientModalInstance.dismiss('cancel');
         	};
 
@@ -386,9 +369,7 @@ angular.module('app')
             console.log('dialog closed ', $dialog.dialog)
           });
 
-            $rootScope.$on('ngDialog.closing', function (event, $dialog) {
-                console.log('closing');
-            });
-
-
-        }]);
+        $rootScope.$on('ngDialog.closing', function (event, $dialog) {
+            console.log('closing');
+        });
+    }]);

@@ -30,12 +30,14 @@
 			<rd-widget-header title="Base Tracks">
 				<a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
 			</rd-widget-header>
+
 			<div ng-show="loading" class="loading">
 				<div class="spinner">
 					<div class="dot1"></div>
 					<div class="dot2"></div>
 				</div>
 			</div>
+
 			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses" ng-show="!loading">
 				<thead>
 					<tr class="search-row">
@@ -47,17 +49,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="row in displayedCourseCollection">
+					<tr ng-repeat="row in displayedCourseCollection" ng-show="row.isActive === true">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a>
-							<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
 						</td>
 						<td>{{row.fullname}}</td>
 					</tr>
 					<tr ng-if="displayedCourseCollection && displayedCourseCollection.length == 0">
 						<td colspan="2" align="center">You can mark a track as base track during creation of a track or click on any of the active tracks to mark it as a base track.</td>
 					</tr>
-
 				</tbody>
 				<tfoot>
 					<tr>
@@ -67,6 +67,7 @@
 					</tr>
 				</tfoot>
 			</table>
+
 		</rd-widget>
 	</div>
 </div>
