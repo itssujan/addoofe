@@ -136,10 +136,12 @@ angular.module('app')
 
         	$scope.openDeleteDecisionDialogue = function () {
         		var options = {
-        			title		: "Wait! Are You Sure?",
-        			message		: "This action cannot be undone. Are you sure you want to delete this track?",
-        			confirmText	: "Yes",
-        			cancelText	: "Cancel"
+        			title			: "Confirm Delete",
+        			message			: "Are you sure you want to delete this track? This action cannot be undone.",
+        			note			: "Deleting this track will not affect customers who already have this track as a part of their training.",
+					confirmText		: "Yes",
+        			cancelText		: "Cancel",
+        			uiSref			: "customer-manager.dashboard"
         		};
 
         		CustomModalService.openCustomModal('sm', options, $scope.setCourseToInactive);
