@@ -355,36 +355,27 @@ angular.module('app')
 
         	$scope.openVideoPreviewModal = function (video) {
 
-        		console.log(JSON.stringify(video));
-
         		if (!video.url) {
         			Restangular.one("video", video.videoID).get().then(function (data) {
-        				video = data;
-        				$scope.videoPreviewModalInstance = $uibModal.open({
-        					animation: true,
-        					templateUrl: 'templates/modals/VideoPreviewModal.html',
-        					controller: 'VideoPreviewModalController',
-        					scope: $scope,
-        					resolve: {
-        						content: function () {
-        							return { video: video };
-        						}
-        					}
-        				});
+        				$scope.openTheModal(data);
         			});
         		} else {
-        			$scope.videoPreviewModalInstance = $uibModal.open({
-        				animation	: true,
-        				templateUrl	: 'templates/modals/VideoPreviewModal.html',
-						controller	: 'VideoPreviewModalController',
-        				scope		: $scope,
-        				resolve		: {
-        					content	: function() {
-        						return { video : video };
-        					}
-        				}
-        			});
+        			$scope.openTheModal(video);
         		}
+        	}
+
+        	$scope.openTheModal = function (video) {
+        		$scope.videoPreviewModalInstance = $uibModal.open({
+        			animation: true,
+        			templateUrl: 'templates/modals/VideoPreviewModal.html',
+        			controller: 'VideoPreviewModalController',
+        			scope: $scope,
+        			resolve: {
+        				content: function () {
+        					return { video: video };
+        				}
+        			}
+        		});
         	}
 
         	$scope.openClientModal = function () {
