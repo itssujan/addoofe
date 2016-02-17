@@ -1,9 +1,20 @@
-﻿.ad-button {
+﻿@sm-width: 40px;
+
+.ad-button-container {
+
+	&.ad-sm {
+		width: @sm-width;
+		padding: 8px 8px 8px 0;
+	}
+}
+
+.ad-button {
 	min-height: 40px;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 4px;
 	border: none;
+	line-height: 1;
 
 	&.ad-orange {
 		background-color: #F38F29;
@@ -46,7 +57,7 @@
 	}
 
 	&.ad-sm {
-		min-width: 40px;
+		min-width: @sm-width;
 	}
 
 	&.ad-md {

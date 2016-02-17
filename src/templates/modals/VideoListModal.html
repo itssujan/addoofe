@@ -1,4 +1,4 @@
-<div id="video-modal">
+<div id="video-list-modal">
 	<div class="modal-header" ng-class="priorityStyle">
 		<span class="modal-title">Add Videos</span>
 	</div>
@@ -6,18 +6,19 @@
 		<table class="table table-striped table-bordered" st-table="displayedvideolessons" st-safe-src="videolessons">
 			<thead>
 				<tr class="search-row">
-					<th colspan="4"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
+					<th colspan="5"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
 				</tr>
 				<tr>
-					<th />
+					<th/>
 					<th class="header" st-sort="title">Title<i class="fa fa-sort"></i></th>
 					<th class="header" st-sort="product" st-sort-default="true">Product<i class="fa fa-sort"></i></th>
 					<th class="header" st-sort="createdOn">Date<i class="fa fa-sort"></i></th>
+					<th/>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="video in displayedvideolessons">
-					<td class="video-modal-checkbox" title="'Select'">
+					<td class="video-list-modal-checkbox" title="'Select'">
 						<input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addVideoToQueue(video.selected,video)">
 					</td>
 					<td title="'Name'" filter="{title: 'text'}" sortable="'title'">
@@ -28,6 +29,9 @@
 					</td>
 					<td title="'Uploaded on'" sortable="'createdOn'">
 						<span am-time-ago="video.createdOn"></span>
+					</td>
+					<td>
+						<button class="ad-button ad-blue" ng-click="openVideoPreviewModal(video)"><span class="glyphicon glyphicon-play"></span></button>
 					</td>
 				</tr>
 			</tbody>

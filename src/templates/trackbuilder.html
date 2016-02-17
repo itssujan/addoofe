@@ -10,7 +10,7 @@
                 <p>Add Video</p>
             </div>
             <div class="link-button">
-                <a href="" ng-click="clickToOpen()"><i class="fa fa-fw fa-plus"></i></a>
+                <a href="" ng-click="openVideoListModal()"><i class="fa fa-fw fa-plus"></i></a>
             </div>
         </div>
         <div class="content-addition col-sm-2" ng-show="(user._id == course.author || course.author._id)">
@@ -50,13 +50,12 @@
 					<tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
 						<tr ng-repeat="content in course.contents" ui-tree-node>
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
-							<td class="document-type-img">
-								<img ng-if="content.type != 'document'" src="img/icons/video-inline.jpg" alt="people" class="img-square width-30" />
-								<img ng-if="content.type == 'document'" src="img/icons/document.jpg" alt="people" class="img-square width-30" />
-							</td>
 							<td>{{content.title}}</td>
-							<td ng-show="user._id == course.author || user._id == course.author._id">
-								<button class="btn btn-danger btn-xs" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
+							<td class="ad-button-container ad-sm">
+								<button class="ad-button ad-blue ad-sm ad-float-right" ng-click="previewTrack(content)"><span class="glyphicon glyphicon-play"></span></button>
+							</td>
+							<td class="ad-button-container ad-sm" ng-show="user._id == course.author || user._id == course.author._id">
+								<button class="ad-button ad-red ad-sm ad-float-right" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
 							</td>
 						</tr>
 					</tbody>

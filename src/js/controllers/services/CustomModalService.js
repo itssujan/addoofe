@@ -3,7 +3,7 @@
 	this.openCustomModal = function (size, options, action) {
 
 		var modalInstance = $uibModal.open({
-			templateUrl: 'templates/CustomModal.html',
+			templateUrl: 'templates/modals/CustomModal.html',
 			controller: 'CustomModalInstanceController',
 			controllerAs: 'vm',
 			size: size,

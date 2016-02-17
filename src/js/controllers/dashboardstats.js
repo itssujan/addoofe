@@ -65,6 +65,4 @@ angular.module('app')
               else 
                 return 0;
             }
-
-
         } ]);
