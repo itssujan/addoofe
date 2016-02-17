@@ -24,7 +24,6 @@
 
 		$scope.onPlayerReady = function (API) {
 			$scope.API = API;
-			console.log($scope.video.url);
 			$scope.setVideo({ src: $scope.video.url, type: "video/mp4" });
 		};
 

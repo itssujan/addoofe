@@ -11,5 +11,9 @@
 		$scope.confirmAction = function () {
 			$uibModalInstance.close();
 		};
+
+		$scope.cancelAction = function () {
+			$uibModalInstance.dismiss('cancel');
+		};
 	}
 ]);

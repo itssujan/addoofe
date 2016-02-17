@@ -31,7 +31,7 @@
 						<span am-time-ago="video.createdOn"></span>
 					</td>
 					<td>
-						<button class="ad-button ad-blue" ng-click="openVideoPreviewModal(video)"><span class="glyphicon glyphicon-play"></span></button>
+						<button class="ad-button ad-blue" ng-click="openVideoPreviewModal(video)" style="min-height:0;"><span class="glyphicon glyphicon-play"></span></button>
 					</td>
 				</tr>
 			</tbody>
@@ -44,7 +44,7 @@
 			</tfoot>
 		</table>
 	</div>
-	<div class="modal-footer">
-		<button class="btn btn-lg btn-warning btn-block" ng-click="addVideoToTrack('video')">Add to Track</button>
+	<div class="modal-footer" style="padding-top:0;">
+		<button class="ad-button ad-orange ad-float-right" ng-click="addVideoToTrack('video')">Add to Track</button>
 	</div>
 </div>

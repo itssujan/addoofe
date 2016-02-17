@@ -52,7 +52,7 @@
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
 							<td>{{content.title}}</td>
 							<td class="ad-button-container ad-sm">
-								<button class="ad-button ad-blue ad-sm ad-float-right" ng-click="previewTrack(content)"><span class="glyphicon glyphicon-play"></span></button>
+								<button class="ad-button ad-blue ad-sm ad-float-right" ng-click="openVideoPreviewModal(content)"><span class="glyphicon glyphicon-play"></span></button>
 							</td>
 							<td class="ad-button-container ad-sm" ng-show="user._id == course.author || user._id == course.author._id">
 								<button class="ad-button ad-red ad-sm ad-float-right" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
