@@ -1,8 +1,8 @@
 
 <div id="page-top" class="panel ad-shadow">
 	<div class="row" ng-controller="DashboardStatsCtrl" style="padding:10px 15px;">
-		<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
-			<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
+		<div id="team-tracks-chart" class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+			<canvas id="line" class="chart chart-line" style="padding-right:20px;" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
 		</div>
 		<div class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
 			<div class="weekly-title">Addoo Weekly Leaderboard</div>
@@ -30,12 +30,14 @@
 			<rd-widget-header title="Base Tracks">
 				<a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
 			</rd-widget-header>
+
 			<div ng-show="loading" class="loading">
 				<div class="spinner">
 					<div class="dot1"></div>
 					<div class="dot2"></div>
 				</div>
 			</div>
+
 			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses" ng-show="!loading">
 				<thead>
 					<tr class="search-row">
@@ -47,14 +49,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="row in displayedCourseCollection">
-						<td><a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a></td>
+					<tr ng-repeat="row in displayedCourseCollection" ng-show="row.isActive === true">
+						<td>
+							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a>
+						</td>
 						<td>{{row.fullname}}</td>
 					</tr>
 					<tr ng-if="displayedCourseCollection && displayedCourseCollection.length == 0">
 						<td colspan="2" align="center">You can mark a track as base track during creation of a track or click on any of the active tracks to mark it as a base track.</td>
 					</tr>
-
 				</tbody>
 				<tfoot>
 					<tr>
@@ -64,6 +67,7 @@
 					</tr>
 				</tfoot>
 			</table>
+
 		</rd-widget>
 	</div>
 </div>
@@ -93,7 +97,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- This comment needs to be removed -->
 					<tr ng-repeat="row in displayedStudentCourseCollection">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
@@ -120,6 +123,6 @@
 					</tr>
 				</tfoot>
 			</table>
-			<rd-widget>
+		<rd-widget>
 	</div>
 </div>

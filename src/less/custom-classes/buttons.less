@@ -1,36 +1,55 @@
-﻿.ad-button-container {
-	display: inline-block;
-}
-
-.ad-button-orange {
-	min-width: 60px;
-	height: 25px;
-	text-decoration: none !important;
+﻿.ad-button {
+	min-height: 40px;
 	font-size: 18px;
 	font-weight: bold;
-	color: #FFFFFF;
 	border-radius: 4px;
 	border: none;
-	background-color: #F38F29;
+
+	&.ad-orange {
+		background-color: #F38F29;
+		color: #FFFFFF;
+		
+		&:hover {
+			cursor: pointer;
+			background-color: #FDB265;
+		}
+	}
+
+	&.ad-red {
+		background-color: #d9534f;
+		color: #FFFFFF;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #ac2925;
+		}
+	}
+
+	&.ad-blue {
+			background-color: #337ab7;
+			color: #FFFFFF;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #286090;
+		}
+	}
+
+	&.ad-color-secondary {
+		background-color: #5BAEF4;
+			color: #FFFFFF;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #23527C;
+		}
+	}
 
 	&.ad-sm {
-		padding: 4px;
+		min-width: 40px;
 	}
 
 	&.ad-md {
-		padding: 8px;
-	}
-	
-	&.ad-lg {
-		padding: 25px 40px;
-		font-size: 25px;
-		box-shadow: 0 1px 1px #BEBEBE;
-	}
-
-	&:hover {
-		cursor: pointer;
-		background-color: #FDB265;
-		text-decoration: none;	// override
-		color: #FFFFFF;			// override
+		min-width: 60px;
 	}
 }

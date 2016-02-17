@@ -1,0 +1,11 @@
+﻿<div class="modal-header">
+	<h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body">
+	<div id="body">{{message}}</div>
+	<div id="note" style="margin-top:10px; font-size:10px; color:#BEBEBE;">{{note}}</div>
+</div>
+<div class="modal-footer">
+	<button class="ad-button ad-blue" type="button" ui-sref="{{uiSref}}" ng-click="confirmAction()">{{confirmText}}</button>
+	<button class="ad-button ad-blue" type="button" ng-click="cancelAction()">{{cancelText}}</button>
+</div>
