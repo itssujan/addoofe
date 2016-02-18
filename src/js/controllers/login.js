@@ -66,7 +66,9 @@ angular.module('app')
 					if(data.user.role == "superadmin") {
 						$state.go('customer-manager.product-selection');
 					} else if(data.user.role == "customer-onboarding-specialist" 
-						|| data.user.role == "customer-manager" || data.user.role == "saleslead"){
+						|| data.user.role == "customer-manager"){
+						$state.go('customer-care.dashboard');
+					} else if(data.user.role == "saleslead"){
 						$state.go('customer-manager.dashboard');
 					} else if(data.user.role == "sales"){
 						if(!data.user.manager)

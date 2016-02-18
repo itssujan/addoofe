@@ -13,6 +13,7 @@ angular.module('app')
               console.log("Logging out user");
               Restangular.all('logout').post();
               invalidateSession();
+              $intercom.shutdown();
               $location.url('login');
             };
 
@@ -119,7 +120,7 @@ angular.module('app')
                 .state('customer-manager.dashboard', {
                     url: '/dashboard',
                     templateUrl: 'templates/dashboard.html',
-                    ctrl: "ccdashboard",
+                    ctrl: "dashboard",
                     controller: "DashboardCtrl",
                     data: {requiresLogin: true}
                 }).state('customer-manager.trackbuilder', {
@@ -176,6 +177,24 @@ angular.module('app')
                         managerRequired : null
                     },
 
+                });
+
+                $stateProvider
+                .state('customer-care', {
+                    abstract: true,
+                    url: '/customer-care',
+                    templateUrl: 'templates/layout.html',
+                    access: {
+                        requiresLogin: true,
+                        // requiredPermissions:  ['Instructor']
+                    }
+                })
+                .state('customer-care.dashboard', {
+                    url: '/dashboard',
+                    templateUrl: 'templates/cc/dashboard.html',
+                    ctrl: "ccdashboard",
+                    controller: "CCDashboardCtrl",
+                    data: {requiresLogin: true}
                 });
 
                 $stateProvider

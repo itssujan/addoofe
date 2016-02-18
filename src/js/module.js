@@ -108,7 +108,7 @@ app.config(
 
             // configure Idle settings
         IdleProvider.idle(28800); // in seconds  ; 28800 = 8 hours
-        IdleProvider.timeout(60); // in seconds
+        IdleProvider.timeout(28800); // in seconds
         KeepaliveProvider.interval(60); // in seconds
 
         //upload template
