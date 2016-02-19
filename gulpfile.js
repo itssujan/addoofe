@@ -47,7 +47,7 @@ gulp.task('copy-bower_fonts', function () {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'custom-swf']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'custom-swf','custom-css']);
 
 gulp.task('custom-images', function () {
 	return gulp.src(paths.images)
@@ -87,6 +87,12 @@ gulp.task('custom-swf', function () {
         .pipe(gulp.dest('dist/swf'));
 });
 
+gulp.task('custom-css', function () {
+	return gulp.src("src/components/videogular-themes-default/videogular.css")
+        .pipe(gulp.dest('dist/css'));
+});
+
+
 /**
  * Watch custom files
  */
@@ -97,6 +103,7 @@ gulp.task('watch', function () {
 	gulp.watch([paths.templates], ['custom-templates']);
 	gulp.watch([paths.index], ['usemin']);
 	gulp.watch([paths.swf], ['custom-swf']);
+	gulp.watch(["src/components/videogular-themes-default/videogular.css"], ['custom-css']);
 });
 
 /**
