@@ -1,51 +1,42 @@
-<!-- <span us-spinner></span> -->
-
-<div class="row header full-width">
-	<div class="col-xs-12">
-		<div class="meta">
-			<div class="page">
-				<a ui-sref="customer-manager.dashboard"><img src="img/addoo-logo.png"></a>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-controller="MasterCtrl">
 
 	<div id="sidebar-wrapper">
-		<ul class="sidebar">
-			<li class="sidebar-main" id="collapser">
-				<a ng-click="toggleSidebar()"><span class="menu-icon glyphicon glyphicon-transfer"></span></a>
-			</li>
-		</ul>
+		<div id="sidebar-header">
+			<div id="collapser">
+				<i ng-click="toggleSidebar()" class="menu-icon glyphicon glyphicon-transfer"></i>
+			</div>
+			<div id="addoo-header">
+				<a ui-sref="customer-manager.dashboard"><img src="img/addoo-logo.png"></a>
+			</div>
+		</div>
 		<div id="profile">
 			<img ng-if="user.local.avatarurl" src="{{user.local.avatarurl}}" class="img-circle">
 			<img ng-if="!user.local.avatarurl" src="img/avatar.jpg" class="img-circle">
 			<div>{{user.local.firstname}}</div>
 		</div>
-		<ul class="sidebar" id="action-list">
-			<li class="sidebar-list" id="top">
-				<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
-			</li>
-			<li class="sidebar-list" id="top" ng-show="user.role == 'superadmin'">
-				<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
-			</li>
-			<li class="sidebar-list">
-				<a ui-sref="customer-manager.profile">Manage Profile <span class="menu-icon fa fa-user"></span></a>
-			</li>
-			<li class="sidebar-list" ng-show="user.role=='superadmin'">
-				<a ui-sref="customer-manager.announcements">Announcements <span class="menu-icon glyphicon glyphicon-volume-up"></span></a>
-			</li>
-			<li class="sidebar-list" id="bottom">
-				<a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>
-			</li>
-		</ul>
+		<div class="list-container">
+			<ul class="sidebar-list" id="action-list">
+				<li class="sidebar-list-item" id="top">
+					<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
+				</li>
+				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
+					<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
+				</li>
+				<li class="sidebar-list-item">
+					<a ui-sref="customer-manager.profile">Manage Profile <span class="menu-icon fa fa-user"></span></a>
+				</li>
+				<li class="sidebar-list-item" ng-show="user.role=='superadmin'">
+					<a ui-sref="customer-manager.announcements">Announcements <span class="menu-icon glyphicon glyphicon-volume-up"></span></a>
+				</li>
+				<li class="sidebar-list-item" id="bottom">
+					<a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>
+				</li>
+			</ul>
+		</div>
 	</div>
 
-	<div id="content-wrapper">
-		<div class="page-content">
-			<div ui-view></div>
-		</div>
+	<div class="page-content">
+		<div ui-view></div>
 	</div>
 </div>
 

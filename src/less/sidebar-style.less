@@ -1,58 +1,127 @@
-﻿div#sidebar-wrapper {
-	top: 100px;
+﻿#sidebar-wrapper {
+	top: 0;
 	background-color: #424242;
-}
 
-div#sidebar-wrapper #profile {
-	width: 250px;
-	height: 140px;
-	padding: 0 30px;
-	font-size: 30px;
-	color: #FFFFFF;
-}
+	#profile {
+		width: 250px;
+		height: 140px;
+		padding: 0 30px;
+		font-size: 30px;
+		color: #FFFFFF;
+		display: block;
+		clear: left;
 
-div#sidebar-wrapper #profile img,
-div#sidebar-wrapper #profile div {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-div#sidebar-wrapper #profile img {
-	height: 100px;
-	margin-bottom: 10px;
-}
-
-div#sidebar-wrapper #profile div {
-	text-align: center;
-}
-
-ul {
-
-	&#action-list {
-		margin-top: 15px;
-	}
-
-	&.sidebar {
-
-		.sidebar-main span {
-			color: #6D7070;
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			height: 100px;
+			margin-bottom: 10px;
 		}
 
-		.sidebar-list {
+		div {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	}
+}
 
-			a {
-				font-weight: bold;
-				font-size: 18px;
-				color: #6D7070;
-				padding: 7px 0px;
+#collapser {
+	a {
+		height: 25px;
+	}
+}
 
-				&:hover {
-					border-left: 3px solid #F38F29;
-					color: #FFFFFF;
-					background-color: #353535;
+#sidebar-header {
+	background-color: black;
+	margin-bottom: 20px;
+	display: block;
+	clear: both;
+
+	#addoo-header {
+		width: 200px;
+
+		a {
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	a {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	span {
+		color: #6D7070;
+	}
+
+	.menu-icon {
+		float: right;
+		font-size: 20px;
+		padding-right: 28px;
+		top: 28px;
+	}
+}
+
+.list-container {
+	display: block;
+	clear: both;
+}
+
+
+#action-list {
+	margin-top: 15px;
+}
+
+.sidebar-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	li {
+		a {
+			color: #FFFFFF;
+			display: block;
+			float: left;
+			text-decoration: none;
+			width: 250px;
+		}
+	}
+
+	.sidebar-list-item {
+		height: 40px;
+
+		a {
+			text-indent: 25px;
+			line-height: 40px;
+			font-weight: bold;
+			font-size: 18px;
+			color: #6D7070;
+			padding: 7px 0px;
+
+			&:hover {
+				border-left: 3px solid #F38F29;
+				color: #FFFFFF;
+				background-color: #353535;
+				text-indent: 22px;
+
+				.menu-icon {
+					text-indent: 25px;
 				}
 			}
+		}
+
+		.menu-icon {
+			float: right;
+			font-size: 20px;
+			padding-right: 29px;
+			line-height: 40px;
+			width: 70px;
 		}
 	}
 }
