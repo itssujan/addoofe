@@ -57,7 +57,7 @@ app.config(
                     intercom_id : "jqrpchg1"
                 },
 				production: {
-					nodeserverurl: 'http://node.addoo.io',
+					nodeserverurl: 'https://node.addoo.io', 
 					mixpaneltoken: 'fdf3386dbfacfd13d6e4a580d0b5b9ae',
                     wootricAccountID: 'NPS-ecd3e1b3',
                     wootric_survey_immediately : false,
