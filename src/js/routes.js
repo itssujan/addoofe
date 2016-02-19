@@ -1,11 +1,21 @@
 angular.module('app')
     .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl',
-        'Idle','$intercom','$cookieStore',
-        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, growl,Idle,$intercom,$cookieStore) {
+        'Idle','$intercom','$cookieStore','$window','envService',
+        function ($rootScope, $state, $stateParams,$location, Auth,Restangular, 
+            growl, Idle, $intercom, $cookieStore, $window, envService) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
             Idle.watch();
+
+            //Force HTTPS
+            var forceSSL = function () {
+                if ($location.protocol() !== 'https' && envService.environment != 'development') {
+                    $window.location.href = $location.absUrl().replace('http:', 'https:');
+                }
+            };
+
+            forceSSL();
 
             // Logout function is available in any pages
             $rootScope.logout = function(){
