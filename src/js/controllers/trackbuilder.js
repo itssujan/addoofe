@@ -386,6 +386,10 @@ angular.module('app')
                 });
         	};
 
+        	$scope.closeClientModal = function () {
+        		$scope.clientModalInstance.dismiss('cancel');
+        	};
+
         	$scope.createDuplicateTrack = function () {
         		var duplicateCourse = $scope.course;
         		delete duplicateCourse._id;
