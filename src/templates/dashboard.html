@@ -49,7 +49,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="row in displayedCourseCollection" ng-show="row.isActive === true">
+					<tr ng-repeat="row in displayedCourseCollection">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a>
 						</td>

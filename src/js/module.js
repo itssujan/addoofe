@@ -77,12 +77,7 @@ app.config(
         growlProvider.globalDisableCountDown(true);
         growlProvider.globalPosition('top-center');
 
-        //console.log("In AppController "+nodeserverurl);
-        //console.log("process.env.nodeserverurl :"+process.env.ADDOO_NODE_URL);
-
         // setting base url to nodejs server
-        console.log(envServiceProvider);
-        console.log('Node URL :'+envServiceProvider.read('nodeserverurl'));
         RestangularProvider.setBaseUrl(envServiceProvider.read('nodeserverurl'));
         RestangularProvider.setRestangularFields({
           id: "_id"
@@ -134,17 +129,13 @@ app.config(
 ]);
 
 app.factory('Auth',function() {
-     console.log("")
      return { isLoggedIn : false}; 
 }).factory('UserRestangular','Restangular', function(Restangular) {
-    console.log("Test");
-    console.log(Restangular);
   return Restangular.withConfig(function(RestangularConfigurer){
     RestangularConfigurer.setRestangularFields({
       id: '_id'
     });
   });
 }).factory('User','UserRestangular', function(UserRestangular){
-     console.log(UserRestangular);
      return 'UserRestangular.setRequestSuffix(login);'
 });

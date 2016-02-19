@@ -33,12 +33,10 @@ angular.module('app')
 				email: $filter('lowercase') ($scope.user.email),
 				password: $scope.user.password,
 			};
-			console.log($scope.user);
 			//console.log(User);
 			Restangular.all('login').post($scope.user)
 			.then(function(data){
 			// No error: authentication OK
-				console.log('User authentcated :'+JSON.stringify(data.user));
 
 				$rootScope.user = data.user;
 				$scope.auth.isLoggedIn = true;
@@ -46,7 +44,6 @@ angular.module('app')
 
 				Auth.user = data.user;
 				$cookieStore.put("user",Auth.user);
-				console.log("User role afte the api call :"+$scope.user.role);
 				if(data.user.local.email){
 					//$scope.user.role = "customer-support";
 					if(data.user.local.email.indexOf("sujan") > -1 || data.user.local.email.indexOf("hudson") > -1)
@@ -62,7 +59,7 @@ angular.module('app')
 					$mixpanel.track('Login');
 			        Idle.watch();
 
-					console.log("Changed role :"+data.user.role);
+					console.log("User logged in");
 					if(data.user.role == "superadmin") {
 						$state.go('customer-manager.product-selection');
 					} else if(data.user.role == "customer-onboarding-specialist" 

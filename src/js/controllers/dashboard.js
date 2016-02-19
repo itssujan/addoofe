@@ -10,7 +10,7 @@ angular.module('app')
         	$scope.performUpload = false;
             $scope.loading = true;
 
-        	console.log("Auth user :" + Auth.user.email);
+        	console.log("Auth user :" + Auth.user.manager);
 
         	if (Auth.user.manager) {
         		Restangular.all("course?product=" + Auth.user.product + "&baseTrack=true&shareWithTeam=true&populate=author&author=" + Auth.user.manager).getList().then(function (data) {
