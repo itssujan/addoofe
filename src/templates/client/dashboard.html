@@ -11,6 +11,8 @@
 			<img ng-if="!user && studentcourse.product == 'rightsignature'" src="img/logo/products/RightSignature-Portal-Logo.png" />
 			<img ng-if="!user && studentcourse.product == 'podio'" src="img/logo/products/Podio-Portal-Logo.png" />
 			<img ng-if="!user && studentcourse.product == 'addoo'" src="img/logo/products/Addoo-Portal-Logo.png" />
+			<img ng-if="!user && studentcourse.product == 'demo'" src="img/logo/products/ShareFile-Portal-Logo.png" />
+			<img ng-if="!user && studentcourse.product == 'bollo'" src="img/logo/products/Bollo-Portal-Logo.png" />
 		</div>
 
 		<div id="welcome-wrapper">
@@ -144,7 +146,8 @@
 				<p ng-if="studentcourse.product == 'shareconnect'"><a href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank" class="text-warning">Login</a> to ShareConnect</p>
 				<p ng-if="studentcourse.product == 'podio'"><a href="https://podio.com/login" target="_blank" class="text-warning">Login</a> to Podio</p>
 				<p ng-if="studentcourse.product == 'addoo'"><a href="http://app.addoo.io/#/login" target="_blank" class="text-warning">Login</a> to Addoo</p>
-
+				<p ng-if="studentcourse.product == 'demo'"><a href="https://www.sharefile.com/redirects/login" target="_blank" class="text-warning">Login</a> to ShareFile</p>
+				<p ng-if="studentcourse.product == 'bollo'"><a href="https://podio.com/login" target="_blank" class="text-warning">Login</a> to Addoo</p>
 			</div>
 
 			<div class="information" id="sidebar-course-info" ng-show="studentcourse.onboardingSpecialist">

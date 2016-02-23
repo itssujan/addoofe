@@ -106,6 +106,10 @@ angular.module('app')
         			$scope.productDisplayName = "Addoo";
         		else if ($scope.studentcourse.product == "podio")
         			$scope.productDisplayName = "Podio";
+                else if ($scope.studentcourse.product == "bollo")
+                    $scope.productDisplayName = "Bollo Empire";
+                else if ($scope.studentcourse.product == "demo")
+                    $scope.productDisplayName = "Demo";
         	}
 
         	$scope.sendEvent = function (event) {

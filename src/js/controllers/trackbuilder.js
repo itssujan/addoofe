@@ -60,7 +60,12 @@ angular.module('app')
         			applicableContent.push('podio');
         		} else if (prod == 'addoo') {
         			applicableContent.push('addoo');
-        		}
+        		} else if (prod == 'demo') {
+                    applicableContent.push('demo');
+                } else if (prod == 'bollo') {
+                    applicableContent.push('bollo');
+                }
+
         	}
 
         	console.log("Track ID ::: " + $scope.courseID);
@@ -284,7 +289,7 @@ angular.module('app')
 
         	var getApplicableContentForProducts = function (prod) {
         		var applicableContent = [];
-        		if (prod == 'sharefile' || prod == 'rightsignature') {
+        		if (prod == 'sharefile' || prod == 'rightsignature' || prod == 'demo') {
         			applicableContent.push('sharefile');
         			applicableContent.push('shareconnect');
         			applicableContent.push('rightsignature');
@@ -294,7 +299,9 @@ angular.module('app')
         			applicableContent.push('podio');
         		} else if (prod == 'addoo') {
         			applicableContent.push('addoo');
-        		}
+        		} else if (prod == 'bollo') {
+                    applicableContent.push('bollo');
+                }
         		return applicableContent;
         	}
 

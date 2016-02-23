@@ -19,16 +19,17 @@ var app = angular.module('app', [
     'ngS3upload',
     'ngIntercom',
     'chart.js',
-    'ngAnimate'
+    'ngAnimate',
+    'reCAPTCHA'
 	]);
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config','$intercomProvider','ngDialogProvider',
+'ngS3Config','$intercomProvider','ngDialogProvider','reCAPTCHAProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
         RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
-        KeepaliveProvider,ngS3Config,$intercomProvider,ngDialogProvider) {
+        KeepaliveProvider,ngS3Config,$intercomProvider,ngDialogProvider, reCAPTCHAProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -120,6 +121,12 @@ app.config(
             showClose: true,
             closeByDocument: false,
             closeByEscape: true
+        });
+
+        reCAPTCHAProvider.setPublicKey('6LfTuxgTAAAAABd2ZVEkkJXG9toLX45W3DcSC7t_');
+
+        reCAPTCHAProvider.setOptions({
+            theme: 'clean'
         });
 
         //ngDialogProvider.setForceHtmlReload(true);
