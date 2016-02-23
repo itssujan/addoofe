@@ -1,230 +1,139 @@
-<div id="page-top" class="ng-scope">
-    <div class="row">
-        <div class="col-md-3">
-            <div>
-                <div class="widget bg-white">
-                    <div class="widget-icon bg-blue pull-left fa fa-microphone"> </div>
-                    <div class="overflow-hidden"> <span class="widget-title">8,372K</span> <span class="widget-subtitle">Registered users</span> </div>
-                </div>
-                <div class="widget bg-white">
-                    <div class="widget-icon bg-danger pull-left fa fa-tint"> </div>
-                    <div class="overflow-hidden"> <span class="widget-title percent">86</span> <span class="widget-subtitle">Revenue increase</span> </div>
-                </div>
-                <div class="widget bg-white">
-                    <div class="widget-icon bg-success pull-left fa fa-paper-plane"> </div>
-                    <div class="overflow-hidden"> <span class="widget-title">7,355K</span> <span class="widget-subtitle">Pending orders</span> </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="widget-chart bg-white no-padding">
-                <div class="row absolute tp lt rt p15">
-                    <div class="col-xs-12">
-                        <div class="pull-right"> <i class="fa fa-square text-primary mr5"></i> Mail Server </div> <small class="text-uppercase">Transfer speeds</small>
-                        <h4 class="text-primary bold no-margin">43.02mbps</h4> </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="widget-chart bg-white">
-                <div class="row">
-                    <div class="col-xs-12"> <small class="text-uppercase">Weekly distribution</small>
-                        <h4 class="no-margin bold text-success">3,490K</h4> </div>
-                </div>
-                <div class="canvas-holder mt5 mb5">
-                    <flot dataset="pieDataset" options="pieOptions" class="chart-sm ng-isolate-scope" height="171">
-                        <div style="width: 100%; height: 171px; padding: 0px; position: relative;">
-                            <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 206px; height: 171px;" width="206" height="171"></canvas>
-                            <canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 206px; height: 171px;" width="206" height="171"></canvas>
-                            <div class="legend">
-                                <div style="position: absolute; width: 54px; height: 80px; top: 5px; right: 5px; opacity: 0.85; background-color: rgb(255, 255, 255);"> </div>
-                                <table style="position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454">
-                                    <tbody>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid #d96557;overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">IE</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid #4cc3d9;overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Safari</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid #ffc65d;overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Chrome</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid #2ECC71;overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Opera</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid #4C5064;overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Firefox</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div><span class="pieLabel" id="pieLabel0" style="position: absolute; top: 6.5px; left: 105px;"><div style="font-size:x-small;text-align:center;padding:2px;color:#d96557;">IE<br>15%</div></span><span class="pieLabel" id="pieLabel1" style="position: absolute; top: 55.5px; left: 139px;"><div style="font-size:x-small;text-align:center;padding:2px;color:#4cc3d9;">Safari<br>14%</div></span><span class="pieLabel" id="pieLabel2" style="position: absolute; top: 135.5px; left: 83px;"><div style="font-size:x-small;text-align:center;padding:2px;color:#ffc65d;">Chrome<br>34%</div></span><span class="pieLabel" id="pieLabel3" style="position: absolute; top: 92.5px; left: 4px;"><div style="font-size:x-small;text-align:center;padding:2px;color:#2ECC71;">Opera<br>13%</div></span><span class="pieLabel" id="pieLabel4" style="position: absolute; top: 17.5px; left: 20.5px;"><div style="font-size:x-small;text-align:center;padding:2px;color:#4C5064;">Firefox<br>24%</div></span>
-                        </div>
-                    </flot>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5 col-sm-6 col-xs-12">
-            <div class="widget widget-weather bg-white">
-                <div class="widget-weather-icon climacon wind cloud sun"></div>
-                <div class="mb15"> <strong>San Francisco, CA</strong> </div>
-                <div class="widget-weather-footer">
-                    <div>
-                        <div class="small">MON</div>
-                        <div class="climacon drizzle sun text-warning"></div>
-                        <div class="degree-value">45°</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="widget bg-white">
-                <h3 class="text-info mt0 mb0 bold">56780</h3>
-                <div class="small text-uppercase">Recent Activities</div> <small class="pt5">Donec ullamcorper nulla non metus auctor.</small> </div>
-            <div class="widget-chart bg-white no-padding">
-                <div class="absolute tp lt rt p15">
-                    <h3 class="mb0 mt0 bold">7,623K</h3>
-                    <div class="small text-uppercase">Daily income</div>
-                </div>
-                <div class="absolute tp rt pt15 pr15">
-                    <div class="text-success"> <i class="fa fa-caret-up"></i> <span>6%</span> </div>
-                    <div class="small">+897</div>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-12 col-xs-12">
-            <div class="widget bg-white">
-                <div class="text-center">
-                    <h6 class="text-uppercase">Page Views</h6>
-                    <div class="mt15">
-                        <h1 class="text-primary">512k+</h1>
-                        <flot dataset="lineDataset" options="lineOptions" class="chart ng-isolate-scope" height="123">
-                            <div style="width: 100%; height: 123px; padding: 0px; position: relative;">
-                                <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 142px; height: 123px;" width="142" height="123"></canvas>
-                                <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
-                                    <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 48px; top: 107px; left: 14px; text-align: center;">0</div>
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 48px; top: 107px; left: 43px; text-align: center;">2</div>
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 48px; top: 107px; left: 73px; text-align: center;">4</div>
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 48px; top: 107px; left: 102px; text-align: center;">6</div>
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 48px; top: 107px; left: 131px; text-align: center;">8</div>
-                                    </div>
-                                    <div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 94px; left: 6px; text-align: right;">0</div>
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 47px; left: 6px; text-align: right;">5</div>
-                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 0px; left: 0px; text-align: right;">10</div>
-                                    </div>
-                                </div>
-                                <canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 142px; height: 123px;" width="142" height="123"></canvas>
-                            </div>
-                        </flot>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="widget bg-white">
-                <div class="widget-details widget-list">
-                    <div class="mb20">
-                        <h4 class="no-margin text-uppercase">Sales</h4> <small class="text-uppercase">Weekly projections</small> </div>
-                    <a href="javascript:;" class="widget-list-item"> <span class="label label-info pull-right">32</span> United States </a>
-                    <a href="javascript:;" class="widget-list-item"> <span class="label label-danger pull-right">54</span> China </a>
-                    <a href="javascript:;" class="widget-list-item"> <span class="label label-warning pull-right">45</span> Great Britain </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="widget bg-primary">
-                <div class="widget-bg-icon"> <i class="fa fa-bookmark-o"></i> </div>
-                <div class="widget-details">
-                    <h4 class="no-margin">4,894K</h4> <span>Parks and recreation</span> </div>
-            </div>
-            <div class="widget bg-white">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <h6> Distance travelled </h6>
-                        <h1 class="mt0 mb0 bold"> 4389km </h1> <small class="mb0"> Avg 56km/Sec </small> </div>
-                    <div class="col-xs-8">
-                        <div class="canvas-holder">
-                            <flot dataset="barDataset" options="barOptions" class="chart ng-isolate-scope" height="90">
-                                <div style="width: 100%; height: 90px; padding: 0px; position: relative;">
-                                    <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 216px; height: 90px;" width="216" height="90"></canvas>
-                                    <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
-                                        <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 74px; left: 17px; text-align: center;">M</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 74px; left: 62px; text-align: center;">T</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 74px; left: 103px; text-align: center;">W</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 74px; left: 145px; text-align: center;">Th</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 74px; left: 192px; text-align: center;">F</div>
-                                        </div>
-                                    </div>
-                                    <canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 216px; height: 90px;" width="216" height="90"></canvas>
-                                </div>
-                            </flot>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <section class="widget bg-lightblue">
-                <div class="widget-details">
-                    <a href="javascript:;" class="pull-left relative"> <img data-ng-src="img/avatar.jpg" class="avatar avatar-sm img-circle bordered" alt="" src="img/avatar.jpg" width="45">
-                        <div class="status bg-primary text-white mt5" data-animation="rubberBand"></div>
-                    </a>
-                </div>
-                <div class="widget-details"> <span class="h5 bold">Samuel Perkins</span> <small class="block">San Francisco, CA</small> <small class="block">Interactive UX Developer</small> </div>
-            </section>
-        </div>
-        <div class="col-md-4">
-            <section class="widget bg-brown text-center">
-                <div class="widget-details">
-                    <h2 class="no-margin bold">14°C</h2> <small class="text-uppercase">San Francisco, CA</small> </div>
-                <div class="widget-details">
-                    <div class="climacon hail sun fa-4x"></div>
-                </div>
-            </section>
-        </div>
-        <div class="col-md-4">
-            <section class="widget bg-success text-center">
-                <div class="widget-details col-xs-4">
-                    <h2 class="no-margin">132</h2> <small class="text-uppercase">Pending</small> </div>
-                <div class="widget-details col-xs-4">
-                    <h2 class="no-margin">43</h2> <small class="text-uppercase">Completed</small> </div>
-                <div class="widget-details col-xs-4">
-                    <h2 class="no-margin">28</h2> <small class="text-uppercase">Failed</small> </div>
-            </section>
-        </div>
-    </div>
+<div id="searchbar">
+	<span class="fa fa-search"></span>
+	<input type="search" placeholder="start searching for a client by typing...." />
 </div>
+<div class="container-fluid">
+	<div class="row" id="metrics">
+		<div class="ad-component col-xs-6 col-md-2">
+			<div class="ad-header description">Pending</div>
+			<div class="value">143</div>
+		</div>
+		<div class="ad-component col-xs-6 col-md-2">
+			<div class="ad-header description">Started</div>
+			<div class="value">87</div>
+		</div>
+		<div class="ad-component col-xs-6 col-md-2">
+			<div class="ad-header description">Completed</div>
+			<div class="value">74</div>
+		</div>
+	</div>
+
+	<div class="row" id="churn-indicators">
+		<div class="ad-component col-md-4">
+			<h2 class="ad-header">Liable for Churn</h2>
+			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses" ng-show="!loading">
+				<thead>
+					<tr>
+						<th class="header" st-sort="title">Track</th>
+						<th class="header" st-sort="fullname">Owner</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td>Thomas Eaves</td>
+						<td>
+							<i class="fa fa-times-circle-o" style="color:red; font-size:25px;"></i>
+						</td>
+					</tr>
+					<tr>
+						<td>Hudson Haines</td>
+						<td>
+							<i class="fa fa-times-circle-o" style="color:red; font-size:25px;"></i>
+						</td>
+					</tr>
+					<tr>
+						<td>Sujan Abraham</td>
+						<td>
+							<i class="fa fa-times-circle-o" style="color:red; font-size:25px;"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="ad-component col-md-4">
+			<h2 class="ad-header">Active Learners</h2>
+			<table class="table table-striped" st-table="displayedCourseCollection" st-safe-src="courses" ng-show="!loading">
+				<thead>
+					<tr>
+						<th class="header" st-sort="title">Customer</th>
+						<th class="header" st-sort="fullname">Rating</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Thomas Eaves</td>
+						<td>
+							<i class="fa fa-check-circle-o" style="color:green; font-size:25px;"></i>
+						</td>
+					</tr>
+					<tr>
+						<td>Hudson Haines</td>
+						<td>
+							<i class="fa fa-check-circle-o" style="color:green; font-size:25px;"></i>
+						</td>
+					</tr>
+					<tr>
+						<td>Sujan Abraham</td>
+						<td>
+							<i class="fa fa-check-circle-o" style="color:green; font-size:25px;"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row" ng-controller="DashboardTracksCtrl">
+		<div class="table-container ad-widget-override">
+			<rd-widget>
+				<rd-widget-header title="All Customers"></rd-widget-header>
+				<div ng-show="loading" class="loading">
+					<div class="spinner">
+						<div class="dot1"></div>
+						<div class="dot2"></div>
+					</div>
+				</div>
+				<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" ng-show="!loading">
+					<thead>
+						<tr>
+							<th class="header" st-sort="title">Track<i class="fa fa-sort"></i></th>
+							<th class="header" st-sort="email">Client<i class="fa fa-sort"></i></th>
+							<th class="header" st-sort="authorname">Created By<i class="fa fa-sort"></i></th>
+							<th class="header" st-sort="invitedOn">Created On<i class="fa fa-sort"></i></th>
+							<th class="header" st-sort="coursestatus">Status<i class="fa fa-sort"></i></th>
+							<th class="header" st-sort="courseprogress">Progress<i class="fa fa-sort"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in displayedStudentCourseCollection">
+							<td>
+								<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
+								<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
+							</td>
+							<td>{{row.email}}</td>
+							<td>{{row.authorname}}</td>
+							<td> <span am-time-ago="row.invitedOn"></span></td>
+							<td>{{row.coursestatus}}</td>
+							<td>
+								<div class="progress" style="width:100%">
+									<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{row.courseprogress}}%">
+										<span class="sr-only">40% Complete (success)</span>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5" class="text-center">
+								<div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<rd-widget>
+		</div>
+	</div>
+
+</div>
+
