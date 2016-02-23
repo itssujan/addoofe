@@ -15,7 +15,7 @@
         </div>
         <div class="content-addition col-sm-2" ng-show="(user._id == course.author || course.author._id)">
             <div class="description">
-                <p>Add to Base Tracks</p>
+                <p>Base Track</p>
             </div>
             <div class="checkbox">
                 <input type="checkbox" ng-model="course.baseTrack" ng-change="baseTrack()">
@@ -36,45 +36,45 @@
 			<div class="sub-title">
 				Current Track:
 				<span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="submitTitleChangeRequest($event)" uib-popover="Begin typing to change the track title. Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
-				<i id="course-name-edit" class="fa fa-pencil ad-icon ad-action ad-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
+				<i id="course-name-edit" class="fa fa-pencil addoo-icon addoo-action addoo-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
 			</div>
-			<button class="ad-button ad-red ad-sm ad-float-right" style="margin-right:15px; margin-bottom:5px;" uib-popover="Delete this entire track." popover-trigger="mouseenter" popover-placement="bottom" ng-show="course.baseTrack === true" ng-click="openDeleteDecisionDialogue()">
+			<button class="addoo-button addoo-red addoo-sm addoo-float-right" style="margin-right:15px; margin-bottom:5px;" uib-popover="Delete this entire track." popover-trigger="mouseenter" popover-placement="bottom" ng-show="course.baseTrack === true" ng-click="openDeleteDecisionDialogue()">
 				<span class="glyphicon glyphicon-trash"></span>
 			</button>
-			<button class="ad-button ad-orange ad-sm ad-float-right" style="margin-right:5px; margin-bottom:5px;" uib-popover="Duplicate this track." popover-trigger="mouseenter" popover-placement="bottom" ng-click="createDuplicateTrack()">
+			<button class="addoo-button addoo-orange addoo-sm addoo-float-right" style="margin-right:5px; margin-bottom:5px;" uib-popover="Duplicate this track." popover-trigger="mouseenter" popover-placement="bottom" ng-click="createDuplicateTrack()">
 				<span class="fa fa-copy"></span>
 			</button>
-			<div class="panel panel-default paper-shadow ad-panel-cleared" data-z="0.5">
+			<div class="panel panel-default paper-shadow addoo-panel-cleared" data-z="0.5">
 				<p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
 				<table ui-tree="tableCallbacks" class="table table-responsive">
 					<tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
 						<tr ng-repeat="content in course.contents" ui-tree-node>
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
 							<td>{{content.title}}</td>
-							<td class="ad-button-container ad-sm">
-								<button class="ad-button ad-blue ad-sm ad-float-right" ng-click="openVideoPreviewModal(content)"><span class="glyphicon glyphicon-play"></span></button>
+							<td class="addoo-button-container addoo-sm">
+								<button class="addoo-button addoo-blue addoo-sm addoo-float-right" ng-click="openVideoPreviewModal(content)"><span class="glyphicon glyphicon-play"></span></button>
 							</td>
-							<td class="ad-button-container ad-sm" ng-show="user._id == course.author || user._id == course.author._id">
-								<button class="ad-button ad-red ad-sm ad-float-right" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
+							<td class="addoo-button-container addoo-sm" ng-show="user._id == course.author || user._id == course.author._id">
+								<button class="addoo-button addoo-red addoo-sm addoo-float-right" data-title="Delete" ng-click="deleteTrack($index)"><span class="glyphicon glyphicon-trash"></span></button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<div class="ad-widget-override-2">
+		<div class="addoo-widget-override-2">
 			<rd-widget id="client-addition" class="col-sm-3">
 				<rd-widget-header title="Clients"></rd-widget-header>
 				<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
-					<thead class="ad-border ad-none">
+					<thead class="addoo-border addoo-none">
 						<tr class="search-row">
-							<th class="ad-border ad-no-bottom" colspan="2">
+							<th class="addoo-border addoo-no-bottom" colspan="2">
 								<input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" />
 							</th>
 						</tr>
 						<tr>
-							<th class="header ad-border ad-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i></th>
-							<th class="header ad-border ad-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i></th>
+							<th class="header addoo-border addoo-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i></th>
+							<th class="header addoo-border addoo-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -95,7 +95,7 @@
 					</tfoot>
 				</table>
 				<div class="panel-footer" ng-if="!studentcourses || studentcourses.length == 0">
-					<button class="ad-button ad-orange ad-md" ng-click="openClientModal()">Add Client</button>
+					<button class="addoo-button addoo-orange addoo-md" ng-click="openClientModal()">Add Client</button>
 				</div>
 			</rd-widget>
 		</div>

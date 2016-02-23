@@ -1,4 +1,4 @@
-<div id="page-top" class="panel ad-shadow">
+<div id="page-top" class="panel addoo-shadow">
 	<div class="row" ng-controller="DashboardStatsCtrl" style="padding:10px 15px;">
 		<div id="team-tracks-chart" class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
 			<canvas id="line" class="chart chart-line" style="padding-right:20px;" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="row">
-	<div class="table-container ad-widget-override">
+	<div class="table-container addoo-widget-override">
 		<rd-widget>
 			<rd-widget-header title="Base Tracks">
 				<a ui-sref="customer-manager.trackbuilder" type="button" class="btn btn-warning" style="float:right">Create New Track</a>
@@ -72,7 +72,7 @@
 </div>
 
 <div class="row" ng-controller="DashboardTracksCtrl">
-	<div class="table-container ad-widget-override">
+	<div class="table-container addoo-widget-override">
 		<rd-widget>
 			<rd-widget-header title="Active Tracks"></rd-widget-header>
 			<div ng-show="loading" class="loading">
@@ -99,7 +99,7 @@
 					<tr ng-repeat="row in displayedStudentCourseCollection">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
-							<i class="fa fa-pencil ad-icon ad-action ad-secondary ad-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
+							<i class="fa fa-pencil addoo-icon addoo-action addoo-secondary addoo-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
 						</td>
 						<td>{{row.email}}</td>
 						<td>{{row.authorname}}</td>
