@@ -1,0 +1,21 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Invite Users</span>
+                </a>
+            </li>
+        </ul>		
+		<div class="panel panel-default paper-shadow tab-content">
+			<span>Add your team members by entering their email addresses.</span>
+
+			<form class="form-inline">
+			  <div class="form-group" ng-repeat="user in users">
+			    <input type="email" class="form-control" id="email" placeholder="jane.doe@example.com" ng-model="user.email" size="50">
+			    <a href="" title="Click here to add more users" ng-click="addMoreUsers()" ng-show="users.length == $index+1"><span class="glyphicon glyphicon-plus"></span></a>
+			  </div>
+			</form>
+			<button type="submit" class="btn btn-warning">Send invitation</button>
+		</div>
+    </div>
+</div>

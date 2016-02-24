@@ -276,8 +276,9 @@ angular.module('app')
         				if (element.lessonID === $scope.video._id) {
         					progressAdded = true;
         					if (status != element.progress && element.progress != 'complete') {
+                                var startedOn = element.startedOn;
         						$scope.studentcourse.lessonprogress.splice(index, 1);
-        						$scope.studentcourse.lessonprogress.push({ lessonID: $scope.video._id, progress: status });
+        						$scope.studentcourse.lessonprogress.push({ lessonID: $scope.video._id, progress: status, startedOn : startedOn });
         						console.log("Video lesson marked " + status);
         						$scope.sendStatusEvent(status);
         						if (status == 'started') {
@@ -304,10 +305,20 @@ angular.module('app')
         			}
         		}
         		if (pushupdate && !$scope.disabletracking) {
-        			$scope.studentcourse.put();
+                    $scope.studentcourse.updatedLessonID = $scope.video._id;
+                    $scope.studentcourse.updatedLessonprogress = status;
+        			$scope.studentcourse.put().then(function(data){
+                        $scope.studentcourse = data;
+                    });
+                    // video watched count tracking
+                    if(status == 'started') {
+                        $scope.video.startedCount = $scope.video.startedCount ? $scope.video.startedCount++ : 1;
+                    } else if(status == 'complete') {
+                        $scope.video.completedCount = $scope.video.completedCount ? $scope.video.completedCount++ : 1;
+                    }
+                    $scope.video.put();
         		}
         	};
-
 
         	$scope.addCoworker = function () {
         		console.log("Adding coworker");

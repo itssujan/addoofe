@@ -22,6 +22,10 @@
 				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
 					<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
 				</li>
+				<li class="sidebar-list-item" id="top">
+					<a ui-sref="customer-manager.inviteusers">Add Users<span class="menu-icon fa fa-users" aria-hidden="true"></span></a>
+				</li>
+
 				<li class="sidebar-list-item">
 					<a ui-sref="customer-manager.profile">Manage Profile <span class="menu-icon fa fa-user"></span></a>
 				</li>
@@ -32,6 +36,11 @@
 					<a href="#" ng-click="logout()">Logout<span class="menu-icon fa fa-sign-out"></span></a>
 				</li>
 			</ul>
+		</div>
+		<div id="sidebar-footer">
+			<div>
+				Terms of Service
+			</div>
 		</div>
 	</div>
 

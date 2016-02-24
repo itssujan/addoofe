@@ -1,4 +1,4 @@
-angular.module('app')
+    angular.module('app')
     .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl',
         'Idle','$intercom','$cookieStore','$window','envService',
         function ($rootScope, $state, $stateParams,$location, Auth,Restangular, 
@@ -160,10 +160,7 @@ angular.module('app')
                     templateUrl: 'templates/announcements.html',
                     ctrl: "announcementsMngrCtrl",
                     controller: "AnnouncementsMngrCtrl",
-                    data: {requiresLogin: true},
-                    params : {
-                        managerRequired : null
-                    },
+                    data: {requiresLogin: true}
 
                 })
                 .state('customer-manager.uploadcontent', {
@@ -171,22 +168,21 @@ angular.module('app')
                     templateUrl: 'templates/uploadcontent.html',
                     ctrl: "uploadContentCtrl",
                     controller: "UploadContentCtrl",
-                    data: {requiresLogin: true},
-                    params : {
-                        managerRequired : null
-                    },
-
+                    data: {requiresLogin: true}
                 })
                 .state('customer-manager.product-selection', {
                     url: '/productselection',
                     templateUrl: 'templates/productselector.html',
                     ctrl: "productSelectorCtrl",
                     controller: "ProductSelectorCtrl",
-                    data: {requiresLogin: true},
-                    params : {
-                        managerRequired : null
-                    },
-
+                    data: {requiresLogin: true}
+                })
+                .state('customer-manager.inviteusers', {
+                    url: '/inviteusers',
+                    templateUrl: 'templates/inviteusers.html',
+                    ctrl: "inviteUsersCtrl",
+                    controller: "InviteUsersCtrl",
+                    data: {requiresLogin: true}
                 });
 
                 $stateProvider
