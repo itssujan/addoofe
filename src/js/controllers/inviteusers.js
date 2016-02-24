@@ -3,7 +3,6 @@ angular.module('app')
         function ($scope, $state, Restangular,$rootScope,$cookieStore, growl, $location, $mixpanel,$filter) {
             console.log('In Inviteusers controller');
 
-            $scope.user = {};
             $scope.$state = $state;
 
             $scope.users = [];
@@ -17,6 +16,14 @@ angular.module('app')
             $scope.addMoreUsers = function() {
             	$scope.users.push({"email":""});
             	$scope.users.push({"email":""});
+            }
+
+            $scope.sendInvitation = function() {
+            	console.log("Sending invites");
+				Restangular.all('inviteusers').post($scope.users).then(function(data){
+					
+				});
+
             }
 
         } ]);
