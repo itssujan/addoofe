@@ -1,7 +1,36 @@
+.addoo-position {
+	&.addoo-fixed {
+		position: fixed;
+	}
+}
+
+/** Floating */
 .addoo-float-right {
 	float: right;
 }
 
 .addoo-float-left {
 	float: left;	
+}
+
+/** Clearing **/
+.addoo-cleared {
+	&.addoo-left {
+		clear: left;
+	}
+
+	&.addoo-right {
+		clear: right;
+	}
+
+	&.addoo-both {
+		clear: both;
+	}
+}
+
+/** Displays **/
+.addoo-display {
+	&.addoo-inline-block {
+		display: inline-block;
+	}
 }
