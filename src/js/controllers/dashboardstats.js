@@ -56,6 +56,9 @@ angular.module('app')
                 $scope.topfiveusers.sort(compare);
             });
 
+            Restangular.all("topvideos").getList().then(function (data) {
+                $scope.topvideos = data;
+            });
 
             var compare = function(a,b) {
               if (a.count < b.count)
