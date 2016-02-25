@@ -20,16 +20,17 @@ var app = angular.module('app', [
     'ngIntercom',
     'chart.js',
     'ngAnimate',
-    'reCAPTCHA'
+    'reCAPTCHA',
+    'ngRaven'
 	]);
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config','$intercomProvider','ngDialogProvider','reCAPTCHAProvider',
+'ngS3Config','$intercomProvider','ngDialogProvider','reCAPTCHAProvider','$ravenProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
         RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
-        KeepaliveProvider,ngS3Config,$intercomProvider,ngDialogProvider, reCAPTCHAProvider) {
+        KeepaliveProvider,ngS3Config,$intercomProvider,ngDialogProvider, reCAPTCHAProvider,$ravenProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -129,8 +130,11 @@ app.config(
             theme: 'clean'
         });
 
-        //ngDialogProvider.setForceHtmlReload(true);
-        //ngDialogProvider.setForceBodyReload(true);
+        $ravenProvider.development(false);
+        Raven.config('https://ff826069d21e4a2eb7cc4902c386ec6c@app.getsentry.com/67624').install();
+        if(envServiceProvider.environment == 'development') {
+            $ravenProvider.development(true);
+        }
 
     }
 ]);
@@ -146,3 +150,13 @@ app.factory('Auth',function() {
 }).factory('User','UserRestangular', function(UserRestangular){
      return 'UserRestangular.setRequestSuffix(login);'
 });
+
+app.factory('$exceptionHandler',
+          ['$window', '$log','$raven',
+  function ($window,   $log, $raven) {
+      return function (exception, cause) {
+        $raven.captureMessage(exception,cause);
+      };
+  }
+]);
+
