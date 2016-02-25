@@ -20,7 +20,7 @@ angular.module('app')
 
             $scope.sendInvitation = function() {
             	console.log("Sending invites");
-				Restangular.all('inviteusers').post($scope.users).then(function(data){
+				Restangular.all('inviteusers').post({"users":$scope.users}).then(function(data){
 					
 				});
 
