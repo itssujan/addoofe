@@ -44,7 +44,7 @@
 			<button class="addoo-button addoo-orange addoo-sm addoo-float-right" style="margin-right:5px; margin-bottom:5px;" uib-popover="Duplicate this track." popover-trigger="mouseenter" popover-placement="bottom" ng-click="createDuplicateTrack()">
 				<span class="fa fa-copy"></span>
 			</button>
-			<div class="panel panel-default paper-shadow addoo-panel-cleared" data-z="0.5">
+			<div class="panel panel-default paper-shadow addoo-cleared addoo-both" data-z="0.5">
 				<p ng-if="!course.contents || course.contents.length == 0">No tracks added..</p>
 				<table ui-tree="tableCallbacks" class="table table-responsive">
 					<tbody class="drag-list" ui-tree-nodes ng-model="course.contents">

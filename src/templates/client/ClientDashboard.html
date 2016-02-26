@@ -1,9 +1,8 @@
 <span us-spinner></span>
 
-
 <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak ng-show="studentcourse">
 
-	<div id="sidebar-wrapper">
+	<div id="client-sidebar-wrapper">
 
 		<div class="col-xs-12" ng-show="studentcourse" id="company-header">
 			<img ng-if="!user && studentcourse.product == 'sharefile'" src="img/logo/products/ShareFile-Portal-Logo.png" />
@@ -52,8 +51,8 @@
 
 		<div class="viewer non-doc" ng-if="track.type != 'document'">
 			<div class="navigation-panel">
-				<a class="viewer button right" ng-hide="currentVideoIndex + 1 >= studentcourse.courseID.contents.length" href="" ng-click="playNextVideo();">Next Video<i class="md md-skip-next"></i></a>
-				<a class="viewer button left" ng-show="currentVideoIndex > 0" href="" ng-click="playPreviousVideo();"><i class="md md-skip-previous"></i>Previous Video</a>
+				<a class="addoo-link-button addoo-float-right" style="margin-right:0px;" ng-hide="currentVideoIndex + 1 >= studentcourse.courseID.contents.length" href="" ng-click="playNextVideo();">Next Video<i class="md md-skip-next"></i></a>
+				<a class="addoo-link-button addoo-float-left" style="margin-left:0px;" ng-show="currentVideoIndex > 0" href="" ng-click="playPreviousVideo();"><i class="md md-skip-previous"></i>Previous Video</a>
 			</div>
 			<div class="video-player">
 				<videogular vg-theme="config.theme.url" vg-complete="onCompleteVideo()" vg-player-ready="onPlayerReady($API)" vg-update-state="updateVideoState($state)" vg-update-time="updateVideoTime($currentTime, $duration)">
@@ -158,14 +157,14 @@
 				<h4 class="text-warning">Still need help?</h4>
 				<p ng-if="!studentcourse.onboardingSpecialist">Your care representative is Virginia. Click the link below to view her schedule..</p>
 				<p ng-if="studentcourse.onboardingSpecialist">Your care representative is {{studentcourse.onboardingSpecialist.local.firstname}} {{studentcourse.onboardingSpecialist.local.lastname}}. Click the link below to view your care representative's schedule and book a training.</p>
-				<a class="button" href="{{studentcourse.onboardingSpecialist.local.timetrade}}" ng-click="sendEvent('TimeTrade Clicked')" target="_blank">Schedule</a>
+				<a class="addoo-link-button addoo-float-right" href="{{studentcourse.onboardingSpecialist.local.timetrade}}" ng-click="sendEvent('TimeTrade Clicked')" target="_blank">Schedule</a>
 			</div>
 
 			<div class="information" id="team-member-add">
 				<h4 class="sidebar-right text-warning">Add a team member</h4>
 				<p>Have co-workers who will be using {{productDisplayName}}? Enter their e-mail to add them to your training portal.</p>
 				<input type="text" name="coworkeremail" ng-model="coworker.email" />
-				<a class="button" href="" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank">Add</a>
+				<a class="addoo-link-button addoo-float-right" href="" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank">Add</a>
 			</div>
 		</div>
 	</div>

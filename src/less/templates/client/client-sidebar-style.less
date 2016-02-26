@@ -12,7 +12,6 @@
 	font-family: @font-family;
 	height: auto;
 	width: auto;
-	margin-top: 15px;
 	display: inline-block;
 	float: right;
 
@@ -23,10 +22,9 @@
 		display: block;
 		float: right;
 		clear: right;
-		border: 1px solid #BEBEBE;
-		border-radius: 2px;
+		border-radius: 5px;
 		background-color: #DFDFDF;
-		box-shadow: 0 1px 1px #BEBEBE;
+		box-shadow: 0 3px 3px #A9A9A9;
 
 		#care-rep-image {
 			display: inline-block;
@@ -36,6 +34,7 @@
 
 			img {
 				width: 60px;
+				border: 1px solid #BEBEBE;
 			}
 		}
 
@@ -53,26 +52,6 @@
 			max-width: 265px;
 			padding-right: 15px;
 			font-size: 12px;
-		}
-
-		.button {
-			border-radius: 3px;
-			text-align: center;
-			display: inline-block;
-			float: right;
-			clear: left;
-			width: 95px;
-			margin: 0 15px 10px;
-			padding: 5px;
-			color: @primary-text-color;
-			font-size: 16px;
-			font-weight: bold;
-			text-decoration: none;
-			background-color: #F38F29;
-		}
-
-		.button:hover {
-			background-color: #FDB265;
 		}
 	}
 
@@ -166,7 +145,7 @@
 #welcome-wrapper {
 	display: inline-block;
 	background-color: @tertiary-gray;
-	width: 250px;
+	width: 100%;
 	padding: 15px 0;
 	padding-left: 15px;
 
@@ -234,14 +213,14 @@
 /* Customized Sidebar Styling and Animations */
 
 #page-wrapper.open #client-sidebar-wrapper {
-	left: 150px;
+	left: 170px;
 }
 
 #client-sidebar-wrapper {
 	background-color: #424242;
-	margin-left: -150px;
+	margin-left: -170px;
 	left: -30px;
-	width: 250px;
+	width: 270px;
 	position: fixed;
 	height: 100%;
 	z-index: 999;

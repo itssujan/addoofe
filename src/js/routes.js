@@ -191,28 +191,26 @@
                     url: '/customer-care',
                     templateUrl: 'templates/layout.html',
                     access: {
-                        requiresLogin: true,
-                        // requiredPermissions:  ['Instructor']
+                        requiresLogin: true
                     }
                 })
                 .state('customer-care.dashboard', {
-                    url: '/dashboard',
-                    templateUrl: 'templates/cc/dashboard.html',
-                    ctrl: "ccdashboard",
-                    controller: "CCDashboardCtrl",
-                    data: {requiresLogin: true}
+                    url				: '/dashboard',
+                    templateUrl		: 'templates/customercare/CustomerCareDashboard.html',
+                    ctrl			: "CustomerCareDashboardController",
+                    controller		: "CustomerCareDashboardController",
+                    data			: { requiresLogin: true }
                 });
 
                 $stateProvider
                 .state('client', {
                     abstract: true,
                     url: '/client',
-                    // templateUrl: 'templates/client/clientlayout.html',
                     template : '<div ui-view/>'
                 })
                 .state('client.dashboard', {
                     url: '/dashboard/:studentcourseID',
-                    templateUrl: 'templates/client/dashboard.html',
+                    templateUrl: 'templates/client/ClientDashboard.html',
                     ctrl: "clientDashboardController",
                     controller: "ClientDashboardController",
                     data: {requiresLogin: false},

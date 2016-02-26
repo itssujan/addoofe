@@ -279,7 +279,6 @@ angular.module('app')
 
         		$scope.course.put();
         		$scope.selectedVideos = [];
-        		$scope.closevideoModal();
         	};
 
         	$scope.baseTrack = function (test) {
