@@ -312,9 +312,9 @@ angular.module('app')
                     });
                     // video watched count tracking
                     if(status == 'started') {
-                        $scope.video.startedCount = $scope.video.startedCount ? $scope.video.startedCount++ : 1;
+                        $scope.video.startedCount = $scope.video.startedCount ? $scope.video.startedCount + 1 : 1;
                     } else if(status == 'complete') {
-                        $scope.video.completedCount = $scope.video.completedCount ? $scope.video.completedCount++ : 1;
+                        $scope.video.completedCount = $scope.video.completedCount ? $scope.video.completedCount + 1 : 1;
                     }
                     $scope.video.put();
         		}
