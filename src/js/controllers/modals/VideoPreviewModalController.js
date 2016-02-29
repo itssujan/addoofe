@@ -14,7 +14,7 @@
 				default	: ""
 			}],
 			theme	: {
-				url		: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
+				url		: "/css/videogular.css"
 			},
 			plugins	: {
 				poster	: null,
