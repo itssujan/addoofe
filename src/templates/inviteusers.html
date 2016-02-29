@@ -8,7 +8,7 @@
         </ul>		
 		<div class="panel panel-default paper-shadow tab-content">
 			<span>Add your team members by entering their email addresses.</span>
-
+			<div growl inline="true"></div>
 			<form class="form-inline" ng-submit="sendInvitation()">
 			  <div class="form-group" ng-repeat="user in users">
 			    <input type="email" class="form-control" id="email" placeholder="jane.doe@example.com" ng-model="user.email" size="50">

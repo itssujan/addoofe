@@ -21,9 +21,8 @@ angular.module('app')
             $scope.sendInvitation = function() {
             	console.log("Sending invites");
 				Restangular.all('inviteusers').post({"users":$scope.users}).then(function(data){
-					
+					growl.success("Invitation sent to the users successfully.");
 				});
-
             }
 
         } ]);

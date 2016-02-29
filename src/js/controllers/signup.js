@@ -1,10 +1,45 @@
 angular.module('app')
-    .controller('SignUpCtrl', [ '$scope', '$state','Restangular', '$rootScope','$cookieStore','growl','$location', '$mixpanel','$filter',
-        function ($scope, $state, Restangular,$rootScope,$cookieStore, growl, $location, $mixpanel,$filter) {
+    .controller('SignUpCtrl', [ '$scope', '$state','Restangular', '$rootScope','$cookieStore','growl',
+    	'$location', '$mixpanel','$filter','$stateParams',
+        function ($scope, $state, Restangular,$rootScope,$cookieStore, growl, $location, $mixpanel,$filter,$stateParams) {
             console.log('In singup controller');
 
             $scope.user = {};
             $scope.$state = $state;
+            $scope.invitationCode	= $stateParams.invitationCode;
+
+			var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+            var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+ 
+ 			$scope.passwordStrength = {
+                "float": "right",
+                "width": "100px",
+                "height": "25px",
+                "margin-left": "5px"
+            };
+
+            Restangular.one("signupinvite?invitationCode="+$scope.invitationCode).get().then(function(data){
+            	console.log("DATA :"+JSON.stringify(data[0]));
+            	$scope.signupinvite = data[0];
+            	$scope.user.pdt = $scope.signupinvite.product;
+            	$scope.user.email = $scope.signupinvite.invitedEmail;
+            	$scope.user.role = 'customer-manager';
+            	console.log("USer :"+JSON.stringify($scope.user));
+            });
+
+            $scope.analyze = function(value) {
+                if(strongRegex.test(value)) {
+                    $scope.passwordStrength["background-color"] = "green";
+                    $scope.passwordStrengthMessage = "Strong";
+                } else if(mediumRegex.test(value)) {
+                    $scope.passwordStrength["background-color"] = "orange";
+                    $scope.passwordStrengthMessage = "Weak";
+                } else {
+                    $scope.passwordStrength["background-color"] = "red";
+                    $scope.passwordStrengthMessage = "Very Weak";
+                }
+            };
+
 
             // Register the login() function
 		    $scope.signUp = function(){
