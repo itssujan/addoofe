@@ -9,7 +9,7 @@ angular.module('app')
         	$scope.tracksPending	= 0;
         	$scope.tracksStarted	= 0;
         	$scope.tracksCompleted	= 0;
-        	$scope.selected			= false;
+        	$scope.searchHasBegun   = false;
 
         	/*
 				Comparator function for sorting users in ascending order based upon 
@@ -53,6 +53,14 @@ angular.module('app')
         		return activeUsers.concat(inactiveUsers, vulnerableUsers);
         	}
 
+            $scope.hasSearchBegun = function(e) {
+                if (e.target.value.length > 0) {
+                    $scope.searchHasBegun = true;
+                } else {
+                    $scope.searchHasBegun = false;
+                }
+            }
+
         	Restangular.all("dashboardreport").getList().then(function (data) {
         		var reports = data.filter(function (datum) {
         				return datum.formattedCreateDate === new Date().toDateString();
@@ -62,8 +70,8 @@ angular.module('app')
         		$scope.tracksPending	= report.tracksPending;
         		$scope.tracksStarted	= report.tracksStarted;
         		$scope.tracksCompleted	= report.tracksCompleted;
-        		$scope.activeUsers		= report.activeUserList.sort($scope.sortActiveUsersByScore).slice(0, 10);
-        		$scope.vulnerableUsers	= report.vulnerableUserList.sort($scope.sortVulnerableUsersByScore).slice(0, 10);
+        		$scope.activeUsers		= report.activeUserList.sort($scope.sortActiveUsersByScore).slice(0, 5);
+        		$scope.vulnerableUsers	= report.vulnerableUserList.sort($scope.sortVulnerableUsersByScore).slice(0, 5);
         		$scope.allUsers			= $scope.aggregateUserLists(report);
         	});
         }]);
