@@ -1,5 +1,5 @@
 <div id="page-top" class="panel addoo-shadow">
-	<div class="row" ng-controller="DashboardStatsCtrl" style="padding:10px 15px;">
+	<div class="row" ng-controller="DashboardStatsCtrl" style="padding:10px 15px;" ng-show="!loading || topvideos.length > 0">
 		<div id="team-tracks-chart" class="col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
 			<canvas id="line" class="chart chart-line" style="padding-right:20px;" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
 		</div>
