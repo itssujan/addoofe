@@ -69,9 +69,12 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="user in allUsers">
-                            <td style="cursor: pointer;"><a ui-sref="customer-care.customer-detail({customerID: '{{user.studentInformation.id}}'})">{{user.studentInformation.firstName}} {{user.studentInformation.lastName}}</a></td>
+                            <td style="cursor: pointer;"><a ui-sref="customer-care.customer-detail({studentID: '{{user.studentInformation.id}}', score: '{{user.activityScore}}'})">{{user.studentInformation.firstName}} {{user.studentInformation.lastName}}</a></td>
                             <td>{{user.studentInformation.email}}</td>
-                            <td style="text-align: center;">{{user.activityScore}}</td>
+                            <td style="text-align: center; font-size: 25px; line-height: 1;">
+                                <i class="fa fa-check-circle-o" style="color: green;" ng-show="user.activityScore !== 0 && user.activityScore >= .25"></i>
+                                <i class="fa fa-times-circle-o" style="color: red;" ng-show="user.activityScore !== 0 && user.activityScore < .25"></i>
+                            </td>
                         </tr>
                     </tbody>
                     <tfoot>

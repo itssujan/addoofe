@@ -152,8 +152,7 @@
                     data: {requiresLogin: true},
                     params : {
                         managerRequired : null
-                    },
-
+                    }
                 })
                 .state('customer-manager.announcements', {
                     url: '/announcements',
@@ -185,7 +184,7 @@
                     data: {requiresLogin: true}
                 });
 
-                $stateProvider
+            $stateProvider
                 .state('customer-care', {
                     abstract: true,
                     url: '/customer-care',
@@ -195,11 +194,22 @@
                     }
                 })
                 .state('customer-care.dashboard', {
-                    url				: '/dashboard',
-                    templateUrl		: 'templates/customercare/CustomerCareDashboard.html',
-                    ctrl			: "CustomerCareDashboardController",
-                    controller		: "CustomerCareDashboardController",
-                    data			: { requiresLogin: true }
+                    url         : '/dashboard',
+                    templateUrl : 'templates/customercare/CustomerCareDashboard.html',
+                    ctrl        : "CustomerCareDashboardController",
+                    controller  : "CustomerCareDashboardController",
+                    data: { requiresLogin: true }
+                })
+                .state('customer-care.customer-detail', {
+                    url         : '/customer-detail',
+                    templateUrl : 'templates/customercare/CustomerDetail.html',
+                    ctrl        : "CustomerDetailController",
+                    controller  : "CustomerDetailController",
+                    params  : {
+                        studentID   : null,
+                        score       : 0
+                    },
+                    data    : { requiresLogin: true }
                 });
 
                 $stateProvider
