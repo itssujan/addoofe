@@ -1,4 +1,7 @@
 ﻿@sm-width: 40px;
+@primary-text-color: #FFFFFF;
+@addoo-primary-orange: #F38F29;
+@addoo-hover-orange: #EE7000;
 
 .addoo-button-container {
 
@@ -17,18 +20,18 @@
 	line-height: 1;
 
 	&.addoo-orange {
-		background-color: #F38F29;
-		color: #FFFFFF;
+		background-color: @addoo-primary-orange;
+		color: @primary-text-color;
 		
 		&:hover {
 			cursor: pointer;
-			background-color: #FDB265;
+			background-color: @addoo-hover-orange;
 		}
 	}
 
 	&.addoo-red {
 		background-color: #d9534f;
-		color: #FFFFFF;
+		color: @primary-text-color;
 
 		&:hover {
 			cursor: pointer;
@@ -38,7 +41,7 @@
 
 	&.addoo-blue {
 			background-color: #337ab7;
-			color: #FFFFFF;
+			color: @primary-text-color;
 
 		&:hover {
 			cursor: pointer;
@@ -48,7 +51,7 @@
 
 	&.addoo-color-secondary {
 		background-color: #5BAEF4;
-			color: #FFFFFF;
+		color: @primary-text-color;
 
 		&:hover {
 			cursor: pointer;
@@ -62,5 +65,28 @@
 
 	&.addoo-md {
 		min-width: 60px;
+	}
+}
+
+/** Link Buttons - Styles applied to anchor elements needing treatment as buttons **/
+
+.addoo-link-button {
+	border-radius: 3px;
+	text-align: center;
+	display: inline-block;
+	min-width: 95px;
+	margin: 0 15px 10px;
+	padding: 5px 10px;
+	color: @primary-text-color;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none !important;
+	background-color: @addoo-primary-orange;
+
+	&:hover,
+	&:focus {
+		background-color: @addoo-hover-orange;
+		color: @primary-text-color !important;	// override
+		text-decoration: none !important;		// override
 	}
 }

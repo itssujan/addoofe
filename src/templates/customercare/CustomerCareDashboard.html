@@ -1,0 +1,88 @@
+<div id="searchbar">
+    <span class="fa fa-search"></span>
+    <input type="text" st-search="" st-table="allUsers" placeholder="start searching for a client by typing...." ng-keyup="hasSearchBegun($event)" />
+</div>
+<div class="container-fluid">
+    <div class="row" id="metrics">
+        <div class="addoo-component col-xs-6 col-md-2">
+            <div class="addoo-header description">Pending</div>
+            <div class="value">{{tracksPending}}</div>
+        </div>
+        <div class="addoo-component col-xs-6 col-md-2">
+            <div class="addoo-header description">Started</div>
+            <div class="value">{{tracksStarted}}</div>
+        </div>
+        <div class="addoo-component col-xs-6 col-md-2">
+            <div class="addoo-header description">Completed</div>
+            <div class="value">{{tracksCompleted}}</div>
+        </div>
+    </div>
+
+    <div class="row" id="churn-indicators" ng-show="!searchHasBegun">
+        <div class="addoo-component col-md-4">
+            <h2 class="addoo-header">Liable for Churn</h2>
+            <table class="table table-striped" st-table="vulnerableUsers" st-safe-src="vulnerable" ng-show="!loading">
+                <thead>
+                    <tr>
+                        <th class="header" st-sort="firstName">Customer</th>
+                        <th class="header">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in vulnerableUsers">
+                        <td>{{user.studentInformation.firstName}} {{user.studentInformation.lastName}}</td>
+                        <td><i class="fa fa-times-circle-o" style="color:red; font-size:25px;"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="addoo-component col-md-4">
+            <h2 class="addoo-header">Active Learners</h2>
+            <table class="table table-striped" st-table="activeUsers" st-safe-src="active" ng-show="!loading">
+                <thead>
+                    <tr>
+                        <th class="header" st-sort="firstName">Customer</th>
+                        <th class="header" st-sort="activityScore">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in activeUsers">
+                        <td>{{user.studentInformation.firstName}} {{user.studentInformation.lastName}}</td>
+                        <td><i class="fa fa-check-circle-o" style="color:green; font-size:25px;"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="addoo-component">
+            <h2 class="addoo-header">All Customers</h2>
+            <div class="table-container">
+                <table class="table table-striped" st-table="allUsers" st-safe-src="allUsersList" ng-show="!loading">
+                    <thead>
+                        <tr>
+                            <th class="header" st-sort="lastname">Name<i class="fa fa-sort"></i></th>
+                            <th class="header" st-sort="email">E-mail<i class="fa fa-sort"></i></th>
+                            <th class="header" st-sort="activityScore">Status<i class="fa fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in allUsers">
+                            <td style="cursor: pointer;"><a ui-sref="customer-care.customer-detail({customerID: '{{user.studentInformation.id}}'})">{{user.studentInformation.firstName}} {{user.studentInformation.lastName}}</a></td>
+                            <td>{{user.studentInformation.email}}</td>
+                            <td style="text-align: center;">{{user.activityScore}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ angular.module('app')
     .controller('DashboardStatsCtrl', [ '$scope','envService', '$state','Restangular', '$rootScope',
         'Auth','growl','$mixpanel','$filter',
         function ($scope,envService, $state, Restangular,$rootScope, Auth, growl,$mixpanel,$filter) {
-            console.log('In DashboardTracksCtrl');
+            console.log('In DashboardStatsCtrl');
 
              // var today = new Date();
              // var date = new Date();

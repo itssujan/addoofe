@@ -12,7 +12,6 @@
 	font-family: @font-family;
 	height: auto;
 	width: auto;
-	margin-top: 15px;
 	display: inline-block;
 	float: right;
 
@@ -23,10 +22,9 @@
 		display: block;
 		float: right;
 		clear: right;
-		border: 1px solid #BEBEBE;
-		border-radius: 2px;
+		border-radius: 5px;
 		background-color: #DFDFDF;
-		box-shadow: 0 1px 1px #BEBEBE;
+		box-shadow: 0 3px 3px #A9A9A9;
 
 		#care-rep-image {
 			display: inline-block;
@@ -36,6 +34,7 @@
 
 			img {
 				width: 60px;
+				border: 1px solid #BEBEBE;
 			}
 		}
 
@@ -45,6 +44,7 @@
 			width: auto;
 			margin: 10px 10px 5px 0;
 			color: #F38F29;
+			font-weight: bold;
 		}
 
 		p {
@@ -54,31 +54,12 @@
 			padding-right: 15px;
 			font-size: 12px;
 		}
-
-		.button {
-			border-radius: 3px;
-			text-align: center;
-			display: inline-block;
-			float: right;
-			clear: left;
-			width: 95px;
-			margin: 0 15px 10px;
-			padding: 5px;
-			color: @primary-text-color;
-			font-size: 16px;
-			font-weight: bold;
-			text-decoration: none;
-			background-color: #F38F29;
-		}
-
-		.button:hover {
-			background-color: #FDB265;
-		}
 	}
 
 	#team-member-add {
 		.text-warning {
 			margin-left: 10px;
+			font-weight: bold;
 		}
 
 		.button {
@@ -86,16 +67,17 @@
 		}
 
 		p {
+			float: left;
+			margin-left: 10px;
 			max-width: 335px;
+			font-size: 12px;
 		}
 
 		input {
-			display: inline-block;
-			float: left;
 			margin-left: 10px;
-			padding: 2px;
-			width: 210px;
-			height: 29px;
+			padding-left: 5px;
+			width: 215px;
+			height: 30px;
 			border-radius: 3px;
 			border: 0px;
 			-webkit-appearance: none;
@@ -166,25 +148,34 @@
 #welcome-wrapper {
 	display: inline-block;
 	background-color: @tertiary-gray;
-	width: 250px;
+	width: 100%;
 	padding: 15px 0;
 	padding-left: 15px;
 
 	.message {
 		display: inline-block;
+		text-align: center;
 		float: left;
 		max-width: 190px;
 		font-size: 14px;
 		color: @primary-text-color;
 	}
 
+	.name {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
 	.collapser {
-		display: inline-block;
 		float: right;
 		color: @secondary-gray;
-		padding-right: 25px;
-		padding-top: 10px;
+		margin-right: 25px;
+		margin-top: 10px;
 		font-size: 20px;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }
 
@@ -234,14 +225,14 @@
 /* Customized Sidebar Styling and Animations */
 
 #page-wrapper.open #client-sidebar-wrapper {
-	left: 150px;
+	left: 170px;
 }
 
 #client-sidebar-wrapper {
 	background-color: #424242;
-	margin-left: -150px;
+	margin-left: -170px;
 	left: -30px;
-	width: 250px;
+	width: 270px;
 	position: fixed;
 	height: 100%;
 	z-index: 999;
