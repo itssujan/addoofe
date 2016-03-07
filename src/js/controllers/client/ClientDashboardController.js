@@ -123,7 +123,10 @@ angular.module('app')
         	if (($location.search()).src == "welcomeemail") {
         		console.log("Viewing via welcome email");
         		$scope.sendEvent('Visit via Welcome Email');
-        	} else if (($location.search()).src == "coworkerreferral") {
+        	} else if (($location.search()).src == "welcomeemail2") {
+                console.log("Viewing via followup welcome email");
+                $scope.sendEvent('Viewing via followup welcome email');
+            } else if (($location.search()).src == "coworkerreferral") {
         		console.log("Viewing via coworker referral email");
         		$scope.sendEvent('Visit via Coworker referral');
         	}
