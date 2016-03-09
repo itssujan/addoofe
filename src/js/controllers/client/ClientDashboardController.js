@@ -360,17 +360,16 @@ angular.module('app')
 
             $scope.trackevent = function(event) {
                 console.log("Event received");
-                if($scope.disabletracking){
-                    return true;
+                if(!$scope.disabletracking){                 
+                    var lead = {};
+                    lead.product = event;
+                    lead.studentCourseID = $scope.studentcourseID;
+                    $mixpanel.track("Customer clicked other products", {
+                            "Email": $scope.clientemail,
+                            "Product" : event
+                    });
+                    Restangular.all('crosssaleleads').post(lead);
                 }
-                var lead = {};
-                lead.product = event;
-                lead.studentCourseID = $scope.studentcourseID;
-                $mixpanel.track("Customer clicked other products", {
-                        "Email": $scope.clientemail,
-                        "Product" : event
-                });
-                Restangular.all('crosssaleleads').post(lead);
             }
 
         }]);
