@@ -1,0 +1,43 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Leads</span>
+                </a>
+            </li>
+        </ul>		
+		<div class="panel panel-default paper-shadow tab-content">
+			<span>These users have shown interest to other products</span>
+			<div growl inline="true"></div>
+						<table class="table table-striped" st-table="displayedLeads" st-safe-src="leads" ng-show="!loading">
+				<thead>
+					<tr class="search-row">
+						<th colspan="6"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
+					</tr>
+					<tr>
+						<th class="header" st-sort="email">Email<i class="fa fa-sort"></i></th>
+						<th class="header" st-sort="name">Name<i class="fa fa-sort"></i></th>
+						<th class="header" st-sort="date">Date<i class="fa fa-sort"></i></th>
+						<th class="header" st-sort="product">Product<i class="fa fa-sort"></i></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in displayedLeads">
+						<td>{{row.opportunityEmail}}</td>
+						<td>{{row.opportunityID.local.firstname}} {{row.opportunityID.local.lastname}}</td>
+						<td> <span am-time-ago="row.createdOn"></span></td>
+						<td>{{row.product}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="5" class="text-center">
+							<div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+
+		</div>
+    </div>
+</div>

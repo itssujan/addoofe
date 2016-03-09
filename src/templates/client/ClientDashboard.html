@@ -164,6 +164,15 @@
 				<input type="text" name="coworkeremail" ng-model="coworker.email" />
 				<a class="addoo-link-button addoo-float-right" href="" ng-click="addCoworker();sendEvent('Coworker Added')" target="_blank">Add</a>
 			</div>
+			<div class="information" id="other-products">
+				<h4 class="sidebar-right text-warning">More from Citrix</h4>
+				<p>Other products from Citrix that might interest you</p>
+				<div>
+					<a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('shareconnect');"><img src="img/logo/products/ShareConnect-Black.png" height="35px" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
+					<a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('rightsignature');"><img src="img/logo/products/RightSignature-Black.png" height="35px"ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'shareconnect'" style="padding-left:10px"/></a>
+					<a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('sharefile');"><img src="img/logo/products/ShareFile-Black.png" height="35px" ng-show="studentcourse.product == 'rightsignature' || studentcourse.product == 'shareconnect'" style="padding-left:10px"/></a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

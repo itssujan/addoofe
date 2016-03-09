@@ -18,6 +18,28 @@
         </div>
     </div>
 
+    <div class="row" ng-controller="DashboardStatsCtrl" style="padding:10px 15px;" ng-show="!loading || topvideos.length > 0">
+        <div id="team-tracks-chart" class="addoo-component col-lg-4 col-md-6 col-xs-12" ng-show="!loading">
+            <canvas id="line" class="chart chart-line" style="padding-right:20px;" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
+        </div>
+        <div class="addoo-component col-lg-4 col-md-6 col-xs-12" ng-show="topvideos.length > 0">
+            <div class="weekly-title">Top Videos</div>
+            <table class="table table-striped weekly-ranking-table">
+                <thead>
+                    <tr>
+                        <th class="header">Title</th>
+                        <th class="header">Count</th>
+                    </tr>
+                </thead>
+                <tr class="ranking-row" ng-repeat="row in topvideos" ng-if="row.completedCount > 0">
+                    <td>{{row.title}}</td>
+                    <td>{{row.completedCount}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
     <div class="row" id="churn-indicators" ng-show="!searchHasBegun">
         <div class="addoo-component col-md-4">
             <h2 class="addoo-header">Liable for Churn</h2>

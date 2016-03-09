@@ -189,6 +189,13 @@
                     ctrl: "inviteUsersCtrl",
                     controller: "InviteUsersCtrl",
                     data: {requiresLogin: true}
+                })
+                .state('customer-manager.leads', {
+                    url: '/leads',
+                    templateUrl: 'templates/leads.html',
+                    ctrl: "leadsCtrl",
+                    controller: "LeadsCtrl",
+                    data: {requiresLogin: true}
                 });
 
                 $stateProvider
