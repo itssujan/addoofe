@@ -29,9 +29,7 @@ angular.module('app')
 
             $scope.resetpassword = function() {
                 $mixpanel.track('Resetting password');
-                console.log("akdjasd");
                 if(validatePassword()) {
-                    console.log("AM here");
                     var resetparams = {};
                     resetparams.password = $scope.password;
                     resetparams.resetcode = $scope.resetcode;
@@ -45,11 +43,9 @@ angular.module('app')
             }
 
             var validatePassword = function() {
-                console.log($scope.password+" "+$scope.confirmpassword);
                 if($scope.password != $scope.confirmpassword) {
                     return false;
                 }
-                console.log("asdasd");
                 return true;
             }
         } ]);
