@@ -240,27 +240,6 @@
                     data: {requiresLogin: false}
                 });
 
-                // $stateProvider
-                // .state('public', {
-                //     abstract: true,
-                //     url: '/public',
-                //     templateUrl: 'templates/public/layout.html',
-                //     access: {
-                //         requiresLogin: false
-                //     }
-                // }).state('public.forgotpassword', {
-                //     url             : '/forgotpassword',
-                //     templateUrl     : 'templates/public/forgotpassword.html',
-                //     ctrl            : "forgotPasswordCtrl",
-                //     controller      : "ForgotPasswordCtrl",
-                //     data            : { requiresLogin: false }
-                // }).state('public.resetpassword', {
-                //     url             : '/resetpassword/:resetcode',
-                //     templateUrl     : 'templates/public/resetpassword.html',
-                //     ctrl            : "forgotPasswordCtrl",
-                //     controller      : "ForgotPasswordCtrl",
-                //     data            : { requiresLogin: false }
-                // });
         }
     ]
 )
