@@ -100,7 +100,7 @@
 			<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" ng-show="!loading">
 				<thead>
 					<tr class="search-row">
-						<th colspan="6"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
+						<th colspan="6"><input class="form-control search" ng-model="searchText" ng-change="search(searchText)" placeholder="Enter text to start searching..." type="text" /></th>
 					</tr>
 					<tr>
 						<th class="header" st-sort="title">Track<i class="fa fa-sort"></i></th>

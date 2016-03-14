@@ -1,0 +1,40 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+	<div id="sidebar-wrapper">
+		<div id="sidebar-header">
+<!-- 			<div id="collapser">
+				<i ng-click="toggleSidebar()" class="menu-icon glyphicon glyphicon-transfer"></i>
+			</div>
+ -->			<div id="addoo-header">
+				<a href="app.addoo.io"><img src="img/addoo-logo.png"></a>
+			</div>
+		</div>
+<!-- 		<div id="profile">
+			<img ng-if="user.local.avatarurl" src="{{user.local.avatarurl}}" class="addoo-image addoo-circle">
+			<img ng-if="!user.local.avatarurl" src="img/avatar.jpg" class="addoo-image addoo-circle">
+			<div>{{user.local.firstname}}</div>
+		</div>
+ -->		<div id="sidebar-footer" class="addoo-position addoo-fixed" style="bottom:0;">
+			<div class="addoo-list-container">
+				<ul class="addoo-list" >
+					<li class="addoo-list-element addoo-horizontal addoo-left"><a class="addoo-list-anchor" href="http://addoo.io/wp-content/uploads/2016/01/Innovation-TOS-2015.v1.pdf" style="color:#6D7070;" target="_blank">Terms & Conditions</a></li>
+					<li class="addoo-list-element addoo-horizontal addoo-left"><a class="addoo-list-anchor" href="http://addoo.io/wp-content/uploads/2016/01/Innovation-Privacy-Policy-2015-v2.FINAL_.pdf" style="color:#6D7070;" target="_blank">Privacy</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+		<div ui-view></div>
+	</div>
+</div>
+
+<!-- begin Wootric code -->
+<script type="text/javascript">
+	wootric_survey_immediately = true; // Shows survey immediately for testing purposes.  TODO: Comment out for production.
+	window.wootricSettings = {
+		email: 'sujan.abraham@citrix.com',// TODO: The current logged in user's email address.
+		created_at: 1234567890, // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
+		account_token: 'NPS-312d184b' // This is your unique account token.
+	};
+</script>

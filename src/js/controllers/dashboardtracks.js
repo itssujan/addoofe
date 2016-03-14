@@ -10,14 +10,14 @@ angular.module('app')
             $scope.auth = Auth;
             $scope.performUpload = false;
             $scope.loading = true;
-
+            $scope.searchText = '';
 
             var queryParams = "&populate=studentID&populate=courseID&populate=author";
             if(Auth.user.role == 'sales'){
                 queryParams = "&author="+Auth.user._id+"&populate=studentID&populate=courseID";
             }
 
-            Restangular.all("studentcourses?product="+Auth.user.product+queryParams+"&sort=-invitedOn").getList().then(function(data){
+            Restangular.all("studentcourses?product="+Auth.user.product+queryParams+"&sort=-invitedOn&limit=100").getList().then(function(data){
                 $scope.studentcourses = data;
                 $scope.studentcourses.forEach(function(element, index, array){
                         var totalLessonsCount = element.courseID && element.courseID.contents ? element.courseID.contents.length : 1;
@@ -47,6 +47,12 @@ angular.module('app')
                 $scope.loading = false;
 
             });
+
+            $scope.search = function(text) {
+                Restangular.all("studentcoursesearch?text="+text).getList().then(function(data){
+                    console.log(data);
+                });
+            }
 
 
 
