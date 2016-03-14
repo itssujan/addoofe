@@ -48,6 +48,12 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$interc
     /**
      * Sidebar Toggle & Cookie Control
      */
+
+    // UserVoice JavaScript SDK (only needed once on a page) 
+    (function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/XQtFzFO0GKH4NfNjKtSFg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()
+
+    <!-- A tab to launch the Classic Widget -->
+    UserVoice = window.UserVoice || [];
     UserVoice.push(['showTab', 'classic_widget', {
       mode: 'feedback',
       primary_color: '#cc6d00',
@@ -58,7 +64,6 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$interc
       tab_position: 'top-right',
       tab_inverted: false
     }]);
-
 
     // Wootric -- NPS Survery start
     wootric_survey_immediately = envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.

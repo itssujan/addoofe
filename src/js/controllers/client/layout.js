@@ -59,4 +59,5 @@ angular.module('app')
     window.onresize = function() {
         $scope.$apply();
     };
+
 }]);
