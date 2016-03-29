@@ -36,6 +36,11 @@ angular.module('app')
                         }
                         element.title = element.courseID.title;
                         element.email = element.studentID.local.email;
+                        if(element.studentID.local.firstname || element.studentID.local.lastname) {
+                            element.name = element.studentID.local.firstname+" "+element.studentID.local.lastname;
+                        } else {
+                            element.name = "";
+                        }
                         if(Auth.user.role == 'sales'){
                             element.authorname = Auth.user.local.firstname +" "+Auth.user.local.lastname;
                         } else {

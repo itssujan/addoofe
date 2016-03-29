@@ -107,6 +107,7 @@
 					<tr>
 						<th class="header" st-sort="title">Track<i class="fa fa-sort"></i></th>
 						<th class="header" st-sort="email">Client<i class="fa fa-sort"></i></th>
+						<th class="header" st-sort="email">Client Name<i class="fa fa-sort"></i></th>
 						<th class="header" st-sort="authorname">Created By<i class="fa fa-sort"></i></th>
 						<th class="header" st-sort="invitedOn">Created On<i class="fa fa-sort"></i></th>
 						<th class="header" st-sort="coursestatus">Status<i class="fa fa-sort"></i></th>
@@ -120,6 +121,7 @@
 							<i class="fa fa-pencil addoo-icon addoo-action addoo-secondary addoo-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
 						</td>
 						<td>{{row.email}}</td>
+						<td>{{row.name}}</td>
 						<td>{{row.authorname}}</td>
 						<td> <span am-time-ago="row.invitedOn"></span></td>
 						<td>{{row.coursestatus}}</td>
