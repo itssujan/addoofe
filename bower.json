@@ -64,7 +64,6 @@
   },
   "resolutions": {
     "angular": "1.5.0",
-    "angular-spinner": "~0.8.0",
-    "angular-bootstrap": "~1.1.0"
+    "angular-spinner": "~0.8.0"
   }
 }
