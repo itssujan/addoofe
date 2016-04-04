@@ -165,8 +165,8 @@ angular.module('app')
         	};
 
             if (($location.search()).org == "mt") {
-                console.log("Viewing via welcome email");
-                $scope.sendEvent('Visit via Welcome Email');
+                console.log("Viewing via marketo email");
+                $scope.sendEvent('Visit via Marketo email');
             } else if (($location.search()).src == "welcomeemail") {
         		console.log("Viewing via welcome email");
         		$scope.sendEvent('Visit via Welcome Email');
