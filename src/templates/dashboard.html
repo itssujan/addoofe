@@ -91,18 +91,12 @@
 	<div class="table-container addoo-widget-override">
 		<rd-widget>
 			<rd-widget-header title="Active Tracks"></rd-widget-header>
-			<div ng-show="loading" class="loading">
-				<div class="spinner">
-					<div class="dot1"></div>
-					<div class="dot2"></div>
-				</div>
-			</div>
-			<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses" ng-show="!loading">
+			<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
 				<thead>
 					<tr class="search-row">
-<!-- 						<th colspan="6"><input class="form-control search" ng-model="searchText" ng-change="search(searchText)" placeholder="Enter text to start searching..." type="text" /></th>-->
- 							<th colspan="6"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
-
+ 						<th colspan="6"><input class="form-control search" ng-model="searchText" ng-change="search(searchText)" placeholder="Enter text to start searching..." type="text" /></th>
+ 							<!-- <th colspan="6"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
+ -->
 					</tr>
 					<tr>
 						<th class="header" st-sort="title">Track<i class="fa fa-sort"></i></th>
@@ -115,7 +109,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="row in displayedStudentCourseCollection">
+					<tr ng-show="loading">
+						<td colspan="7">
+							<div class="loading">
+								<div class="spinner">
+									<div class="dot1"></div>
+									<div class="dot2"></div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr ng-repeat="row in displayedStudentCourseCollection" ng-show="!loading">
 						<td>
 							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
 							<i class="fa fa-pencil addoo-icon addoo-action addoo-secondary addoo-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
@@ -124,10 +128,10 @@
 						<td>{{row.name}}</td>
 						<td>{{row.authorname}}</td>
 						<td> <span am-time-ago="row.invitedOn"></span></td>
-						<td>{{row.coursestatus}}</td>
+						<td style="text-transform:capitalize;">{{row.progress}}</td>
 						<td>
 							<div class="progress" style="width:100%">
-								<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{row.courseprogress}}%">
+								<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{row.progresspercent}}%">
 									<span class="sr-only">40% Complete (success)</span>
 								</div>
 							</div>

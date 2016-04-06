@@ -421,4 +421,8 @@ angular.module('app')
                 }
             }
 
+            $scope.like = function() {
+                //$scope.video 
+            }
+
         }]);

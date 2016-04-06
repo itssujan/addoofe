@@ -201,6 +201,7 @@ angular.module('app')
         		$scope.student.product				= Auth.user.product;
         		$scope.student.progress				= "invited";
         		$scope.student.onboardingSpecialist = $scope.student.onboardingSpecialist;
+                $scope.student.clientName = $scope.student.local.clientname;
 
         		console.log('Trying to invite students :' + JSON.stringify($scope.student));
 
