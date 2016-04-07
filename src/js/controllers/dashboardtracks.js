@@ -17,18 +17,27 @@ angular.module('app')
                 queryParams = "&author="+Auth.user._id+"&populate=studentID&populate=courseID";
             }
 
-            //&limit=100
-            Restangular.all("studentcourses?product="+Auth.user.product+queryParams+"&sort=-invitedOn&limit=20").getList().then(function(data){
-                populateTable(data);
-            });
-
-            $scope.search = function(text) {
-                $scope.loading = true;
-                Restangular.all("studentcoursesearch?text="+text).getList().then(function(data){
-                    console.log(data);
+            var getActiveTracks = function() {
+                Restangular.all("studentcourses?product="+Auth.user.product+queryParams+"&sort=-invitedOn&limit=20").getList().then(function(data){
                     populateTable(data);
                 });
             }
+
+            //&limit=100
+            getActiveTracks();
+
+            $scope.search = function(text) {
+                $scope.loading = true;
+                if(text == "") {
+                    getActiveTracks();
+                } else {
+                    Restangular.all("studentcoursesearch?text="+text).getList().then(function(data){
+                        console.log(data);
+                        populateTable(data);
+                    });
+                }
+            }
+
 
             var populateTable = function(data) {
                 console.log(data);
