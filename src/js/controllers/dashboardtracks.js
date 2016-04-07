@@ -39,7 +39,7 @@ angular.module('app')
                     if(Auth.user.role == 'sales'){
                         element.authorname = Auth.user.local.firstname +" "+Auth.user.local.lastname;
                     } else {
-                        element.authorname = element.authorFirstName +" "+element.authorFirstName;
+                        element.authorname = element.authorFirstName +" "+element.authorLastName;
                     }
                 });
                 $scope.displayedStudentCourseCollection = [].concat($scope.studentcourses);
