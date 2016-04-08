@@ -50,7 +50,10 @@
 					<tbody class="drag-list" ui-tree-nodes ng-model="course.contents">
 						<tr ng-repeat="content in course.contents" ui-tree-node>
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
-							<td>{{content.title}}</td>
+							<td>{{content.title}} 
+                                <i class="fa fa-eye text-success" ng-if="content.progress == 'complete'" color="green"></i>
+                                <i class="fa fa-eye-slash text-success" ng-if="content.progress != 'complete'" color="green"></i>
+                            </td>
 							<td class="addoo-button-container addoo-sm">
 								<button class="addoo-button addoo-blue addoo-sm addoo-float-right" ng-click="openVideoPreviewModal(content)"><span class="glyphicon glyphicon-play"></span></button>
 							</td>

@@ -121,8 +121,8 @@
 					</tr>
 					<tr ng-repeat="row in displayedStudentCourseCollection" ng-show="!loading">
 						<td>
-							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})">{{row.title}}</a>
-							<i class="fa fa-pencil addoo-icon addoo-action addoo-secondary addoo-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({courseID: '{{row.courseID._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
+							<a ui-sref="customer-manager.trackbuilder({studentCourseID: '{{row._id}}'})">{{row.title}}</a>
+							<i class="fa fa-pencil addoo-icon addoo-action addoo-secondary addoo-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({studentCourseID: '{{row._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
 						</td>
 						<td>{{row.email}}</td>
 						<td>{{row.name}}</td>

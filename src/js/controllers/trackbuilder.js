@@ -14,7 +14,7 @@ angular.module('app')
         	$scope.showtrackbuilder = false;
         	$scope.auth				= Auth;
         	$scope.user				= Auth.user;
-        	$scope.courseID			= $stateParams.courseID;
+        	$scope.studentCourseID  = $stateParams.studentCourseID;
         	$scope.student			= {};
         	$scope.selectedVideos	= [];
 
@@ -68,14 +68,16 @@ angular.module('app')
 
         	}
 
-        	console.log("Track ID ::: " + $scope.courseID);
-        	if ($scope.courseID) {
-        		Restangular.one("course", $scope.courseID).get().then(function (data) {
+        	if ($scope.studentCourseID) {
+        		Restangular.all("studentcourses?_id="+$scope.studentCourseID+"&populate=courseID").getList().then(function (data) {
         			if ($stateParams.message) {
         				growl.success($stateParams.message);
         			}
 
-        			$scope.course = data;
+                    $scope.studentcourse = data[0];
+        			$scope.course = $scope.studentcourse.courseID;
+                    $scope.courseID = $scope.course._id;
+                    updateViewStatus();
 
         			if (!$scope.course.baseTrack) {
         				$scope.course.baseTrack = false;
@@ -83,12 +85,29 @@ angular.module('app')
         			if (!$scope.course.shareWithTeam) {
         				$scope.course.shareWithTeam = false;
         			}
+                    $scope.updateClientList();
         		});
 
-        		$scope.updateClientList();
+        		
         		$scope.showtrackbuilder = true;
                 $scope.loading = false;
         	}
+
+            var updateViewStatus = function() {
+                if(!$scope.studentcourse.lessonprogress || $scope.studentcourse.lessonprogress.length == 0) {
+                    return true;
+                }
+
+                for(var i=0;i < $scope.course.contents.length;i++) {
+                    var coursecontent = $scope.course.contents[i];
+                    for(var j = 0; j < $scope.studentcourse.lessonprogress.length; j++) {
+                        var studentcoursecontent = $scope.studentcourse.lessonprogress[j];
+                        if(coursecontent.videoID == studentcoursecontent.lessonID) {
+                            $scope.course.contents[i].progress = studentcoursecontent.progress;
+                        }
+                    }
+                }
+            }
 
         	var self = this;
 
