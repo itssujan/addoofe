@@ -140,7 +140,7 @@
                     controller: "DashboardCtrl",
                     data: {requiresLogin: true}
                 }).state('customer-manager.trackbuilder', {
-                    url: '/trackbuilder/:courseID',
+                    url: '/trackbuilder/:studentCourseID',
                     templateUrl: 'templates/trackbuilder.html',
                     ctrl: "trackbuilder",
                     controller: "TrackBuilderCtrl",
