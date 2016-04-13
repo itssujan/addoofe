@@ -96,6 +96,7 @@ angular.module('app')
         	$scope.coworker = {};
         	$scope.duplicateStudentCourse = '';
             $scope.showSpinner = false;
+            $scope.publicTrainingURL = "";
 
         	$scope.config = {
         		preload: "none",
@@ -140,7 +141,18 @@ angular.module('app')
         		$scope.playVideo($scope.currentVideoIndex);
         		getUpcomingVideos();
                 updateViewStatus();
+                setPublicTraningURL();
         	});
+
+            var setPublicTraningURL = function() {
+                if($scope.studentcourse.product == 'sharefile') {
+                    $scope.publicTrainingURL = "https://attendee.gototraining.com/rt/732020008678591744";
+                } else if($scope.studentcourse.product == 'shareconnect') {
+                    $scope.publicTrainingURL = "https://attendee.gotowebinar.com/rt/41719141899018498";
+                } else if($scope.studentcourse.product == 'rightsignature') {
+                    $scope.publicTrainingURL = "https://attendee.gototraining.com/rt/6022988730695539458";
+                }
+            }
 
         	var setProductDisplayName = function () {
         		if ($scope.studentcourse.product == "sharefile")
