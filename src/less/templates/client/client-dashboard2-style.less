@@ -1,0 +1,293 @@
+/* Global Styles */
+/*p h1 h2 h3 h4 h5 li */
+
+.client-heading {
+	color: #545454;
+}
+
+.client-hyperlink {
+	color: #78be20;
+}
+
+.client-heading a:hover {
+	color: #545454;	
+}
+
+.client-blockquote {
+  padding: 10px 10px;
+  font-size: 12px;
+  border-left: none;
+  margin: 0 0 0 0;
+}
+
+.client-btn {
+	margin-left: 10px;
+}
+
+.client-btn-success {
+	color: #548517;
+	background-color: #BEE18E;
+    border-color: #78be20;
+}
+
+.client-btn-success:hover {
+	background-color: #78be20;
+}
+
+.client-input {
+	height: 35px;
+	width: 65%;
+	border: 1px lightgrey solid;
+	border-radius: 3px;
+}
+
+/* Header */
+.client-navbar {
+	border-radius: 0px;
+}
+
+.client-header {
+	width: 100%;
+	height : 50px;
+	background-color: #485164;
+	padding-bottom : 10px;
+	margin-bottom : 10px;
+}
+
+.client-logo {
+	height: 50px;
+}
+
+/* Navigation */
+.client-nav {
+	text-align: right;
+	color: white;
+	display: block;
+	float: right;
+}
+
+.client-nav li {
+	float: left;
+	padding-right: 25px;
+	margin-top: 30px;
+	color: white;
+}
+
+.client-nav li a {
+	color: white;
+}
+
+.client-nav li a:hover {
+	color: white;
+}
+
+/* Customer Information */
+.customerInformation {
+	background-color: #BEE18E;
+	padding: 10px;
+ 	height: 60px;
+	border-radius: 3px;
+	color: #545454;
+	border: 1px #78be20 solid;
+}
+
+.customerInformation h5 {
+	float: left;
+	margin-right: 10px;
+	color: #548517;
+}
+
+/* Customer Success */
+.customer-success {
+	padding: 10px 10px 10px 0px;
+	max-width: 500px;
+	border: 1px lightgrey solid;
+}
+
+.customer-success img {
+	float: left;
+	padding: 10px;
+	height: 75px;
+}
+
+
+/* Video player */
+.client-video-container {
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+	margin-top: 11px;
+	height: 360px;
+	width: 538px;
+}
+
+.client-video-description {
+	border: 1px solid #cecece;
+	padding: 0px 20px 35px 20px;
+	margin-top: 25px;
+	width: 100%;
+}
+
+
+.client-feedback {
+	float: right;
+
+}
+
+.client-feedback p {
+	float: left;
+	padding-right: 10px;
+	margin-bottom: 20px;
+}
+
+.client-feedback .fa {
+	color: grey;
+}
+.client-feedback .fa-thumbs-up:hover {
+	color: green;
+}
+.client-feedback .fa-thumbs-down:hover {
+	color: red;
+}
+
+
+.client-video-container iframe, .client-video-container object, .client-video-container embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+.client-viewer {
+	padding-top : 10px;
+
+	.navigation-panel {
+		display: inline-block;
+		float: left;
+		clear: left;
+		margin-bottom: 20px;
+		width: 538px;
+	}
+
+	&.non-doc {
+
+		.video-player {
+			height: 360px;
+			width: 538px;
+			display: inline-block;
+			float: left;
+			clear: left;
+		}
+	}
+}
+
+/* Playlist */
+.client-playlist {
+	margin-top: 0px;
+	border: 1px solid #cecece;
+	padding: 30px 10px 30px 0px; 
+	overflow: auto;
+	height: 464px;
+	max-width: 500px;
+}
+
+.client-playlist li {
+	list-style: none;
+	height: 93px;
+}
+
+.client-playlistItem img{
+	height: 75px;
+	border: 1px solid grey;
+	margin-right: 15px;
+	margin-bottom: 20px;
+	float: left;
+}
+
+.client-other-videos a {
+	color: #545454;
+}
+
+a.video {
+  float: left;
+  position: relative;
+}
+
+a.video img {
+	width : 120px;
+	height : 80px;
+}
+
+a.video span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: url("../../img/client/playbutton.png") no-repeat;
+  background-position: 50% 50%;
+  background-color: rgba(59,59,59,.5);
+}
+
+.video-details {
+	padding-left : 140px;
+}
+
+
+#playlistHeader {
+
+}
+
+/* refer coworker */
+.client-referCoWorker {
+	border: 1px solid #cecece;
+	max-width: 500px;
+	padding: 15px;
+	margin-top: 20px;
+}
+
+.client-referCoWorker p {
+	margin-bottom: 20px;
+}
+
+/* CrossSell */
+.client-crossSell {
+	border: 1px solid #cecece;
+	height: 65px;
+	margin-bottom: 100px;
+}
+
+.client-crossSellLogo {
+	height: 35px;
+	float: left;
+	margin: 10px
+
+}
+
+/* footer */
+.client-footer {
+	background-color: lightgrey;
+	height: 60px;
+}
+
+.client-footer a {
+	color: white;
+	margin-right: 15px;
+	float: right;
+}
+
+/* mobile Styles */
+
+@media screen and (max-device-width: 768px) {
+
+	.client-playlist {
+		max-width: 90%;
+	}
+
+	.client-referCoWorker {
+		max-width: 100%;
+
+	}
+
+}

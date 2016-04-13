@@ -149,6 +149,17 @@
                         selectedvideos : null
                     },
                     data: {requiresLogin: true}
+                })
+                .state('customer-manager.build', {
+                    url: '/build/:courseID',
+                    templateUrl: 'templates/trackbuilder.html',
+                    ctrl: "trackbuilder",
+                    controller: "TrackBuilderCtrl",
+                    params : {
+                        message : null,
+                        selectedvideos : null
+                    },
+                    data: {requiresLogin: true}
                 })                    
                 .state('customer-manager.profile', {
                     url: '/profile',
@@ -232,6 +243,28 @@
                     },
 
                 })
+                .state('client.dashboardnew', {
+                    url: '/dashboard/v2/:studentcourseID',
+                    templateUrl: 'templates/client/dashboard.html',
+                    ctrl: "clientDashboardController",
+                    controller: "ClientDashboardController",
+                    data: {requiresLogin: false},
+                    params : {
+                        src : null
+                    },
+
+                })
+                // .state('client.dashboard2', {
+                //     url: 'dashboard/:studentcourseID',
+                //     templateUrl: 'templates/client/dashboard.html',
+                //     ctrl: "clientDashboardController",
+                //     controller: "ClientDashboardController",
+                //     data: {requiresLogin: false},
+                //     params : {
+                //         src : null
+                //     },
+
+                // })
                 .state('client.documentviewer', {
                     url: '/documentviewer',
                     templateUrl: 'app/onboarding/documentviewer.html',

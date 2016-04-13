@@ -1,0 +1,112 @@
+<span us-spinner style="position: center" ng-show="showSpinner"></span>
+<div class="col-md-12 client-header client-navbar">
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'sharefile'" src="img/logo/products/ShareFile-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'shareconnect'" src="img/logo/products/ShareConnect-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'rightsignature'" src="img/logo/products/RightSignature-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'podio'" src="img/logo/products/Podio-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'addoo'" src="img/logo/products/Addoo-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'demo'" src="img/logo/products/ShareFile-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'bollo'" src="img/logo/products/Bollo-Portal-Logo.png" />
+    <ul class="client-nav">
+        <li class="client-heading"><a href="" ng-click="openClientModal()">Support</a>
+        </li>
+        <li class="client-heading">
+            <a ng-if="studentcourse.product == 'sharefile'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
+            <a ng-if="studentcourse.product == 'podio'" href="https://podio.com/login" target="_blank">Sign in</a>
+            <a ng-if="studentcourse.product == 'shareconnect'" href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank">Sign in</a>
+            <a ng-if="studentcourse.product == 'addoo'" href="https://app.addoo.io/#/login" target="_blank">Sign in</a>
+            <a ng-if="studentcourse.product == 'demo'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
+            <a ng-if="studentcourse.product == 'bollo'" href="https://podio.com/login" target="_blank">Sign in</a>
+        </li>
+    </ul>
+</div>
+<div class="col-md-7 col-xs-12">
+    <div class="customerInformation">
+        <h5 class="client-heading" ng-if="studentcourse.studentID.local.clientname"><strong>ShareFile Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.clientname}}</strong></h5>
+        <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && studentcourse.studentID.local.firstname"><strong>ShareFile Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</strong></h5>
+        <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && !studentcourse.studentID.local.firstname"><strong>ShareFile Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.email}}</strong></h5>
+    </div>
+
+    <div class="client-viewer">
+        <videogular vg-theme="config.theme.url" vg-complete="onCompleteVideo()" vg-player-ready="onPlayerReady($API)" vg-update-state="updateVideoState($state)" vg-update-time="updateVideoTime($currentTime, $duration)">
+                    <vg-media vg-src="config.sources" vg-tracks="config.tracks" vg-native-controls="true"></vg-media>
+        </videogular>
+    </div>
+    <div class="client-video-description">
+        <h2 class="client-heading">{{video.title}}</h2>
+        <p class="client-heading">{{video.description}}</p>
+        <div class="client-feedback">
+            <p class="client-heading">Was this video helpful?</p>
+            <a href="" ng-click="like(true)"><i class="fa fa-thumbs-up"></i><a>
+            <a href="" ng-click="like(false)"><i class="fa fa-thumbs-down"></i></a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 col-xs-12">
+    <div class="customer-success hidden-xs hidden-sm">
+        <img src="img/people/customer-success.png">
+        <blockquote class="client-blockquote">
+            <p>You can click the support link in the upper right corner to join a live training anytime. Also, if you need more help getting started, feel free to <a href="mailto:customersuccess@sharefile.com" target="_top">reach out to my team</a> and we'll be happy to help.</p>
+            <cite title="Source Title">Kelley Allen, Manager Customer Success</cite>
+        </blockquote>
+    </div>
+    <h5 id="playlistHeader" class="client-heading">Other Videos</h5>
+    <div class="client-playlist">
+        <ul class="client-playlistItem">
+            <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-show="nextvideo.videoID != video._id">
+                <a href="" ng-click="playVideo($index)" class="video">
+                    <span class="client-play-btn"></span>
+                    <img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                    <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
+                </a>
+                <div class="video-details">
+                    <h5><a href="" ng-click="playVideo($index)">{{nextvideo.title}}</a></h5>
+                    <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="client-referCoWorker">
+        <h5 class="client-heading">Add a team member.</h5>
+        <p>Have co-workers who will be using ShareFile? Enter their e-mail to add them to your training portal.</p>
+        <div growl inline="true"></div>
+        <input type="text" name="coworkeremail" ng-model="coworker.email" />
+        <button class="client-btn client-btn-success" ng-click="addCoworker();sendEvent('Coworker Added')">Add</button>
+    </div>
+</div>
+<div class="col-md-7 col-xs-12">
+    <h5 class="client-heading">Other Products You Might Like</h5>
+    <div class="client-crossSell">
+        <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
+        <a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('rightsignature');"><img class="client-crossSellLogo" src="img/logo/products/RightSignature-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
+        <a href="https://sharefile.com/" target="_blank" ng-click="trackevent('sharefile');"><img class="client-crossSellLogo" src="img/logo/products/ShareFile-Black.png" ng-show="studentcourse.product == 'rightsignature' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
+    </div>
+</div>
+
+
+<div class="col-md-12 footer">
+    <a href="http://addoo.io/wp-content/uploads/2016/01/Innovation-TOS-2015.v1.pdf" class="client-hyperlink">Terms of Service</a> | 
+    <a href="http://addoo.io/wp-content/uploads/2016/01/Innovation-Privacy-Policy-2015-v2.FINAL_.pdf" class="client-hyperlink">Privacy Policy</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title class="client-heading"" id="myModalLabel">Join a webinar today!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Still want some additinal help getting started? No problem. ShareFile's care team is here to help. Click on the button below to sign up for a webniar with a care team member who can help you and your team get started mastering the basics of ShareFile.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="https://attendee.gototraining.com/rt/732020008678591744">
+                    <button type="button" class="btn btn-primary">Schedule a Training</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

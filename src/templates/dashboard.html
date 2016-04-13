@@ -66,7 +66,7 @@
 				<tbody>
 					<tr ng-repeat="row in displayedCourseCollection" ng-show="row.isActive === true">
 						<td>
-							<a ui-sref="customer-manager.trackbuilder({courseID: '{{row._id}}'})">{{row.title}}</a>
+							<a ui-sref="customer-manager.build({courseID: '{{row._id}}'})">{{row.title}}</a>
 						</td>
 						<td>{{row.fullname}}</td>
 					</tr>
@@ -125,7 +125,7 @@
 							<i class="fa fa-pencil addoo-icon addoo-action addoo-secondary addoo-float-right" style="margin-top:3px;" ui-sref="customer-manager.trackbuilder({studentCourseID: '{{row._id}}'})" uib-popover="Edit this track" popover-trigger="mouseenter" popover-placement="top" ng-show="row.author._id === auth.user._id"></i>
 						</td>
 						<td>{{row.email}}</td>
-						<td>{{row.name}}</td>
+						<td style="text-transform:capitalize;">{{row.name}}</td>
 						<td>{{row.authorname}}</td>
 						<td> <span am-time-ago="row.invitedOn"></span></td>
 						<td style="text-transform:capitalize;">{{row.progress}}</td>

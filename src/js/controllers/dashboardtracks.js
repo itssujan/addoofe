@@ -38,11 +38,19 @@ angular.module('app')
             }
 
             var populateTable = function(data) {
-                console.log(data);
                 $scope.studentcourses = data;
                 $scope.studentcourses.forEach(function(element, index, array){
 
-                    element.name = element.studentID.local.firstname+" "+element.studentID.local.lastname;
+                    if(element.studentID.local.firstname && element.studentID.local.lastname) {
+                        element.name = element.studentID.local.firstname+" "+element.studentID.local.lastname;
+                    } else if(element.studentID.local.firstname) {
+                        element.name = element.studentID.local.firstname;
+                    } else if(element.studentID.local.lastname) {
+                        element.name = element.studentID.local.lastname;
+                    }
+                    if (element.name) {
+                        element.name = element.name.toLowerCase();
+                    }
                     if(Auth.user.role == 'sales'){
                         element.authorname = Auth.user.local.firstname +" "+Auth.user.local.lastname;
                     } else {

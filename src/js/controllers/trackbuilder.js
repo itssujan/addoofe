@@ -10,13 +10,14 @@ angular.module('app')
         	$scope.loading			= true;
         	$scope.course			= {};
         	$scope.video			= {};
-        	$scope.courseID			= "";
+        	$scope.courseID			= $stateParams.courseID;
         	$scope.showtrackbuilder = false;
         	$scope.auth				= Auth;
         	$scope.user				= Auth.user;
         	$scope.studentCourseID  = $stateParams.studentCourseID;
         	$scope.student			= {};
         	$scope.selectedVideos	= [];
+            $scope.showprogress     = true;
 
         	$scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
 
@@ -38,14 +39,18 @@ angular.module('app')
         	}
 
         	$scope.updateClientList = function () {
-        		Restangular.all("studentcourses?courseID=" + $scope.courseID + "&populate=studentID").getList().then(function (data) {
-        			$scope.studentcourses = data;
-        			$scope.displayedStudentCourseCollection = [].concat($scope.studentcourses);
+        		// Restangular.all("studentcourses?courseID=" + $scope.courseID + "&populate=studentID").getList().then(function (data) {
+        		// 	$scope.studentcourses = data;
+        		// 	$scope.displayedStudentCourseCollection = [].concat($scope.studentcourses);
 
-        			$scope.studentcourses.forEach(function (element, index, array) {
-        				element.inviteurl = "http://" + $location.host() + "/index.html#/client/dashboard/" + element._id;
-        			});
-        		});
+        		// 	$scope.studentcourses.forEach(function (element, index, array) {
+        		// 		element.inviteurl = "http://" + $location.host() + "/index.html#/client/dashboard/" + element._id;
+        		// 	});
+        		// });
+                if($scope.studentcourse) {
+                    $scope.studentcourse.inviteurl = "https://" + $location.host() + "/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
+                }
+    
         	}
 
         	var getApplicableContentForProducts = function (prod) {
@@ -69,13 +74,17 @@ angular.module('app')
         	}
 
         	if ($scope.studentCourseID) {
+                console.log("Got student course");
         		Restangular.all("studentcourses?_id="+$scope.studentCourseID+"&populate=courseID").getList().then(function (data) {
+                    $scope.studentcourse = data[0];
+
         			if ($stateParams.message) {
         				growl.success($stateParams.message);
         			}
-
-                    $scope.studentcourse = data[0];
+                    
         			$scope.course = $scope.studentcourse.courseID;
+                    $scope.course = Restangular.one("course",$scope.course._id).get().$object;
+                    console.log("GOT COURSE :"+JSON.stringify($scope.course));
                     $scope.courseID = $scope.course._id;
                     updateViewStatus();
 
@@ -91,7 +100,28 @@ angular.module('app')
         		
         		$scope.showtrackbuilder = true;
                 $scope.loading = false;
-        	}
+        	} else if($scope.courseID) {
+                console.log("Got course");
+                Restangular.all("course?_id="+$scope.courseID).getList().then(function (data) {
+                    $scope.course = data[0];
+                    console.log("Course : "+JSON.stringify($scope.course));
+                    if ($stateParams.message) {
+                        growl.success($stateParams.message);
+                    }
+                    
+                    if (!$scope.course.baseTrack) {
+                        $scope.course.baseTrack = false;
+                    }
+                    if (!$scope.course.shareWithTeam) {
+                        $scope.course.shareWithTeam = false;
+                    }
+                    $scope.updateClientList();
+                });
+
+                $scope.showprogress = false;
+                $scope.showtrackbuilder = true;
+                $scope.loading = false;
+            }
 
             var updateViewStatus = function() {
                 if(!$scope.studentcourse.lessonprogress || $scope.studentcourse.lessonprogress.length == 0) {
@@ -296,7 +326,7 @@ angular.module('app')
         				}
         			});
         		});
-
+                console.log("GOT COURSE11 :"+JSON.stringify($scope.course));
         		$scope.course.put();
         		$scope.selectedVideos = [];
         	};

@@ -1,3 +1,4 @@
+<span us-spinner style="position: center"></span>
 <div id="page-title">Track Builder</div>
 
 <div growl inline="true"></div>
@@ -52,7 +53,7 @@
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
 							<td>{{content.title}} 
                                 <i class="fa fa-eye text-success" ng-if="content.progress == 'complete'" color="green"></i>
-                                <i class="fa fa-eye-slash text-success" ng-if="content.progress != 'complete'" color="green"></i>
+                                <i class="fa fa-eye-slash text-success" ng-if="content.progress != 'complete' && showprogress" color="green"></i>
                             </td>
 							<td class="addoo-button-container addoo-sm">
 								<button class="addoo-button addoo-blue addoo-sm addoo-float-right" ng-click="openVideoPreviewModal(content)"><span class="glyphicon glyphicon-play"></span></button>
@@ -81,11 +82,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="studentcourse in displayedStudentCourseCollection">
-							<td>{{studentcourse.studentID.local.email}}</td>
+						<tr>
+							<td>{{studentcourse.email}}</td>
 								<input type="hidden" ng-model="studentcourse.inviteurl">
 							<td>
-								<a clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
+								<a ng-if="studentcourse.email" clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
 							</td>
 						</tr>
 					</tbody>

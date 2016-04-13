@@ -1,8 +1,9 @@
 angular.module('app')
     .controller('ClientDashboardController', ['$scope', '$state', 'Restangular', '$rootScope', '$stateParams',
         '$timeout', '$mixpanel', '$window', '$cookieStore', 'envService', '$location', 'growl', '$http', 'Auth',
+        '$uibModal', 'CustomModalService',
         function ($scope, $state, Restangular, $rootScope, $stateParams, $timeout, $mixpanel,
-            $window, $cookieStore, envService, $location, growl, $http, Auth) {
+            $window, $cookieStore, envService, $location, growl, $http, Auth,$uibModal, CustomModalService) {
         	console.log('In ClientDashboardController : ');
 
         	///// LAYOUT.js code...needs to be moved back...
@@ -94,6 +95,7 @@ angular.module('app')
         	$scope.onboardingPrompt = 'fade';
         	$scope.coworker = {};
         	$scope.duplicateStudentCourse = '';
+            $scope.showSpinner = false;
 
         	$scope.config = {
         		preload: "none",
@@ -137,6 +139,7 @@ angular.module('app')
         		setProductDisplayName();
         		$scope.playVideo($scope.currentVideoIndex);
         		getUpcomingVideos();
+                updateViewStatus();
         	});
 
         	var setProductDisplayName = function () {
@@ -375,10 +378,11 @@ angular.module('app')
         	$scope.addCoworker = function () {
         		console.log("Adding coworker");
         		var emailParams = {};
+                $scope.showSpinner = true;
         		emailParams.coworker = {};
         		emailParams.coworker.email = $scope.coworker.email;
         		emailParams.coworker.referredBy = $scope.studentcourse.studentID._id;
-        		emailParams.coworker.urlPrefix = "http://app.addoo.io/index.html#/client/dashboard/";
+        		emailParams.coworker.urlPrefix = "https://app.addoo.io/index.html#/client/dashboard/v2/";
         		emailParams.coworker.studentCourseID = $scope.studentcourse._id;
         		emailParams.coworker.product = $scope.studentcourse.product;
         		emailParams.coworker.referralname = $scope.studentcourse.studentID.local.firstname + " " + $scope.studentcourse.studentID.local.lastname;
@@ -387,6 +391,8 @@ angular.module('app')
         		Restangular.all('sharewithfriend').post(emailParams).then(function (user) {
         			growl.success('Shared with ' + $scope.coworker.email + " successfully.");
         			console.log("Shared with friend successfully");
+                    $scope.coworker.email = "";
+                    $scope.showSpinner = false;
         		});
         		$scope.sendEvent('Shared with coworker');
         	}
@@ -421,8 +427,43 @@ angular.module('app')
                 }
             }
 
-            $scope.like = function() {
-                //$scope.video 
+            $scope.like = function(like) {
+                if(like) {
+                    $scope.video.likes = $scope.video.likes + 1;
+                    $scope.sendEvent("Customer liked a video");
+                } else {
+                    $scope.video.dislikes = $scope.video.dislikes + 1;
+                    $scope.sendEvent("Customer disliked a video");
+                }
+                $scope.video.put();
             }
+
+            var updateViewStatus = function() {
+                if(!$scope.studentcourse.lessonprogress || $scope.studentcourse.lessonprogress.length == 0) {
+                    return true;
+                }
+                
+                for(var i=0;i < $scope.studentcourse.courseID.contents.length;i++) {
+                    var coursecontent = $scope.studentcourse.courseID.contents[i];
+                    for(var j = 0; j < $scope.studentcourse.lessonprogress.length; j++) {
+                        var studentcoursecontent = $scope.studentcourse.lessonprogress[j];
+                        if(coursecontent.videoID == studentcoursecontent.lessonID) {
+                            $scope.studentcourse.courseID.contents[i].progress = studentcoursecontent.progress;
+                        }
+                    }
+                }
+            }
+
+            $scope.openClientModal = function () {
+                $scope.clientModalInstance = $uibModal.open({
+                  animation     : true,
+                  templateUrl   : 'templates/modals/SupportModal.html',
+                  scope         : $scope
+                });
+            };
+
+            $scope.closeClientModal = function () {
+                $scope.clientModalInstance.dismiss('cancel');
+            };
 
         }]);
