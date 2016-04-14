@@ -53,7 +53,7 @@
 							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
 							<td>{{content.title}} 
                                 <i class="fa fa-eye text-success" ng-if="content.progress == 'complete'" color="green"></i>
-                                <i class="fa fa-eye-slash text-success" ng-if="content.progress != 'complete' && showprogress" color="green"></i>
+                                <i class="fa fa-eye-slash text-warning" ng-if="content.progress != 'complete' && showprogress"></i>
                             </td>
 							<td class="addoo-button-container addoo-sm">
 								<button class="addoo-button addoo-blue addoo-sm addoo-float-right" ng-click="openVideoPreviewModal(content)"><span class="glyphicon glyphicon-play"></span></button>

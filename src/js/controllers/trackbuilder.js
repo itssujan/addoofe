@@ -47,8 +47,10 @@ angular.module('app')
         		// 		element.inviteurl = "http://" + $location.host() + "/index.html#/client/dashboard/" + element._id;
         		// 	});
         		// });
+                console.log("******* trying to get invite url");
                 if($scope.studentcourse) {
                     $scope.studentcourse.inviteurl = "https://" + $location.host() + "/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
+                    console.log("******* trying to get invite url :"+$scope.studentcourse.inviteurl);
                 }
     
         	}
@@ -83,10 +85,13 @@ angular.module('app')
         			}
                     
         			$scope.course = $scope.studentcourse.courseID;
-                    $scope.course = Restangular.one("course",$scope.course._id).get().$object;
+                    Restangular.one("course",$scope.course._id).get().then(function (data) {
+                        $scope.course = data;
+                        updateViewStatus();    
+                    })
                     console.log("GOT COURSE :"+JSON.stringify($scope.course));
                     $scope.courseID = $scope.course._id;
-                    updateViewStatus();
+                    
 
         			if (!$scope.course.baseTrack) {
         				$scope.course.baseTrack = false;

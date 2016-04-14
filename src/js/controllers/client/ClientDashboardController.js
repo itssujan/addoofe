@@ -119,7 +119,7 @@ angular.module('app')
         		$scope.disabletracking = true;
         	}
 
-        	Restangular.one("studentcourses/" + $scope.studentcourseID + "?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function (data) {
+            Restangular.one("studentcourses/" + $scope.studentcourseID + "?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function (data) {
         		$scope.studentcourse = data;
         		$scope.clientemail = data.email;
         		$scope.product = data.product;
@@ -375,9 +375,7 @@ angular.module('app')
         		if (pushupdate && !$scope.disabletracking) {
                     $scope.studentcourse.updatedLessonID = $scope.video._id;
                     $scope.studentcourse.updatedLessonprogress = status;
-        			$scope.studentcourse.put().then(function(data){
-                        $scope.studentcourse = data;
-                    });
+        			$scope.studentcourse.put();
                     // video watched count tracking
                     if(status == 'started') {
                         $scope.video.startedCount = $scope.video.startedCount ? $scope.video.startedCount + 1 : 1;
