@@ -67,8 +67,8 @@
             <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-show="nextvideo.videoID != video._id">
                 <a href="" ng-click="playVideo($index)" class="video">
                     <span class="client-play-btn"></span>
-                    <img ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
-                    <img ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
+                    <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                    <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
                 </a>
                 <div class="video-details">
                     <h5><a href="" ng-click="playVideo($index)">{{nextvideo.title}}</a></h5>
@@ -95,7 +95,7 @@
 </div>
 
 
-<div class="col-md-12 footer">
+<div class="col-md-12 client-footer">
     <a href="http://addoo.io/wp-content/uploads/2016/01/Innovation-TOS-2015.v1.pdf" class="client-hyperlink">Terms of Service</a> | 
     <a href="http://addoo.io/wp-content/uploads/2016/01/Innovation-Privacy-Policy-2015-v2.FINAL_.pdf" class="client-hyperlink">Privacy Policy</a>
 </div>
