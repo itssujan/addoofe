@@ -38,6 +38,8 @@
 				Current Track:
 				<span id="course-name" ng-blur="resetTextOfElement($event)" ng-keypress="submitTitleChangeRequest($event)" uib-popover="Begin typing to change the track title. Press Enter to save your title change." popover-trigger="focus" popover-placement="top" contenteditable="false">{{course.title}}</span>
 				<i id="course-name-edit" class="fa fa-pencil addoo-icon addoo-action addoo-secondary" ng-click="shiftFocusToEdit($event)" ng-show="(user._id == course.author || course.author._id)" style="margin-left:15px;"></i>
+                <i class="fa fa-eye text-success legend" >Watched</i> &nbsp;&nbsp
+                <i class="fa fa-eye-slash text-warning legend">Not watched</i>
 			</div>
 			<button class="addoo-button addoo-red addoo-sm addoo-float-right" style="margin-right:15px; margin-bottom:5px;" uib-popover="Delete this entire track." popover-trigger="mouseenter" popover-placement="bottom" ng-show="course.baseTrack === true" ng-click="openDeleteDecisionDialogue()">
 				<span class="glyphicon glyphicon-trash"></span>
@@ -71,12 +73,12 @@
 				<rd-widget-header title="Clients"></rd-widget-header>
 				<table class="table table-striped" st-table="displayedStudentCourseCollection" st-safe-src="studentcourses">
 					<thead class="addoo-border addoo-none">
-						<tr class="search-row">
+<!-- 						<tr class="search-row">
 							<th class="addoo-border addoo-no-bottom" colspan="2">
 								<input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" />
 							</th>
 						</tr>
-						<tr>
+ -->						<tr>
 							<th class="header addoo-border addoo-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i></th>
 							<th class="header addoo-border addoo-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i></th>
 						</tr>
