@@ -47,7 +47,6 @@ angular.module('app')
         		// 		element.inviteurl = "http://" + $location.host() + "/index.html#/client/dashboard/" + element._id;
         		// 	});
         		// });
-                console.log("******* trying to get invite url");
                 if($scope.studentcourse) {
                     $scope.studentcourse.inviteurl = "https://" + $location.host() + "/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
                     console.log("******* trying to get invite url :"+$scope.studentcourse.inviteurl);
@@ -246,6 +245,7 @@ angular.module('app')
                         });
         			}
         		});
+                console.log("showtrackbuilder"+$scope.showtrackbuilder);
         	}
 
         	var createStudentCourse = function (student, courseid, navigate) {
@@ -268,7 +268,7 @@ angular.module('app')
 
 						if (navigate) {
 							console.log("Navigating to new track");
-							$state.go('customer-manager.trackbuilder', { 'courseID': courseid, 'message': 'Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!' });
+							$state.go('customer-manager.trackbuilder', { 'studentCourseID': data._id, 'message': 'Onboarding track created. Please copy the link by clicking the "Copy Invite Link" in the clients tab!' });
 						} else {
 							$scope.updateClientList();
 						}
