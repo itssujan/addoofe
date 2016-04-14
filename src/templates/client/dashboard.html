@@ -23,9 +23,9 @@
 </div>
 <div class="col-md-7 col-xs-12">
     <div class="customerInformation">
-        <h5 class="client-heading" ng-if="studentcourse.studentID.local.clientname"><strong>ShareFile Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.clientname}}</strong></h5>
-        <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && studentcourse.studentID.local.firstname"><strong>ShareFile Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</strong></h5>
-        <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && !studentcourse.studentID.local.firstname"><strong>ShareFile Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.email}}</strong></h5>
+        <h5 class="client-heading" ng-if="studentcourse.studentID.local.clientname"><strong>{{studentcourse.displayProductName}} Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.clientname}}</strong></h5>
+        <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && studentcourse.studentID.local.firstname"><strong>{{studentcourse.displayProductName}} Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</strong></h5>
+        <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && !studentcourse.studentID.local.firstname"><strong>{{studentcourse.displayProductName}} Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.email}}</strong></h5>
     </div>
 
     <div class="client-viewer">

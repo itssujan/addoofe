@@ -142,6 +142,7 @@ angular.module('app')
         		getUpcomingVideos();
                 updateViewStatus();
                 setPublicTraningURL();
+                $scope.studentcourse.displayProductName = $scope.displayProductName($scope.studentcourse.product);
         	});
 
             var setPublicTraningURL = function() {
@@ -478,4 +479,19 @@ angular.module('app')
                 $scope.clientModalInstance.dismiss('cancel');
             };
 
+            $scope.displayProductName = function(product) {
+                console.log("Got :"+product);
+                var displayProductName = "";
+                if(product == 'sharefile') {
+                    displayProductName = 'ShareFile';
+                } else if(product == 'shareconnect') {
+                    displayProductName = 'ShareConnect';
+                } else if(product == 'rightsignature') {
+                    displayProductName = 'RightSignature';
+                } else if(product == 'bollo') {
+                    displayProductName = 'BolloEmpire'
+                }
+                console.log('returning :'+displayProductName)
+                return displayProductName;
+            }
         }]);
