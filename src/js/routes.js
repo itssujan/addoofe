@@ -234,7 +234,7 @@
                 })
                 .state('client.dashboard', {
                     url: '/dashboard/:studentcourseID',
-                    templateUrl: 'templates/client/ClientDashboard.html',
+                    templateUrl: 'templates/client/dashboard.html',
                     ctrl: "clientDashboardController",
                     controller: "ClientDashboardController",
                     data: {requiresLogin: false},
