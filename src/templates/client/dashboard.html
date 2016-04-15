@@ -79,7 +79,7 @@
     </div>
     <div class="client-referCoWorker">
         <h5 class="client-heading">Add a team member.</h5>
-        <p>Have co-workers who will be using ShareFile? Enter their e-mail to add them to your training portal.</p>
+        <p>Have co-workers who will be using {{studentcourse.displayProductName}}? Enter their e-mail to add them to your training portal.</p>
         <div growl inline="true"></div>
         <input type="text" name="coworkeremail" ng-model="coworker.email" />
         <button class="client-btn client-btn-success" ng-click="addCoworker();sendEvent('Coworker Added')">Add</button>
