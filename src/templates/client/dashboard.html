@@ -44,7 +44,7 @@
     </div>
 </div>
 <div class="col-md-4 col-xs-12">
-    <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist">
+    <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && studentcourse.product != 'bollo'">
         <img src="img/people/customer-success.png">
         <blockquote class="client-blockquote">
             <p>You can click the support link in the upper right corner to join a live training anytime. Also, if you need more help getting started, feel free to <a href="mailto:customersuccess@sharefile.com" target="_top">reach out to my team</a> and we'll be happy to help.</p>
@@ -85,7 +85,7 @@
         <button class="client-btn client-btn-success" ng-click="addCoworker();sendEvent('Coworker Added')">Add</button>
     </div>
 </div>
-<div class="col-md-7 col-xs-12">
+<div class="col-md-7 col-xs-12" ng-show="studentcourse.product != 'bollo'">
     <h5 class="client-heading">Other Products You Might Like</h5>
     <div class="client-crossSell">
         <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
