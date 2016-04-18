@@ -1,9 +1,9 @@
 angular.module('app')
     .controller('ClientDashboardController', ['$scope', '$state', 'Restangular', '$rootScope', '$stateParams',
         '$timeout', '$mixpanel', '$window', '$cookieStore', 'envService', '$location', 'growl', '$http', 'Auth',
-        '$uibModal', 'CustomModalService',
+        '$uibModal', 'CustomModalService','$timeout',
         function ($scope, $state, Restangular, $rootScope, $stateParams, $timeout, $mixpanel,
-            $window, $cookieStore, envService, $location, growl, $http, Auth,$uibModal, CustomModalService) {
+            $window, $cookieStore, envService, $location, growl, $http, Auth,$uibModal, CustomModalService,$timeout) {
         	console.log('In ClientDashboardController : ');
 
         	///// LAYOUT.js code...needs to be moved back...
@@ -308,11 +308,14 @@ angular.module('app')
         	};
 
         	$scope.onCompleteVideo = function () {
-        		if ($scope.currentVideoIndex == 2) {
-        			console.log("Launching onboarding prompt");
-        			launchOnboardingPrompt();
-        		}
         		console.log("Video completed... :");
+                $scope.counter = 2;
+                console.log("ee "+$scope.currentVideoIndex);
+                console.log("vv "+$scope.studentcourse.courseID.contents.length);
+                if($scope.currentVideoIndex != $scope.studentcourse.courseID.contents.length-1) {
+                    //$scope.openAutoPlayModal();
+                    $scope.countdown();
+                }
         	};
 
         	var launchOnboardingPrompt = function () {
@@ -492,4 +495,43 @@ angular.module('app')
                 console.log('returning :'+displayProductName)
                 return displayProductName;
             }
+
+            $scope.autoPlay = function() {
+                $scope.sendEvent("Auto playing video");
+                $scope.playVideo($scope.currentVideoIndex+1);
+            }
+
+            $scope.countdown = function() {
+                stopped = $timeout(function() {
+                   console.log($scope.counter);
+                 $scope.counter--;
+                 console.log("ccc "+$scope.counter);
+                 if($scope.counter == 0) {
+                    $scope.autoPlay();
+                    $scope.closeAutoPlayModal();
+                 } else if($scope.counter > 0){
+                    $scope.countdown();      
+                 } else {
+                    $scope.stop();
+                 }  
+                }, 1000);
+              };
+                
+            $scope.stop = function(){
+                $timeout.cancel(stopped);
+            } 
+
+            $scope.openAutoPlayModal = function () {
+                console.log("Opening modal");
+                $scope.autoPlayModalInstance = $uibModal.open({
+                  animation     : true,
+                  templateUrl   : 'templates/modals/AutoPlayModal.html',
+                  scope         : $scope
+                });
+            };
+
+            $scope.closeAutoPlayModal = function () {
+                $scope.autoPlayModalInstance.dismiss('cancel');
+            };
+
         }]);

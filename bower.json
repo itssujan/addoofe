@@ -56,7 +56,9 @@
     "videogular-themes-default": "~1.4.1",
     "angular-re-captcha": "~0.2.0",
     "angular-raven": "~0.6.2",
-    "raven-js": "~2.1.1"
+    "raven-js": "~2.1.1",
+    "humanize-duration": "~3.7.0",
+    "humanize": "~0.0.9"
   },
   "repository": {
     "type": "git",
@@ -65,6 +67,7 @@
   "resolutions": {
     "angular": "1.5.5",
     "angular-spinner": "~0.8.0",
-    "angular-bootstrap": "1.1.0"
+    "angular-bootstrap": "1.1.0",
+    "humanize-duration": "~3.7.0"
   }
 }
