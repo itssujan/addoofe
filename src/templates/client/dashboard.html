@@ -65,11 +65,13 @@
     <div class="client-playlist">
         <ul class="client-playlistItem">
             <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-show="nextvideo.videoID != video._id">
-                <a href="" ng-click="playVideo($index)" class="video">
-                    <span class="client-play-btn"></span>
-                    <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
-                    <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
-                </a>
+                <div class="videos">
+                    <a href="" ng-click="playVideo($index)" class="video">
+<!--                         <span class="client-play-btn"></span>
+ -->                        <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                        <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
+                    </a>
+                </div>    
                 <div class="video-details">
                     <h5><a href="" ng-click="playVideo($index)">{{nextvideo.title}}</a></h5>
                     <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
