@@ -63,7 +63,7 @@
     "url": "https://github.com/rdash/rdash-angular"
   },
   "resolutions": {
-    "angular": "1.5.3",
+    "angular": "1.5.5",
     "angular-spinner": "~0.8.0",
     "angular-bootstrap": "1.1.0"
   }
