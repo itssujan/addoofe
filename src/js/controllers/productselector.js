@@ -8,9 +8,9 @@ angular.module('app')
             	Auth.user.product = $scope.adminproduct;
                 Restangular.one("user",Auth.user._id).get().then(function(user){
                     user.product = Auth.user.product;
-                    user.put();
-                    $state.go('customer-manager.dashboard');
+                    user.put().then(function() {
+                        $state.go('customer-manager.dashboard');    
+                    });                    
                 });
-
             }
         } ]);
