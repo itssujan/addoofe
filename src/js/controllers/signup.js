@@ -23,7 +23,7 @@ angular.module('app')
             	$scope.signupinvite = data[0];
             	$scope.user.pdt = $scope.signupinvite.product;
             	$scope.user.email = $scope.signupinvite.invitedEmail;
-            	$scope.user.role = 'customer-manager';
+            	$scope.user.role = 'sales';
             	console.log("USer :"+JSON.stringify($scope.user));
             });
 
