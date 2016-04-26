@@ -97,6 +97,7 @@ angular.module('app')
         	$scope.duplicateStudentCourse = '';
             $scope.showSpinner = false;
             $scope.publicTrainingURL = "";
+            $scope.connectorPromo = false;
 
         	$scope.config = {
         		preload: "none",
@@ -114,6 +115,23 @@ angular.module('app')
         			url: "/css/videogular.css"
         		}
         	};
+
+            var setWootricSettings = function() {
+                 wootric_survey_immediately = envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
+                window.wootricSettings = {
+                    email: $scope.studentcourse.email,// TODO: The current logged in user's email address.
+                    created_at: Math.floor((new Date($scope.studentcourse.invitedOn).getTime())/1000), // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
+                    account_token: envService.read('wootricAccountID') // This is your unique account token.
+                };
+                if(window.wootricSettings){i=new Image;i.src="//d8myem934l1zi.cloudfront.net/pixel.gif?account_token="+window.wootricSettings.account_token+"&email="+encodeURIComponent(window.wootricSettings.email)+"&created_at="+window.wootricSettings.created_at+"&url="+encodeURIComponent(window.location)+"&random="+Math.random()}window.lightningjs||function(c){function g(b,d){d&&(d+=(/\?/.test(d)?"&":"?")+"lv=1");c[b]||function(){var i=window,h=document,j=b,g=h.location.protocol,l="load",k=0;(function(){function b(){a.P(l);a.w=1;c[j]("_load")}c[j]=function(){function m(){m.id=e;return c[j].apply(m,arguments)}var b,e=++k;b=this&&this!=i?this.id||0:0;(a.s=a.s||[]).push([e,b,arguments]);m.then=function(b,c,h){var d=a.fh[e]=a.fh[e]||[],j=a.eh[e]=a.eh[e]||[],f=a.ph[e]=a.ph[e]||[];b&&d.push(b);c&&j.push(c);h&&f.push(h);return m};return m};var a=c[j]._={};a.fh={};a.eh={};a.ph={};a.l=d?d.replace(/^\/\//,(g=="https:"?g:"http:")+"//"):d;a.p={0:+new Date};a.P=function(b){a.p[b]=new Date-a.p[0]};a.w&&b();i.addEventListener?i.addEventListener(l,b,!1):i.attachEvent("on"+l,b);var q=function(){function b(){return["<head></head><",c,' onload="var d=',n,";d.getElementsByTagName('head')[0].",d,"(d.",g,"('script')).",i,"='",a.l,"'\"></",c,">"].join("")}var c="body",e=h[c];if(!e)return setTimeout(q,100);a.P(1);var d="appendChild",g="createElement",i="src",k=h[g]("div"),l=k[d](h[g]("div")),f=h[g]("iframe"),n="document",p;k.style.display="none";e.insertBefore(k,e.firstChild).id=o+"-"+j;f.frameBorder="0";f.id=o+"-frame-"+j;/MSIE[ ]+6/.test(navigator.userAgent)&&(f[i]="javascript:false");f.allowTransparency="true";l[d](f);try{f.contentWindow[n].open()}catch(s){a.domain=h.domain,p="javascript:var d="+n+".open();d.domain='"+h.domain+"';",f[i]=p+"void(0);"}try{var r=f.contentWindow[n];r.write(b());r.close()}catch(t){f[i]=p+'d.write("'+b().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};a.l&&q()})()}();c[b].lv="1";return c[b]}var o="lightningjs",k=window[o]=g(o);k.require=g;k.modules=c}({});window.wootric = lightningjs.require("wootric", "//d27j601g4x0gd5.cloudfront.net/beacon.js");
+            }
+
+            var launchWootricNPS = function() {
+                if($scope.studentcourse.email == 'Hudson.haines@gmail.com') {
+                    console.log("Trying to launch Wootric..");
+                    window.wootric("run");
+                }
+            }
 
         	if (Auth && Auth.user) {
         		$scope.disabletracking = true;
@@ -143,6 +161,7 @@ angular.module('app')
                 updateViewStatus();
                 setPublicTraningURL();
                 $scope.studentcourse.displayProductName = $scope.displayProductName($scope.studentcourse.product);
+                setWootricSettings();
         	});
 
             var setPublicTraningURL = function() {
@@ -215,6 +234,8 @@ angular.module('app')
 
         	$scope.onPlayerReady = function (API) {
         		console.log(" Player ready :" + API);
+                if(API)
+                    console.log(JSON.stringify(API));
         		$scope.API = API;
         		console.log($window.navigator.userAgent);
 
@@ -236,13 +257,14 @@ angular.module('app')
         	};
 
         	$scope.startVideo = function () {
-        		console.log(" Player ready :" + API);
+        		console.log(" Player ready :" + $scope.API);
+                console.log(JSON.stringify($scope.API));
         		$scope.showVideoPlayer = true;
         		$scope.API.play();
         	}
 
         	$scope.playVideo = function (index) {
-        		console.log("Playing video :" + index);
+        		console.log("Playing video11 :" + index);
 
         		Restangular.one("video", $scope.studentcourse.courseID.contents[index].videoID).get().then(function (data) {
         			$scope.video = data;
@@ -310,12 +332,11 @@ angular.module('app')
         	$scope.onCompleteVideo = function () {
         		console.log("Video completed... :");
                 $scope.counter = 2;
-                console.log("ee "+$scope.currentVideoIndex);
-                console.log("vv "+$scope.studentcourse.courseID.contents.length);
                 if($scope.currentVideoIndex != $scope.studentcourse.courseID.contents.length-1) {
                     //$scope.openAutoPlayModal();
                     $scope.countdown();
                 }
+                launchWootricNPS();
         	};
 
         	var launchOnboardingPrompt = function () {
@@ -531,7 +552,23 @@ angular.module('app')
             };
 
             $scope.closeAutoPlayModal = function () {
-                $scope.autoPlayModalInstance.dismiss('cancel');
+                if($scope.autoPlayModalInstance) {
+                    $scope.autoPlayModalInstance.dismiss('cancel');
+                }
             };
+
+            $scope.playSCConnector = function() {
+                console.log("Am here");
+                var connectorVideoID = "565d308268ff811332a5a20b"; //"56ba0db731d3360300643f19";
+                Restangular.one("video", connectorVideoID).get().then(function (data) {
+                    $scope.video = data;
+                    console.log("Before :"+JSON.stringify($scope.config.sources));
+                    $scope.config.sources = [{src: $scope.video.url, type: "video/mp4"}]
+                    console.log("After :"+JSON.stringify($scope.config.sources));
+                    $timeout($scope.API.play.bind($scope.API), 100);
+                    //$scope.startVideo();
+                });
+            }
+
 
         }]);

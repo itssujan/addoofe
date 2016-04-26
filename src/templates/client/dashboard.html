@@ -42,16 +42,43 @@
             <a href="" ng-click="like(false)"><i class="fa fa-thumbs-down"></i></a>
         </div>
     </div>
+
+    <div ng-show="studentcourse.product != 'bollo'">
+        <h5 class="client-heading">Other Products You Might Like</h5>
+        <div class="client-crossSell">
+            <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
+            <a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('rightsignature');"><img class="client-crossSellLogo" src="img/logo/products/RightSignature-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
+            <a href="https://sharefile.com/" target="_blank" ng-click="trackevent('sharefile');"><img class="client-crossSellLogo" src="img/logo/products/ShareFile-Black.png" ng-show="studentcourse.product == 'rightsignature' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
+        </div>
+    </div>
+
+
 </div>
 <div class="col-md-4 col-xs-12">
-    <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && studentcourse.product != 'bollo'">
+        <div class="promotedVideo hidden-xs hidden-sm" ng-show="connectorPromo">
+            <div>
+                <a href="" ng-click="playSCConnector()">
+                    <span></span>
+                    <img src="../img/client/videoStill.png">
+                </a>
+            </div>    
+            <h3>Win an iPad pro!</h3>
+            <blockquote class="client-blockquote"><p>ShareConnect Connector is the easist way to access your files on the go. Watch this video to learn more and to be entred for a chance to win an iPad Pro. <br>
+            <ul>
+                <li><a href="#" class="client-hyperlink">Contest Rules</a></li>
+                <li><a href="#" class="client-hyperlink">Terms and Conditions</a></li>
+            </ul>
+            </blockquote>
+        </div>
+
+    <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && !connectorPromo">
         <img src="img/people/customer-success.png">
         <blockquote class="client-blockquote">
             <p>You can click the support link in the upper right corner to join a live training anytime. Also, if you need more help getting started, feel free to <a href="mailto:customersuccess@sharefile.com" target="_top">reach out to my team</a> and we'll be happy to help.</p>
             <cite title="Source Title">Kelley Allen, Manager Customer Success</cite>
         </blockquote>
     </div>
-    <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist">
+    <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist && !connectorPromo">
         <img class="img-circle" ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="img/avatar.jpg" alt="people"></img>
         <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people"></img>
         <blockquote class="client-blockquote">
@@ -67,8 +94,8 @@
             <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-show="nextvideo.videoID != video._id">
                 <div class="videos">
                     <a href="" ng-click="playVideo($index)" class="video">
-<!--                         <span class="client-play-btn"></span>
- -->                        <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                        <span class="client-play-btn"></span>
+                        <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
                         <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
                     </a>
                 </div>    
@@ -79,20 +106,31 @@
             </li>
         </ul>
     </div>
+
+    <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && connectorPromo">
+        <img src="img/people/customer-success.png">
+        <blockquote class="client-blockquote">
+            <p>You can click the support link in the upper right corner to join a live training anytime. Also, if you need more help getting started, feel free to <a href="mailto:customersuccess@sharefile.com" target="_top">reach out to my team</a> and we'll be happy to help.</p>
+            <cite title="Source Title">Kelley Allen, Manager Customer Success</cite>
+        </blockquote>
+    </div>
+    <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist && connectorPromo">
+        <img class="img-circle" ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="img/avatar.jpg" alt="people"></img>
+        <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people"></img>
+        <blockquote class="client-blockquote">
+            <h4 class="text-warning">Still need help?</h4>
+            <p ng-if="studentcourse.onboardingSpecialist">Your care representative is <b>{{studentcourse.onboardingSpecialist.local.firstname}} {{studentcourse.onboardingSpecialist.local.lastname}}</b>.Click the link below to view your care representative's schedule and book a training.</p>
+            <p style="margin-bottom:40px"><a class="btn client-btn-success" href="{{studentcourse.onboardingSpecialist.local.timetrade}}" ng-click="sendEvent('TimeTrade Clicked')" target="_blank" style="float:right">Schedule</a></p>
+        </blockquote>
+    </div>
+
+
     <div class="client-referCoWorker">
         <h5 class="client-heading">Add a team member.</h5>
         <p>Have co-workers who will be using {{studentcourse.displayProductName}}? Enter their e-mail to add them to your training portal.</p>
         <div growl inline="true"></div>
         <input type="text" name="coworkeremail" ng-model="coworker.email" />
         <button class="client-btn client-btn-success" ng-click="addCoworker();sendEvent('Coworker Added')">Add</button>
-    </div>
-</div>
-<div class="col-md-7 col-xs-12" ng-show="studentcourse.product != 'bollo'">
-    <h5 class="client-heading">Other Products You Might Like</h5>
-    <div class="client-crossSell">
-        <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
-        <a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('rightsignature');"><img class="client-crossSellLogo" src="img/logo/products/RightSignature-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
-        <a href="https://sharefile.com/" target="_blank" ng-click="trackevent('sharefile');"><img class="client-crossSellLogo" src="img/logo/products/ShareFile-Black.png" ng-show="studentcourse.product == 'rightsignature' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
     </div>
 </div>
 
