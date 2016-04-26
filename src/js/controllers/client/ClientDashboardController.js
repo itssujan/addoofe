@@ -98,6 +98,7 @@ angular.module('app')
             $scope.showSpinner = false;
             $scope.publicTrainingURL = "";
             $scope.connectorPromo = false;
+            $scope.completedVideosCount = 0;
 
         	$scope.config = {
         		preload: "none",
@@ -127,10 +128,11 @@ angular.module('app')
             }
 
             var launchWootricNPS = function() {
-                if($scope.studentcourse.email == 'Hudson.haines@gmail.com') {
+                // if($scope.studentcourse.email == 'Hudson.haines@gmail.com') {
                     console.log("Trying to launch Wootric..");
+                    $scope.sendEvent("Trying to launch Wootric NPS");
                     window.wootric("run");
-                }
+                // }
             }
 
         	if (Auth && Auth.user) {
@@ -234,8 +236,6 @@ angular.module('app')
 
         	$scope.onPlayerReady = function (API) {
         		console.log(" Player ready :" + API);
-                if(API)
-                    console.log(JSON.stringify(API));
         		$scope.API = API;
         		console.log($window.navigator.userAgent);
 
@@ -258,7 +258,6 @@ angular.module('app')
 
         	$scope.startVideo = function () {
         		console.log(" Player ready :" + $scope.API);
-                console.log(JSON.stringify($scope.API));
         		$scope.showVideoPlayer = true;
         		$scope.API.play();
         	}
@@ -332,11 +331,16 @@ angular.module('app')
         	$scope.onCompleteVideo = function () {
         		console.log("Video completed... :");
                 $scope.counter = 2;
+                console.log("Video Index :"+$scope.currentVideoIndex);
                 if($scope.currentVideoIndex != $scope.studentcourse.courseID.contents.length-1) {
                     //$scope.openAutoPlayModal();
                     $scope.countdown();
                 }
-                launchWootricNPS();
+                $scope.completedVideosCount = $scope.completedVideosCount + 1;
+
+                if($scope.completedVideosCount == 3) { //launching only after completing 3rd video
+                    launchWootricNPS();
+                }
         	};
 
         	var launchOnboardingPrompt = function () {
@@ -562,11 +566,8 @@ angular.module('app')
                 var connectorVideoID = "565d308268ff811332a5a20b"; //"56ba0db731d3360300643f19";
                 Restangular.one("video", connectorVideoID).get().then(function (data) {
                     $scope.video = data;
-                    console.log("Before :"+JSON.stringify($scope.config.sources));
                     $scope.config.sources = [{src: $scope.video.url, type: "video/mp4"}]
-                    console.log("After :"+JSON.stringify($scope.config.sources));
                     $timeout($scope.API.play.bind($scope.API), 100);
-                    //$scope.startVideo();
                 });
             }
 
