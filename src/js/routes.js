@@ -105,7 +105,7 @@
                     controller: 'LoginCtrl'
                 })
                 .state('sign-up', {
-                    url: '/sign-up/',
+                    url: '/sign-up',
                     templateUrl: 'templates/signup.html',
                     ctrl : 'signUp',
                     controller: 'SignUpCtrl'
