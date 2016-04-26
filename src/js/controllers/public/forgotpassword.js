@@ -26,7 +26,7 @@ angular.module('app')
 					growl.success("An email has been sent to "+$scope.email+".To finish resetting your password, follow the instructions in the email.");
 				},function(response) {
                     if(response.status == 404) {
-                        growl.error("Error : Please contact hello@addoo.io"); 
+                        growl.error("Error : Please contact hello@addoo.io if you already have an account or sign-up for a new account <a href='https://app.addoo.io/#/sign-up'>here</a>"); 
                     }
                 });
             }
