@@ -50,10 +50,7 @@ angular.module('app')
                 if($scope.studentcourse) {
                     $scope.studentcourse.inviteurl = "https://" + $location.host() + "/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
                     console.log("******* trying to get invite url :"+$scope.studentcourse.inviteurl);
-                } else {
-                    $scope.studentcourse.inviteurl = null;
                 }
-    
         	}
 
         	var getApplicableContentForProducts = function (prod) {
@@ -90,7 +87,6 @@ angular.module('app')
                         $scope.course = data;
                         updateViewStatus();    
                     })
-                    console.log("GOT COURSE :"+JSON.stringify($scope.course));
                     $scope.courseID = $scope.course._id;
                     
 
@@ -456,6 +452,7 @@ angular.module('app')
         	$scope.createDuplicateTrack = function () {
         		var duplicateCourse = $scope.course;
         		delete duplicateCourse._id;
+                delete duplicateCourse.author;
         		Restangular.all('course').post(duplicateCourse).then(function (data) {
         			$state.go('customer-manager.build', { 'courseID': data._id, 'message': 'Duplicate track created successfully' });
         			growl.success('Duplicate track created successfully');
