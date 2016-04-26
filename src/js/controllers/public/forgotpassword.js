@@ -21,9 +21,14 @@ angular.module('app')
 
             $scope.forgotPassword = function() {
             	$mixpanel.track('Forgot password request');
+                console.log("Forgot password");
 				Restangular.all('forgotpassword').post({"email":$scope.email}).then(function(data){
 					growl.success("An email has been sent to "+$scope.email+".To finish resetting your password, follow the instructions in the email.");
-				});
+				},function(response) {
+                    if(response.status == 404) {
+                        growl.error("Error : Please contact hello@addoo.io"); 
+                    }
+                });
             }
 
             $scope.resetpassword = function() {
