@@ -1,0 +1,38 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Edit Content</span>
+                </a>
+            </li>
+        </ul>
+        <div class="panel panel-default paper-shadow tab-content">
+            <div growl inline="true"></div>
+            <form ng-submit="update()">
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 form-control-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="title" placeholder="Title" ng-model="video.title">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="displaytitle" class="col-sm-2 form-control-label">Customer Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="displaytitle" placeholder="Customer Display Title" ng-model="video.displaytitle">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-sm-2 form-control-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="description" placeholder="Description" ng-model="video.description" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

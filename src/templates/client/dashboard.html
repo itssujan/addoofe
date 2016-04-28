@@ -34,7 +34,7 @@
         </videogular>
     </div>
     <div class="client-video-description">
-        <h2 class="client-heading">{{video.title}}</h2>
+        <h2 class="client-heading">{{video.displaytitle ? video.displaytitle : video.title}}</h2>
         <p class="client-heading">{{video.description}}</p>
         <div class="client-feedback">
             <p class="client-heading">Was this video helpful?</p>
@@ -100,7 +100,7 @@
                     </a>
                 </div>    
                 <div class="video-details">
-                    <h5><a href="" ng-click="playVideo($index)">{{nextvideo.title}}</a></h5>
+                    <h5><a href="" ng-click="playVideo($index)">{{nextvideo.displaytitle ? nextvideo.displaytitle : nextvideo.title}}</a></h5>
                     <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
                 </div>
             </li>

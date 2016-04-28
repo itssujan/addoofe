@@ -343,6 +343,10 @@ angular.module('app')
                 }
         	};
 
+            $scope.isFullScreen = function() {
+                
+            }
+
         	var launchOnboardingPrompt = function () {
         		$scope.sendEvent("Showing onboarding prompt");
         		$scope.onboardingPrompt = "show";

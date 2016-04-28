@@ -1,0 +1,40 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Content</span>
+                </a>
+            </li>
+        </ul>		
+		<div class="panel panel-default paper-shadow tab-content">
+			<div growl inline="true"></div>
+			<table class="table table-striped" st-table="displayedVideos" st-safe-src="videos" ng-show="!loading">
+				<thead>
+					<tr class="search-row">
+						<th colspan="6"><input class="form-control search" st-search="" placeholder="Enter text to start searching..." type="text" /></th>
+					</tr>
+					<tr>
+						<th class="header" st-sort="email">Title<i class="fa fa-sort"></i></th>
+						<th class="header" st-sort="name">Customer Display Title<i class="fa fa-sort"></i></th>
+						<th class="header">Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in displayedVideos">
+						<td>{{row.title}}</td>
+						<td>{{row.displaytitle}}</td>
+						<td><a ui-sref="customer-manager.editcontent({videoID: '{{row._id}}'})">Edit</a></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="5" class="text-center">
+							<div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+
+		</div>
+    </div>
+</div>

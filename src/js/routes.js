@@ -187,6 +187,20 @@
                     controller: "UploadContentCtrl",
                     data: {requiresLogin: true}
                 })
+                .state('customer-manager.viewcontent', {
+                    url: '/viewcontent',
+                    templateUrl: 'templates/viewcontent.html',
+                    ctrl: "viewContentCtrl",
+                    controller: "ViewContentCtrl",
+                    data: {requiresLogin: true}
+                })
+                .state('customer-manager.editcontent', {
+                    url: '/editcontent/:videoID',
+                    templateUrl: 'templates/editcontent.html',
+                    ctrl: "editContentCtrl",
+                    controller: "EditContentCtrl",
+                    data: {requiresLogin: true}
+                })
                 .state('customer-manager.product-selection', {
                     url: '/productselection',
                     templateUrl: 'templates/productselector.html',
