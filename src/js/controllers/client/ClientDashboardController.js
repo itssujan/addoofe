@@ -207,7 +207,8 @@ angular.module('app')
                 $scope.sendEvent('Visit via Marketo email');
             } 
 
-            if (($location.search()).src == "welcomeemail") {
+            if (($location.search()).src == "welcomeemail" || ($location.search()).src == "SFRS4welcomeemail" 
+                || ($location.search()).src == "SFwelcomeemail") {
         		console.log("Viewing via welcome email");
         		$scope.sendEvent('Visit via Welcome Email');
         	} else if (($location.search()).src == "welcomeemail2") {
@@ -369,6 +370,7 @@ angular.module('app')
 
         	$scope.sendStatusEvent = function (status) {
         		if (status == 'started') {
+                    console.log("Customer playing video");
         			$scope.sendEvent("Customer playing video");
         		} else if (status == 'complete') {
         			$scope.sendEvent("Customer completed a video");
