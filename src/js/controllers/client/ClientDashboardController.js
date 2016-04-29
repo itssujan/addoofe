@@ -225,6 +225,8 @@ angular.module('app')
         				element.videourl = data.url;
         				element.posterurl = data.posterurl;
         				element.duration = data.duration;
+                        element.displaytitle = data.displaytitle;
+                        element.displayProductName = $scope.displayProductName(data.product);
         			});
 
         			//updating progress of each video too

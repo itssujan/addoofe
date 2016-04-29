@@ -106,6 +106,7 @@
                 <div class="video-details">
                     <h5><a href="" ng-click="playVideo($index)">{{nextvideo.displaytitle ? nextvideo.displaytitle : nextvideo.title}}</a></h5>
                     <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
+                    <p>Product : {{nextvideo.displayProductName}} 
                 </div>
             </li>
         </ul>
