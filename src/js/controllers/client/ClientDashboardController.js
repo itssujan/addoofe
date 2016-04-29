@@ -99,6 +99,7 @@ angular.module('app')
             $scope.publicTrainingURL = "";
             $scope.connectorPromo = false;
             $scope.completedVideosCount = 0;
+            $scope.isFullScreen = false;
 
         	$scope.config = {
         		preload: "none",
@@ -263,7 +264,7 @@ angular.module('app')
         	}
 
         	$scope.playVideo = function (index) {
-        		console.log("Playing video11 :" + index);
+        		console.log("Playing video :" + index);
 
         		Restangular.one("video", $scope.studentcourse.courseID.contents[index].videoID).get().then(function (data) {
         			$scope.video = data;
@@ -326,6 +327,15 @@ angular.module('app')
         		} else if ($currentTime > 2) {
         			$scope.updateVideoProgress("started");
         		}
+
+                if($scope.API.isFullScreen != $scope.isFullScreen) {
+                    $scope.isFullScreen = $scope.API.isFullScreen;
+                    if($scope.isFullScreen){
+                        $scope.sendEvent("Playing in fullscreen mode now");
+                    } else {
+                        $scope.sendEvent("Playing in normal mode now");
+                    }
+                }
         	};
 
         	$scope.onCompleteVideo = function () {
