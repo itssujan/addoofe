@@ -237,7 +237,7 @@ angular.module('app')
         			} else {
         				Restangular.all('student').post($scope.student)
                         .then(function (data) {
-                        	createStudentCourse(data, $scope.course._id);
+                        	createStudentCourse(data, $scope.course._id, true);
                         	$mixpanel.track('Invite Client');
                         	$scope.closeClientModal();
                         });
