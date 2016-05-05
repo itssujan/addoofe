@@ -362,7 +362,7 @@ angular.module('app')
                 if($scope.completedVideosCount == 3) { //launching only after completing 3rd video
                     launchWootricNPS();
                 }
-                if($scope.video._id == '565d308268ff811332a5a20b' && $scope.connectorPromo){
+                if($scope.video._id == '56ba0db731d3360300643f19' && $scope.connectorPromo){
                     var rafflecontestant = {};
                     console.log("Student ID :"+JSON.stringify($scope.studentcourse.studentID));
                     rafflecontestant.user = $scope.studentcourse.studentID._id;

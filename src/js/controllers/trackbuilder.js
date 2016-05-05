@@ -16,6 +16,7 @@ angular.module('app')
         	$scope.user				= Auth.user;
         	$scope.studentCourseID  = $stateParams.studentCourseID;
         	$scope.student			= {};
+            $scope.student.sc       = {};
         	$scope.selectedVideos	= [];
             $scope.showprogress     = true;
 
