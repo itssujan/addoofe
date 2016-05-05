@@ -104,8 +104,8 @@ angular.module('app')
                 $scope.loading = false;
         	} else if($scope.courseID) {
                 console.log("Got course");
-                Restangular.all("course?_id="+$scope.courseID).getList().then(function (data) {
-                    $scope.course = data[0];
+                Restangular.one("course",$scope.courseID).get().then(function (data) {
+                    $scope.course = data;
                     console.log("Course : "+JSON.stringify($scope.course));
                     if ($stateParams.message) {
                         growl.success($stateParams.message);
