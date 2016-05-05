@@ -12,9 +12,17 @@ angular.module('app')
             $scope.sendEvent("Vist to leads page");
 
             // Get Leads..
-            Restangular.all("crosssaleleads?salesRep="+Auth.user._id+"&populate=opportunityID&sort=-createdOn").getList().then(function (data) {
-                $scope.leads = data;
-                $scope.displayedLeads = [].concat($scope.leads);
-            });
-
+            if(Auth.user.product == 'shareconnect' && Auth.user.role == 'customer-onboarding-specialist') {
+                console.log("Am here");
+                Restangular.all("crosssaleleads?feature=connector&populate=opportunityID&sort=-createdOn").getList().then(function (data) {
+                    $scope.leads = data;
+                    $scope.displayedLeads = [].concat($scope.leads);
+                });
+            } else {
+                console.log("Am here11 :"+JSON.stringify(Auth.user));
+                Restangular.all("crosssaleleads?salesRep="+Auth.user._id+"&populate=opportunityID&sort=-createdOn").getList().then(function (data) {
+                    $scope.leads = data;
+                    $scope.displayedLeads = [].concat($scope.leads);
+                });
+            }    
         } ]);

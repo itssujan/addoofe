@@ -1,0 +1,35 @@
+ <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeClientModal()"><span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title" class="client-heading" id="myModalLabel" ng-show="!contactConfirmationMsg">You’re entered!</h4>
+</div>
+<div class="modal-body" ng-show="!contactConfirmationMsg">
+    <div class="row">
+        <div class="col-md-12">
+            <span>Congratulations, you’ve been entered into the drawing for a new Apple TV!</span>
+        </div>            
+    </div>    
+	<div class="row">
+		<div class="col-md-3">
+	        <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people" width="120px" height="120px"></img>
+        </div>
+        <div class="col-md-9">
+	        <blockquote class="client-blockquote">
+	            <h4 class="text-warning">Still Need Help with Connector?</h4>
+	            <p>No problem. The ShareConnect team is here to help. Click on the button below to sign up for a 1-1 with a care team member who can help you get your account set up.</p>
+	        </blockquote>
+    	</div>
+    </div>
+
+	<p></p>
+</div>
+<div class="modal-body" ng-show="contactConfirmationMsg">
+    <p>Thank you for your interest in Connector. A care member will be in touch soon.</p>
+</div>
+<div class="modal-footer" ng-show="!contactConfirmationMsg">
+    <a href="" class="btn btn-primary" ng-click="sendEvent('Cancelled SC promo modal');closeClientModal()">Cancel</a>
+    <a href="" class="btn btn-primary" ng-click="sendEvent('Interested in SC Connector');requestedContact()">Contact me</a>
+</div>
+<div class="modal-footer" ng-show="contactConfirmationMsg">
+    <a href="" class="btn btn-primary" ng-click="closeClientModal()">Close</a>
+</div>

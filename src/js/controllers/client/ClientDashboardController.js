@@ -100,6 +100,7 @@ angular.module('app')
             $scope.connectorPromo = false;
             $scope.completedVideosCount = 0;
             $scope.isFullScreen = false;
+            $scope.loading = true;
 
         	$scope.config = {
         		preload: "none",
@@ -165,6 +166,10 @@ angular.module('app')
                 setPublicTraningURL();
                 $scope.studentcourse.displayProductName = $scope.displayProductName($scope.studentcourse.product);
                 setWootricSettings();
+                if($scope.studentcourse.studentID.sc && $scope.studentcourse.studentID.sc.productType == "sfsc" && $scope.studentcourse.studentID.local.email == 'sujan123@grr.la') {
+                    $scope.connectorPromo = true; //enabling connector promo
+                }
+                $scope.loading = false;
         	});
 
             var setPublicTraningURL = function() {
@@ -347,14 +352,35 @@ angular.module('app')
                 console.log("Video Index :"+$scope.currentVideoIndex);
                 if($scope.currentVideoIndex != $scope.studentcourse.courseID.contents.length-1) {
                     //$scope.openAutoPlayModal();
-                    $scope.countdown();
+                    if(!$scope.video.promoted) { // not autoplaying for connector promo video
+                        $scope.countdown();
+                    }
                 }
                 $scope.completedVideosCount = $scope.completedVideosCount + 1;
 
                 if($scope.completedVideosCount == 3) { //launching only after completing 3rd video
                     launchWootricNPS();
                 }
+                if($scope.video._id == '565d308268ff811332a5a20b' && $scope.connectorPromo){
+                    var rafflecontestant = {};
+                    console.log("Student ID :"+JSON.stringify($scope.studentcourse.studentID));
+                    rafflecontestant.user = $scope.studentcourse.studentID._id;
+                    rafflecontestant.email = $scope.studentcourse.studentID.local.email;
+                    rafflecontestant.studentCourse = $scope.studentcourse._id;
+                    rafflecontestant.product = $scope.studentcourse.product;
+                    Restangular.all('rafflecontestant').post(rafflecontestant).then(function (data) {
+                        console.log("Raffle entry posted");
+                    });
+
+                    if($scope.video.promoted) {
+                        launchModal();
+                    }
+                }
         	};
+
+            var launchModal = function() {
+                $scope.openClientModal('templates/modals/ConnectorPromoModal.html');
+            }
 
             $scope.isFullScreen = function() {
                 
@@ -486,9 +512,11 @@ angular.module('app')
 
             $scope.like = function(like) {
                 if(like) {
+                    console.log("Customer liked the video");
                     $scope.video.likes = $scope.video.likes + 1;
                     $scope.sendEvent("Customer liked a video");
                 } else {
+                    console.log("Customer disliked the video");
                     $scope.video.dislikes = $scope.video.dislikes + 1;
                     $scope.sendEvent("Customer disliked a video");
                 }
@@ -511,10 +539,10 @@ angular.module('app')
                 }
             }
 
-            $scope.openClientModal = function () {
+            $scope.openClientModal = function (targetTemplateURL) {
                 $scope.clientModalInstance = $uibModal.open({
                   animation     : true,
-                  templateUrl   : 'templates/modals/SupportModal.html',
+                  templateUrl   : targetTemplateURL,
                   scope         : $scope
                 });
             };
@@ -584,9 +612,24 @@ angular.module('app')
                 var connectorVideoID = "565d308268ff811332a5a20b"; //"56ba0db731d3360300643f19";
                 Restangular.one("video", connectorVideoID).get().then(function (data) {
                     $scope.video = data;
+                    $scope.video.promoted = true;
                     $scope.config.sources = [{src: $scope.video.url, type: "video/mp4"}]
                     $timeout($scope.API.play.bind($scope.API), 100);
                 });
+            }
+
+            $scope.requestedContact = function() {
+                $scope.contactConfirmationMsg = true;
+                var lead = {};
+                lead.product = $scope.studentcourse.product;
+                lead.feature = "connector";
+                lead.studentCourseID = $scope.studentcourseID;
+                $mixpanel.track("Sending Connector Lead Email", {
+                        "Email": $scope.clientemail,
+                        "Product" : event
+                });
+                Restangular.all('crosssaleleads').post(lead);
+
             }
 
 
