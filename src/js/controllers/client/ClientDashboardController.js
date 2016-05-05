@@ -610,7 +610,7 @@ angular.module('app')
 
             $scope.playSCConnector = function() {
                 console.log("Am here");
-                var connectorVideoID = "565d308268ff811332a5a20b"; //"56ba0db731d3360300643f19";
+                var connectorVideoID = "56ba0db731d3360300643f19"; //"56ba0db731d3360300643f19";
                 Restangular.one("video", connectorVideoID).get().then(function (data) {
                     $scope.video = data;
                     $scope.video.promoted = true;
