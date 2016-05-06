@@ -167,7 +167,7 @@ angular.module('app')
                 setPublicTraningURL();
                 $scope.studentcourse.displayProductName = $scope.displayProductName($scope.studentcourse.product);
                 setWootricSettings();
-                if($scope.studentcourse.studentID.sc && $scope.studentcourse.studentID.sc.productType == "sfsc" && $scope.studentcourse.studentID.local.email == 'sujan123@grr.la') {
+                if($scope.studentcourse.studentID.sc && $scope.studentcourse.studentID.sc.productType == "sfsc") {
                     $scope.connectorPromo = true; //enabling connector promo
                 }
                 $scope.loading = false;
