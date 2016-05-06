@@ -45,6 +45,7 @@ app.config(
 					nodeserverurl: 'http://localhost:3001',
                     //nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: "29e92907943764722a69ba3035295165",
+                    connectorVideoID : "565d308268ff811332a5a20b",
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
@@ -53,6 +54,7 @@ app.config(
                 stage : {
                     nodeserverurl: 'https://addoonode-stage.herokuapp.com',
                     mixpaneltoken: "29e92907943764722a69ba3035295165",
+                    connectorVideoID : "565d308268ff811332a5a20b",
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
@@ -61,6 +63,7 @@ app.config(
 				production: {
 					nodeserverurl: 'https://node.addoo.io', 
 					mixpaneltoken: 'fdf3386dbfacfd13d6e4a580d0b5b9ae',
+                    connectorVideoID : "56ba0db731d3360300643f19",
                     wootricAccountID: 'NPS-ecd3e1b3',
                     wootric_survey_immediately : false,
                     aws_bucket: 'addoo',

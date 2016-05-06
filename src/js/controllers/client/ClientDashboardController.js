@@ -362,7 +362,7 @@ angular.module('app')
                 if($scope.completedVideosCount == 3) { //launching only after completing 3rd video
                     launchWootricNPS();
                 }
-                if($scope.video._id == '56ba0db731d3360300643f19' && $scope.connectorPromo){
+                if($scope.video._id == envService.read('connectorVideoID') && $scope.connectorPromo){
                     var rafflecontestant = {};
                     console.log("Student ID :"+JSON.stringify($scope.studentcourse.studentID));
                     rafflecontestant.user = $scope.studentcourse.studentID._id;
@@ -610,7 +610,7 @@ angular.module('app')
 
             $scope.playSCConnector = function() {
                 console.log("Am here");
-                var connectorVideoID = "56ba0db731d3360300643f19"; //"56ba0db731d3360300643f19";
+                var connectorVideoID = envService.read('connectorVideoID'); //"56ba0db731d3360300643f19";
                 Restangular.one("video", connectorVideoID).get().then(function (data) {
                     $scope.video = data;
                     $scope.video.promoted = true;
