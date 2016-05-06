@@ -120,7 +120,7 @@ angular.module('app')
         	};
 
             var setWootricSettings = function() {
-                 wootric_survey_immediately = envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
+                 wootric_survey_immediately = true;//envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
                 window.wootricSettings = {
                     modal_theme: 'dark',
                     email: $scope.studentcourse.email,// TODO: The current logged in user's email address.
