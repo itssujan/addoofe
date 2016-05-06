@@ -255,6 +255,9 @@ angular.module('app')
         		$scope.student.progress				= "invited";
         		$scope.student.onboardingSpecialist = $scope.student.onboardingSpecialist;
                 $scope.student.clientName = $scope.student.local.clientname;
+                if($scope.student.sc && $scope.student.sc.productType == 'sfsc') {
+                    $scope.student.tag = "connectorpromo";
+                }
 
         		console.log('Trying to invite students :' + JSON.stringify($scope.student));
 
