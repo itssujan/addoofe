@@ -25,7 +25,7 @@
 				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin' || user.role == 'customer-manager'">
 					<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
 				</li>
-				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
+				<li class="sidebar-list-item" id="top" ng-show="user.role != 'sales'">
 					<a ui-sref="customer-manager.viewcontent">Edit Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
 				</li>
 				<li class="sidebar-list-item" id="top">
