@@ -226,34 +226,39 @@ angular.module('app')
         		$scope.student.role = 'client';
         		Restangular.all('student?local.email=' + $scope.student.local.email).getList().then(function (studentslist) {
         			if (studentslist.length > 0) {
-        				growl.error('Client email id already exists. Cannot add another track for the same client');
-        				return;
-        			}
-
-        			if ($scope.course.baseTrack) {
-        				var duplicateCourse				= $scope.course;
-        				duplicateCourse.baseTrack		= false;
-        				duplicateCourse.shareWithTeam	= false;
-        				duplicateCourse.author			= $scope.user._id;
-
-        				delete duplicateCourse._id;
-
-        				console.log("Duplicate Course :" + JSON.stringify(duplicateCourse));
-
-        				Restangular.all('course').post(duplicateCourse).then(function (data) {
-        					$scope.course = data;
-        					Restangular.all('student').post($scope.student).then(function (data1) {
-        						createStudentCourse(data1, data._id, true);
-        					});
-        				});
-        			} else {
-        				Restangular.all('student').post($scope.student)
-                        .then(function (data) {
-                        	createStudentCourse(data, $scope.course._id, true);
-                        	$mixpanel.track('Invite Client');
-                        	$scope.closeClientModal();
+        				Restangular.all('studentcourses?studentID=' + studentslist[0]._id).getList().then(function (studentcourses) {
+                            console.log("Got studnetcourse :"+studentcourses[0]._id);
+                            $scope.duplicateurl = "https://app.addoo.io/index.html#/customer-manager/trackbuilder/"+studentcourses[0]._id;
+                            growl.error('Client email id already exists. Cannot add another track for the same client. 
+                                Click the link below to edit the existing track');
+                            return;
                         });
-        			}
+        			} else {
+            			if ($scope.course.baseTrack) {
+            				var duplicateCourse				= $scope.course;
+            				duplicateCourse.baseTrack		= false;
+            				duplicateCourse.shareWithTeam	= false;
+            				duplicateCourse.author			= $scope.user._id;
+
+            				delete duplicateCourse._id;
+
+            				console.log("Duplicate Course :" + JSON.stringify(duplicateCourse));
+
+            				Restangular.all('course').post(duplicateCourse).then(function (data) {
+            					$scope.course = data;
+            					Restangular.all('student').post($scope.student).then(function (data1) {
+            						createStudentCourse(data1, data._id, true);
+            					});
+            				});
+            			} else {
+            				Restangular.all('student').post($scope.student)
+                            .then(function (data) {
+                            	createStudentCourse(data, $scope.course._id, true);
+                            	$mixpanel.track('Invite Client');
+                            	$scope.closeClientModal();
+                            });
+            			}
+                    }
         		});
                 console.log("showtrackbuilder"+$scope.showtrackbuilder);
         	}
