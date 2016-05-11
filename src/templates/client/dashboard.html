@@ -28,7 +28,7 @@
         <h5 class="client-heading" ng-if="!studentcourse.studentID.local.clientname && !studentcourse.studentID.local.firstname"><strong>{{studentcourse.displayProductName}} Quick Start Guide</strong> prepared for: <strong>{{studentcourse.studentID.local.email}}</strong></h5>
     </div>
 
-    <div class="client-viewer">
+    <div class="client-viewer" ng-if="!video.type || video.type == 'video'">
         <videogular vg-theme="config.theme.url" vg-complete="onCompleteVideo()" vg-player-ready="onPlayerReady($API)" vg-update-state="updateVideoState($state)" vg-update-time="updateVideoTime($currentTime, $duration)" >
                     <vg-media vg-src="config.sources" vg-tracks="config.tracks" vg-native-controls="true"></vg-media>
 <!--                     <div class="my-logo-layer">
@@ -37,6 +37,31 @@
  -->
         </videogular>
     </div>
+    <div class="client-pdf-viewer" ng-if="video.type || video.type == 'document'">
+            <h1>{{video.title}}</h1>
+            <div class="row" style="padding-bottom:10px">
+                <button ng-click="goPrevious();previousPage()" class="btn btn-warning" style="float:left">Previous Page</button>
+                <button ng-click="goNext();nextPage()" class="btn btn-warning" style="float:right">Next Page</button>
+    <!--             <button ng-click="zoomIn()">+</span></button>
+                <button ng-click="fit()">100%</span></button>
+                <button ng-click="zoomOut()">-</span></button>
+     -->
+            </div>
+            
+            <div class="row progress" ng-show="pdfloading">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{loadPercent}}%;">
+                <span class="sr-only">{{loadPercent}}% Complete</span>
+              </div>
+            </div>
+
+            <div class="row" ng-show="!pdfloading">
+                <ng-pdf template-url="templates/client/documentviewer.html" scale="page-fit"></ng-pdf>            
+                <div style="overflow:auto">
+                    <canvas id="pdf-canvas" class="rotate0"></canvas>
+                </div>
+            </div>    
+    </div>
+
     <div class="client-video-description">
         <h2 class="client-heading">{{video.displaytitle ? video.displaytitle : video.title}}</h2>
         <p class="client-heading">{{video.description}}</p>
@@ -110,6 +135,26 @@
             </li>
         </ul>
     </div>
+
+    <h5 id="playlistHeader" class="client-heading">Documents</h5>
+    <div class="client-playlist">
+        <ul class="client-playlistItem">
+            <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.documents" ng-show="nextvideo.videoID != video._id">
+                <div class="videos">
+                    <a href="" ng-click="showDoc($index)" class="video">
+                        <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                        <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
+                    </a>
+                </div>    
+                <div class="video-details">
+                    <h5><a href="" ng-click="showDoc($index)">{{nextvideo.displaytitle ? nextvideo.displaytitle : nextvideo.title}}</a></h5>
+                    <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
+                    <p>Product : {{nextvideo.displayProductName}} 
+                </div>
+            </li>
+        </ul>
+    </div>
+
 
     <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && connectorPromo">
         <img src="img/people/customer-success.png">

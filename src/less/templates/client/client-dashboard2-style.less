@@ -185,13 +185,52 @@
 	}
 }
 
+.client-pdf-viewer {
+	padding-top : 10px;
+
+	.navigation-panel {
+		display: inline-block;
+		float: left;
+		clear: left;
+		margin-bottom: 20px;
+		width: 538px;
+	}
+
+	&.non-doc {
+
+		.video-player {
+			height: 360px;
+			width: 538px;
+			display: inline-block;
+			float: left;
+			clear: left;
+		}
+	}
+
+	#menu {
+	    margin: 0;
+	    padding: 0;
+	}
+
+	#menu li {
+	    display: block;
+	    float: left;
+	    margin: 0;
+	    width: 25%;
+	    background-color: gray;
+	    padding: 10px;
+	    box-sizing: border-box;
+	}
+
+}
+
 /* Playlist */
 .client-playlist {
 	margin-top: 0px;
 	border: 1px solid #cecece;
 	padding: 30px 10px 30px 0px; 
 	overflow: auto;
-	height: 464px;
+	height: 364px;
 	max-width: 500px;
 }
 

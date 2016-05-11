@@ -1,6 +1,6 @@
 <div id="video-list-modal">
 	<div class="modal-header" ng-class="priorityStyle">
-		<span class="modal-title">Add Videos</span>
+		<span class="modal-title">Add Documents</span>
 	</div>
 	<div class="modal-body">
 <!-- 		  <ul class="nav nav-tabs" role="tablist">
@@ -17,13 +17,12 @@
 					<th class="header" st-sort="title">Title<i class="fa fa-sort"></i></th>
 					<th class="header" st-sort="product" st-sort-default="true">Product<i class="fa fa-sort"></i></th>
 					<th class="header" st-sort="createdOn">Date<i class="fa fa-sort"></i></th>
-					<th/>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="video in displayedvideolessons">
+				<tr ng-repeat="video in displayeddocumentlessons">
 					<td class="video-list-modal-checkbox" title="'Select'">
-						<input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addVideoToQueue(video.selected,video)">
+						<input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addDocsToQueue(video.selected,video)">
 					</td>
 					<td title="'Name'" filter="{title: 'text'}" sortable="'title'">
 						{{video.title}}
@@ -33,9 +32,6 @@
 					</td>
 					<td title="'Uploaded on'" sortable="'createdOn'">
 						<span am-time-ago="video.createdOn"></span>
-					</td>
-					<td>
-						<button class="addoo-button addoo-blue" ng-click="openVideoPreviewModal(video)" style="min-height:0;"><span class="glyphicon glyphicon-play"></span></button>
 					</td>
 				</tr>
 			</tbody>
@@ -49,6 +45,6 @@
 		</table>
 	</div>
 	<div class="modal-footer" style="padding-top:0;">
-		<button class="addoo-button addoo-orange addoo-float-right" ng-click="addVideoToTrack('video')">Add to Track</button>
+		<button class="addoo-button addoo-orange addoo-float-right" ng-click="addDocsToTrack('video')">Add to Track</button>
 	</div>
 </div>

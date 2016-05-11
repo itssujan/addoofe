@@ -281,9 +281,9 @@
                 // })
                 .state('client.documentviewer', {
                     url: '/documentviewer',
-                    templateUrl: 'app/onboarding/documentviewer.html',
-                    ctrl: "clientDashboardController",
-                    controller: "ClientDashboardController",
+                    templateUrl: 'templates/client/documentviewer.html',
+                    ctrl: "clientDocViewerCtrl",
+                    controller: "ClientDocViewerCtrl",
                     data: {requiresLogin: false}
                 });
 

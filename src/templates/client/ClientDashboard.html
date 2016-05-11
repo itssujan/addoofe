@@ -13,6 +13,7 @@
 		</div>
 
 		<div id="welcome-wrapper">
+			
 			<div class="message" ng-if="studentcourse.studentID.local.clientname">Learning portal prepared for<br/><span class="name">{{studentcourse.studentID.local.clientname}}</span></div>
 			<div class="message" ng-if="!studentcourse.studentID.local.clientname && studentcourse.studentID.local.firstname">Learning Portal prepared for<span class="name">{{studentcourse.studentID.local.firstname}} {{studentcourse.studentID.local.lastname}}</span></div>
 			<div class="message" ng-if="!studentcourse.studentID.local.clientname && !studentcourse.studentID.local.firstname">Learning Portal prepared for {{studentcourse.studentID.local.email}}</div>

@@ -6,8 +6,12 @@
                 </a>
             </li>
         </ul>
-		<div class="alert alert-info" role="alert">
+
+		<div class="alert alert-info" role="alert" ng-show="video.type == 'video'">
 			We only support videos in mp4,mov formats
+		</div>
+		<div class="alert alert-info" role="alert" ng-show="video.type == 'document'">
+			We only support PDF documents
 		</div>
 
 		<div class="panel panel-default paper-shadow tab-content">
@@ -15,7 +19,18 @@
 				<form class="form-horizontal" role="form">
 					<div growl inline="true"></div>
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Video</label>
+						<label for="inputEmail3" class="col-sm-2 control-label">Content Type</label>
+						<div class="field-container col-md-6">
+							<div class="media v-middle">
+								&nbsp;<label class="radio-inline"><input type="radio" name="optradio" ng-model="video.type" value="video">Video</label>
+								<label class="radio-inline"><input type="radio" name="optradio" ng-model="video.type" value="document">Document</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'video'">Video</label>
+						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'document'">Document</label>
 						<div class="field-container col-md-6">
 							<div class="media v-middle">
 								<div s3-upload bucket="bucket" ng-model="video.url" do-upload="performUpload" s3-upload-options="{getOptionsUri: s3OptionsUri, folder: 'content/videos/{{product}}/',submitOnChange : true}" ng-model="s3OptionsUri"></div>
@@ -25,7 +40,8 @@
 					</div>
 
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Poster of the video</label>
+						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'video'">Poster of the video</label>
+						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'document'">Poster of the document</label>
 						<div class="field-container col-md-6">
 							<div class="media v-middle">
 								<div s3-upload bucket="bucket" ng-model="video.posterurl" do-upload="performUpload" s3-upload-options="{getOptionsUri: s3OptionsUri, folder: 'content/posters/{{product}}/',submitOnChange : true}" ng-model="s3OptionsUri"></div>
@@ -71,7 +87,7 @@
 						</div>
 					</div>
  -->
-					<div class="form-group">
+					<div class="form-group" ng-show="video.type == 'video'"> 
 						<label for="inputEmail3" class="col-md-2 control-label">Duration(in minutes)</label>
 						<div class="row-container col-md-8">
 							<div class="row">
@@ -86,7 +102,7 @@
 
 					<div class="form-group margin-none">
 						<div class="col-md-offset-2 col-md-10">
-							<button ng-click="saveVideo()" class="btn btn-primary paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Save video</button>
+							<button ng-click="saveVideo()" class="btn btn-primary paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Save</button>
 						</div>
 					</div>
 				</form>

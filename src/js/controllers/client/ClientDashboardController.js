@@ -101,6 +101,12 @@ angular.module('app')
             $scope.completedVideosCount = 0;
             $scope.isFullScreen = false;
             $scope.loading = true;
+            $scope.pdfUrl = "";
+
+            $scope.scroll = 0;
+            $scope.pdfloading = true;
+            $scope.loadPercent = 0;
+
 
         	$scope.config = {
         		preload: "none",
@@ -242,6 +248,23 @@ angular.module('app')
         				}
         			});
         		});
+
+                $scope.studentcourse.courseID.documents.forEach(function (element, index, array) {
+                    Restangular.one("video", element.videoID).get().then(function (data) {
+                        element.videourl = data.url;
+                        element.posterurl = data.posterurl;
+                        element.duration = data.duration;
+                        element.displaytitle = data.displaytitle;
+                        element.displayProductName = $scope.displayProductName(data.product);
+                    });
+
+                    //updating progress of each video too
+                    $scope.studentcourse.lessonprogress.forEach(function (progresselement, index1, array1) {
+                        if (element.videoID == progresselement.lessonID) {
+                            element.progress = progresselement.progress;
+                        }
+                    });
+                });
         	}
 
         	$scope.onPlayerReady = function (API) {
@@ -277,6 +300,7 @@ angular.module('app')
 
         		Restangular.one("video", $scope.studentcourse.courseID.contents[index].videoID).get().then(function (data) {
         			$scope.video = data;
+                    $scope.pdfUrl = data.url;
 
         			var videolist = [];
         			var videosource = { src: $scope.video.url, type: "video/mp4" };
@@ -309,6 +333,46 @@ angular.module('app')
         			$scope.currentVideoIndex = index;
         		});
         	};
+
+            $scope.showDoc = function (index) {
+                console.log("Showing Document :" + index);
+
+                Restangular.one("video", $scope.studentcourse.courseID.documents[index].videoID).get().then(function (data) {
+                    $scope.sendEvent("Customer vieweing document");
+                    $scope.video = data;
+                    $scope.pdfUrl = data.url;
+
+                    var videolist = [];
+                    var videosource = { src: $scope.video.url, type: "video/mp4" };
+                    var videoposterlist = [];
+                    var postersource = $scope.video.posterurl;
+
+                    videolist.push(videosource);
+
+                    if ($scope.videos.length < index) {
+                        for (i = $scope.videos.length; i < index; i++) {
+                            $scope.videos.push("");
+                        }
+                    }
+
+                    if (!$scope.videos[index] || $scope.videos[index] == "") {
+                        $scope.videos.splice(index, 1);
+                        $scope.videos.splice(index, 0, { sources: videolist, posterurl: $scope.video.posterurl });
+                    }
+
+                    $scope.videos.plugins = {};
+                    $scope.videos.plugins.poster = {};
+                    $scope.videos.plugins.poster.url = $scope.video.posterurl;
+
+                    if (index != 0)
+                        $scope.setVideo(index);
+                    else {
+                        $scope.config.sources = $scope.videos[index].sources;
+                        $scope.config.plugins = $scope.videos[index].plugins;
+                    }
+                    $scope.currentVideoIndex = index;
+                });
+            };
 
         	$scope.playNextVideo = function () {
         		$scope.sendEvent("Customer playing next video");
@@ -614,7 +678,7 @@ angular.module('app')
                 Restangular.one("video", connectorVideoID).get().then(function (data) {
                     $scope.video = data;
                     $scope.video.promoted = true;
-                    $scope.config.sources = [{src: $scope.video.url, type: "video/mp4"}]
+                    $scope.config.sources = [{src: $scope.video.url, type: "video/mp4"}];
                     $timeout($scope.API.play.bind($scope.API), 100);
                 });
             }
@@ -632,6 +696,36 @@ angular.module('app')
                 Restangular.all('crosssaleleads').post(lead);
 
             }
+                    
+            $scope.getNavStyle = function(scroll) {
+                if(scroll > 100) return 'pdf-controls fixed';
+                else return 'pdf-controls';
+            }
+
+            $scope.onError = function(error) {
+                $scope.sendEvent("Error loading PDF document");
+                console.log(error);
+            }
+
+            $scope.onLoad = function() {
+                $scope.pdfloading = false;
+                $scope.sendEvent("Document loaded successfully");
+            }
+
+            $scope.onProgress = function(progress) {
+                $scope.loadPercent = progress.loaded * 100 / progress.total;
+                console.log($scope.loadPercent);
+            }
+
+            $scope.previousPage = function(){
+                console.log("User clicked previous page");
+                $scope.sendEvent("User clicked previous page");
+            }
+
+            $scope.nextPage = function(){
+                console.log("User clicked next page");
+                $scope.sendEvent("User clicked next page");
+            }            
 
 
         }]);

@@ -12,6 +12,7 @@ angular.module('app')
             console.log("Bucket :"+$scope.bucket)
 
 		    $scope.video = {};
+            $scope.video.type = 'video';
 
 		    $scope.performUpload = false;
 

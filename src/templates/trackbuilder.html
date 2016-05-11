@@ -14,6 +14,14 @@
                 <a href="" ng-click="openVideoListModal()"><i class="fa fa-fw fa-plus"></i></a>
             </div>
         </div>
+        <div class="content-addition col-sm-2">
+            <div class="description">
+                <p>Add Document</p>
+            </div>
+            <div class="link-button">
+                <a href="" ng-click="openDocListModal()"><i class="fa fa-fw fa-plus"></i></a>
+            </div>
+        </div>
         <div class="content-addition col-sm-2" ng-show="(user._id == course.author || course.author._id)">
             <div class="description">
                 <p>Base Track</p>
@@ -105,6 +113,35 @@
 				</div>
 			</rd-widget>
 		</div>
+    </div>
+
+    <div class="row" ng-show="course.documents">
+        <div id="current-track" class="col-sm-9">
+            <div class="sub-title">
+                Documents
+                <i class="fa fa-eye text-success legend" >Watched</i> &nbsp;&nbsp
+                <i class="fa fa-eye-slash text-warning legend">Not watched</i>
+            </div>
+            <div class="panel panel-default paper-shadow addoo-cleared addoo-both" data-z="0.5">
+                <p ng-if="!course.documents || course.documents.length == 0">No documents added..</p>
+                <table ui-tree="tableCallbacks" class="table table-responsive">
+                    <tbody class="drag-list" ui-tree-nodes ng-model="course.documents">
+                        <tr ng-repeat="content in course.documents" ui-tree-node>
+                            <td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
+                            <td>{{content.title}} 
+                                <i class="fa fa-eye text-success" ng-if="content.progress == 'complete'" color="green"></i>
+                                <i class="fa fa-eye-slash text-warning" ng-if="content.progress != 'complete' && showprogress"></i>
+                            </td>
+                            <td class="addoo-button-container addoo-sm">
+                            </td>
+                            <td class="addoo-button-container addoo-sm" ng-show="user._id == course.author || user._id == course.author._id">
+                                <button class="addoo-button addoo-red addoo-sm addoo-float-right" data-title="Delete" ng-click="deleteDoc($index)"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="modal-edit-document-module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -18,6 +18,7 @@ angular.module('app')
         	$scope.student			= {};
             $scope.student.sc       = {};
         	$scope.selectedVideos	= [];
+            $scope.selectedDocs     = [];
             $scope.showprogress     = true;
 
         	$scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
@@ -38,6 +39,16 @@ angular.module('app')
         			growl.success('Tracked deleted..');
         		});
         	}
+
+            $scope.deleteDoc = function (index) {
+                console.log(index);
+                $scope.course.documents.splice(index, 1);
+                $scope.course.put().then(function () {
+                    $mixpanel.identify(Auth.user._id);
+                    $mixpanel.track('Deleted Track Document');
+                    growl.success('Document deleted..');
+                });
+            }
 
         	$scope.updateClientList = function () {
         		// Restangular.all("studentcourses?courseID=" + $scope.courseID + "&populate=studentID").getList().then(function (data) {
@@ -338,6 +349,66 @@ angular.module('app')
         		$scope.selectedVideos = [];
         	};
 
+            $scope.addDocsToQueue = function (checked, video) {
+                var videoID = video._id
+                console.log("Video ID :" + videoID);
+
+                if (!checked) {
+                    var index = $scope.selectedDocs.indexOf(videoID);
+                    $scope.selectedDocs.splice(index, 1);
+                } else if ($scope.selectedDocs.indexOf(videoID) < 0) {
+                    $scope.selectedDocs.push(videoID);
+                }
+
+                console.log("Got event :" + $scope.selectedDocs);
+            };
+
+
+            $scope.addDocsToTrack = function (filetype) {
+                if ($scope.course.baseTrack && $scope.course.author != $scope.user._id) {
+                    var duplicateCourse             = $scope.course;
+                    duplicateCourse.baseTrack       = false;
+                    duplicateCourse.shareWithTeam   = false;
+                    duplicateCourse.author          = $scope.user._id;
+
+                    delete duplicateCourse._id;
+
+                    console.log("Duplicate Course :" + JSON.stringify(duplicateCourse));
+
+                    Restangular.all('course').post(duplicateCourse).then(function (data) {
+                        $scope.course = data;
+                        $state.go('customer-manager.trackbuilder', {
+                            'courseID': data._id,
+                            'selectedVideos': $scope.selectedDocs
+                        });
+                    });
+                }
+
+                console.log("Adding these tracks :" + $scope.selectedDocs);
+
+                $scope.selectedDocs.forEach(function (element, index, array) {
+
+                    $scope.videolessons.forEach(function (videoelement, videoindex, videoarray) {
+                        if (videoelement._id == element) {
+                            var video1  = videoelement;
+                            var content = {
+                                type    : filetype,
+                                title   : video1.title,
+                                videoID : video1._id
+                            };
+
+                            if (!$scope.course.documents) { $scope.course.documents = []; }
+
+                            $scope.course.documents.push(content);
+                            console.log("Video : " + JSON.stringify(video1));
+                        }
+                    });
+                });
+                console.log("GOT COURSE11 :"+JSON.stringify($scope.course));
+                $scope.course.put();
+                $scope.selectedDocs = [];
+            };
+
         	$scope.baseTrack = function (test) {
         		$scope.course.put();
         		$mixpanel.track('BaseTrack Marked');
@@ -362,13 +433,21 @@ angular.module('app')
         	}
 
         	getApplicableContentForProducts(Auth.user.product).forEach(function (element, index, array) {
-        		Restangular.all("video?product=" + element).getList().then(function (data) {
+        		Restangular.all("video?type!=document&product=" + element).getList().then(function (data) {
         			if (!$scope.videolessons) {
         				$scope.videolessons = [];
         			}
         			$scope.videolessons = $scope.videolessons.concat(data);
         			$scope.displayedvideolessons = [].concat($scope.videolessons);
         		});
+
+                Restangular.all("video?type=document&product=" + element).getList().then(function (data) {
+                    if (!$scope.documentlessons) {
+                        $scope.documentlessons = [];
+                    }
+                    $scope.documentlessons = $scope.documentlessons.concat(data);
+                    $scope.displayeddocumentlessons = [].concat($scope.documentlessons);
+                });
         	});
 
         	$scope.resetTextOfElement = function (e) {
@@ -415,6 +494,14 @@ angular.module('app')
                   scope			: $scope
                 });
         	};
+
+            $scope.openDocListModal = function () {
+                $scope.docModalInstance = $uibModal.open({
+                  animation     : true,
+                  templateUrl   : 'templates/modals/DocumentListModal.html',
+                  scope         : $scope
+                });
+            };
 
         	$scope.openVideoPreviewModal = function (video) {
 

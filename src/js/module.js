@@ -11,7 +11,6 @@ var app = angular.module('app', [
     'angularMoment',
     'ui.tree',
     'ngLoadingSpinner',
-    'pdf',
     'com.2fdevs.videogular',
     'ngDialog',
     'ng.deviceDetector',
@@ -21,7 +20,8 @@ var app = angular.module('app', [
     'chart.js',
     'ngAnimate',
     'reCAPTCHA',
-    'ngRaven'
+    'ngRaven',
+    'pdf'
 	]);
 
 app.config( 
