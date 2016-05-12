@@ -229,8 +229,7 @@ angular.module('app')
         				Restangular.all('studentcourses?studentID=' + studentslist[0]._id).getList().then(function (studentcourses) {
                             console.log("Got studnetcourse :"+studentcourses[0]._id);
                             $scope.duplicateurl = "https://app.addoo.io/index.html#/customer-manager/trackbuilder/"+studentcourses[0]._id;
-                            growl.error('Client email id already exists. Cannot add another track for the same client. 
-                                Click the link below to edit the existing track');
+                            growl.error('Client email id already exists. Cannot add another track for the same client. Click the link below to edit the existing track');
                             return;
                         });
         			} else {
