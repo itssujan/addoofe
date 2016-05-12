@@ -438,13 +438,10 @@ angular.module('app')
 
         	getApplicableContentForProducts(Auth.user.product).forEach(function (element, index, array) {
                 console.log("Getting videos");
-        		Restangular.all("video?product=" + element).getList().then(function (data) {
+        		Restangular.all("video?type=video&product=" + element).getList().then(function (data) {
         			if (!$scope.videolessons) {
         				$scope.videolessons = [];
         			}
-                    for(var i=0;i < data.length ; i++) {
-                        data.splice(i, 1);
-                    }
 
         			$scope.videolessons = $scope.videolessons.concat(data);
         			$scope.displayedvideolessons = [].concat($scope.videolessons);
