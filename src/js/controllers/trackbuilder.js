@@ -392,7 +392,7 @@ angular.module('app')
 
                 $scope.selectedDocs.forEach(function (element, index, array) {
 
-                    $scope.videolessons.forEach(function (videoelement, videoindex, videoarray) {
+                    $scope.documentlessons.forEach(function (videoelement, videoindex, videoarray) {
                         if (videoelement._id == element) {
                             var video1  = videoelement;
                             var content = {
