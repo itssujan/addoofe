@@ -16,6 +16,7 @@
 					<th/>
 					<th class="header" st-sort="title">Title<i class="fa fa-sort"></i></th>
 					<th class="header" st-sort="product" st-sort-default="true">Product<i class="fa fa-sort"></i></th>
+					<th class="header" st-sort="industry" st-sort-default="true">Industry<i class="fa fa-sort"></i></th>
 					<th class="header" st-sort="createdOn">Date<i class="fa fa-sort"></i></th>
 					<th/>
 				</tr>
@@ -30,6 +31,9 @@
 					</td>
 					<td title="'Product'" filter="{product: 'text'}" sortable="'product'">
 						{{video.product | uppercase}}
+					</td>
+					<td title="'Industry'" filter="{product: 'text'}" sortable="'industry'">
+						{{video.industry | uppercase}}
 					</td>
 					<td title="'Uploaded on'" sortable="'createdOn'">
 						<span am-time-ago="video.createdOn"></span>
