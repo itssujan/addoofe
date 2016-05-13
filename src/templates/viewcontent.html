@@ -16,6 +16,7 @@
 					<tr>
 						<th class="header" st-sort="email">Title<i class="fa fa-sort"></i></th>
 						<th class="header" st-sort="name">Customer Display Title<i class="fa fa-sort"></i></th>
+						<th class="header" st-sort="type">Type<i class="fa fa-sort"></i></th>
 						<th class="header">Edit</th>
 					</tr>
 				</thead>
@@ -23,6 +24,10 @@
 					<tr ng-repeat="row in displayedVideos">
 						<td>{{row.title}}</td>
 						<td>{{row.displaytitle}}</td>
+						<td>
+							<i class="fa fa-file-text-o" aria-hidden="true" ng-show="row.type == 'document'"></i>
+							<i class="fa fa-video-camera" aria-hidden="true" ng-show="!row.type || row.type == 'video'"></i>
+						</td>
 						<td><a ui-sref="customer-manager.editcontent({videoID: '{{row._id}}'})">Edit</a></td>
 					</tr>
 				</tbody>
