@@ -41,6 +41,7 @@
             <h1>{{video.title}}</h1>
             <div class="row" style="padding-bottom:10px">
                 <button ng-click="goPrevious();previousPage()" class="btn btn-navigation" style="float:left">Previous Page</button>
+                <a ng-click="downloadDoc()" class="btn btn-navigation" style="margin-left: 28%; " href="{{video.url}}" target="_blank">Download</a>
                 <button ng-click="goNext();nextPage()" class="btn btn-navigation" style="float:right">Next Page</button>
     <!--             <button ng-click="zoomIn()">+</span></button>
                 <button ng-click="fit()">100%</span></button>
@@ -122,7 +123,7 @@
             <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-show="nextvideo.videoID != video._id">
                 <div class="videos">
                     <a href="" ng-click="playVideo($index)" class="video">
-                        <span class="client-play-btn"></span>
+                        <span ng-show="showPlayBtn"></span>
                         <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
                         <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
                     </a>

@@ -106,6 +106,7 @@ angular.module('app')
             $scope.scroll = 0;
             $scope.pdfloading = true;
             $scope.loadPercent = 0;
+            $scope.showPlayBtn = false;
 
 
         	$scope.config = {
@@ -275,6 +276,7 @@ angular.module('app')
         		// only seeking time for chrome as firefox has issues wen doing this
         		if ($window.navigator.userAgent.indexOf("Chrome/") > -1) {
         			$scope.API.seekTime(1);
+                    $scope.showPlayBtn = true;
         		}
         	};
 
@@ -727,5 +729,9 @@ angular.module('app')
                 $scope.sendEvent("User clicked next page");
             }            
 
+            $scope.downloadDoc = function() {
+                console.log("User downloading document");
+                $scope.sendEvent("User downloading document");
+            }
 
         }]);
