@@ -1,6 +1,7 @@
 <span us-spinner style="position: center" ng-show="showSpinner"></span>
 <div class="col-md-12 client-header client-navbar">
     <img class="client-logo" ng-if="!user && studentcourse.product == 'sharefile'" src="img/logo/products/ShareFile-Portal-Logo.png" />
+    <img class="client-logo" ng-if="!user && studentcourse.product == 'sharefile-presales'" src="img/logo/products/ShareFile-Portal-Logo.png" />
     <img class="client-logo" ng-if="!user && studentcourse.product == 'shareconnect'" src="img/logo/products/ShareConnect-Portal-Logo.png" />
     <img class="client-logo" ng-if="!user && studentcourse.product == 'rightsignature'" src="img/logo/products/RightSignature-Portal-Logo.png" />
     <img class="client-logo" ng-if="!user && studentcourse.product == 'podio'" src="img/logo/products/Podio-Portal-Logo.png" />
@@ -12,6 +13,7 @@
         </li>
         <li class="client-heading">
             <a ng-if="studentcourse.product == 'sharefile'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
+            <a ng-if="studentcourse.product == 'sharefile-presales'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
             <a ng-if="studentcourse.product == 'podio'" href="https://podio.com/login" target="_blank">Sign in</a>
             <a ng-if="studentcourse.product == 'shareconnect'" href="https://app.shareconnect.com/members/socialLogin.tmpl?state=initLogin&authProvider=shareFile" target="_blank">Sign in</a>
             <a ng-if="studentcourse.product == 'rightsignature'" href="https://rightsignature.com/login" target="_blank">Sign in</a>

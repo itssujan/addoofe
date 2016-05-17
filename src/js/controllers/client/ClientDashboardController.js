@@ -181,7 +181,7 @@ angular.module('app')
         	});
 
             var setPublicTraningURL = function() {
-                if($scope.studentcourse.product == 'sharefile') {
+                if($scope.studentcourse.product == 'sharefile' || $scope.studentcourse.product == 'sharefile-presales') {
                     $scope.publicTrainingURL = "https://attendee.gototraining.com/rt/732020008678591744";
                 } else if($scope.studentcourse.product == 'shareconnect') {
                     $scope.publicTrainingURL = "https://attendee.gotowebinar.com/rt/41719141899018498";
@@ -191,7 +191,7 @@ angular.module('app')
             }
 
         	var setProductDisplayName = function () {
-        		if ($scope.studentcourse.product == "sharefile")
+        		if ($scope.studentcourse.product == "sharefile" || $scope.studentcourse.product == 'sharefile-presales')
         			$scope.productDisplayName = "ShareFile";
         		else if ($scope.studentcourse.product == "shareconnect")
         			$scope.productDisplayName = "ShareConnect";
@@ -621,7 +621,7 @@ angular.module('app')
             $scope.displayProductName = function(product) {
                 console.log("Got :"+product);
                 var displayProductName = "";
-                if(product == 'sharefile') {
+                if(product == 'sharefile' || product == 'sharefile-presales') {
                     displayProductName = 'ShareFile';
                 } else if(product == 'shareconnect') {
                     displayProductName = 'ShareConnect';
