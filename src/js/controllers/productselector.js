@@ -6,6 +6,7 @@ angular.module('app')
             $scope.adminproduct = "sharefile";
             $scope.setProduct = function(){
             	Auth.user.product = $scope.adminproduct;
+                $scope.user = Auth.user;
                 Restangular.one("user",Auth.user._id).get().then(function(user){
                     user.product = Auth.user.product;
                     user.put().then(function() {

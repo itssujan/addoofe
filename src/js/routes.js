@@ -221,6 +221,13 @@
                     ctrl: "leadsCtrl",
                     controller: "LeadsCtrl",
                     data: {requiresLogin: true}
+                })
+                .state('customer-manager.reports', {
+                    url: '/reports',
+                    templateUrl: 'templates/reports.html',
+                    ctrl: "reportsCtrl",
+                    controller: "ReportsCtrl",
+                    data: {requiresLogin: true}
                 });
 
                 $stateProvider
@@ -268,6 +275,26 @@
                     },
 
                 })
+
+                // $stateProvider
+                // .state('onboarding', {
+                //     abstract: true,
+                //     url: '/onboarding',
+                //     template : '<div ui-view/>'
+                // })
+                // .state('onboarding.dashboardnew', {
+                //     url: '/dashboard/v2/:studentcourseID',
+                //     templateUrl: 'templates/client/dashboard.html',
+                //     ctrl: "clientDashboardController",
+                //     controller: "ClientDashboardController",
+                //     data: {requiresLogin: false},
+                //     params : {
+                //         src : null
+                //     },
+
+                // })
+
+
                 // .state('client.dashboard2', {
                 //     url: 'dashboard/:studentcourseID',
                 //     templateUrl: 'templates/client/dashboard.html',

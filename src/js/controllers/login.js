@@ -60,7 +60,7 @@ angular.module('app')
 			        Idle.watch();
 
 					console.log("User logged in");
-					if(data.user.role == "superadmin") {
+					if(data.user.role == "superadmin" || data.user.role == "cross-sales") {
 						$state.go('customer-manager.product-selection');
 					} else if(data.user.role == "customer-onboarding-specialist" 
 						|| data.user.role == "customer-manager"){
