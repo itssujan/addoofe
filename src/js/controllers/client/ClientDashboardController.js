@@ -129,7 +129,7 @@ angular.module('app')
             var setWootricSettings = function() {
                  wootric_survey_immediately = true;//envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
                 window.wootricSettings = {
-                    modal_theme: 'dark',
+                    // modal_theme: 'dark',
                     email: $scope.studentcourse.email,// TODO: The current logged in user's email address.
                     created_at: Math.floor((new Date($scope.studentcourse.invitedOn).getTime())/1000), // TODO: The current logged in user's sign-up date as a 10 digit Unix timestamp in seconds.
                     account_token: envService.read('wootricAccountID') // This is your unique account token.

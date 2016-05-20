@@ -7,4 +7,10 @@ angular.module('app')
              Restangular.all("reports?product="+Auth.user.product).getList().then(function (data) {
                 $scope.report = data[0];
             });
+
+              Restangular.all("topvideos").getList().then(function (data) {
+                $scope.topvideos = data;
+            });
+
+              
         } ]);
