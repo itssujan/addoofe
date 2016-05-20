@@ -606,6 +606,10 @@ angular.module('app')
                 }
             }
 
+            $scope.openSupportModal = function() {
+                $scope.openClientModal('templates/modals/SupportModal.html');
+            }
+
             $scope.openClientModal = function (targetTemplateURL) {
                 $scope.clientModalInstance = $uibModal.open({
                   animation     : true,
