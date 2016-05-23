@@ -425,7 +425,7 @@ angular.module('app')
                 }
                 $scope.completedVideosCount = $scope.completedVideosCount + 1;
 
-                if($scope.completedVideosCount == 2) { //launching only after completing 2nd video
+                if($scope.completedVideosCount == 1) { //launching only after completing 1st video
                     launchWootricNPS();
                 }
                 if($scope.video._id == envService.read('connectorVideoID') && $scope.connectorPromo){
