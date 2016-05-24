@@ -7,6 +7,7 @@ angular.module('app')
              Restangular.all("reports?product="+Auth.user.product).getList().then(function (data) {
                 $scope.report = data[0];
                 drawTrackStatsChart();
+                drawMonthlyStatsChart();
             });
 
               Restangular.all("topvideos").getList().then(function (data) {
@@ -27,9 +28,26 @@ angular.module('app')
                     $scope.data[2].push(value.tracksCompleted);
                 });                
             }
-
-
             // End track stats  
+
+            var drawMonthlyStatsChart = function () {
+                $scope.monthlyTracksLabels = [];
+                $scope.monthlyTracksSeries = ['Month', 'Tracks Created'];
+                $scope.monthlyTracksData = [[],[]];
+                angular.forEach($scope.report.monthlyTracks,function(value,index){
+                    console.log("Monthly tracks : "+value+" , "+index);
+                    $scope.monthlyTracksLabels.push(monthName(value.month));
+                    $scope.monthlyTracksData[0].push(value.count);
+                });        
+            }
+
+            var monthName = function (monthNumber) { //1 = January
+                var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December' ];
+                return monthNames[monthNumber - 1];
+            }
+
+
 
               
         } ]);
