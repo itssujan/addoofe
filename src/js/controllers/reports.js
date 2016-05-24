@@ -44,7 +44,7 @@ angular.module('app')
             var monthName = function (monthNumber) { //1 = January
                 var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
                     'July', 'August', 'September', 'October', 'November', 'December' ];
-                return monthNames[monthNumber - 1];
+                return monthNames[monthNumber];
             }
 
 
