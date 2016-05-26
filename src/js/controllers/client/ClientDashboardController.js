@@ -107,7 +107,8 @@ angular.module('app')
             $scope.pdfloading = true;
             $scope.loadPercent = 0;
             $scope.showPlayBtn = false;
-
+            $scope.addooIntroVideo = {};
+            $scope.addooIntroVideoID = "";
 
         	$scope.config = {
         		preload: "none",
@@ -125,6 +126,12 @@ angular.module('app')
         			url: "/css/videogular.css"
         		}
         	};
+
+            if(envService.environment != 'development') {
+                $scope.addooIntroVideoID = "574737eead1e62030087d9d5"; //prod
+            } else {
+                $scope.addooIntroVideoID = "574736fe7262fa4f4c8fff04";
+            }
 
             var setWootricSettings = function() {
                  wootric_survey_immediately = true;//envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
@@ -149,6 +156,16 @@ angular.module('app')
         		$scope.disabletracking = true;
         	}
 
+            var playIntroVideo = function() {
+                Restangular.one("video",$scope.addooIntroVideoID).get().then(function (data) {
+                    $scope.addooIntroVideo = data;
+                    //$scope.playVideo($scope.currentVideoIndex);
+                    $scope.config.sources = [{src: $scope.addooIntroVideo.url, type: "video/mp4"}];
+                    $timeout($scope.API.play.bind($scope.API), 100);
+                    $scope.sendEvent("Playing Addoo Intro Video");
+                });
+            }
+
             Restangular.one("studentcourses/" + $scope.studentcourseID + "?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function (data) {
         		$scope.studentcourse = data;
         		$scope.clientemail = data.email;
@@ -168,7 +185,11 @@ angular.module('app')
         			}
         		}
         		setProductDisplayName();
-        		$scope.playVideo($scope.currentVideoIndex);
+                if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.visitCount == 1) {
+        		  playIntroVideo();  
+                } else {
+                  $scope.playVideo($scope.currentVideoIndex);  
+                }
         		getUpcomingVideos();
                 updateViewStatus();
                 setPublicTraningURL();
@@ -179,6 +200,8 @@ angular.module('app')
                 }
                 $scope.loading = false;
         	});
+
+            
 
             var setPublicTraningURL = function() {
                 if($scope.studentcourse.product == 'sharefile' || $scope.studentcourse.product == 'sharefile-presales') {
@@ -328,7 +351,9 @@ angular.module('app')
 
         			if (index != 0)
         				$scope.setVideo(index);
-        			else {
+        			else if ($scope.studentcourse.product == 'sharefile') {
+                        $scope.setVideo(index);
+                    } else {
         				$scope.config.sources = $scope.videos[index].sources;
         				$scope.config.plugins = $scope.videos[index].plugins;
         			}
@@ -419,7 +444,7 @@ angular.module('app')
                 console.log("Video Index :"+$scope.currentVideoIndex);
                 if($scope.currentVideoIndex != $scope.studentcourse.courseID.contents.length-1) {
                     //$scope.openAutoPlayModal();
-                    if(!$scope.video.promoted) { // not autoplaying for connector promo video
+                    if($scope.video && !$scope.video.promoted) { // not autoplaying for connector promo video
                         $scope.countdown();
                     }
                 }
@@ -439,7 +464,7 @@ angular.module('app')
                         console.log("Raffle entry posted");
                     });
 
-                    if($scope.video.promoted) {
+                    if($scope.video && $scope.video.promoted) {
                         launchModal();
                     }
                 }
@@ -473,6 +498,10 @@ angular.module('app')
         	}
 
         	$scope.updateVideoProgress = function (status) {
+                if(!$scope.video) {
+                    return true;
+                }
+
         		var progressAdded = false;
         		var pushupdate = true;
         		if (!$scope.studentcourse.lessonprogress || $scope.studentcourse.lessonprogress.length == 0) {
@@ -645,9 +674,7 @@ angular.module('app')
 
             $scope.countdown = function() {
                 stopped = $timeout(function() {
-                   console.log($scope.counter);
                  $scope.counter--;
-                 console.log("ccc "+$scope.counter);
                  if($scope.counter == 0) {
                     $scope.autoPlay();
                     $scope.closeAutoPlayModal();
