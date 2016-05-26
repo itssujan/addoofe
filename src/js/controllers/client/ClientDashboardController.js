@@ -109,6 +109,7 @@ angular.module('app')
             $scope.showPlayBtn = false;
             $scope.addooIntroVideo = {};
             $scope.addooIntroVideoID = "";
+            $scope.playingAddooIntroVideo = false;
 
         	$scope.config = {
         		preload: "none",
@@ -187,8 +188,10 @@ angular.module('app')
         		setProductDisplayName();
                 if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.visitCount == 1) {
         		  playIntroVideo();  
+                  $scope.playingAddooIntroVideo = true;
                 } else {
                   $scope.playVideo($scope.currentVideoIndex);  
+                  $scope.playingAddooIntroVideo = false;
                 }
         		getUpcomingVideos();
                 updateViewStatus();
@@ -351,7 +354,7 @@ angular.module('app')
 
         			if (index != 0)
         				$scope.setVideo(index);
-        			else if ($scope.studentcourse.product == 'sharefile') {
+        			else if ($scope.playingAddooIntroVideo && index == 0) {
                         $scope.setVideo(index);
                     } else {
         				$scope.config.sources = $scope.videos[index].sources;
