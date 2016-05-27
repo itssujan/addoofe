@@ -234,14 +234,14 @@ angular.module('app')
             }
 
             if(currentStateURL == '#/onboarding/dashboard/sharefile') {
-                console.log("Getting Cookie :"+$cookies.get('onboardingToken'));
+                $scope.sendEvent("Visit via static url");
                 if($cookies.get('onboardingToken')) {
+                    $scope.sendEvent("Customer returned to static url via cookie");
                     $scope.studentcourseID = $cookies.get('onboardingToken');
                     processOnboarding();
                     $scope.fadeBackground = false;
                 } else {
                     $scope.openClientModal('templates/modals/ClientDetailsModal.html');
-                    $scope.sendEvent("Visit via static url");
                     $scope.fadeBackground = true;
                 }
             } else {
