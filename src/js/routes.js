@@ -276,23 +276,23 @@
 
                 })
 
-                // $stateProvider
-                // .state('onboarding', {
-                //     abstract: true,
-                //     url: '/onboarding',
-                //     template : '<div ui-view/>'
-                // })
-                // .state('onboarding.dashboardnew', {
-                //     url: '/dashboard/v2/:studentcourseID',
-                //     templateUrl: 'templates/client/dashboard.html',
-                //     ctrl: "clientDashboardController",
-                //     controller: "ClientDashboardController",
-                //     data: {requiresLogin: false},
-                //     params : {
-                //         src : null
-                //     },
+                $stateProvider
+                .state('onboarding', {
+                    abstract: true,
+                    url: '/onboarding',
+                    template : '<div ui-view/>'
+                })
+                .state('onboarding.dashboardnew', {
+                    url: '/dashboard/:product',
+                    templateUrl: 'templates/client/dashboard.html',
+                    ctrl: "clientDashboardController",
+                    controller: "ClientDashboardController",
+                    data: {requiresLogin: false},
+                    params : {
+                        src : null
+                    },
 
-                // })
+                })
 
 
                 // .state('client.dashboard2', {

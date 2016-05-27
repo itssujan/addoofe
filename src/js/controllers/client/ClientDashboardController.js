@@ -1,9 +1,9 @@
 angular.module('app')
     .controller('ClientDashboardController', ['$scope', '$state', 'Restangular', '$rootScope', '$stateParams',
         '$timeout', '$mixpanel', '$window', '$cookieStore', 'envService', '$location', 'growl', '$http', 'Auth',
-        '$uibModal', 'CustomModalService','$timeout',
+        '$uibModal', 'CustomModalService','$timeout','$cookies',
         function ($scope, $state, Restangular, $rootScope, $stateParams, $timeout, $mixpanel,
-            $window, $cookieStore, envService, $location, growl, $http, Auth,$uibModal, CustomModalService,$timeout) {
+            $window, $cookieStore, envService, $location, growl, $http, Auth,$uibModal, CustomModalService,$timeout,$cookies) {
         	console.log('In ClientDashboardController : ');
 
         	///// LAYOUT.js code...needs to be moved back...
@@ -110,6 +110,8 @@ angular.module('app')
             $scope.addooIntroVideo = {};
             $scope.addooIntroVideoID = "";
             $scope.playingAddooIntroVideo = false;
+            $scope.student = {};
+            $scope.fadeBackground = false;
 
         	$scope.config = {
         		preload: "none",
@@ -128,11 +130,16 @@ angular.module('app')
         		}
         	};
 
-            if(envService.environment != 'development') {
-                $scope.addooIntroVideoID = "574737eead1e62030087d9d5"; //prod
+            var currentStateURL = $state.href($state.current.name, $state.params, {absolute: false});
+
+            if(envService.environment != 'development') { //prod
+                $scope.addooIntroVideoID = "574737eead1e62030087d9d5"; 
+                $scope.staticCourseID = '';
             } else {
                 $scope.addooIntroVideoID = "574736fe7262fa4f4c8fff04";
+                $scope.staticCourseID = '56af988e0321ffff5db89e47';
             }
+
 
             var setWootricSettings = function() {
                  wootric_survey_immediately = true;//envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
@@ -157,6 +164,14 @@ angular.module('app')
         		$scope.disabletracking = true;
         	}
 
+            $scope.sendEvent = function (event) {
+                if (!$scope.disabletracking && $scope.product != 'addoo') {
+                    $mixpanel.track(event, {
+                        "Email": $scope.clientemail
+                    });
+                }
+            };
+
             var playIntroVideo = function() {
                 Restangular.one("video",$scope.addooIntroVideoID).get().then(function (data) {
                     $scope.addooIntroVideo = data;
@@ -167,44 +182,88 @@ angular.module('app')
                 });
             }
 
-            Restangular.one("studentcourses/" + $scope.studentcourseID + "?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function (data) {
-        		$scope.studentcourse = data;
-        		$scope.clientemail = data.email;
-        		$scope.product = data.product;
-        		$scope.sendEvent("Customer viewed onboarding track");
+            $scope.openClientModal = function (targetTemplateURL) {
+                $scope.clientModalInstance = $uibModal.open({
+                  animation     : true,
+                  templateUrl   : targetTemplateURL,
+                  scope         : $scope
+                });
+            };
 
-        		if ($scope.studentcourse.visitCount) {
-        			$scope.studentcourse.visitCount = $scope.studentcourse.visitCount + 1;
-        		} else {
-        			$scope.studentcourse.visitCount = 1;
-        		}
+            $scope.closeClientModal = function () {
+                $scope.clientModalInstance.dismiss('cancel');
+            };
 
-        		if (!$scope.studentcourse.progress || $scope.studentcourse.progress == 'invited') {
-        			$scope.studentcourse.progress = "viewed";
-        			if (!$scope.disabletracking) {
-        				$scope.studentcourse.put();
-        			}
-        		}
-        		setProductDisplayName();
-                if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.visitCount == 1) {
-        		  playIntroVideo();  
-                  $scope.playingAddooIntroVideo = true;
+            var processOnboarding = function() {
+                Restangular.one("studentcourses/" + $scope.studentcourseID + "?populate=courseID&populate=studentID&populate=onboardingSpecialist").get().then(function (data) {
+                    $scope.studentcourse = data;
+                    $scope.clientemail = data.email;
+                    $scope.product = data.product;
+                    $scope.sendEvent("Customer viewed onboarding track");
+
+                    if ($scope.studentcourse.visitCount) {
+                        $scope.studentcourse.visitCount = $scope.studentcourse.visitCount + 1;
+                    } else {
+                        $scope.studentcourse.visitCount = 1;
+                    }
+
+                    if (!$scope.studentcourse.progress || $scope.studentcourse.progress == 'invited') {
+                        $scope.studentcourse.progress = "viewed";
+                        if (!$scope.disabletracking) {
+                            $scope.studentcourse.put();
+                        }
+                    }
+                    setProductDisplayName();
+                    if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.visitCount == 1) {
+                      playIntroVideo();  
+                      $scope.playingAddooIntroVideo = true;
+                    } else {
+                      $scope.playVideo($scope.currentVideoIndex);  
+                      $scope.playingAddooIntroVideo = false;
+                    }
+                    getUpcomingVideos();
+                    updateViewStatus();
+                    setPublicTraningURL();
+                    $scope.studentcourse.displayProductName = $scope.displayProductName($scope.studentcourse.product);
+                    setWootricSettings();
+                    if($scope.studentcourse.studentID.sc && $scope.studentcourse.studentID.sc.productType == "sfsc") {
+                        $scope.connectorPromo = true; //enabling connector promo
+                    }
+                    $scope.loading = false;
+                });
+            }
+
+            if(currentStateURL == '#/onboarding/dashboard/sharefile') {
+                console.log("Getting Cookie :"+$cookies.get('onboardingToken'));
+                if($cookies.get('onboardingToken')) {
+                    $scope.studentcourseID = $cookies.get('onboardingToken');
+                    processOnboarding();
+                    $scope.fadeBackground = false;
                 } else {
-                  $scope.playVideo($scope.currentVideoIndex);  
-                  $scope.playingAddooIntroVideo = false;
+                    $scope.openClientModal('templates/modals/ClientDetailsModal.html');
+                    $scope.sendEvent("Visit via static url");
+                    $scope.fadeBackground = true;
                 }
-        		getUpcomingVideos();
-                updateViewStatus();
-                setPublicTraningURL();
-                $scope.studentcourse.displayProductName = $scope.displayProductName($scope.studentcourse.product);
-                setWootricSettings();
-                if($scope.studentcourse.studentID.sc && $scope.studentcourse.studentID.sc.productType == "sfsc") {
-                    $scope.connectorPromo = true; //enabling connector promo
-                }
-                $scope.loading = false;
-        	});
+            } else {
+                processOnboarding();
+            }
 
-            
+            $scope.getCustomerTraining = function() {
+                var trackParams = {};
+                trackParams.email = $scope.student.local.email;
+                trackParams.firstname = $scope.student.local.firstname;
+                trackParams.lastname = $scope.student.local.lastname;
+                Restangular.all('singleonboarding').post(trackParams).then(function (data) {
+                    console.log("Setting cookie :"+data.studentCourseID);
+                    $cookies.put('onboardingToken',data.studentCourseID);
+                    console.log("Get put cookie :"+$cookies.get('onboardingToken'));
+                    $scope.fadeBackground = false;
+                    $scope.studentcourseID = data.studentCourseID;
+                    $scope.closeClientModal();
+                    processOnboarding();
+                    console.log("Got data :"+JSON.stringify(data));
+                });
+            }
 
             var setPublicTraningURL = function() {
                 if($scope.studentcourse.product == 'sharefile' || $scope.studentcourse.product == 'sharefile-presales') {
@@ -232,14 +291,6 @@ angular.module('app')
                 else if ($scope.studentcourse.product == "demo")
                     $scope.productDisplayName = "Demo";
         	}
-
-        	$scope.sendEvent = function (event) {
-        		if (!$scope.disabletracking && $scope.product != 'addoo') {
-        			$mixpanel.track(event, {
-        				"Email": $scope.clientemail
-        			});
-        		}
-        	};
 
             if (($location.search()).org == "mt") {
                 console.log("Viewing via marketo email");
@@ -641,18 +692,6 @@ angular.module('app')
             $scope.openSupportModal = function() {
                 $scope.openClientModal('templates/modals/SupportModal.html');
             }
-
-            $scope.openClientModal = function (targetTemplateURL) {
-                $scope.clientModalInstance = $uibModal.open({
-                  animation     : true,
-                  templateUrl   : targetTemplateURL,
-                  scope         : $scope
-                });
-            };
-
-            $scope.closeClientModal = function () {
-                $scope.clientModalInstance.dismiss('cancel');
-            };
 
             $scope.displayProductName = function(product) {
                 console.log("Got :"+product);

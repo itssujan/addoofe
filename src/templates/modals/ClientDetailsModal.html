@@ -1,0 +1,30 @@
+<div id="client-modal">
+<!--     <span us-spinner style="position: center"></span>
+ -->    <div class="modal-header" ng-class="priorityStyle">
+        <span class="modal-title">Please enter few details to get started</span>
+    </div>
+    <div class="modal-body">
+        <div growl inline="true"></div>
+        <form role="form" ng-submit="getCustomerTraining() && closeThisDialog('asdasd')">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Your email address</label>
+                    <input type="email" class="form-control" id="email" ng-model="student.local.email">
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First name</label>
+                    <input type="text" class="form-control" id="firstname" ng-model="student.local.firstname">
+                </div>
+                <div class="form-group">
+                    <label for="firstname">Last name</label>
+                    <input type="text" class="form-control" id="lastname" ng-model="student.local.lastname">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="closeClientModal()">Close</button>
+				<button type="submit" class="btn btn-warning">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
