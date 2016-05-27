@@ -1,10 +1,15 @@
 <div id="client-modal">
 <!--     <span us-spinner style="position: center"></span>
  -->    <div class="modal-header" ng-class="priorityStyle">
-        <span class="modal-title">Please enter few details to get started</span>
+        <span class="modal-title">
+            <img class="client-logo" src="img/logo/products/ShareFile-Black.png"/>
+            <p><h3>We need a few more details from you to get your custom training page set up</h3></p>
+        </span>
     </div>
     <div class="modal-body">
         <div growl inline="true"></div>
+        <p><h5>Enter the information below to get started</h5></p>
+
         <form role="form" ng-submit="getCustomerTraining() && closeThisDialog('asdasd')">
             <div class="modal-body">
                 <div class="form-group">
@@ -22,8 +27,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="closeClientModal()">Close</button>
-				<button type="submit" class="btn btn-warning">Submit</button>
+                <button type="button" class="btn client-btn-success" ng-click="closeClientModal()">Close</button>
+				<button type="submit" class="btn client-btn-success">Submit</button>
             </div>
         </form>
     </div>
