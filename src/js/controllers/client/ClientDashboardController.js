@@ -230,6 +230,10 @@ angular.module('app')
                         $scope.connectorPromo = true; //enabling connector promo
                     }
                     $scope.loading = false;
+                    if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.industry && 
+                        ($scope.studentcourse.industry != 'Healthcare' ||  $scope.studentcourse.industry != 'Financial')) {
+                            $scope.showSFPromotedVideo = true;
+                        }
                 });
             }
 
@@ -498,7 +502,7 @@ angular.module('app')
                 console.log("Video Index :"+$scope.currentVideoIndex);
                 if($scope.currentVideoIndex != $scope.studentcourse.courseID.contents.length-1) {
                     //$scope.openAutoPlayModal();
-                    if($scope.video && !$scope.video.promoted) { // not autoplaying for connector promo video
+                    if($scope.video && !$scope.video.promoted && !$scope.video.sfpromoted) { // not autoplaying for connector promo video
                         $scope.countdown();
                     }
                 }
@@ -519,13 +523,19 @@ angular.module('app')
                     });
 
                     if($scope.video && $scope.video.promoted) {
-                        launchModal();
+                        launchModal('templates/modals/ConnectorPromoModal.html');
                     }
+                } else if($scope.video._id == envService.read('sfPromotedVideoID')) {
+                    if($scope.video && $scope.video.sfpromoted) {
+                        console.log("Launching promo modal");
+                        $scope.sendEvent("Completed SF Promoted video");
+                        launchModal('templates/modals/SFPromoModal.html');
+                    } 
                 }
         	};
 
-            var launchModal = function() {
-                $scope.openClientModal('templates/modals/ConnectorPromoModal.html');
+            var launchModal = function(modalurl) {
+                $scope.openClientModal(modalurl);
             }
 
             $scope.isFullScreen = function() {
@@ -758,17 +768,40 @@ angular.module('app')
                 });
             }
 
+            $scope.playSFPromotedVideo = function() {
+                var connectorVideoID = envService.read('sfPromotedVideoID'); //"56ba0db731d3360300643f19";
+                Restangular.one("video", connectorVideoID).get().then(function (data) {
+                    $scope.video = data;
+                    $scope.video.sfpromoted = true;
+                    $scope.config.sources = [{src: $scope.video.url, type: "video/mp4"}];
+                    $timeout($scope.API.play.bind($scope.API), 100);
+                    $scope.sendEvent("Playing SF Promoted Video");
+                });
+            }
+
             $scope.requestedContact = function() {
                 $scope.contactConfirmationMsg = true;
                 var lead = {};
                 lead.product = $scope.studentcourse.product;
-                lead.feature = "connector";
-                lead.studentCourseID = $scope.studentcourseID;
-                $mixpanel.track("Sending Connector Lead Email", {
-                        "Email": $scope.clientemail,
-                        "Product" : event
-                });
-                Restangular.all('crosssaleleads').post(lead);
+                if(lead.product == 'shareconnect') {
+                    lead.feature = "connector";
+                    lead.studentCourseID = $scope.studentcourseID;
+                    $mixpanel.track("Sending Connector Lead Email", {
+                            "Email": $scope.clientemail,
+                            "Product" : event
+                    });
+                } else if(lead.product == 'sharefile') {
+                    lead.feature = "approval-workflow";
+                    lead.studentCourseID = $scope.studentcourseID;
+                    lead.salesRep = envService.read('sfPromotedVideoContactId');
+                    lead.salesRepEmail = envService.read('sfPromotedVideoContactEmail');
+
+                    $mixpanel.track("Sending SF Promoted Video Lead Email", {
+                            "Email": $scope.clientemail,
+                            "Product" : event
+                    });
+                }
+                    Restangular.all('crosssaleleads').post(lead);
 
             }
                     
