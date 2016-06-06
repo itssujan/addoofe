@@ -31,8 +31,8 @@
                 <a ng-if="studentcourse.product == 'demo'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
                 <a ng-if="studentcourse.product == 'bollo'" href="https://podio.com/login" target="_blank">Sign in</a>
             </li>
-            <li class="client-heading"><a href="" ng-click="openSupportModal()">Refer a friend</a></li>
-        </ul>
+<!--             <li class="client-heading"><a href="" ng-click="openSupportModal()">Refer a friend</a></li>
+ -->        </ul>
     </div>
     <div class="col-md-7 col-xs-12">
         <div class="customerInformation">
@@ -207,6 +207,10 @@
             <input type="text" name="coworkeremail" ng-model="coworker.email" />
             <button class="client-btn client-btn-success" ng-click="addCoworker();sendEvent('Coworker Added')">Add</button>
         </div>
+    </div>
+
+    <div class="col-md-12 feedback">
+        <a class="btn btn-success" href="" ng-click="launchWootricNPS()">Rate us</a> 
     </div>
 
 
