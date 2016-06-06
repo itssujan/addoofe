@@ -20,8 +20,8 @@ var app = angular.module('app', [
     'chart.js',
     'ngAnimate',
     'reCAPTCHA',
-    'ngRaven'
-    // 'pdf'
+    'ngRaven',
+    'pdf'
 	]);
 
 app.config( 
