@@ -86,8 +86,8 @@
             </div>
         </div>
 
-        <div ng-show="studentcourse.product != 'bollo'">
-            <h5 class="client-heading">Other Products You Might Like</h5>
+        <div ng-show="studentcourse.product != 'bollo'"> 
+            <h5 class="client-heading" style="margin-top:10px;margin-bottom:10px">Other Products You Might Like</h5>
             <div class="client-crossSell">
                 <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
                 <a href="https://rightsignature.com/" target="_blank" ng-click="trackevent('rightsignature');"><img class="client-crossSellLogo" src="img/logo/products/RightSignature-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'shareconnect' || studentcourse.product == 'podio'" style="padding-left:10px"/></a>
@@ -142,7 +142,7 @@
             </blockquote>
         </div>
 
-        <h5 id="playlistHeader" class="client-heading">Other Videos</h5>
+        <h5 id="playlistHeader" class="client-heading" style="margin-top:10px;margin-bottom:10px">Other Videos</h5>
         <div class="client-playlist">
             <ul class="client-playlistItem">
                 <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.contents" ng-show="nextvideo.videoID != video._id">

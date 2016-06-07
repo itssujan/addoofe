@@ -140,7 +140,6 @@ angular.module('app')
                 $scope.staticCourseID = '56af988e0321ffff5db89e47';
             }
 
-
             var setWootricSettings = function() {
                  wootric_survey_immediately = true;//envService.read('wootric_survey_immediately'); // Shows survey immediately for testing purposes.  TODO: Comment out for production.
                 window.wootricSettings = {
