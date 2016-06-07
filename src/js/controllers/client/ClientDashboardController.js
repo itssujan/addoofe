@@ -499,6 +499,9 @@ angular.module('app')
         	};
 
         	$scope.onCompleteVideo = function () {
+                if(!$scope.video) {
+                    return true;
+                }
         		console.log("Video completed... :");
                 $scope.counter = 2;
                 console.log("Video Index :"+$scope.currentVideoIndex);
@@ -508,8 +511,10 @@ angular.module('app')
                         $scope.countdown();
                     }
                 }
+
                 $scope.completedVideosCount = $scope.completedVideosCount + 1;
 
+                console.log("Completed videos : "+$scope.completedVideosCount+" ; "+$scope.video+" ; ");
                 if($scope.completedVideosCount == 1) { //launching only after completing 1st video
                     $scope.launchWootricNPS('videocompletion');
                 }
