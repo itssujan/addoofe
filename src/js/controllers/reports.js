@@ -17,8 +17,8 @@ angular.module('app')
             // Track stats 
             var drawTrackStatsChart = function() {
                 $scope.labels = [];
-                $scope.series = ['Total Tracks', 'Tracks Started', 'Tracks Completed'];
-                $scope.data = [[],[], []];
+                $scope.series = ['Total Tracks', 'Tracks Started', 'Tracks Completed', 'Tracks Partially Started'];
+                $scope.data = [[],[], [],[]];
                 console.log("AM here");
                 angular.forEach($scope.report.trackStats,function(value,index){
                     console.log(JSON.stringify(value));
@@ -26,6 +26,7 @@ angular.module('app')
                     $scope.data[0].push(value.totalTracks);
                     $scope.data[1].push(value.tracksStarted);
                     $scope.data[2].push(value.tracksCompleted);
+                    $scope.data[3].push(value.tracksPartiallyStarted);
                 });                
             }
             // End track stats  
