@@ -846,14 +846,4 @@ angular.module('app')
                 $scope.sendEvent("User downloading document");
             }
 
-            $scope.$on('onBeforeUnload', function (e, confirmation) {
-                confirmation.message = "All data willl be lost.";
-                console.log("All data willl be lost.");
-                e.preventDefault();
-            });
-            $scope.$on('onUnload', function (e) {
-                console.log('leaving page'); // Use 'Preserve Log' option in Console
-            });
-
-
         }]);

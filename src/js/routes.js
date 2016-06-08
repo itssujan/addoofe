@@ -1,8 +1,8 @@
     angular.module('app')
     .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl',
-        'Idle','$intercom','$cookieStore','$window','envService','beforeUnload'
+        'Idle','$intercom','$cookieStore','$window','envService',
         function ($rootScope, $state, $stateParams,$location, Auth,Restangular, 
-            growl, Idle, $intercom, $cookieStore, $window, envService,beforeUnload) {
+            growl, Idle, $intercom, $cookieStore, $window, envService) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
