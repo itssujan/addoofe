@@ -8,6 +8,7 @@ angular.module('app')
                 $scope.report = data[0];
                 drawTrackStatsChart();
                 drawMonthlyStatsChart();
+                drawVideoPositionsChart();
             });
 
               Restangular.all("topvideos").getList().then(function (data) {
@@ -40,6 +41,34 @@ angular.module('app')
                     $scope.monthlyTracksLabels.push(monthName(value.month));
                     $scope.monthlyTracksData[0].push(value.count);
                 });        
+            }
+
+            var drawVideoPositionsChart = function() {
+                var videoPositionStats = $scope.report.videoPositionStats;
+                $scope.videoPositionLabels = ["1", "2", "3", "4", "5", "6", "7", "8" , "9" , "10"];
+                $scope.videoPositionSeries = [];
+                $scope.videoPositionData = [];
+                for(var i=0;i < videoPositionStats.length;i++) {
+                    var videoPositionDataMultiArray = [];
+                    var videoPositionStat =videoPositionStats[i];
+                    var found = false;
+                    $scope.videoPositionSeries.push(videoPositionStat.title);
+                    for(var positionDataSeries = 1; positionDataSeries <= 10;positionDataSeries++){
+                        for(var j=0;j < videoPositionStat.positionStats.length;j++) {
+                            var positionStat = videoPositionStat.positionStats[j];
+                            if(positionDataSeries == positionStat.position) {
+                                videoPositionDataMultiArray.push(positionStat.count);
+                                found = true;
+                            }
+                        }
+                        if(!found) {
+                            videoPositionDataMultiArray.push(0);
+                        }
+                    }
+                    $scope.videoPositionData.push(videoPositionDataMultiArray);
+                }
+                console.log(videoPositionData);
+
             }
 
             var monthName = function (monthNumber) { //1 = January
