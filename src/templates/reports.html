@@ -51,7 +51,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+<!--             <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                <div class="x_title">
                   <h2>Top Campaign Performance</h2>
                   <div class="clearfix"></div>
@@ -91,7 +91,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
             </div>
             <div class="clearfix"></div>
          </div>
@@ -99,17 +99,18 @@
    </div>
    <br>
    <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-         <div class="x_panel tile ">
-            <div class="x_title">
-               <h2>Top Videos</h2>
-               <div class="clearfix"></div>
+      <div style="width:800px">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel tile">
+               <div class="x_title">
+                  <h2>Top Videos</h2>
+                  <div class="clearfix"></div>
+               </div>
+               <canvas id="line" class="chart chart-line" chart-data="videoPositionData"
+                 chart-labels="videoPositionLabels" chart-legend="true" chart-series="videoPositionSeries"
+                 chart-click="onClick">
+               </canvas> 
             </div>
-            <canvas id="line" class="chart chart-line" chart-data="videoPositionData"
-              chart-labels="videoPositionLabels" chart-legend="true" chart-series="videoPositionSeries"
-              chart-click="onClick" >
-            </canvas> 
-
          </div>
       </div>
    </div>
