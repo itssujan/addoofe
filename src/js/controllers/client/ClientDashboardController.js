@@ -215,13 +215,13 @@ angular.module('app')
                         }
                     }
                     setProductDisplayName();
-                    if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.visitCount == 1) {
-                      playIntroVideo();  
-                      $scope.playingAddooIntroVideo = true;
-                    } else {
+                    // if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.visitCount == 1) {
+                    //   playIntroVideo();  
+                    //   $scope.playingAddooIntroVideo = true;
+                    // } else {
                       $scope.playVideo($scope.currentVideoIndex);  
                       $scope.playingAddooIntroVideo = false;
-                    }
+                    // }
                     getUpcomingVideos();
                     updateViewStatus();
                     setPublicTraningURL();
