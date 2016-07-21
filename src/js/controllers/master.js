@@ -49,6 +49,18 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$interc
      * Sidebar Toggle & Cookie Control
      */
 
+     (function() {
+        var addoo = document.createElement('script');
+        addoo.type = 'text/javascript';
+        addoo.async = true;
+        //uv.src = '//ec2-54-172-8-209.compute-1.amazonaws.com:3000/js/script.js';
+        addoo.src = 'http://localhost:3000/js/script.js';
+        addoo.id = "addoo";
+        addoo.setAttribute('email',"ts3@grr.la");
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(addoo, s);
+    })();
+
     // UserVoice JavaScript SDK (only needed once on a page) 
     (function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/XQtFzFO0GKH4NfNjKtSFg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()
 
