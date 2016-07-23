@@ -60,7 +60,7 @@ angular.module('app')
         		// 	});
         		// });
                 if($scope.studentcourse) {
-                    $scope.studentcourse.inviteurl = "https://" + $location.host() + "/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
+                    $scope.studentcourse.inviteurl = "https://app.addoo.io/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
                     console.log("******* trying to get invite url :"+$scope.studentcourse.inviteurl);
                 }
         	}

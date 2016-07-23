@@ -42,7 +42,7 @@ app.config(
 			},
 			vars: {
 				development: {
-					nodeserverurl: 'https://node3.addoo.io',
+					nodeserverurl: 'http://localhost:3001',
                     //nodeserverurl: 'http://node.addoo.io',
 					mixpaneltoken: "29e92907943764722a69ba3035295165",
                     connectorVideoID : "565d308268ff811332a5a20b",
