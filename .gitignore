@@ -47,5 +47,10 @@ Icon
 # Bower components
 /src/components
 
+/temp
+
+#Temporarily created css from less
+/src/css
+
 # JetBrains
 .idea
