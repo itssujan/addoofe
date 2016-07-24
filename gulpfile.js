@@ -28,9 +28,13 @@ var paths = {
 
 
 function runAllTasks(cb) {
-	runSequence('pretasks', 'posttask', 'cleanup', cb);
+	runSequence('pretasks', 'startserver' ,'posttask', 'cleanup', cb);
 }
 
+
+function buildProject(cb) {
+	runSequence('pretasks' ,'posttask', 'cleanup', cb);
+}
 
 /**
  * Copy assets
@@ -160,7 +164,9 @@ gulp.task('clean' , function () {
 /**
  * Gulp tasks
  */
-gulp.task('pretasks', ['build-assets', 'build-custom', 'webserver', 'livereload', 'watch']);
+gulp.task('pretasks', ['build-assets', 'build-custom']);
+gulp.task('startserver', ['webserver', 'livereload', 'watch']);
 gulp.task('posttask', ['usemin', 'revAll']);
 gulp.task('cleanup', [ 'clean']);
 gulp.task('default', runAllTasks);
+gulp.task('build', buildProject);
