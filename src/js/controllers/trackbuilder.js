@@ -67,7 +67,8 @@ angular.module('app')
 
         	var getApplicableContentForProducts = function (prod) {
         		var applicableContent = [];
-        		if (prod == 'sharefile' || prod == 'rightsignature' || prod == 'sharefile-presales') {
+        		if (prod == 'sharefile' || prod == 'rightsignature' || prod == 'sharefile-presales' ||
+                    product == 'sharefile-lifecycle') {
         			applicableContent.push('sharefile');
         			applicableContent.push('shareconnect');
         			applicableContent.push('rightsignature');
@@ -420,7 +421,8 @@ angular.module('app')
 
         	var getApplicableContentForProducts = function (prod) {
         		var applicableContent = [];
-        		if (prod == 'sharefile' || prod == 'rightsignature' || prod == 'demo' || prod == 'sharefile-presales') {
+        		if (prod == 'sharefile' || prod == 'rightsignature' || prod == 'demo' 
+                    || prod == 'sharefile-presales' || prod == 'sharefile-lifecycle') {
         			applicableContent.push('sharefile');
         			applicableContent.push('shareconnect');
         			applicableContent.push('rightsignature');
