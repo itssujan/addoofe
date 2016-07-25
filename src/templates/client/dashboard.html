@@ -177,16 +177,6 @@
                 <cite title="Source Title">Kelley Allen, Manager Customer Success</cite>
             </blockquote>
         </div>
-        <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist">
-            <img class="img-circle" ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="img/avatar.jpg" alt="people"></img>
-            <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people"></img>
-            <blockquote class="client-blockquote">
-                <h4 class="text-warning">Still need help?</h4>
-                <p ng-if="studentcourse.onboardingSpecialist">Your care representative is <b>{{studentcourse.onboardingSpecialist.local.firstname}} {{studentcourse.onboardingSpecialist.local.lastname}}</b>.Click the link below to view your care representative's schedule and book a training.</p>
-                <p style="margin-bottom:40px"><a class="btn client-btn-success" href="{{studentcourse.onboardingSpecialist.local.timetrade}}" ng-click="sendEvent('TimeTrade Clicked')" target="_blank" style="float:right">Schedule</a></p>
-            </blockquote>
-        </div>
-
 
         <div class="client-referCoWorker">
             <h5 class="client-heading">Add a team member.</h5>
