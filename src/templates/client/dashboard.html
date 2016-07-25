@@ -100,20 +100,6 @@
 
     </div>
     <div class="col-md-4 col-xs-12">
-        <div class="promotedVideo hidden-xs hidden-sm" ng-show="connectorPromo">
-            <div>
-                <a href="" ng-click="playSCConnector()">
-                    <span></span>
-                    <img src="../img/client/videoStill.png">
-                </a>
-            </div>    
-            <h3>Win an Apple TV!</h3>
-            <blockquote class="client-blockquote"><p>ShareConnect Connector is the easist way to access your files on the go. Watch this video to learn more about accessing your files on the go and to be entered for a chance to win an Apple TV.<br>
-            <ul>
-                <li><a href="http://addoo.io/wp-content/uploads/2016/05/SWEEPSTAKES_RULES_ShareConnect_Connector_Contest.pdf" class="client-hyperlink" target="_blank">Contest Rules</a></li>
-            </ul>
-            </blockquote>
-        </div>
 
         <div class="promotedVideo hidden-xs hidden-sm" ng-show="showSFPromotedVideo">
             <div>
@@ -127,14 +113,14 @@
             </blockquote>
         </div>
 
-        <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && !connectorPromo && !loading && !showSFPromotedVideo">
+        <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && !loading && !showSFPromotedVideo">
             <img src="img/people/customer-success.png">
             <blockquote class="client-blockquote">
                 <p>You can click the support link in the upper right corner to join a live training anytime. Also, if you need more help getting started, feel free to <a href="mailto:customersuccess@sharefile.com" target="_top">reach out to my team</a> and we'll be happy to help.</p>
                 <cite title="Source Title">Kelley Allen, Manager Customer Success</cite>
             </blockquote>
         </div>
-        <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist && !connectorPromo">
+        <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist">
             <img class="img-circle" ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="img/avatar.jpg" alt="people"></img>
             <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people"></img>
             <blockquote class="client-blockquote">
@@ -184,14 +170,14 @@
         </div>
 
 
-        <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && (connectorPromo || showSFPromotedVideo)">
+        <div class="customer-success hidden-xs hidden-sm" ng-show="!studentcourse.onboardingSpecialist && (showSFPromotedVideo)">
             <img src="img/people/customer-success.png">
             <blockquote class="client-blockquote">
                 <p>You can click the support link in the upper right corner to join a live training anytime. Also, if you need more help getting started, feel free to <a href="mailto:customersuccess@sharefile.com" target="_top">reach out to my team</a> and we'll be happy to help.</p>
                 <cite title="Source Title">Kelley Allen, Manager Customer Success</cite>
             </blockquote>
         </div>
-        <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist && connectorPromo">
+        <div class="customer-success hidden-xs hidden-sm" ng-show="studentcourse.onboardingSpecialist">
             <img class="img-circle" ng-if="!studentcourse.onboardingSpecialist.local.avatarurl" src="img/avatar.jpg" alt="people"></img>
             <img class="img-circle" ng-if="studentcourse.onboardingSpecialist.local.avatarurl" src="{{studentcourse.onboardingSpecialist.local.avatarurl}}" alt="people"></img>
             <blockquote class="client-blockquote">
