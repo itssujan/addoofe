@@ -143,8 +143,8 @@ gulp.task('usemin', function () {
 
 gulp.task('revAll', ['usemin'], function () {
 	var revAll = new RevAll({ 
-		dontRenameFile: [/^\/favicon.ico$/g, 'index.html'], 
-		dontupdatereference: [/^\/favicon.ico$/g, 'index.html'] 
+		dontRenameFile: [/^\/favicon.ico$/g, 'index.html','uploadtemplate.html'], 
+		dontupdatereference: [/^\/favicon.ico$/g, 'index.html', 'uploadtemplate.html']
 	});
 	return gulp.src('temp/**/*.*')
         .pipe(revAll.revision())
