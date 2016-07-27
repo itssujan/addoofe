@@ -146,12 +146,19 @@ gulp.task('revAll', ['usemin'], function () {
 		dontRenameFile: [/^\/favicon.ico$/g, 'index.html','uploadtemplate.html'], 
 		dontupdatereference: [/^\/favicon.ico$/g, 'index.html', 'uploadtemplate.html']
 	});
-	return gulp.src('temp/**/*.*')
-        .pipe(revAll.revision())
+	
+	if (process.env.AddooENV === 'development') {
+		return gulp.src('temp/**/*.*')
+        .pipe(gulp.dest('dist/'))
+	} else {
+		return gulp.src('temp/**/*.*')
+		.pipe(revAll.revision())
         .pipe(gulp.dest('dist/'))
 		.pipe(revAll.manifestFile())
 		.pipe(gulp.dest('dist/'));
+	}
 });
+
 
 
 gulp.task('clean' , function () {

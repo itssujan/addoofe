@@ -123,6 +123,10 @@ angular.module('app')
                     if ($stateParams.message) {
                         growl.success($stateParams.message);
                     }
+                    console.log("Shw modal :"+$stateParams.showClientModal);
+                    if($stateParams.showClientModal) {
+                        $scope.openClientModal();
+                    }
                     
                     if (!$scope.course.baseTrack) {
                         $scope.course.baseTrack = false;
@@ -548,13 +552,17 @@ angular.module('app')
         		$scope.clientModalInstance.dismiss('cancel');
         	};
 
-        	$scope.createDuplicateTrack = function () {
+        	$scope.createDuplicateTrack = function (showClientModal) {
         		var duplicateCourse = $scope.course;
         		delete duplicateCourse._id;
                 delete duplicateCourse.author;
+                if(!showClientModal) {
+                    showClientModal = false;
+                }
         		Restangular.all('course').post(duplicateCourse).then(function (data) {
-        			$state.go('customer-manager.build', { 'courseID': data._id, 'message': 'Duplicate track created successfully' });
-        			growl.success('Duplicate track created successfully');
+        			$state.go('customer-manager.build', { 'courseID': data._id, 
+                        'message': 'Duplicate track created successfully', 'showClientModal' : showClientModal });
+                    growl.success('Duplicate track created successfully');
         		});
         	};
     }]);

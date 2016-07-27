@@ -158,7 +158,8 @@
                     controller: "TrackBuilderCtrl",
                     params : {
                         message : null,
-                        selectedvideos : null
+                        selectedvideos : null,
+                        showClientModal : null
                     },
                     data: {requiresLogin: true}
                 })                    

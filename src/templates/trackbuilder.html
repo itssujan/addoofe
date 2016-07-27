@@ -111,6 +111,10 @@
 				<div class="panel-footer" ng-if="!studentcourse.inviteurl">
 					<button class="addoo-button addoo-orange addoo-md" ng-click="openClientModal()">Add Client</button>
 				</div>
+                <div class="panel-footer" ng-if="studentcourse.inviteurl"> <!-- this is used to duplicate the track-->
+                    <button class="addoo-button addoo-orange addoo-md" ng-click="createDuplicateTrack(true)">Add Client</button>
+                </div>
+
 			</rd-widget>
 		</div>
     </div>
