@@ -10,7 +10,8 @@
 
             //Force HTTPS
             var forceSSL = function () {
-                if ($location.protocol() !== 'https' && envService.environment != 'development') {
+                if ($location.protocol() !== 'https' && 
+                    (envService.environment != 'development' && envService.environment != 'stage')) {
                     $window.location.href = $location.absUrl().replace('http:', 'https:');
                 }
             };
