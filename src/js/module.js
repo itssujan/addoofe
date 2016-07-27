@@ -16,7 +16,6 @@ var app = angular.module('app', [
     'ng.deviceDetector',
     'ngIdle',
     'ngS3upload',
-    'ngIntercom',
     'chart.js',
     'ngAnimate',
     'reCAPTCHA',
@@ -27,10 +26,10 @@ var app = angular.module('app', [
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config','$intercomProvider','ngDialogProvider','reCAPTCHAProvider','$ravenProvider',
+'ngS3Config','ngDialogProvider','reCAPTCHAProvider','$ravenProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
         RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
-        KeepaliveProvider,ngS3Config,$intercomProvider,ngDialogProvider, reCAPTCHAProvider,$ravenProvider) {
+        KeepaliveProvider,ngS3Config,ngDialogProvider, reCAPTCHAProvider,$ravenProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -52,7 +51,6 @@ app.config(
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
-                    intercom_id : "jqrpchg1"
 				},
                 stage : {
                     nodeserverurl: 'http://nodestage.addoo.io',
@@ -64,7 +62,6 @@ app.config(
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
-                    intercom_id : "jqrpchg1"
                 },
 				production: {
 					nodeserverurl: 'https://node.addoo.io', 
@@ -76,7 +73,6 @@ app.config(
                     wootricAccountID: 'NPS-ecd3e1b3',
                     wootric_survey_immediately : false,
                     aws_bucket: 'addoo',
-                    intercom_id : "jqrpchg1"
 				}
 			}
 		});
@@ -122,10 +118,6 @@ app.config(
 
         //upload template
         ngS3Config.theme = '../templates/uploadtemplate';
-
-        //intercom
-        $intercomProvider.appID(envServiceProvider.read('intercom_id'));
-        $intercomProvider.asyncLoading(true)
 
         //modal window
         ngDialogProvider.setDefaults({

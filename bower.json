@@ -48,7 +48,6 @@
     "ng-device-detector": "~2.0.3",
     "ng-idle": "~1.1.1",
     "ng-s3upload": "~0.1.2",
-    "angular-intercom": "~2.1.1",
     "Chart.js": "~1.0.2",
     "angular-chart.js": "~0.8.8",
     "angular-animate": "~1.5.0",

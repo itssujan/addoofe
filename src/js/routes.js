@@ -1,8 +1,8 @@
     angular.module('app')
     .run([ '$rootScope', '$state', '$stateParams','$location', 'Auth', 'Restangular','growl',
-        'Idle','$intercom','$cookieStore','$window','envService',
+        'Idle','$cookieStore','$window','envService',
         function ($rootScope, $state, $stateParams,$location, Auth,Restangular, 
-            growl, Idle, $intercom, $cookieStore, $window, envService) {
+            growl, Idle, $cookieStore, $window, envService) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
@@ -24,7 +24,6 @@
               console.log("Logging out user");
               Restangular.all('logout').post();
               invalidateSession();
-              $intercom.shutdown();
               $location.url('login');
             };
 
