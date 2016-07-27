@@ -3,10 +3,9 @@
  */
 
 angular.module('app')
-    .controller('MasterCtrl', ['$rootScope','$scope', '$cookieStore','Auth','envService','Idle',
-        '$intercom', MasterCtrl]);
+    .controller('MasterCtrl', ['$rootScope','$scope', '$cookieStore','Auth','envService','Idle', MasterCtrl]);
 
-function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$intercom) {
+function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
     console.log("MasterCtrl");
     var mobileView = 992;
     $scope.events = [];
@@ -16,34 +15,6 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$interc
     $scope.user.created_at = Math.floor((new Date(Auth.user.createdOn).getTime())/1000);
     $scope.user.user_id = $scope.user._id;
     $scope.user.app_id = envService.read('intercom_id');
-
-    if(envService.environment != 'development') {
-        $intercom.boot({
-            email: $scope.user.email,
-            name: $scope.user.name,
-            created_at: $scope.user.created_at,
-            user_id: $scope.user.user_id
-          }); // app_id not required if set in .config() block
-    }
-
-    $intercom.$on('show', function() {
-      $scope.showing = true; // currently Intercom onShow callback isn't working
-    });
-    $intercom.$on('hide', function() {
-      $scope.showing = false;
-    });
-
-    $scope.show = function() {
-      $intercom.show();
-    };
-
-    $scope.hide = function() {
-      $intercom.hide();
-    };
-
-    $scope.update = function(user) {
-      $intercom.update(user);
-    };
 
     /**
      * Sidebar Toggle & Cookie Control
@@ -60,6 +31,12 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle,$interc
     //     var s = document.getElementsByTagName('script')[0];
     //     s.parentNode.insertBefore(addoo, s);
     // })();
+    
+    <!-- Start of Async Drift Code -->
+    (function(){var t;return t=window.driftt=window.drift=window.driftt||[],t.init?void 0:t.invoked?void(window.console&&console.error&&console.error("Drift snippet included twice.")):(t.invoked=!0,t.methods=["identify","track","reset","debug","show","ping","page","hide","off","on"],t.factory=function(e){return function(){var n;return n=Array.prototype.slice.call(arguments),n.unshift(e),t.push(n),t}},t.methods.forEach(function(e){t[e]=t.factory(e)}),t.load=function(t){var e,n,o,r;e=3e5,r=Math.ceil(new Date/e)*e,o=document.createElement("script"),o.type="text/javascript",o.async=!0,o.crossorigin="anonymous",o.src="https://js.driftt.com/include/"+r+"/"+t+".js",n=document.getElementsByTagName("script")[0],n.parentNode.insertBefore(o,n)})}(),drift.SNIPPET_VERSION="0.2.0",drift.load("xrz4aebz9bbs"))();
+    driftt.identify(userId, { email: 'abcd@email.com' });
+    <!-- End of Async Drift Code -->
+
 
     // UserVoice JavaScript SDK (only needed once on a page) 
     (function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/XQtFzFO0GKH4NfNjKtSFg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()
