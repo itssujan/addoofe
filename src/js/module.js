@@ -36,7 +36,7 @@ app.config(
 			domains: {
 				development: ['localhost', 'dev.local'],
 				production: ['app.addoo.io'],
-                stage: ['app3.addoo.io']
+                stage: ['app3.addoo.io','stageapp.addoo.io']
 				// anotherStage: ['domain1', 'domain2'], 
 				// anotherStage: ['domain1', 'domain2'] 
 			},
@@ -55,7 +55,7 @@ app.config(
                     intercom_id : "jqrpchg1"
 				},
                 stage : {
-                    nodeserverurl: 'https://node3.addoo.io',
+                    nodeserverurl: 'http://nodestage.addoo.io',
                     mixpaneltoken: "29e92907943764722a69ba3035295165",
                     connectorVideoID : "565d308268ff811332a5a20b",
                     sfPromotedVideoID : "574f069c2b4cad2e8a6686e8",
