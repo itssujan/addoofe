@@ -24,6 +24,8 @@
               console.log("Logging out user");
               Restangular.all('logout').post();
               invalidateSession();
+              window.driftt = undefined;
+              window.drift = undefined;
               $location.url('login');
             };
 
