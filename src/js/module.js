@@ -34,7 +34,7 @@ app.config(
     	envServiceProvider.config({
 			domains: {
 				development: ['localhost', 'dev.local'],
-				production: ['app.addoo.io'],
+				production: ['app.addoo.io','training.sharefile.com'],
                 stage: ['app3.addoo.io','stageapp.addoo.io']
 				// anotherStage: ['domain1', 'domain2'], 
 				// anotherStage: ['domain1', 'domain2'] 
