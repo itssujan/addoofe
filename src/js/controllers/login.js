@@ -32,6 +32,7 @@ angular.module('app')
 			$scope.user = {
 				email: $filter('lowercase') ($scope.user.email),
 				password: $scope.user.password,
+				remember_me: $scope.user.remember_me
 			};
 			//console.log(User);
 			Restangular.all('login').post($scope.user)
