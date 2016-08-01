@@ -19,7 +19,7 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
      * Sidebar Toggle & Cookie Control
      */
 
-     if($scope.user.product == 'addoo') {
+     if($scope.user.product == 'addoo' || $scope.user.product == 'demo') {
          (function() {
             var addoo = document.createElement('script');
             addoo.type = 'text/javascript';
@@ -31,10 +31,8 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(addoo, s);
         })();
-    }
-    
+    } else {
     // <!-- Start of Async Drift Code -->
-    if($scope.user.product != 'addoo') {
         !function(){var t;return t=window.driftt=window.drift=window.driftt||[],t.init?void 0:t.invoked?void(window.console&&console.error&&console.error("Drift snippet included twice.")):(t.invoked=!0,t.methods=["identify","track","reset","debug","show","ping","page","hide","off","on"],t.factory=function(e){return function(){var n;return n=Array.prototype.slice.call(arguments),n.unshift(e),t.push(n),t}},t.methods.forEach(function(e){t[e]=t.factory(e)}),t.load=function(t){var e,n,o,r;e=3e5,r=Math.ceil(new Date/e)*e,o=document.createElement("script"),o.type="text/javascript",o.async=!0,o.crossorigin="anonymous",o.src="https://js.driftt.com/include/"+r+"/"+t+".js",n=document.getElementsByTagName("script")[0],n.parentNode.insertBefore(o,n)})}(),drift.SNIPPET_VERSION="0.2.0",drift.load("xrz4aebz9bbs");
         driftt.identify($scope.user._id, { email: $scope.user.email  });
     }

@@ -291,7 +291,7 @@ angular.module('app')
         			$scope.productDisplayName = "RightSignature";
         		else if ($scope.studentcourse.product == "addoo")
         			$scope.productDisplayName = "Addoo";
-        		else if ($scope.studentcourse.product == "podio")
+        		else if ($scope.studentcourse.product == "podio" || $scope.studentcourse.product == "podio-postsales")
         			$scope.productDisplayName = "Podio";
                 else if ($scope.studentcourse.product == "bollo")
                     $scope.productDisplayName = "Bollo Empire";
