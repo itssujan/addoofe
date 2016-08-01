@@ -26,7 +26,7 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
         //uv.src = '//ec2-54-172-8-209.compute-1.amazonaws.com:3000/js/script.js';
         addoo.src = 'http://localhost:3000/js/addooplugin.min.js';
         addoo.id = "addoo";
-        addoo.setAttribute('email',"ts3@grr.la");
+        addoo.setAttribute('email',envService.read('inappuser'));
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(addoo, s);
     })();
