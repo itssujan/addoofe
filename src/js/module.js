@@ -51,7 +51,8 @@ app.config(
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
-                    inappuser : 'ts3@grr.la'
+                    inappuser : 'ts3@grr.la',
+                    inappserverurl : 'http://localhost:3000/js/addooplugin.min.js'
 				},
                 stage : {
                     nodeserverurl: 'http://nodestage.addoo.io',
@@ -63,7 +64,8 @@ app.config(
                     wootricAccountID: 'NPS-312d184b',
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
-                    inappuser : 'ts3@grr.la'  
+                    inappuser : 'ts3@grr.la',  
+                    inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js'
                 },
 				production: {
 					nodeserverurl: 'https://node.addoo.io', 
@@ -75,7 +77,8 @@ app.config(
                     wootricAccountID: 'NPS-ecd3e1b3',
                     wootric_survey_immediately : false,
                     aws_bucket: 'addoo',
-                    inappuser : 'addoo-users@grr.la'
+                    inappuser : 'addoo-users@grr.la',
+                    inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js'
 				}
 			}
 		});
