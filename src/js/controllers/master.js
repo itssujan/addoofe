@@ -19,24 +19,23 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
      * Sidebar Toggle & Cookie Control
      */
 
-    //  (function() {
-    //     var addoo = document.createElement('script');
-    //     addoo.type = 'text/javascript';
-    //     addoo.async = true;
-    //     //uv.src = '//ec2-54-172-8-209.compute-1.amazonaws.com:3000/js/script.js';
-    //     addoo.src = 'http://localhost:3000/js/script.js';
-    //     addoo.id = "addoo";
-    //     addoo.setAttribute('email',"ts3@grr.la");
-    //     var s = document.getElementsByTagName('script')[0];
-    //     s.parentNode.insertBefore(addoo, s);
-    // })();
+     (function() {
+        var addoo = document.createElement('script');
+        addoo.type = 'text/javascript';
+        addoo.async = true;
+        //uv.src = '//ec2-54-172-8-209.compute-1.amazonaws.com:3000/js/script.js';
+        addoo.src = 'http://localhost:3000/js/addooplugin.min.js';
+        addoo.id = "addoo";
+        addoo.setAttribute('email',envService.read('inappuser'));
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(addoo, s);
+    })();
     
-    <!-- Start of Async Drift Code -->
-        !function(){
-            var t;return t=window.driftt=window.drift=window.driftt||[],t.init?void 0:t.invoked?void(window.console&&console.error&&console.error("Drift snippet included twice.")):(t.invoked=!0,t.methods=["identify","track","reset","debug","show","ping","page","hide","off","on"],t.factory=function(e){return function(){var n;return n=Array.prototype.slice.call(arguments),n.unshift(e),t.push(n),t}},t.methods.forEach(function(e){t[e]=t.factory(e)}),t.load=function(t){var e,n,o,r;e=3e5,r=Math.ceil(new Date/e)*e,o=document.createElement("script"),o.type="text/javascript",o.async=!0,o.crossorigin="anonymous",o.src="https://js.driftt.com/include/"+r+"/"+t+".js",n=document.getElementsByTagName("script")[0],n.parentNode.insertBefore(o,n)})}(),drift.SNIPPET_VERSION="0.2.0",drift.load("xrz4aebz9bbs");
-        driftt.identify($scope.user._id, { email: $scope.user.email  });
+    // <!-- Start of Async Drift Code -->
+        // !function(){var t;return t=window.driftt=window.drift=window.driftt||[],t.init?void 0:t.invoked?void(window.console&&console.error&&console.error("Drift snippet included twice.")):(t.invoked=!0,t.methods=["identify","track","reset","debug","show","ping","page","hide","off","on"],t.factory=function(e){return function(){var n;return n=Array.prototype.slice.call(arguments),n.unshift(e),t.push(n),t}},t.methods.forEach(function(e){t[e]=t.factory(e)}),t.load=function(t){var e,n,o,r;e=3e5,r=Math.ceil(new Date/e)*e,o=document.createElement("script"),o.type="text/javascript",o.async=!0,o.crossorigin="anonymous",o.src="https://js.driftt.com/include/"+r+"/"+t+".js",n=document.getElementsByTagName("script")[0],n.parentNode.insertBefore(o,n)})}(),drift.SNIPPET_VERSION="0.2.0",drift.load("xrz4aebz9bbs");
+        // driftt.identify($scope.user._id, { email: $scope.user.email  });
     
-    <!-- End of Async Drift Code -->
+    // <!-- End of Async Drift Code -->
 
 
     // // UserVoice JavaScript SDK (only needed once on a page) 
