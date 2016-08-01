@@ -74,7 +74,7 @@ angular.module('app')
         			applicableContent.push('rightsignature');
         		} else if (prod == 'shareconnect') {
         			applicableContent.push('shareconnect');
-        		} else if (prod == 'podio') {
+        		} else if (prod == 'podio' || prod == 'podio-postsales') {
         			applicableContent.push('podio');
         		} else if (prod == 'addoo') {
         			applicableContent.push('addoo');
@@ -432,7 +432,7 @@ angular.module('app')
         			applicableContent.push('rightsignature');
         		} else if (prod == 'shareconnect') {
         			applicableContent.push('shareconnect');
-        		} else if (prod == 'podio') {
+        		} else if (prod == 'podio' || prod == 'podio-postsales') {
         			applicableContent.push('podio');
         		} else if (prod == 'addoo') {
         			applicableContent.push('addoo');
