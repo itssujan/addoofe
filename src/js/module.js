@@ -19,17 +19,18 @@ var app = angular.module('app', [
     'chart.js',
     'ngAnimate',
     'reCAPTCHA',
-    'ngRaven',
-    'pdf'
+    'pdf',
+    'angulartics', 
+    'angulartics.google.analytics'
 	]);
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config','ngDialogProvider','reCAPTCHAProvider','$ravenProvider',
+'ngS3Config','ngDialogProvider','reCAPTCHAProvider','$analyticsProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
         RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
-        KeepaliveProvider,ngS3Config,ngDialogProvider, reCAPTCHAProvider,$ravenProvider) {
+        KeepaliveProvider,ngS3Config,ngDialogProvider, reCAPTCHAProvider,$analyticsProvider) {
 
     	envServiceProvider.config({
 			domains: {
@@ -52,7 +53,8 @@ app.config(
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
                     inappuser : 'ts3@grr.la',
-                    inappserverurl : 'http://localhost:3000/js/addooplugin.min.js'
+                    inappserverurl : 'http://localhost:3000/js/addooplugin.min.js',
+                    enableGA : false
 				},
                 stage : {
                     nodeserverurl: 'http://nodestage.addoo.io',
@@ -65,7 +67,8 @@ app.config(
                     wootric_survey_immediately : true,
                     aws_bucket: 'addoo-dev',
                     inappuser : 'ts3@grr.la',  
-                    inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js'
+                    inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js',
+                    enableGA : true
                 },
 				production: {
 					nodeserverurl: 'https://node.addoo.io', 
@@ -78,7 +81,8 @@ app.config(
                     wootric_survey_immediately : false,
                     aws_bucket: 'addoo',
                     inappuser : 'addoo-users@grr.la',
-                    inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js'
+                    inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js',
+                    enableGA : true
 				}
 			}
 		});
@@ -140,11 +144,26 @@ app.config(
             theme: 'clean'
         });
 
-        $ravenProvider.development(false);
-        Raven.config('https://ff826069d21e4a2eb7cc4902c386ec6c@app.getsentry.com/67624').install();
-        if(envServiceProvider.environment == 'development') {
-            $ravenProvider.development(true);
-        }
+        console.log("GA Enabled :"+envServiceProvider.read('enableGA'));
+        if(envServiceProvider.read('enableGA') == true) {
+            console.log("Loading GA");
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-81862521-1', 'auto');
+              ga('send', 'pageview');
+         }     
+
+
+        $analyticsProvider.virtualPageviews(false);
+        $analyticsProvider.settings.ga = {
+            additionalAccountNames: undefined,
+            disableEventTracking: null,
+            disablePageTracking: null,
+            userId: 'UA-81862521-1'
+          };
 
     }
 ]);
@@ -162,11 +181,12 @@ app.factory('Auth',function() {
 });
 
 app.factory('$exceptionHandler',
-          ['$window', '$log','$raven',
-  function ($window,   $log, $raven) {
-      return function (exception, cause) {
-        $raven.captureMessage(exception,cause);
-      };
+          ['$window', '$log', '$analytics',
+  function ($window,   $log, $analytics) {
+        return function (exception, cause) {
+            $analytics.eventTrack("exception :"+exception+" ; cause : "+cause, {  category: 'Exception', label: 'JS-Exceptions' });
+            console.log("EXCEPTION :"+cause+" ; "+exception);
+        };
   }
 ]);
 
