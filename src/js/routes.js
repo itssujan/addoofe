@@ -65,14 +65,15 @@
               
               // authenticated (previously) comming not to root main
               if(Auth.isLoggedIn)  {
-                var shouldGoToMain = fromState.name === "" && toState.name !== "main" ;
+                var shouldGoToMain = fromState.name === "" && toState.name !== "customer-manager.dashboard" ;
                   
                 if (shouldGoToMain) {
-                    $state.go('main');
+                    $state.go('customer-manager.dashboard');
                     event.preventDefault();
                 } 
                 return;
               }
+
               
               // // UNauthenticated (previously) comming not to root public 
               // var shouldGoToPublic = fromState.name === "" && toState.name !== "public" && toState.name !== "login" ;
