@@ -64,7 +64,9 @@
               }         
               
               // authenticated (previously) comming not to root main
-              if(Auth.isLoggedIn)  {
+              console.log("Test1 :"+fromState.name);
+              console.log("Test: "+toState.name);
+              if(Auth.isLoggedIn && toState.name != "client.dashboardnew")  {
                 var shouldGoToMain = fromState.name === "" && toState.name !== "customer-manager.dashboard" ;
                   
                 if (shouldGoToMain) {
