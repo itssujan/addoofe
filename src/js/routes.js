@@ -64,15 +64,18 @@
               }         
               
               // authenticated (previously) comming not to root main
-              if(Auth.isLoggedIn)  {
-                var shouldGoToMain = fromState.name === "" && toState.name !== "main" ;
+              console.log("Test1 :"+fromState.name);
+              console.log("Test: "+toState.name);
+              if(Auth.isLoggedIn && toState.name != "client.dashboardnew")  {
+                var shouldGoToMain = fromState.name === "" && toState.name !== "customer-manager.dashboard" ;
                   
                 if (shouldGoToMain) {
-                    $state.go('main');
+                    $state.go('customer-manager.dashboard');
                     event.preventDefault();
                 } 
                 return;
               }
+
               
               // // UNauthenticated (previously) comming not to root public 
               // var shouldGoToPublic = fromState.name === "" && toState.name !== "public" && toState.name !== "login" ;
