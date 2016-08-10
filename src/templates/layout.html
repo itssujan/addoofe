@@ -37,6 +37,10 @@
 				<li class="sidebar-list-item">
 					<a ui-sref="customer-manager.profile">Manage Profile <span class="menu-icon fa fa-user"></span></a>
 				</li>
+				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
+					<a ui-sref="customer-manager.viewproducts">Products <span class="menu-icon fa fa-cog"></span></a>
+				</li>
+
 
 <!-- 				<li class="sidebar-list-item" ng-show="user.role=='superadmin'">
 					<a ui-sref="customer-manager.announcements">Announcements <span class="menu-icon glyphicon glyphicon-volume-up"></span></a>

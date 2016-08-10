@@ -64,15 +64,7 @@
               }         
               
               // authenticated (previously) comming not to root main
-              console.log("Test1 :"+fromState.name);
-              console.log("Test: "+toState.name);
               if(Auth.isLoggedIn && toState.name != "client.dashboardnew")  {
-                var shouldGoToMain = fromState.name === "" && toState.name !== "customer-manager.dashboard" ;
-                  
-                if (shouldGoToMain) {
-                    $state.go('customer-manager.dashboard');
-                    event.preventDefault();
-                } 
                 return;
               }
 
@@ -234,7 +226,26 @@
                     ctrl: "reportsCtrl",
                     controller: "ReportsCtrl",
                     data: {requiresLogin: true}
+                }).state('customer-manager.viewproducts', {
+                    url: '/viewproducts',
+                    templateUrl: 'templates/viewproducts.html',
+                    ctrl: "viewProductsCtrl",
+                    controller: "ViewProductsCtrl",
+                    data: {requiresLogin: true}
+                }).state('customer-manager.createproduct', {
+                    url: '/createproduct',
+                    templateUrl: 'templates/editproduct.html',
+                    ctrl: "editProductCtrl",
+                    controller: "EditProductCtrl",
+                    data: {requiresLogin: true}
+                }).state('customer-manager.editproduct', {
+                    url: '/editproduct/:productID',
+                    templateUrl: 'templates/editproduct.html',
+                    ctrl: "editProductCtrl",
+                    controller: "EditProductCtrl",
+                    data: {requiresLogin: true}
                 });
+
 
                 $stateProvider
                 .state('customer-care', {

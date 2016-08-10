@@ -1,0 +1,61 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Product</span>
+                </a>
+            </li>
+        </ul>
+        <div class="panel panel-default paper-shadow tab-content">
+            <div growl inline="true"></div>
+            <form ng-submit="save()">
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 form-control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="title" placeholder="Name" ng-model="product.displayName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="displaytitle" class="col-sm-2 form-control-label">Inapp Enabled</label>
+                    <div class="col-sm-10">
+                            <input type="checkbox" ng-model="product.inapp">
+                    </div>
+                </div>
+                <div class="form-group row" ng-if="product.inapp">
+                    <label for="description" class="col-sm-2 form-control-label">Inapp WalkMe</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" ng-model="product.inappWalkMe">
+                    </div>
+                </div>
+                <div class="form-inline" ng-if="product.inapp">
+                    <div class="form-group">
+                        <label for="displaytitle" class="form-control-label">Horizontal Position</label>
+                        <div class="col-sm-10">
+                                <select name="horizontalPosition" ng-model="product.inappSettings.horizontalPosition">
+                                  <option value="left">Left</option>
+                                  <option value="centre">Centre</option>
+                                  <option value="right">Right</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="product.inapp">
+                        <label for="displaytitle" class="form-control-label">Vertical Position</label>
+                        <div class="col-sm-10">
+                                <select name="verticalPosition" ng-model="product.inappSettings.verticalPosition">
+                                  <option value="left">Left</option>
+                                  <option value="centre">Centre</option>
+                                  <option value="right">Right</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>    
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button ng-if!="newProduct" type="submit" class="btn btn-primary">Update</button>
+                        <button ng-if="newProduct" type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
