@@ -156,15 +156,23 @@ app.config(
               ga('send', 'pageview');
          }     
 
-
         $analyticsProvider.virtualPageviews(false);
         $analyticsProvider.settings.ga = {
             additionalAccountNames: undefined,
             disableEventTracking: null,
             disablePageTracking: null,
             userId: 'UA-81862521-1'
-          };
+        };
 
+        // window.doorbellOptions = {
+        //     appKey: 'YL2dc2ZGv0BXAWR82PuYNlVmULaEftefXP6j6zxtfmfvUBpCwCgiE1l7evPy0K7n'
+        // };
+        // (function(w, d, t) {
+        //     var hasLoaded = false;
+        //     function l() { if (hasLoaded) { return; } hasLoaded = true; window.doorbellOptions.windowLoaded = true; var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/4209?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g); }
+        //     if (w.attachEvent) { w.attachEvent('onload', l); } else if (w.addEventListener) { w.addEventListener('load', l, false); } else { l(); }
+        //     if (d.readyState == 'complete') { l(); }
+        // }(window, document, 'script'));
     }
 ]);
 

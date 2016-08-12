@@ -159,8 +159,7 @@ gulp.task('usemin', function () {
 
 gulp.task('revAll', ['usemin'], function () {
 	var revAll = new RevAll({ 
-		dontRenameFile: [/^\/favicon.ico$/g, 'index.html','uploadtemplate.html'], 
-		dontupdatereference: [/^\/favicon.ico$/g, 'index.html', 'uploadtemplate.html']
+		dontRenameFile: [/^\/favicon.ico$/g, 'index.html','uploadtemplate.html']
 	});
 	
 	if (process.env.AddooENV === 'development') {

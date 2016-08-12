@@ -27,13 +27,18 @@
                 <div class="form-group">
                     <label for="lastname">Customer Onboarding Manager:</label>
                     <!-- for all products except shareconnect -->
-                    <select name="customerrep" id="customerrep" class="form-control" ng-model="student.onboardingSpecialist" ng-if="course.product != 'shareconnect'">
+                    <select name="customerrep" id="customerrep" class="form-control" ng-model="student.onboardingSpecialist" ng-if="course.product != 'shareconnect' && course.product != 'solano'">
                         <option ng-repeat="customerSupportRep in customerSupportReps" value="{{customerSupportRep._id}}">{{customerSupportRep.local.firstname}} {{customerSupportRep.local.lastname}}</option>
                     </select>
                     <!-- for shareconnect -->
                     <select name="customerrep" id="customerrep" class="form-control" ng-model="student.onboardingSpecialist" ng-if="course.product == 'shareconnect'" ng-init="student.onboardingSpecialist = '565d2e995919ec03006bdb87'">
                         <option value="565d2e995919ec03006bdb87">Ryan Little</option>
                     </select>
+                    <select name="customerrep" id="customerrep" class="form-control" ng-model="student.onboardingSpecialist" ng-if="course.product == 'solano'" ng-init="student.onboardingSpecialist = '57adbaaa9b71456e1afc14de'">
+                        <option value="57adbaaa9b71456e1afc14de">Amanda Price</option>
+                        <option value="57adb7c69b71456e1afc14d3">Nick Travaglini</option>
+                    </select>
+
                 </div>
                 <div class="form-group" ng-if="course.product == 'shareconnect'">
                     <label for="lastname">Account Type:</label>

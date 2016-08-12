@@ -297,6 +297,8 @@ angular.module('app')
                     $scope.productDisplayName = "Bollo Empire";
                 else if ($scope.studentcourse.product == "demo")
                     $scope.productDisplayName = "Demo";
+                else if ($scope.studentcourse.product == "solano")
+                    $scope.productDisplayName = "SolanoLabs";
         	}
 
             if (($location.search()).org == "mt") {

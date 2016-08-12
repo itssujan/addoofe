@@ -20,6 +20,7 @@
         <img class="client-logo" ng-if="!user && studentcourse.product == 'addoo'" src="img/logo/products/Addoo-Portal-Logo.png" />
         <img class="client-logo" ng-if="!user && studentcourse.product == 'demo'" src="img/logo/products/ShareFile-Portal-Logo.png" />
         <img class="client-logo" ng-if="!user && studentcourse.product == 'bollo'" src="img/logo/products/Bollo-Portal-Logo.png" />
+        <img class="client-logo" ng-if="!user && studentcourse.product == 'solano'" src="img/logo/products/Solano-Portal-Logo.png" />
         <ul class="client-nav">
             <li class="client-heading"><a href="" ng-click="openSupportModal()">Support</a>
             </li>
@@ -34,6 +35,7 @@
                 <a ng-if="studentcourse.product == 'addoo'" href="https://app.addoo.io/#/login" target="_blank">Sign in</a>
                 <a ng-if="studentcourse.product == 'demo'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
                 <a ng-if="studentcourse.product == 'bollo'" href="https://podio.com/login" target="_blank">Sign in</a>
+                <a ng-if="studentcourse.product == 'solano'" href="https://ci.solanolabs.com/signin" target="_blank">Sign in</a>
             </li>
 <!--             <li class="client-heading"><a href="" ng-click="launchWootricNPS('rateus')">Rate us</a></li>
  -->        </ul>
@@ -90,7 +92,7 @@
             </div>
         </div>
 
-        <div ng-show="studentcourse.product != 'bollo'"> 
+        <div ng-show="studentcourse.product != 'solano'"> 
             <h5 class="client-heading" style="margin-top:10px;margin-bottom:10px">Other Products You Might Like</h5>
             <div class="client-crossSell">
                 <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
@@ -146,7 +148,7 @@
                     <div class="video-details">
                         <h5><a href="" ng-click="playVideo($index)">{{nextvideo.displaytitle ? nextvideo.displaytitle : nextvideo.title}}</a></h5>
                         <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
-                        <p>Product : {{nextvideo.displayProductName}} 
+                        <p ng-if="nextvideo.displayProductName">Product : {{nextvideo.displayProductName}} </p>
                     </div>
                 </li>
             </ul>
@@ -165,7 +167,7 @@
                     <div class="video-details">
                         <h5><a href="" ng-click="showDoc($index)">{{nextvideo.displaytitle ? nextvideo.displaytitle : nextvideo.title}}</a></h5>
                         <p>{{nextvideo.duration}} <i title="Watched" class="fa fa-eye text-success" ng-if="nextvideo.progress == 'complete'" color="green"></i></p>
-                        <p>Product : {{nextvideo.displayProductName}} 
+                        <p ng-if="nextvideo.displayProductName">Product : {{nextvideo.displayProductName}} </p>
                     </div>
                 </li>
             </ul>

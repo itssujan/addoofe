@@ -82,8 +82,9 @@ angular.module('app')
                     applicableContent.push('demo');
                 } else if (prod == 'bollo') {
                     applicableContent.push('bollo');
+                } else if (prod == 'solano') {
+                    applicableContent.push('solano');
                 }
-
         	}
 
         	if ($scope.studentCourseID) {
@@ -438,6 +439,8 @@ angular.module('app')
         			applicableContent.push('addoo');
         		} else if (prod == 'bollo') {
                     applicableContent.push('bollo');
+                } else if (prod == 'solano') {
+                    applicableContent.push('solano');
                 }
         		return applicableContent;
         	}
