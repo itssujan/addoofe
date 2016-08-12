@@ -243,12 +243,13 @@ angular.module('app')
                         var header = document.getElementsByClassName("client-header")[0];
                         header.style.backgroundColor = "#002e5d";
 
-
                         var customerInfo = document.getElementsByClassName("customerInformation")[0];
                         customerInfo.style.height = "40px";
                         customerInfo.style.border = "none";
+                        customerInfo.style.backgroundColor = "#f1f1f1";
+
                         var customerInfoH5 = document.getElementByClassName("customerInformation")[0].getElementsByTagName("h5")[0];
-                        customerInfo.style.color = "#717171";
+                        customerInfo.style.color = "#545454";
 
                     }
                 });
