@@ -22,7 +22,8 @@
         <img class="client-logo" ng-if="!user && studentcourse.product == 'bollo'" src="img/logo/products/Bollo-Portal-Logo.png" />
         <img class="client-logo" ng-if="!user && studentcourse.product == 'solano'" src="img/logo/products/Solano-Portal-Logo.png" />
         <ul class="client-nav">
-            <li class="client-heading"><a href="" ng-click="openSupportModal()">Support</a>
+            <li class="client-heading" ng-if="studentcourse.product != 'solano'"><a href="" ng-click="openSupportModal()">Support</a>
+            <li class="client-heading" ng-if="studentcourse.product == 'solano'"><a href="" ng-href="mailto:{{studentcourse.onboardingSpecialist.email}}">Support</a>
             </li>
             <li class="client-heading">
                 <a ng-if="studentcourse.product == 'sharefile'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
@@ -154,7 +155,7 @@
             </ul>
         </div>
 
-        <h5 id="playlistHeader" class="client-heading" ng-show="studentcourse.courseID.documents && studentcourse.courseID.documents.length>0">Documents</h5>
+        <h5 id="playlistHeader" class="client-heading" ng-show="studentcourse.courseID.documents && studentcourse.courseID.documents.length>0" style="padding:10px 0 10px 0">Documents</h5>
         <div class="client-playlist" ng-show="studentcourse.courseID.documents && studentcourse.courseID.documents.length > 0">
             <ul class="client-playlistItem">
                 <li class="client-heading client-other-videos" ng-repeat="nextvideo in studentcourse.courseID.documents" ng-show="nextvideo.videoID != video._id">

@@ -154,7 +154,7 @@ gulp.task('usemin', function () {
         	js: [minifyJs(), 'concat'],
         	css: [minifyCss({ keepSpecialComments: 0 }), 'concat'],
         }))
-        .pipe(gulp.dest('temp/'));
+        .pipe(gulp.dest(targetDir+'/'));
 });
 
 gulp.task('revAll', ['usemin'], function () {

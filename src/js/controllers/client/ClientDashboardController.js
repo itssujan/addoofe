@@ -234,7 +234,23 @@ angular.module('app')
                     if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.industry && 
                         ($scope.studentcourse.industry != 'Healthcare' ||  $scope.studentcourse.industry != 'Financial')) {
                             $scope.showSFPromotedVideo = true;
-                        }
+                    }
+                    //dirty quick fix
+                    if($scope.studentcourse.product == 'solano') {
+                        var body =  document.getElementsByTagName("BODY")[0];
+                        body.style.backgroundColor = "#fff";
+
+                        var header = document.getElementsByClassName("client-header")[0];
+                        header.style.backgroundColor = "#002e5d";
+
+
+                        var customerInfo = document.getElementsByClassName("customerInformation")[0];
+                        customerInfo.style.height = "40px";
+                        customerInfo.style.border = "none";
+                        var customerInfoH5 = document.getElementByClassName("customerInformation")[0].getElementsByTagName("h5")[0];
+                        customerInfo.style.color = "#717171";
+
+                    }
                 });
             }
 
