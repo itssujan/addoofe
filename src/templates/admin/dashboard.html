@@ -1,0 +1,116 @@
+<div class="row">
+<!--    <div class="col-sm-4">
+      <div class="panel panel-success panel-hover">
+         <a ui-sref="customer-manager.trackbuilder" class="panel-body">
+            <div class="media">
+               <div class="media-left"><img src="/images/onboarding/install.png" width="90" height="80" class="media-object"></div>
+               <div class="media-body">
+                  <strong class="media-heading">1. Customer Onboarding</strong>
+                  <p>Create custom onboarding for your customers</p>
+                  <span class="text-link">View instructions</span>
+               </div>
+            </div>
+         </a>
+      </div>
+   </div>
+ -->   <div class="col-sm-4">
+      <div class="panel panel-success panel-hover">
+         <a ui-sref="admin.featureannouncement" class="panel-body">
+            <div class="media">
+               <div class="media-left"><i class="material-icons">announcement</i></div>
+               <div class="media-body">
+                  <strong class="media-heading">InApp Feature Announcements</strong>
+                  <p>Announce new features to the customers.</p>
+                  <!-- <span class="text-link">Start branding</span> -->
+               </div>
+            </div>
+         </a>
+      </div>
+   </div>
+<!--    <div class="col-sm-4">
+      <div class="panel panel-success panel-hover">
+         <a href="/account" class="panel-body">
+            <div class="media">
+               <div class="media-left"><img src="/images/onboarding/flows.png" width="90" height="80" class="media-object"></div>
+               <div class="media-body">
+                  <strong class="media-heading">3. InApp Messages</strong>
+                  <p>Walk customers through different aspects of your website.</p>
+                  <span class="text-link">Invite colleages</span>
+               </div>
+            </div>
+         </a>
+      </div>
+   </div>
+ --></div>
+<!-- <div class="row">
+	<div style="width: 90%; height: 16px; border-bottom: 1px solid black; text-align: left">
+	  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+	    	Customer Onboardings
+	  </span>
+	</div>
+</div>
+<div class="row">
+	<table class='table borderless'>
+		<tr>
+			<th>Test</th>
+			<th>Test1</th>
+		</tr>
+		<tr>
+			<td>Test</td>
+			<td>Test1</td>
+		</tr>
+	</table>
+</div>
+ -->
+<div class="row">
+	<div style="width: 90%; height: 16px; border-bottom: 1px solid black; text-align: left">
+	  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+    	InApp Feature Announcements
+	  </span>
+	</div>
+</div>
+<div class="row">
+	<table class='table borderless' st-table="displayedFeatureonboarding" st-safe-src="featureonboarding">
+		<tr>
+			<th st-sort="name">Name</th>
+			<th st-sort="createdOn">Created On</th>
+			<th st-sort="status">Status</th>
+			<th st-sort="viewedBy">Message Seen</th>
+			<th st-sort="clickedBy">Feature Viewed</th>
+			<th st-sort="watchedBy">Started</th>
+			<th st-sort="watchedBy">Completed</th>
+			<th st-sort="watchedBy">Dismissed</th>
+		</tr>
+		<tr ng-repeat="row in displayedFeatureonboarding">
+			<td>{{row.name}}</td>
+			<td><span am-time-ago="row.createdOn"></span></td>
+			<td style="text-transform: capitalize;">{{row.status}}</td>
+			<td>{{row.feature.messageViewedBy}}</td>
+			<td>{{row.feature.featureViewedBy}}</td>
+			<td>{{row.feature.startedBy}}</td>
+			<td>{{row.feature.completedBy}}</td>
+			<td>{{row.feature.dismissedBy}}</td>
+			<td><a ui-sref="">View</a></td>
+		</tr>
+	</table>
+</div>
+
+<!-- <div class="row">
+	<div style="width: 90%; height: 16px; border-bottom: 1px solid black; text-align: left">
+	  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+    	InApp Messaging
+	  </span>
+	</div>
+</div>
+<div class="row">
+	<table class='table borderless'>
+		<tr>
+			<th>Test</th>
+			<th>Test1</th>
+		</tr>
+		<tr>
+			<td>Test</td>
+			<td>Test1</td>
+		</tr>
+	</table>
+</div> -->

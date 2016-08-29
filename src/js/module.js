@@ -54,6 +54,8 @@ app.config(
                     aws_bucket: 'addoo-dev',
                     inappuser : 'ts3@grr.la',
                     inappserverurl : 'http://localhost:3000/js/addooplugin.min.js',
+                    inappToken : "d4cd612479194db0937463781105921ea3f32f5148aede2f22e97f79e98d10ff1785d5711e3a77931a38a6dbc9d74029d64eeaa8b77c2be547ad701dbb595cc8",
+                    inappToken : "790ad311022769ef305aca262cb2d7b8f26736decb489a6e2e49e4e1d4b240f0fe522a2ace7a928f55b72bc8a99b5e4b",
                     enableGA : false
 				},
                 stage : {
@@ -68,6 +70,7 @@ app.config(
                     aws_bucket: 'addoo-dev',
                     inappuser : 'ts3@grr.la',  
                     inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js',
+                    inappToken : "d4cd612479194db0937463781105921ea3f32f5148aede2f22e97f79e98d10ff1785d5711e3a77931a38a6dbc9d74029d64eeaa8b77c2be547ad701dbb595cc8",
                     enableGA : true
                 },
 				production: {
@@ -82,6 +85,7 @@ app.config(
                     aws_bucket: 'addoo',
                     inappuser : 'addoo-users@grr.la',
                     inappserverurl : 'https://plugin.addoo.io/js/addooplugin.min.js',
+                    inappToken : "790ad311022769ef305aca262cb2d7b8f26736decb489a6e2e49e4e1d4b240f0fe522a2ace7a928f55b72bc8a99b5e4b",
                     enableGA : true
 				}
 			}

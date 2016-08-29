@@ -7,7 +7,6 @@
                 </a>
             </li>
         </ul>
-
 		<div class="panel panel-default paper-shadow tab-content">
 			<div id="account" class="tab-pane active">
 				<form ng-submit="setProduct()">
@@ -17,28 +16,12 @@
 						<label for="inputPassword3" class="col-md-2 control-label">Product</label>
 						<div class="field-container col-md-6">
 							<div class="form-control-material">
-				                <select class="form-control" ng-model="adminproduct" ng-required="true" tabindex="5" ng-show="user.role == 'superadmin'">
-				                  <option value="sharefile">ShareFile</option>
-				                  <option value="shareconnect">ShareConnect</option>
-				                  <option value="rightsignature">RightSignature</option>
-				                  <option value="podio">Podio</option>
-				                  <option value="podio-postsales">Podio-PostSales</option>
-								  <option value="addoo">Addoo</option>
-				                  <!-- <option value="bollo">Bollo Empire</option> -->
-				                  <option value="sharefile-presales">ShareFile PreSales</option>
-				                  <option value="sharefile-lifecycle">ShareFile LifeCycle</option>
-				                  <option value="solano">SolanoLabs</option>
-				                  <option value="demo">Demo</option>
-				                </select>  
-				                <select class="form-control" ng-model="adminproduct" ng-required="true" tabindex="5" ng-show="user.role != 'superadmin'">
-				                  <option value="sharefile">ShareFile</option>
-				                  <option value="shareconnect">ShareConnect</option>
-				                  <option value="rightsignature">RightSignature</option>
-				                </select>  
+				                <select class="form-control" ng-model="product" ng-required="true" tabindex="5">		        
+				                	<option ng-repeat="product in products" value="{{product._id}}">{{product.displayName}}</option>
+				                </select>	
 							</div>
 						</div>
 					</div>
-
 					<div class="form-group margin-none">
 						<div class="col-md-offset-2 col-md-10">
 							<button type="submit" class="btn btn-primary paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Go</button>

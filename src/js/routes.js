@@ -26,6 +26,8 @@
               invalidateSession();
               window.driftt = undefined;
               window.drift = undefined;
+              window.lightningjs = undefined;
+              window.Addoo = undefined;
               $location.url('login');
             };
 
@@ -119,6 +121,30 @@
                     controller: 'LogoutCtrl'
                 });
 
+                $stateProvider
+                .state('admin', {
+                    abstract: true,
+                    url: '/admin',
+                    templateUrl: 'templates/layout.html',
+                    access: {
+                        requiresLogin: true,
+                        // requiredPermissions:  ['Instructor']
+                    }
+                })
+                .state('admin.dashboard', {
+                    url: '/dashboard',
+                    templateUrl: 'templates/admin/dashboard.html',
+                    ctrl: "adminDashboard",
+                    controller: "AdminDashboardCtrl",
+                    data: {requiresLogin: true}
+                })
+                .state('admin.featureannouncement', {
+                    url: '/featureannouncement',
+                    templateUrl: 'templates/admin/featureannouncement.html',
+                    ctrl: "featureAnnouncementCtrl",
+                    controller: "FeatureAnnouncementCtrl",
+                    data: {requiresLogin: true}
+                });
 
                 $stateProvider
                 .state('customer-manager', {

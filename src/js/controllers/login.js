@@ -1,11 +1,3 @@
-// angular
-//     .module('app')
-//     .controller('LoginCtrl', ['$scope', function($scope){
-//         console.log("Inside login controller");
-//     }]);
-
-
-
 angular.module('app')
 .controller('LoginCtrl', [ '$scope', '$state','Restangular', '$rootScope', '$location', 
 	'Auth','$cookieStore','growl','$mixpanel','$filter','$stateParams','Idle','growlMessages',
@@ -38,7 +30,7 @@ angular.module('app')
 			Restangular.all('login').post($scope.user)
 			.then(function(data){
 			// No error: authentication OK
-
+				console.log("Got user :"+JSON.stringify(data));
 				$rootScope.user = data.user;
 				$scope.auth.isLoggedIn = true;
 				$scope.auth.user = data.user;
@@ -61,19 +53,12 @@ angular.module('app')
 			        Idle.watch();
 
 					console.log("User logged in");
-					if(data.user.role == "superadmin" || data.user.role == "cross-sales") {
+					if(data.user.role == "superadmin") {
 						$state.go('customer-manager.product-selection');
-					} else if(data.user.role == "customer-onboarding-specialist" 
-						|| data.user.role == "customer-manager"){
+					} else if(data.user.products.length > 1){
+						$state.go('customer-manager.product-selection');
+					} else {
 						$state.go('customer-manager.dashboard');
-						//$state.go('customer-care.dashboard');
-					} else if(data.user.role == "saleslead"){
-						$state.go('customer-manager.dashboard');
-					} else if(data.user.role == "sales"){
-						if(!data.user.manager)
-							$state.go('customer-manager.profile',{'managerRequired':true});
-						else
-							$state.go('customer-manager.dashboard');
 					}
 				} else{
 

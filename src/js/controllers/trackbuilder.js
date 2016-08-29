@@ -60,7 +60,14 @@ angular.module('app')
         		// 	});
         		// });
                 if($scope.studentcourse) {
-                    $scope.studentcourse.inviteurl = "https://app.addoo.io/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;
+                    if($scope.studentcourse.product == 'sharefile'){
+                        $scope.studentcourse.inviteurl = "https://training.sharefile.com/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;    
+                    } else if($scope.studentcourse.product == 'shareconnect'){
+                        $scope.studentcourse.inviteurl = "https://training.shareconnect.com/index.html#/client/dashboard/v2/" + $scope.studentcourse._id; 
+                    } else {
+                        $scope.studentcourse.inviteurl = "https://app.addoo.io/index.html#/client/dashboard/v2/" + $scope.studentcourse._id;    
+                    }
+                    
                     console.log("******* trying to get invite url :"+$scope.studentcourse.inviteurl);
                 }
         	}

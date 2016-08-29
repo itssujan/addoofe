@@ -161,7 +161,9 @@ angular.module('app')
                 window.wootric("run");
             }
 
-        	if (Auth && Auth.user) {
+            var preview = ($location.search()).preview;
+
+        	if ((Auth && Auth.user) || preview) {
         		$scope.disabletracking = true;
         	}
 

@@ -89,14 +89,19 @@
  -->						<tr>
 							<th class="header addoo-border addoo-no-bottom" st-sort="inviteurl">Client<i class="fa fa-sort"></i></th>
 							<th class="header addoo-border addoo-no-bottom" st-sort="fullname">Link<i class="fa fa-sort"></i></th>
+                            <th class="header addoo-border addoo-no-bottom" st-sort="fullname">Preview<i class="fa fa-sort"></i></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>{{studentcourse.email}}</td>
-								<input type="hidden" ng-model="studentcourse.inviteurl">
+							<td>{{studentcourse.email}}
+                                <input type="hidden" ng-model="studentcourse.inviteurl">
+                            </td>
 							<td>
 								<a ng-if="studentcourse.email" clipboard text="studentcourse.inviteurl" href="" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Copy invite link</a>
+                            </td>
+                            <td>    
+                                <a ng-if="studentcourse.email" href="{{studentcourse.inviteurl}}?preview=true"  target="_blank" class="text-warning" on-copied="showMessage()" on-error="fail(err)">Preview</a>
 							</td>
 						</tr>
 					</tbody>

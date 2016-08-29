@@ -20,9 +20,10 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
      * Sidebar Toggle & Cookie Control
      */
 
-    if($scope.user.product == 'addoo' || $scope.user.email == "sujan.abraham@citrix.com") { 
+    if($scope.user.email == 'itssujan@gmail.com' || $scope.user.email == 'hudson.haines@citrix.com' || $scope.user.email == 'sujan.abraham@citrix.com') { 
         window.AddooSettings = {
-            token : "d4cd612479194db0937463781105921ea3f32f5148aede2f22e97f79e98d10ff1785d5711e3a77931a38a6dbc9d74029d64eeaa8b77c2be547ad701dbb595cc8",
+            token : envService.read('inappToken'),
+            userID : $scope.user.email, 
             email : $scope.user.email,
             product : 'addoo'
         }

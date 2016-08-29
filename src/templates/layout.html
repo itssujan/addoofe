@@ -19,6 +19,9 @@
 				<li class="sidebar-list-item" id="top">
 					<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
 				</li>
+				<li class="sidebar-list-item" id="top">
+					<a ui-sref="admin.dashboard">Onboarding<span class="menu-icon fa fa-home"></span></a>
+				</li>
 				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
 					<a ui-sref="customer-manager.reports">Reports <span class="menu-icon fa fa-dashcube" aria-hidden="true"></span></a>
 				</li>
@@ -63,6 +66,7 @@
 	<div class="page-content">
 		<div ui-view></div>
 	</div>
+	<div class="addoo-inapp-container" id="addoo-inapp-container">
 </div>
 
 <!-- begin Wootric code -->
