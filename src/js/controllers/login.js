@@ -39,8 +39,8 @@ angular.module('app')
 				$cookieStore.put("user",Auth.user);
 				if(data.user.local.email){
 					//$scope.user.role = "customer-support";
-					if(data.user.local.email.indexOf("sujan") > -1 || data.user.local.email.indexOf("hudson") > -1)
-						$mixpanel.register({"$ignore":true});
+					// if(data.user.local.email.indexOf("sujan") > -1 || data.user.local.email.indexOf("hudson") > -1)
+					// 	$mixpanel.register({"$ignore":true});
 					$mixpanel.identify(data.user._id);
 					$mixpanel.people.set({
 						"$first_name" : data.user.local.firstname,

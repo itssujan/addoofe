@@ -16,6 +16,7 @@ var gulp = require('gulp'),
 	clean = require('gulp-clean'),
 	RevAll = require('gulp-rev-all'),
 	gulpif = require('gulp-if'),
+	gutil = require('gulp-util'),
     argv = require('yargs').argv;
 
 var paths = {
@@ -79,15 +80,18 @@ gulp.task('custom-js', function () {
 	if (process.env.AddooENV === 'development') {
 		return gulp.src(paths.scripts)
 			.pipe(sourcemaps.init())
-			.pipe(minifyJs())
+			.pipe(minifyJs().on('error', onError))
 			.pipe(concat('dashboard.min.js'))
 			.pipe(sourcemaps.write('maps'))
 			.pipe(gulp.dest(targetDir+'/js'))
+			.on('error', onError);
+
 	} else {
 		return gulp.src(paths.scripts)
 			.pipe(minifyJs())
 			.pipe(concat('dashboard.min.js'))
-			.pipe(gulp.dest(targetDir+'/js'));
+			.pipe(gulp.dest(targetDir+'/js'))
+			.on('error', onError);
 	}
 });
 
@@ -154,7 +158,8 @@ gulp.task('usemin', function () {
         	js: [minifyJs(), 'concat'],
         	css: [minifyCss({ keepSpecialComments: 0 }), 'concat'],
         }))
-        .pipe(gulp.dest(targetDir+'/'));
+        .pipe(gulp.dest(targetDir+'/'))
+        .on('error', onError);;
 });
 
 gulp.task('revAll', ['usemin'], function () {
@@ -181,6 +186,11 @@ gulp.task('clean' , function () {
     .pipe(clean());
 });
 
+function handleError(level, error) {
+   gutil.log(error.message);
+   process.exit(1);
+}
+function onError(error) { handleError.call(this, 'error', error);}
 
 
 /**
