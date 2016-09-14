@@ -127,7 +127,13 @@ angular.module('app')
         		],
         		theme: {
         			url: "/css/videogular.css"
-        		}
+        		},
+                plugins: {
+                    controls: {
+                        autoHide: true,
+                        autoHideTime: 5000
+                    }
+                }
         	};
 
             var currentStateURL = $state.href($state.current.name, $state.params, {absolute: false});
@@ -238,7 +244,7 @@ angular.module('app')
                             $scope.showSFPromotedVideo = true;
                     }
                     //dirty quick fix
-                    if($scope.studentcourse.product == 'solano') {
+                    if($scope.studentcourse.product == 'solano' || $scope.studentcourse.product == 'cloudstrong') {
                         var body =  document.getElementsByTagName("BODY")[0];
                         body.style.backgroundColor = "#fff";
 
@@ -318,6 +324,8 @@ angular.module('app')
                     $scope.productDisplayName = "Demo";
                 else if ($scope.studentcourse.product == "solano")
                     $scope.productDisplayName = "SolanoLabs";
+                else if ($scope.studentcourse.product == "cloudstrong")
+                    $scope.productDisplayName = "CloudStrong";
         	}
 
             if (($location.search()).org == "mt") {

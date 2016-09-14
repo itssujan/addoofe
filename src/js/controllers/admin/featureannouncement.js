@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('FeatureAnnouncementCtrl', ['$scope', 'envService', '$state', 'Restangular', '$rootScope',
-        'Auth', 'growl', '$mixpanel', '$filter',
-        function ($scope, envService, $state, Restangular, $rootScope, Auth, growl, $mixpanel, $filter) {
+        'Auth', 'growl', '$mixpanel', '$filter','$uibModal',
+        function ($scope, envService, $state, Restangular, $rootScope, Auth, growl, $mixpanel, $filter, $uibModal) {
         	console.log('In FeatureAnnouncementCtrl');
         	$scope.onboarding = {};
         	$scope.onboarding.feature = {};
@@ -15,4 +15,19 @@ angular.module('app')
                         growl.success('Product saved..');
                     });
             }
+
+            $scope.openSegmentModal = function () {
+                $scope.segmentModalInstance = $uibModal.open({
+                  animation     : true,
+                  templateUrl   : 'templates/modals/CreateSegment.html',
+                  controller    : 'CreateSegmentModalController',
+                  scope         : $scope,
+                  resolve: {
+                        content: function () {
+                            return {};
+                        }
+                    }
+                });
+            };
+
         }]);

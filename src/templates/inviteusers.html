@@ -6,17 +6,46 @@
                 </a>
             </li>
         </ul>		
-		<div class="panel panel-default paper-shadow tab-content">
-			<span>Add your team members by entering their email addresses.</span>
-			<div growl inline="true"></div>
-			<form class="form-inline" ng-submit="sendInvitation()">
-			  <div class="form-group" ng-repeat="user in users">
-			    <input type="email" class="form-control" id="email" placeholder="jane.doe@example.com" ng-model="user.email" size="50">
-			    <a href="" title="Click here to add more users" ng-click="addMoreUsers()" ng-show="users.length == $index+1"><span class="glyphicon glyphicon-plus"></span></a>
-			  </div>
-			  <br>
-			  <button type="submit" class="btn btn-warning">Send invitation</button>
-			</form>
+        <div class="row">
+			<div class="panel panel-default paper-shadow tab-content">
+				<span>Add your team members by entering their email addresses.</span>
+				<div growl inline="true"></div>
+				<form class="form-inline" ng-submit="sendInvitation()">
+				  <div class="form-group" ng-repeat="user in users">
+				    <input type="email" class="form-control" id="email" placeholder="jane.doe@example.com" ng-model="user.email" size="50">
+				    <a href="" title="Click here to add more users" ng-click="addMoreUsers()" ng-show="users.length == $index+1"><span class="glyphicon glyphicon-plus"></span></a>
+				  </div>
+				  <br>
+				  <button type="submit" class="btn btn-warning">Send invitation</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="panel panel-default">
+			  	<div class="panel-heading">
+				  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+			    	Your team
+				  </span>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-12">
+						<table class='table borderless' st-table="displayedReportees" st-safe-src="reportees">
+							<thead class="thead-inverse">
+								<tr>
+									<th st-sort="name">Name</th>
+									<th st-sort="createdOn">Created On</th>
+									<th st-sort="status">Email</th>
+								</tr>
+							</thead>
+							<tr ng-repeat="row in reportees">
+								<td style="text-transform: capitalize;">{{row.local.firstname}} {{row.local.lastname}}</td>
+								<td><span am-time-ago="row.createdOn"></span></td>
+								<td style="text-transform: lowercase;">{{row.email}}</td>
+							</tr>
+						</table>
+					</div>	
+			</div>	
 		</div>
     </div>
 </div>

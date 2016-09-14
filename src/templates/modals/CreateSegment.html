@@ -1,0 +1,46 @@
+<div id="client-modal">
+<!--     <span us-spinner style="position: center"></span>
+ -->    <div class="modal-header" ng-class="priorityStyle">
+        <span class="modal-title">Create Segment</span>
+    </div>
+    <div class="modal-body">
+        <div growl inline="true"></div>
+        <form role="form" ng-submit="createSegment() && closeThisDialog('asdasd')">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Segment Name</label>
+                    <input type="email" class="form-control" id="name" ng-model="segment.name">
+                </div>
+                <div class="form-group">
+                    <label for="rule">Rules</label>
+                    <div class="" ng-repeat="ruleSet in segment.rules">
+                        <div class="well form-inline" ng-repeat="rule in ruleSet">
+                            <div class="form-group">
+                                <select class="form-control" id="sourceField" name="sourceField" ng-model="rule.sourceField">
+                                    <option ng-repeat="sourceField in rule.sourceFields" value="{{sourceField}}">{{sourceField}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="operator" name="operator" ng-model="rule.operator">
+                                    <option ng-repeat="operator in rule.operators" value="{{operator.id}}">{{operator.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="targetField" name="targetField" ng-model="rule.targetField">
+                            </div>
+                            <div class="form-group">
+                                <a href="" title="Click here to add more users" ng-click="addAndRule()"><span class="glyphicon glyphicon-plus"></span>AND</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" ng-click="addOrRule()">Add Rule</button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="closeClientModal()">Close</button>
+				<button type="submit" class="btn btn-warning">Create</button>
+            </div>
+        </form>
+    </div>
+</div>

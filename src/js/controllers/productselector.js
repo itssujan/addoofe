@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('ProductSelectorCtrl', [ '$scope','envService', '$state','Restangular', '$rootScope',
-        'Auth','growl','$mixpanel','$filter',
-        function ($scope,envService, $state, Restangular,$rootScope, Auth, growl,$mixpanel,$filter) {
+        'Auth','growl','$mixpanel','$filter','$cookieStore',
+        function ($scope, envService, $state, Restangular, $rootScope, Auth, growl, $mixpanel, $filter, $cookieStore) {
             console.log('In ProductSelectorCtrl');
             $scope.product = "sharefile";
             $scope.products = [];
@@ -30,8 +30,11 @@ angular.module('app')
             
             $scope.setProduct = function(){
                 var selectedProduct = $scope.product
-                Auth.user.product = $scope.productsMap[selectedProduct].name;
-                Auth.user.productID = selectedProduct;
+                var user = Auth.user;
+                user.product = $scope.productsMap[selectedProduct].name;
+                user.productID = selectedProduct;
+                Auth.user = user;
+                $cookieStore.put("user",Auth.user);
                 $state.go('customer-manager.dashboard');    
             }
         } ]);

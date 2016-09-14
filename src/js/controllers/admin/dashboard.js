@@ -2,7 +2,7 @@ angular.module('app')
     .controller('AdminDashboardCtrl', ['$scope', 'envService', '$state', 'Restangular', '$rootScope',
         'Auth', 'growl', '$mixpanel', '$filter',
         function ($scope, envService, $state, Restangular, $rootScope, Auth, growl, $mixpanel, $filter) {
-        	console.log('In AdminDashboardCtrl :'+Auth.user.productID);
+        	console.log('In AdminDashboardCtrl :'+JSON.stringify(Auth.user));
         	Restangular.all("onboardingsetup?onboardingType=feature&product=" + Auth.user.productID).getList().then(function (data) {
         		console.log("data");
         		console.log(data);

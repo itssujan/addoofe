@@ -12,6 +12,8 @@ var app = angular.module('app', [
     'ui.tree',
     'ngLoadingSpinner',
     'com.2fdevs.videogular',
+    'com.2fdevs.videogular.plugins.controls',
+    'info.vietnamcode.nampnq.videogular.plugins.youtube',
     'ngDialog',
     'ng.deviceDetector',
     'ngIdle',

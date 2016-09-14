@@ -30,7 +30,7 @@
                 <input type="checkbox" ng-model="course.baseTrack" ng-change="baseTrack()">
             </div>
         </div>
-        <div class="content-addition col-sm-2" ng-show="user.role != 'sales' && (user._id == course.author || course.author._id)">
+        <div class="content-addition col-sm-2" ng-show="(user.permissions.indexOf('addUsers') > -1 || user.role == 'superadmin') && (user._id == course.author || course.author._id)">
             <div class="description">
                 <p>Share with Team</p>
             </div>

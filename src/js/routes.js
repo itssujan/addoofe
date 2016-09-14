@@ -39,6 +39,7 @@
 
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
               if(!Auth.isLoggedIn) {
+                    console.log("Getting User :"+JSON.stringify(Auth.user));
                     Auth.user = $cookieStore.get("user");
                     if(Auth.user){
                         Auth.isLoggedIn = true;

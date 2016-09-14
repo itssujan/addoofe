@@ -29,6 +29,19 @@
 					</div>
 
 					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'video'">Youtube Video</label>
+						<div class="field-container col-md-6">
+							<div class="media v-middle">
+								<select ng-model="video.youtube" ng-init="video.youtube = 'no'" name="source" id="source">
+									<option value="yes">Yes</option>
+									<option value="no" selected="selected">No</option>
+								</select>
+
+							</div>
+						</div>
+					</div>
+	
+					<div class="form-group" ng-show="video.youtube == 'no'">
 						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'video'">Video</label>
 						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'document'">Document</label>
 						<div class="field-container col-md-6">
@@ -39,13 +52,26 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group" ng-show="video.youtube == 'no'">
 						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'video'">Poster of the video</label>
 						<label for="inputEmail3" class="col-sm-2 control-label" ng-show="video.type == 'document'">Poster of the document</label>
 						<div class="field-container col-md-6">
 							<div class="media v-middle">
 								<div s3-upload bucket="bucket" ng-model="video.posterurl" do-upload="performUpload" s3-upload-options="{getOptionsUri: s3OptionsUri, folder: 'content/posters/{{product}}/',submitOnChange : true}" ng-model="s3OptionsUri"></div>
 
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="video.youtube == 'yes'">
+						<label for="inputEmail3" class="col-md-2 control-label">Youtube URL</label>
+						<div class="row-container col-md-10">
+							<div class="row">
+								<div class="field-container col-md-6">
+									<div class="form-control-material">
+										<input type="text" class="form-control" id="url" placeholder="Youtube URL" ng-model="video.url">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

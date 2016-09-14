@@ -58,7 +58,13 @@ angular.module('app')
 					} else if(data.user.products.length > 1){
 						$state.go('customer-manager.product-selection');
 					} else {
-						$state.go('customer-manager.dashboard');
+						Restangular.one('product',data.user.products[0]).get().then(function (product) {
+							if(product) {
+								Auth.user.product = product.name;
+								$cookieStore.put("user",Auth.user);
+								$state.go('customer-manager.dashboard');
+							}
+						})
 					}
 				} else{
 

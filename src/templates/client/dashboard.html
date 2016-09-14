@@ -21,10 +21,11 @@
         <img class="client-logo" ng-if="!user && studentcourse.product == 'demo'" src="img/logo/products/ShareFile-Portal-Logo.png" />
         <img class="client-logo" ng-if="!user && studentcourse.product == 'bollo'" src="img/logo/products/Bollo-Portal-Logo.png" />
         <img class="client-logo" ng-if="!user && studentcourse.product == 'solano'" src="img/logo/products/Solano-Portal-Logo.png" />
+        <img class="client-logo" ng-if="!user && studentcourse.product == 'cloudstrong'" src="img/logo/products/CloudStrong-Portal-Logo.png" />
         <ul class="client-nav">
-            <li class="client-heading" ng-if="studentcourse.product != 'solano'"><a href="" ng-click="openSupportModal()">Support</a>
-            <li class="client-heading" ng-if="studentcourse.product == 'solano'"><a href="" ng-href="mailto:{{studentcourse.onboardingSpecialist.email}}">Support</a>
-            </li>
+            <li class="client-heading" ng-if="studentcourse.product != 'solano' && studentcourse.product != 'cloudstrong'"><a href="" ng-click="openSupportModal()">Support</a></li>
+            <li class="client-heading" ng-if="studentcourse.product == 'solano'"><a href="" ng-href="mailto:{{studentcourse.onboardingSpecialist.email}}">Support</a></li>
+            <li class="client-heading" ng-if="studentcourse.product == 'cloudstrong'"><a href="" ng-href="mailto:info@cloudstrong.ie">Support</a></li>
             <li class="client-heading">
                 <a ng-if="studentcourse.product == 'sharefile'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
                 <a ng-if="studentcourse.product == 'sharefile-presales'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
@@ -37,6 +38,7 @@
                 <a ng-if="studentcourse.product == 'demo'" href="https://www.sharefile.com/redirects/login" target="_blank">Sign in</a>
                 <a ng-if="studentcourse.product == 'bollo'" href="https://podio.com/login" target="_blank">Sign in</a>
                 <a ng-if="studentcourse.product == 'solano'" href="https://ci.solanolabs.com/signin" target="_blank">Sign in</a>
+                <a ng-if="studentcourse.product == 'cloudstrong'" href="http://www.cloudstrong.ie/" target="_blank">Sign in</a>
             </li>
 <!--             <li class="client-heading"><a href="" ng-click="launchWootricNPS('rateus')">Rate us</a></li>
  -->        </ul>
@@ -50,11 +52,21 @@
 
         <div class="client-viewer" ng-if="!video.type || video.type == 'video'">
             <videogular vg-theme="config.theme.url" vg-complete="onCompleteVideo()" vg-player-ready="onPlayerReady($API)" vg-update-state="updateVideoState($state)" vg-update-time="updateVideoTime($currentTime, $duration)" >
-                        <vg-media vg-src="config.sources" vg-tracks="config.tracks" vg-native-controls="true"></vg-media>
-    <!--                     <div class="my-logo-layer">
-                            <a href="http://www.google.com" target="_blank"><img src="http://www.videogular.com/img/videogular.png">test test</a>
-                        </div>
-     -->
+                <vg-media vg-src="config.sources" vg-tracks="config.tracks" vg-native-controls="true" vg-youtube="rel=1;showinfo=1"></vg-media>
+                <vg-controls vg-autohide="config.plugins.controls.autoHide" vg-autohide-time="config.plugins.controls.autoHideTime" ng-show="video.url.indexOf('youtube.com') > -1">
+                    <vg-play-pause-button></vg-play-pause-button>
+                    <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    </vg-scrub-bar>
+                    <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-volume>
+                        <vg-mute-button></vg-mute-button>
+                        <vg-volume-bar></vg-volume-bar>
+                    </vg-volume>
+                    <vg-fullscreen-button></vg-fullscreen-button>
+                </vg-controls>
             </videogular>
         </div>
         <div class="client-pdf-viewer" ng-if="video.type && video.type == 'document'">
@@ -93,7 +105,7 @@
             </div>
         </div>
 
-        <div ng-show="studentcourse.product != 'solano'"> 
+        <div ng-show="studentcourse.product != 'solano' && studentcourse.product != 'cloudstrong'"> 
             <h5 class="client-heading" style="margin-top:10px;margin-bottom:10px">Other Products You Might Like</h5>
             <div class="client-crossSell">
                 <a href="https://shareconnect.com/" target="_blank" ng-click="trackevent('shareconnect');"><img class="client-crossSellLogo" src="img/logo/products/ShareConnect-Black.png" ng-show="studentcourse.product == 'sharefile' || studentcourse.product == 'rightsignature'"/></a>
@@ -142,7 +154,8 @@
                     <div class="videos">
                         <a href="" ng-click="playVideo($index)" class="video">
                             <span ng-show="showPlayBtn"></span>
-                            <img class="other-videos-poster" ng-show="!nextvideo.posterurl" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                            <img class="other-videos-poster" ng-show="!nextvideo.posterurl && studentcourse.product == 'sharefile'" src="img/icons/posters/ShareFile-Default-Poster.png" alt="{{nextvideo.title}}" />
+                            <img class="other-videos-poster" ng-show="!nextvideo.posterurl && studentcourse.product != 'sharefile'" src="{{nextvideo.url}}" alt="{{nextvideo.title}}" />
                             <img class="other-videos-poster" ng-show="nextvideo.posterurl" src="{{nextvideo.posterurl}}" alt="{{nextvideo.title}}" />
                         </a>
                     </div>    

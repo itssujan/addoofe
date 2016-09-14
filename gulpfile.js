@@ -26,7 +26,8 @@ var paths = {
 	templates: 'src/templates/**/*.html',
 	index: 'src/index.html',
 	bower_fonts: 'src/components/**/*.{ttf,woff,eof,svg}',
-	swf: 'src/components/zeroclipboard/dist/*.swf'
+	swf: 'src/components/zeroclipboard/dist/*.swf',
+	videogular_fonts : 'src/components/videogular-themes-default/fonts/*.*',
 };
 
 var targetDir = 'temp';
@@ -69,7 +70,7 @@ gulp.task('copy-bower_fonts', function () {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'custom-swf','custom-css']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'custom-swf','custom-css', 'custom-fonts']);
 
 gulp.task('custom-images', function () {
 	return gulp.src(paths.images)
@@ -112,6 +113,13 @@ gulp.task('custom-swf', function () {
 	return gulp.src(paths.swf)
         .pipe(gulp.dest(targetDir+'/swf'));
 });
+
+
+gulp.task('custom-fonts', function () {
+	return gulp.src(paths.videogular_fonts)
+        .pipe(gulp.dest(targetDir+'/css/fonts/'));
+});
+
 
 gulp.task('custom-css', function () {
 	return gulp.src("src/components/videogular-themes-default/videogular.css")

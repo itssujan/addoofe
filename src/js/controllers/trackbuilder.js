@@ -91,6 +91,8 @@ angular.module('app')
                     applicableContent.push('bollo');
                 } else if (prod == 'solano') {
                     applicableContent.push('solano');
+                } else if (prod == 'cloudstrong') {
+                    applicableContent.push('cloudstrong');
                 }
         	}
 
@@ -448,6 +450,8 @@ angular.module('app')
                     applicableContent.push('bollo');
                 } else if (prod == 'solano') {
                     applicableContent.push('solano');
+                } else if (prod == 'cloudstrong') {
+                    applicableContent.push('cloudstrong');
                 }
         		return applicableContent;
         	}
