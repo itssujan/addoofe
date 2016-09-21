@@ -35,7 +35,7 @@ angular.module('app')
         	}
 
         	var queryParams = "&populate=studentID&populate=courseID&populate=author";
-        	if (Auth.user.role == 'sales') {
+        	if (Auth.user.permissions.indexOf('canSeeAllTracks') < 0) {
         		queryParams = "&author=" + Auth.user._id + "&populate=studentID&populate=courseID";
         	}
 

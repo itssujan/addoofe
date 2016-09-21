@@ -20,6 +20,7 @@ angular.module('app')
         	$scope.selectedVideos	= [];
             $scope.selectedDocs     = [];
             $scope.showprogress     = true;
+            $scope.multiVideoSelect = true;
 
         	$scope.customerSupportReps = Restangular.all("user?role=customer-onboarding-specialist").getList().$object;
 

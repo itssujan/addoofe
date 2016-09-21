@@ -26,6 +26,9 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
             token : envService.read('inappToken'),
             userID : $scope.user.email,
             email : $scope.user.email,
+            firstName : $scope.user.local.firstName,
+            lastNameName : $scope.user.local.lastName,
+            createdOn : $scope.user.createdOn,
             product : 'addoo'
             // disableTracking : 'true'
         }

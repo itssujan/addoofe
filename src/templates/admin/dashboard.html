@@ -100,6 +100,44 @@
 	</div>	
 </div>
 
+<div class="row">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+		  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+	    	InApp Onboarding
+		  </span>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<table class='table borderless' st-table="displayedOnboarding" st-safe-src="onboarding">
+					<thead class="thead-inverse">
+						<tr>
+							<th st-sort="name">Name</th>
+							<th st-sort="createdOn">Created On</th>
+							<th st-sort="status">Status</th>
+							<th st-sort="viewedBy">Message Seen</th>
+							<th st-sort="clickedBy">Feature Viewed</th>
+							<th st-sort="watchedBy">Started</th>
+							<th st-sort="watchedBy">Completed</th>
+							<th st-sort="watchedBy">Dismissed</th>
+						</tr>
+					</thead>
+					<tr ng-repeat="row in displayedOnboarding">
+						<td>{{row.name}}</td>
+						<td><span am-time-ago="row.createdOn"></span></td>
+						<td style="text-transform: capitalize;">{{row.status}}</td>
+						<td>{{row.training.messageViewedBy}}</td>
+						<td>{{row.training.featureViewedBy}}</td>
+						<td>{{row.training.startedBy}}</td>
+						<td>{{row.training.completedBy}}</td>
+						<td>{{row.training.dismissedBy}}</td>
+						<td><a ui-sref="">View</a></td>
+					</tr>
+				</table>
+			</div>	
+	</div>	
+</div>
+
 <!-- <div class="row">
 	<div style="width: 90%; height: 16px; border-bottom: 1px solid black; text-align: left">
 	  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">

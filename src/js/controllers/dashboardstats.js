@@ -12,7 +12,7 @@ angular.module('app')
              $scope.auth = Auth;
              $scope.topfiveusers = [];
 
-             Restangular.all("weeklytrackstats").getList().then(function (data) {
+             Restangular.all("weeklytrackstats?product="+Auth.user.product).getList().then(function (data) {
                 var data1 = [];
                 for(var i=0; i < 7 && data[i]; i++) {
                     $scope.labels.push(data[i].date.month+"/"+data[i].date.day+"/"+data[i].date.year);
@@ -36,7 +36,7 @@ angular.module('app')
             };
 
             // Get Leader board..
-            Restangular.all("topweeklyusers").getList().then(function (data) {
+            Restangular.all("topweeklyusers?product="+Auth.user.product).getList().then(function (data) {
                 $scope.topfiveusers = $scope.topfiveusers.concat(data);
                 $scope.topfiveusers.sort(compare);
             });
@@ -56,7 +56,7 @@ angular.module('app')
                 $scope.topfiveusers.sort(compare);
             });
 
-            Restangular.all("topvideos").getList().then(function (data) {
+            Restangular.all("topvideos?product="+Auth.user.product).getList().then(function (data) {
                 $scope.topvideos = data;
             });
 

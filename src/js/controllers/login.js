@@ -62,7 +62,12 @@ angular.module('app')
 							if(product) {
 								Auth.user.product = product.name;
 								$cookieStore.put("user",Auth.user);
-								$state.go('customer-manager.dashboard');
+								if(Auth.user.permissions.indexOf('addUsers') < 0 && !Auth.user.manager && product.name == 'sharefile') {
+									$state.go('customer-manager.profile',{managerRequired: true});	
+								} else {
+									$state.go('customer-manager.dashboard');	
+								}
+								
 							}
 						})
 					}

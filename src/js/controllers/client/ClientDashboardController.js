@@ -239,6 +239,7 @@ angular.module('app')
                         $scope.connectorPromo = true; //enabling connector promo
                     }
                     $scope.loading = false;
+                    console.log("Setting loading to false ***");
                     if($scope.studentcourse.product == 'sharefile' && $scope.studentcourse.industry && 
                         ($scope.studentcourse.industry != 'Healthcare' ||  $scope.studentcourse.industry != 'Financial')) {
                             $scope.showSFPromotedVideo = true;

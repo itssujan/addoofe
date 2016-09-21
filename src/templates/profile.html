@@ -79,7 +79,8 @@
 						</div>
 					</div>
 
-					<div class="form-group" ng-if="managers.length > 0 && user.role == 'sales'">
+					<div class="form-group" ng-if="user.permissions.indexOf('addUsers') < 0 && user.product == 'sharefile'">
+						<label for="inputPassword3" class="col-md-2 control-label">Vertical Director</label>
 						<div class="field-container col-md-6">
 							<div class="form-control-material">
 				                <select class="form-control" ng-model="user.manager" ng-required="true">

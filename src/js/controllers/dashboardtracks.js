@@ -13,7 +13,7 @@ angular.module('app')
             $scope.searchText = '';
 
             var queryParams = "&populate=studentID&populate=courseID&populate=author";
-            if(Auth.user.role == 'sales'){
+            if(Auth.user.permissions.indexOf('canSeeAllTracks') < 0){
                 queryParams = "&author="+Auth.user._id+"&populate=studentID&populate=courseID";
             }
 
@@ -59,9 +59,5 @@ angular.module('app')
                 });
                 $scope.displayedStudentCourseCollection = [].concat($scope.studentcourses);
                 $scope.loading = false;
-
             }
-
-
-
         } ]);

@@ -23,8 +23,11 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="video in displayedvideolessons">
-					<td class="video-list-modal-checkbox" title="'Select'">
+					<td class="video-list-modal-checkbox" title="'Select'" ng-if="multiVideoSelect">
 						<input id="checkbox3" type="checkbox" ng-model="video.selected" ng-change="addVideoToQueue(video.selected,video)">
+					</td>
+					<td class="video-list-modal-checkbox" title="'Select'" ng-if="!multiVideoSelect">
+						<input type="radio" name="video" ng-model="video.selected" ng-value="true">
 					</td>
 					<td title="'Name'" filter="{title: 'text'}" sortable="'title'">
 						{{video.title}}
