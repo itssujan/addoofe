@@ -13,11 +13,26 @@
          </a>
       </div>
    </div>
- -->   <div class="col-sm-4">
+ -->   
+ 	<div class="col-sm-4">
+      <div class="panel panel-success panel-hover">
+         <a ui-sref="admin.onboarding" class="panel-body">
+            <div class="media">
+               <div class="media-left"><i class="material-icons">Onbboarding</i></div>
+               <div class="media-body">
+                  <strong class="media-heading">InApp Trainings</strong>
+                  <p>Onboard your customers with inapp training.</p>
+                  <!-- <span class="text-link">Start branding</span> -->
+               </div>
+            </div>
+         </a>
+      </div>
+   </div>
+ 	<div class="col-sm-4">
       <div class="panel panel-success panel-hover">
          <a ui-sref="admin.featureannouncement" class="panel-body">
             <div class="media">
-               <div class="media-left"><i class="material-icons">announcement</i></div>
+               <div class="media-left"><i class="material-icons">Announcement</i></div>
                <div class="media-body">
                   <strong class="media-heading">InApp Feature Announcements</strong>
                   <p>Announce new features to the customers.</p>
@@ -77,6 +92,7 @@
 							<th st-sort="name">Name</th>
 							<th st-sort="createdOn">Created On</th>
 							<th st-sort="status">Status</th>
+							<th st-sort="viewedBy">Message Auto Seen</th>
 							<th st-sort="viewedBy">Message Seen</th>
 							<th st-sort="clickedBy">Feature Viewed</th>
 							<th st-sort="watchedBy">Started</th>
@@ -88,6 +104,7 @@
 						<td>{{row.name}}</td>
 						<td><span am-time-ago="row.createdOn"></span></td>
 						<td style="text-transform: capitalize;">{{row.status}}</td>
+						<td>{{row.feature.messageAutoShown}}</td>
 						<td>{{row.feature.messageViewedBy}}</td>
 						<td>{{row.feature.featureViewedBy}}</td>
 						<td>{{row.feature.startedBy}}</td>

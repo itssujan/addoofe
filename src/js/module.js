@@ -29,15 +29,15 @@ var app = angular.module('app', [
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
 'RestangularProvider','$httpProvider','growlProvider','$mixpanelProvider', 'envServiceProvider','IdleProvider','KeepaliveProvider',
-'ngS3Config','ngDialogProvider','reCAPTCHAProvider','$analyticsProvider',
+'ngS3Config','ngDialogProvider','reCAPTCHAProvider','$analyticsProvider','ChartJsProvider',
     function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider, 
         RestangularProvider,$httpProvider, growlProvider, $mixpanelProvider,envServiceProvider,IdleProvider,
-        KeepaliveProvider,ngS3Config,ngDialogProvider, reCAPTCHAProvider,$analyticsProvider) {
+        KeepaliveProvider,ngS3Config,ngDialogProvider, reCAPTCHAProvider,$analyticsProvider, ChartJsProvider) {
 
     	envServiceProvider.config({
 			domains: {
 				development: ['localhost', 'dev.local'],
-				production: ['app.addoo.io','training.sharefile.com'],
+				production: ['app.addoo.io','training.sharefile.com','training.shareconnect.com'],
                 stage: ['app3.addoo.io','stageapp.addoo.io']
 				// anotherStage: ['domain1', 'domain2'], 
 				// anotherStage: ['domain1', 'domain2'] 
@@ -58,7 +58,7 @@ app.config(
                     inappserverurl : 'http://localhost:3000/js/addooplugin.min.js',
                     //inappToken : "790ad311022769ef305aca262cb2d7b8f26736decb489a6e2e49e4e1d4b240f0fe522a2ace7a928f55b72bc8a99b5e4b",
                     inappToken : "d4cd612479194db0937463781105921ea3f32f5148aede2f22e97f79e98d10ff1785d5711e3a77931a38a6dbc9d74029d64eeaa8b77c2be547ad701dbb595cc8",
-                    //inappToken : "b4aa689f9f4dc2309a3c9406b1ef605252359590b9c832e932e53aec3d91589e62434e8182cbc4a53964c6111ac9209e",
+                    //inappToken : "b4aa689f9f4dc2309a3c9406b1ef605252359590b9c832e932e53aec3d91589e62434e8182cbc4a53964c6111ac9209e",//sharefile prod
                     //inappToken : "790ad311022769ef305aca262cb2d7b8f26736decb489a6e2e49e4e1d4b240f0fe522a2ace7a928f55b72bc8a99b5e4b",
                     enableGA : false
 				},
@@ -171,6 +171,9 @@ app.config(
             disablePageTracking: null,
             userId: 'UA-81862521-1'
         };
+
+        ChartJsProvider.setOptions({ colors : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
+
 
         // window.doorbellOptions = {
         //     appKey: 'YL2dc2ZGv0BXAWR82PuYNlVmULaEftefXP6j6zxtfmfvUBpCwCgiE1l7evPy0K7n'

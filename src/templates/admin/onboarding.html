@@ -1,0 +1,54 @@
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
+
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">InApp Onboarding</span>
+                </a>
+            </li>
+        </ul>
+        <div class="panel panel-default paper-shadow tab-content">
+            <div growl inline="true"></div>
+            <form ng-submit="save()">
+                <div class="form-group row">
+                    <label for="title" class="col-md-2 form-control-label">Name</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="title" placeholder="Name" ng-model="onboarding.name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 form-control-label">Description</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="description" placeholder="Description" ng-model="onboarding.description">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 form-control-label">Status</label>
+                    <div class="col-md-4">
+                            <select name="status" ng-model="onboarding.status">
+                              <option value="published">Published</option>
+                              <option value="draft">Draft</option>
+                              <option value="expired">Expired</option>
+                            </select><br>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 form-control-label">Onboarding Track</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="courseID" placeholder="Track" ng-model="onboarding.training.courseID">
+                        <input type="text" class="form-control" id="courseTitle" placeholder="Track Title" ng-model="onboarding.training.courseTitle" ng-click="openTrackListModal();">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
