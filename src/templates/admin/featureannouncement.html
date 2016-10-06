@@ -1,66 +1,99 @@
-    <div class="page-section profile third">
-        <div class="tabbable paper-shadow relative" data-z="0.5">
+<div class="page-section profile third">
+    <div class="tabbable paper-shadow relative" data-z="0.5">
 
-            <ul class="nav nav-tabs">
-                <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Feature Release Announcement</span>
-                    </a>
-                </li>
-            </ul>
-            <div class="panel panel-default paper-shadow tab-content">
-                <div growl inline="true"></div>
-                <form ng-submit="save()">
-                    <div class="form-group row">
-                        <label for="title" class="col-md-2 form-control-label">Name</label>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="title" placeholder="Name" ng-model="onboarding.name">
+        <ul class="nav nav-tabs">
+            <li><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Feature Release Announcement</span>
+                </a>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default paper-shadow tab-content">
+                    <div growl inline="true"></div>
+                    <form ng-submit="save()">
+                        <div class="form-group row">
+                            <label for="title" class="col-md-2 form-control-label">Name</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="title" placeholder="Name" ng-model="onboarding.name">
+                            </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 form-control-label">Description</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="description" placeholder="Description" ng-model="onboarding.description">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 form-control-label">Status</label>
+                            <div class="col-md-4">
+                                    <select name="status" ng-model="onboarding.status">
+                                      <option value="published">Published</option>
+                                      <option value="draft">Draft</option>
+                                      <option value="expired">Expired</option>
+                                    </select><br>
+                            </div>
+                        </div>
+
+        <!--                 <div class="form-group row">
+                            <label for="title" class="col-sm-2 form-control-label">Segment</label>
+                            <div class="col-md-4">
+                                    <select name="segments" id="segments" ng-model="segments">
+                                      <option ng-repeat="segment in segments" value="{{segment._id}}">{{segment.name}}</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="" ng-click="openSegmentModal()" type="button" class="btn btn-warning" style="float:right">Create New Segment</a>
+                            </div>
+
+                        </div>                
+         -->
+                        <div class="form-group row" ng-repeat="row in onboarding.feature.content">
+                            <label for="title" class="col-sm-2 form-control-label">Video {{$index + 1}}</label>
+                            <div class="col-sm-4">
+                                <input type="hidden" class="form-control" id="videoID{{$index}}" placeholder="Video" ng-model="row.videoID">
+                                <input type="text" class="form-control" id="videoTitle{{$index}}" placeholder="Video Title" ng-model="row.videoTitle" ng-click="openVideoListModal();markField($index)">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="panel panel-default paper-shadow tab-content">
+                        <div style="position: fixed; right: 20px;top:50px">
+                            <div style="width: 49px; height: 49px; background: red; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; postion: fixed;box-shadow :0 0 10px rgba(0,0,0,0.6)"></div>
+                                <div style="width: 35px; height: 35px; background: white; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; position: relative; top: 15%; left: 15%;">
+                                    <div style="width: 15px; height: 15px; background: red; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; margin: -26px 0 0 8px; position: absolute; top: 50%; left: 50%;">
+                                    </div>
+                                </div>
+                        </div>
+                        <div style="position: fixed; right: 90px; width: 390px;; background: white; font-family: arial, sans-serif; padding: 10px 20px; border-radius: 10px; box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 6px 15px 0 rgba(0,0,0,0.2);">
+                            <a href="#"><img style="position: absolute; top: -5px; right: -5px; "src="img/icons/x-close.png"></a>
+                            <h1 style="font-size: 16px; color: #707070; -webkit-margin-after: 3px;">{{onboarding.name}}</h1>
+                            <p style="font-size: 12px; color: #707070; -webkit-margin-before: 5px;">{{onboarding.description}}</p>
+                            <div style="width: 100%; text-align: center;">
+                                <button style="background-color: #78be20; border: none; color: white; text-align: center; text-decoration: none; display: block; font-size: 14px; padding: 8px 30px 8px 30px; margin: 0 auto 5px auto;">Learn more</button>
+                                <a href="#" style="text-decoration: none; color: #bebebe; font-size: 12px; ">Dismiss Alert</a>
+                            </div>  
+                            <div style="position: absolute; left: 100%; top: 92%; width: 0; height: 0;  border: 10px solid white; border-color: transparent transparent white white; transform-origin: 0 0; transform: rotate(-135deg); box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.15)">
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+                <div class="row">
+                    <div class="panel panel-default paper-shadow tab-content">
+
                     </div>
-
-                    <div class="form-group row">
-                        <label for="title" class="col-sm-2 form-control-label">Description</label>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="description" placeholder="Description" ng-model="onboarding.description">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="title" class="col-sm-2 form-control-label">Status</label>
-                        <div class="col-md-4">
-                                <select name="status" ng-model="onboarding.status">
-                                  <option value="published">Published</option>
-                                  <option value="draft">Draft</option>
-                                  <option value="expired">Expired</option>
-                                </select><br>
-                        </div>
-                    </div>
-
-    <!--                 <div class="form-group row">
-                        <label for="title" class="col-sm-2 form-control-label">Segment</label>
-                        <div class="col-md-4">
-                                <select name="segments" id="segments" ng-model="segments">
-                                  <option ng-repeat="segment in segments" value="{{segment._id}}">{{segment.name}}</option>
-                                </select>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="" ng-click="openSegmentModal()" type="button" class="btn btn-warning" style="float:right">Create New Segment</a>
-                        </div>
-
-                    </div>                
-     -->
-                    <div class="form-group row" ng-repeat="row in onboarding.feature.content">
-                        <label for="title" class="col-sm-2 form-control-label">Video {{$index + 1}}</label>
-                        <div class="col-sm-10">
-                            <input type="hidden" class="form-control" id="videoID{{$index}}" placeholder="Video" ng-model="row.videoID">
-                            <input type="text" class="form-control" id="videoTitle{{$index}}" placeholder="Video Title" ng-model="row.videoTitle" ng-click="openVideoListModal();markField($index)">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
+</div>

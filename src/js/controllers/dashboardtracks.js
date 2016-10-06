@@ -18,7 +18,7 @@ angular.module('app')
             }
 
             var getActiveTracks = function() {
-                Restangular.all("studentcourses?product="+Auth.user.product+queryParams+"&sort=-invitedOn&limit=70").getList().then(function(data){
+                Restangular.all("studentcourses?product="+Auth.user.product+queryParams+"&sort=-invitedOn&limit="+70).getList().then(function(data){
                     populateTable(data);
                 });
             }
