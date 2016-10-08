@@ -9,6 +9,21 @@ angular.module('app')
         	$scope.onboarding = {};
         	$scope.onboarding.feature = {};
         	$scope.onboarding.feature.content = [];
+            $scope.onboarding.feature.htmlContent = "<h1>Hello World</h1>"
+            $scope.froalaOptions = {
+                toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'fontFamily',
+                 'fontSize', 'color', 'emoticons', '-',  'paragraphFormat', 'paragraphStyle', 'align', 'formatOL', 
+                 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 
+                 'insertTable', 'insertFile', 'undo', 'redo', 'html'],
+            toolbarButtonsMD: null,
+            toolbarButtonsSM: null,
+            toolbarButtonsXS: null,
+
+                // toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'color', 'emoticons', '-',  'paragraphFormat', 'paragraphStyle', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', 'insertFile', 'undo', 'redo', 'html'],
+                // toolbarButtonsXS: ['undo', 'redo' , '-', 'bold', 'italic', 'underline']
+            }
+
+
 
             var initializeContent = function() {
                 for(var i=0; i < $scope.maxContentCount ; i++) {
@@ -47,7 +62,7 @@ angular.module('app')
             }
 
         	$scope.save = function() {
-                    console.log("Saving :"+JSON.stringify($scope.onboarding));
+                    console.log("Saving :"+JSON.stringify($scope.onboarding.feature.htmlContent));
                     $scope.onboarding.onboardingType = "feature";
                     $scope.onboarding.product = $scope.product._id;
                     console.log("Saving :"+JSON.stringify($scope.onboarding));

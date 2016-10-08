@@ -66,8 +66,7 @@ angular.module('app')
 									$state.go('customer-manager.profile',{managerRequired: true});	
 								} else {
 									$state.go('customer-manager.dashboard');	
-								}
-								
+								}								
 							}
 						})
 					}

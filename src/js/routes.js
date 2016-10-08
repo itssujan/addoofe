@@ -151,7 +151,13 @@
                     ctrl: "onboardingConfigCtrl",
                     controller: "OnboardingConfigCtrl",
                     data: {requiresLogin: true}
-                });;
+                }).state('admin.featureusage', {
+                    url: '/featureusage',
+                    templateUrl: 'templates/admin/featureusage.html',
+                    ctrl: "featureUsageCtrl",
+                    controller: "FeatureUsageCtrl",
+                    data: {requiresLogin: true}
+                });
 
                 $stateProvider
                 .state('customer-manager', {

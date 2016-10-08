@@ -60,7 +60,10 @@
     "angular-pdf": "~1.3.0",
     "angulartics-google-analytics": "^0.2.1",
     "bower-videogular-youtube": "videogular-youtube#^2.0.6",
-    "videogular-controls": "^1.4.4"
+    "videogular-controls": "^1.4.4",
+    "froala-editor": "*",
+    "jQuery": "^3.1.1",
+    "angular-froala": "^2.3.4"
   },
   "repository": {
     "type": "git",

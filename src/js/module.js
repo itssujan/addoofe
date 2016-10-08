@@ -23,8 +23,14 @@ var app = angular.module('app', [
     'reCAPTCHA',
     'pdf',
     'angulartics', 
-    'angulartics.google.analytics'
+    'angulartics.google.analytics',
+    'froala'
 	]);
+
+ app.value('froalaConfig', {
+        toolbarInline: false,
+        placeholderText: 'Enter Text Here'
+    });
 
 app.config( 
 [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
