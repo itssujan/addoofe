@@ -25,15 +25,16 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
         window.AddooSettings = {
             token : envService.read('inappToken'),
             user : {
-                id : $scope.user.email,
-                email : 'Sujan.Abraham@citrix.com',//$scope.user.email,
+                id : $scope.user._id,
+                email : $scope.user.email,
                 firstName : $scope.user.local.firstName,
                 lastNameName : $scope.user.local.lastName,
                 createdOn : $scope.user.createdOn
-            },
-            account : {
-                id : 'test-autodesk'
             }
+            // ,
+            // account : {
+            //     id : 'test-autodesk'
+            // }
 
             // SF Sample Code
             // token:"b4aa689f9f4dc2309a3c9406b1ef605252359590b9c832e932e53aec3d91589e62434e8182cbc4a53964c6111ac9209e",

@@ -152,7 +152,7 @@
                     controller: "OnboardingConfigCtrl",
                     data: {requiresLogin: true}
                 }).state('admin.featureusage', {
-                    url: '/featureusage',
+                    url: '/featureusage/:featureID',
                     templateUrl: 'templates/admin/featureusage.html',
                     ctrl: "featureUsageCtrl",
                     controller: "FeatureUsageCtrl",

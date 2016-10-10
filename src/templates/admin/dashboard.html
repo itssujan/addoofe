@@ -81,6 +81,33 @@
 	<div class="panel panel-default">
 	  	<div class="panel-heading">
 		  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+	    	Product Insights
+		  </span>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<table class='table borderless' st-table="displayedFeatureonboarding" st-safe-src="featureonboarding">
+					<thead class="thead-inverse">
+						<tr>
+							<th st-sort="name">Logins</th>
+							<th st-sort="createdOn">Count</th>
+						</tr>
+					</thead>
+					<tr ng-repeat="row in displayedFeatureonboarding">
+						<td>{{row.name}}</td>
+						<td>{{row.feature.dismissedBy}}</td>
+						<td><a ui-sref="admin.featureusage({featureID : '{{row._id}}'})">View</a></td>
+					</tr>
+				</table>
+			</div>	
+	</div>	
+</div>
+
+
+<div class="row">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+		  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
 	    	InApp Feature Announcements
 		  </span>
 		</div>
@@ -110,7 +137,7 @@
 						<td>{{row.feature.startedBy}}</td>
 						<td>{{row.feature.completedBy}}</td>
 						<td>{{row.feature.dismissedBy}}</td>
-						<td><a ui-sref="admin.featureusage">View</a></td>
+						<td><a ui-sref="admin.featureusage({featureID : '{{row._id}}'})">View</a></td>
 					</tr>
 				</table>
 			</div>	
