@@ -28,6 +28,7 @@ var app = angular.module('app', [
 	]);
 
  app.value('froalaConfig', {
+        key : 'LDIE1QCYRWa2GPIb1d1H1==',
         toolbarInline: false,
         placeholderText: 'Enter Text Here'
     });

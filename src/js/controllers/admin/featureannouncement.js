@@ -17,14 +17,15 @@ angular.module('app')
                  'insertTable', 'insertFile', 'undo', 'redo', 'html'],
                 toolbarButtonsMD: null,
                 toolbarButtonsSM: null,
-                toolbarButtonsXS: null,
-                events: {
-                    'froalaEditor.initialized': function (e, froalaEditor) {
-                        console.log("froalaEditor initialized :"+froalaEditor);
-                        // Use the methods like this.
-                        froalaEditor('key','LDIE1QCYRWa2GPIb1d1H1==');
-                    }
-                }
+                toolbarButtonsXS: null
+                // ,
+                // events: {
+                //     'froalaEditor.initialized': function (e, froalaEditor) {
+                //         console.log("froalaEditor initialized :"+froalaEditor);
+                //         // Use the methods like this.
+                //         froalaEditor('key','LDIE1QCYRWa2GPIb1d1H1==');
+                //     }
+                // }
 
                 // toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'color', 'emoticons', '-',  'paragraphFormat', 'paragraphStyle', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', 'insertFile', 'undo', 'redo', 'html'],
                 // toolbarButtonsXS: ['undo', 'redo' , '-', 'bold', 'italic', 'underline']
