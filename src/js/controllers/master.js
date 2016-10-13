@@ -37,24 +37,26 @@ function MasterCtrl($rootScope,$scope, $cookieStore,Auth,envService,Idle) {
             // }
 
             // SF Sample Code
-            // token:"b4aa689f9f4dc2309a3c9406b1ef605252359590b9c832e932e53aec3d91589e62434e8182cbc4a53964c6111ac9209e",
-            // user: {
-            //     id:"644dac5d-92aa-44e9-957a-82cace5d4fe6",
-            //     role:"employee",
-            //     email:"Sujan.Abraham@citrix.com"
-            // },
-            // account:{
-            //     id:"a0b0dce3-d7cd-8b54-c437-10d2541dfcde",
-            //     name:"addoo",
-            //     planLevel:"Business",
-            //     creationDate:"9/29/2016 10:05:06 AM",
-            //     total_licenses:"5",
-            //     employee_users:"4",
-            //     storage_used:"0",
-            //     next_bill_date:"9/30/2016 10:05:05 AM",
-            //     trial:"False",
-            //     industry:"32"
-            // }
+                    // token: 'b4aa689f9f4dc2309a3c9406b1ef605252359590b9c832e932e53aec3d91589e62434e8182cbc4a53964c6111ac9209e',
+                    // user: {
+                    //     id: '644dac5d-92aa-44e9-957a-82cace5d4fe6',
+                    //     role: 'employee',
+                    //     email: 'Sujan.Abraham@citrix.com',
+                    //     creationDate: '8/29/2016 10:05:06 AM'
+                    // },
+                    // account: {
+                    //     id: 'a0b0dce3-d7cd-8b54-c437-10d2541dfcde',
+                    //     name: 'addoo',
+                    //     planLevel: 'Business',
+                    //     creationDate: '9/29/2016 10:05:06 AM',
+                    //     total_licenses: '5',
+                    //     employee_users: '5',
+                    //     storage_used: '0',
+                    //     next_bill_date: '9/30/2016 10:05:05 AM',
+                    //     trial: 'True',
+                    //     industry: '32'
+                    // }
+
             //product : 'addoo'
             // disableTracking : 'true'
         }
