@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('FeatureUsageCtrl', ['$scope', 'envService', '$state', 'Restangular', '$rootScope',
-        'Auth', 'growl', '$mixpanel', '$filter',
-        function ($scope, envService, $state, Restangular, $rootScope, Auth, growl, $mixpanel, $filter) {
+        'Auth', 'growl', '$mixpanel', '$filter','$stateParams',
+        function ($scope, envService, $state, Restangular, $rootScope, Auth, growl, $mixpanel, $filter,$stateParams) {
  
             $scope.featureID = $stateParams.featureID;
             $scope.faUserStats = {};

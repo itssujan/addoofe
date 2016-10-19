@@ -12,4 +12,9 @@ angular.module('app')
                 $scope.onboarding = data;
                 $scope.displayedOnboarding = [].concat($scope.onboarding);
             });
+
+            Restangular.all("walkthrough?product=" + Auth.user.productID).getList().then(function (data) {
+                $scope.walkthrough = data;
+                $scope.displayedWalkthrough = [].concat($scope.walkthrough);
+            });
         }]);

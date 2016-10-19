@@ -54,7 +54,11 @@ angular.module('app')
 
 					console.log("User logged in");
 					if(data.user.role == "superadmin") {
-						$state.go('customer-manager.product-selection');
+						Auth.user.product = 'addoo';
+						Auth.user.productID = '57a9e9c0d91ed08ee0a3e105';
+						$state.go('customer-manager.dashboard');	
+						$cookieStore.put("user",Auth.user);
+						//$state.go('customer-manager.product-selection');
 					} else if(data.user.products.length > 1){
 						$state.go('customer-manager.product-selection');
 					} else {

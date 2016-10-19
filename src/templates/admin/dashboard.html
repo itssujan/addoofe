@@ -42,6 +42,7 @@
          </a>
       </div>
    </div>
+
 <!--    <div class="col-sm-4">
       <div class="panel panel-success panel-hover">
          <a href="/account" class="panel-body">
@@ -176,6 +177,43 @@
 						<td>{{row.training.completedBy}}</td>
 						<td>{{row.training.dismissedBy}}</td>
 						<td><a ui-sref="">View</a></td>
+					</tr>
+				</table>
+			</div>	
+	</div>	
+</div>
+
+<div class="row">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+		  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+	    	InApp Walkthroughs
+		  </span>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<table class='table borderless' st-table="displayedWalkthrough" st-safe-src="walkthrough">
+					<thead class="thead-inverse">
+						<tr>
+							<th st-sort="name">Name</th>
+							<th st-sort="createdOn">Created On</th>
+							<th st-sort="status">Status</th>
+							<th st-sort="viewedBy">Seen</th>
+							<th st-sort="watchedBy">Started</th>
+							<th st-sort="watchedBy">Completed</th>
+							<th st-sort="watchedBy">Dismissed</th>
+							<th st-sort="watchedBy">Edit</th>
+						</tr>
+					</thead>
+					<tr ng-repeat="row in displayedWalkthrough">
+						<td>{{row.name}}</td>
+						<td><span am-time-ago="row.createdOn"></span></td>
+						<td style="text-transform: capitalize;">{{row.status}}</td>
+						<td>{{row.training.messageViewedBy}}</td>
+						<td>{{row.training.startedBy}}</td>
+						<td>{{row.training.completedBy}}</td>
+						<td>{{row.training.dismissedBy}}</td>
+						<td><a ui-sref="admin.editwalkthrough({walkthroughID : '{{row._id}}'})">Edit</a></td>
 					</tr>
 				</table>
 			</div>	

@@ -19,19 +19,19 @@
 				<li class="sidebar-list-item" id="top">
 					<a ui-sref="customer-manager.dashboard">Dashboard <span class="menu-icon fa fa-home"></span></a>
 				</li>
-				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
-					<a ui-sref="admin.dashboard">Onboarding<span class="menu-icon fa fa-bullhorn"></span></a>
+				<li class="sidebar-list-item" id="top">
+					<a ui-sref="customer-manager.dashboard1">Onboarding<span class="menu-icon fa fa-bullhorn"></span></a>
 				</li>
-				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin'">
+				<li class="sidebar-list-item" id="top">
 					<a ui-sref="customer-manager.reports">Reports <span class="menu-icon fa fa-dashcube" aria-hidden="true"></span></a>
 				</li>
 				<li class="sidebar-list-item" id="top">
 					<a ui-sref="customer-manager.leads">Leads <span class="menu-icon fa fa-usd"></span></a>
 				</li>
-				<li class="sidebar-list-item" id="top" ng-show="user.role == 'superadmin' || user.permissions.indexOf('uploadContent') > -1">
+				<li class="sidebar-list-item" id="top">
 					<a ui-sref="customer-manager.uploadcontent">Upload Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
 				</li>
-				<li class="sidebar-list-item" id="top" ng-show="user.role != 'sales'">
+				<li class="sidebar-list-item" id="top">
 					<a ui-sref="customer-manager.viewcontent">Edit Content <span class="menu-icon glyphicon glyphicon-upload" aria-hidden="true"></span></a>
 				</li>
 				<li class="sidebar-list-item" id="top">

@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<div class="row">
+		  		<div class="element col-sm-10">
+				  <span style="font-size: 16px; background-color: #F3F5F6; padding: 0 10px;">
+			    	{{walkthrough.name}}
+				  </span>
+				  <div growl inline="true"></div>
+				</div>
+				<div class="element col-sm-2">
+					<a type="button" class="btn btn-warning" style="float:right" ng-click="save()">Save</a>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<table ui-tree="tableCallbacks" class="table table-responsive">
+					<tbody class="drag-list" ui-tree-nodes ng-model="walkthrough.steps">
+						<tr ng-repeat="step in walkthrough.steps" ui-tree-node>
+							<td scope="row"><i class="glyphicon glyphicon-resize-vertical" ui-tree-handle></i></td>
+							<td scope="row">Step {{$index+1}}</td>
+							<td>
+								<div class="element col-sm-12">
+									<div class="row">
+										<div class="col-sm-1">
+											<span>Tag :</span>
+										</div>	
+										<div class="col-sm-4">
+											<span>{{step.field.tagName}}</span>
+										</div>	
+										<div class="col-sm-1">
+											<span>Title :</span>
+										</div>	
+										<div class="col-sm-4">
+											<textarea ng-model="step.title" class="form-control" rows="1" placeholder="Title" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 32px;">
+											</textarea>
+										</div>	
+									</div>		
+									<div class="row">
+										<div class="col-sm-2">
+											<span>Description :</span>
+										</div>	
+										<div class="col-sm-12">
+											<textarea ng-model="step.description" class="form-control" rows="1" placeholder="Description" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 32px;">
+											</textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<textarea ng-model="step.field.cssSelector" class="form-control" rows="1" placeholder="CSS selector" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 32px;">
+											</textarea>
+										</div>
+									</div>
+								</div>
+                            </td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>	
+	</div>	
+</div>

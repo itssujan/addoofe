@@ -157,6 +157,12 @@
                     ctrl: "featureUsageCtrl",
                     controller: "FeatureUsageCtrl",
                     data: {requiresLogin: true}
+                }).state('admin.editwalkthrough', {
+                    url: '/walktrhough/edit/:walkthroughID',
+                    templateUrl: 'templates/admin/editwalkthrough.html',
+                    ctrl: "walkthroughCtrl",
+                    controller: "WalkthroughCtrl",
+                    data: {requiresLogin: true}
                 });
 
                 $stateProvider
@@ -168,6 +174,13 @@
                         requiresLogin: true,
                         // requiredPermissions:  ['Instructor']
                     }
+                })
+                .state('customer-manager.dashboard1', {
+                    url: '/dashboard1',
+                    templateUrl: 'templates/admin/dashboard.html',
+                    ctrl: "adminDashboard",
+                    controller: "AdminDashboardCtrl",
+                    data: {requiresLogin: true}
                 })
                 .state('customer-manager.dashboard', {
                     url: '/dashboard',
